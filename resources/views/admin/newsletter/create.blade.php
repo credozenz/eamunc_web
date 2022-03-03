@@ -32,58 +32,30 @@
             <div class="grid grid-cols-12 gap-4 gap-y-3 p-3">
 
                 <div class="col-span-6">
-                        <label for="input-filter-1" class="form-label text-xs">Title</label>
-                        <input id="input-filter-1" type="text" name="title" class="form-control flex-1 @error('title') border-danger @enderror" placeholder="Title">
+                        <label for="input-filter-1" class="form-label text-xs text-danger">Title</label>
+                        <input id="input-filter-1" type="text" name="title" value="{{ old('title') }}" class="form-control flex-1 @error('title') border-danger @enderror" placeholder="Title">
                         @error('title')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                     </div>
                 <div class="col-span-6"></div>
                 
                 <div class="col-span-6">
-                        <label for="input-filter-2" class="form-label text-xs">Image</label>
-
-                        <div class="border-2 border-dashed dark:border-darkmode-400 rounded-md pt-4 @error('image') border-danger @enderror">
-                            <div class="flex flex-wrap px-4">
-                            <div class="w-24 h-24 relative image-fit img-preview-div mb-5 mr-5 ">
-                                    <img class="rounded-md img-preview" id="img-preview">
-                                    <span id="img-preview-rmv">
-                                    <div class="tooltip w-5 h-5 flex items-center justify-center absolute rounded-full text-white bg-danger right-0 top-0 -mr-2 -mt-2"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x w-4 h-4"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> </div>
-                                    </span>
-                                    </div>
-                            </div>
-                            <div class="px-4 pb-4 flex items-center cursor-pointer relative">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-image w-4 h-4 mr-2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg> <span class="text-primary mr-1">Upload a Image</span>
-                                <input type="file" id="image" name="image" class="w-full h-full top-0 left-0 absolute opacity-0  @error('image') border-danger @enderror">
-                            </div>
-                        </div>
+                        <label for="input-filter-2" class="form-label text-xs text-danger">Image</label>
+           
+                <input type="file" name="image" class="form-control @error('image') border-danger @enderror">
+                          
                         @error('image')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                 </div>
                 <div class="col-span-6">
-                        <label for="input-filter-3" class="form-label text-xs">News File</label>
+                        <label for="input-filter-3" class="form-label text-xs text-danger">News File</label>
                        
-                    <div class="border-2 border-dashed dark:border-darkmode-400 rounded-md pt-4 @error('news_doc') border-danger @enderror">
-                        <div class="flex flex-wrap px-4">
-                        <div class="w-24 h-24 relative image-fit doc-preview-div mb-5 mr-5 ">
-                                
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-image w-4 h-4 mr-2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="13 2 13 9 20 9"></polyline></svg>
-                                <label  class="rounded-md doc-preview" id="doc-preview"></label >
-                                <!-- <img class="rounded-md" src="{{asset('adminAssets/images/file_demo.png')}}"> -->
-                                <span id="doc-preview-rmv">
-                                    <div class="tooltip w-5 h-5 flex items-center justify-center absolute rounded-full text-white bg-danger right-0 top-0 -mr-2 -mt-2"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x w-4 h-4"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> </div>
-                                </span>
-                        </div>
-                        </div>
-                        <div class="px-4 pb-4 flex items-center cursor-pointer relative ">
-                        
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-image w-4 h-4 mr-2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="13 2 13 9 20 9"></polyline></svg> <span class="text-primary mr-1"> Upload a PDF</span>
-                            <input type="file" id="doc" name="news_doc" class="w-full h-full top-0 left-0 absolute opacity-0">
-                        </div>
-                    </div>
+                    <input type="file" name="news_doc" class="form-control @error('news_doc') border-danger @enderror">
+                      
                     @error('news_doc')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                 </div>
                     
                 <div class="col-span-12">
-                        <label for="input-filter-5" class="form-label text-xs">Description</label>
-                        <textarea id="input-filter-5" type="text" name="description" class="form-control flex-1  @error('description') border-danger @enderror" placeholder="Description" style="height: 250px;"></textarea>
+                        <label for="input-filter-5" class="form-label text-xs text-danger">Description</label>
+                        <textarea id="input-filter-5" type="text" name="description" class="form-control flex-1  @error('description') border-danger @enderror" placeholder="Description" style="height: 250px;">{{ old('description') }}</textarea>
                         @error('description')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                 </div>
                     

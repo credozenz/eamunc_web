@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DRIVER', 'local'),
+    'default' => env('FILESYSTEM_DRIVER', 'public'),
       /*
     |--------------------------------------------------------------------------
     | Default Cloud Filesystem Disk
@@ -25,7 +25,7 @@ return [
     |
     */
 
-    'cloud' => env('FILESYSTEM_CLOUD', 'spaces'),
+    'cloud' => env('FILESYSTEM_CLOUD', 'public'),
 
     /*
     |--------------------------------------------------------------------------
@@ -49,29 +49,10 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('public'),
-            'url' => env('APP_URL').'/storage',
+            'root'   => public_path() . '/uploads',
+            'url' => env('APP_URL').'/public',
             'visibility' => 'public',
-        ],
-
-        's3' => [
-            'driver' => 's3',
-            'key' => env('AWS_ACCESS_KEY_ID'),
-            'secret' => env('AWS_SECRET_ACCESS_KEY'),
-            'region' => env('AWS_DEFAULT_REGION'),
-            'bucket' => env('AWS_BUCKET'),
-            'url' => env('AWS_URL'),
-            'endpoint' => env('AWS_ENDPOINT'),
-            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
-        ],
-        'spaces' => [
-            'driver' => 's3',
-            'key' => env('DO_SPACES_KEY'),
-            'secret' => env('DO_SPACES_SECRET'),
-            'endpoint' => env('DO_SPACES_ENDPOINT'),
-            'region' => env('DO_SPACES_REGION'),
-            'bucket' => env('DO_SPACES_BUCKET'),
-        ],
+         ]
 
     ],
 

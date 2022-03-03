@@ -12,14 +12,17 @@ use Carbon\Carbon;
 use Str;
 use Image;
 use Storage;
+use Alert;
 use League\Flysystem\File;
 
 class NewsletterController extends Controller
 {
   
-    public function index()
+    public function index(Request $request)
     {
-        $data = Newsletter::paginate(10);
+       
+        $data = Newsletter::where('deleted_at', null)->paginate(10); 
+        Alert::message('Tickets retrieved!');
         
         return view('admin/newsletter/index', compact('data'));
        
@@ -55,7 +58,7 @@ class NewsletterController extends Controller
         $news->title = $request->title;
         $news->description  = $request->description;
         
-        $config_cdn=AdminHelper::cdn_folder();
+        
         
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -73,7 +76,7 @@ class NewsletterController extends Controller
                 $img->stream('png', 100);
             }
             
-            Storage::disk('public')->put($config_cdn.'newsletter/image/'.$fileName,$img,'public');
+            Storage::disk('public')->put('newsletter/image/'.$fileName,$img,'public');
            }
 
            $news->image = 'newsletter/image/'.$fileName; 
@@ -85,7 +88,7 @@ class NewsletterController extends Controller
             $file = $doc->get();
             
           
-            Storage::disk('public')->put($config_cdn.'newsletter/doc/'.$docfileName,$file,'public');
+            Storage::disk('public')->put('newsletter/doc/'.$docfileName,$file,'public');
            }
 
            $news->news_file = 'newsletter/doc/'.$docfileName; 
@@ -136,7 +139,7 @@ class NewsletterController extends Controller
         $news->title = $request->title;
         $news->description  = $request->description;
         
-        $config_cdn=AdminHelper::cdn_folder();
+       
         
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -154,7 +157,7 @@ class NewsletterController extends Controller
                 $img->stream('png', 100);
             }
             
-            Storage::disk('public')->put($config_cdn.'newsletter/image/'.$fileName,$img,'public');
+            Storage::disk('public')->put('newsletter/image/'.$fileName,$img,'public');
 
             $news->image = 'newsletter/image/'.$fileName; 
            }
@@ -171,7 +174,7 @@ class NewsletterController extends Controller
             $file = $doc->get();
             
           
-            Storage::disk('public')->put($config_cdn.'newsletter/doc/'.$docfileName,$file,'public');
+            Storage::disk('public')->put('newsletter/doc/'.$docfileName,$file,'public');
 
             $news->news_file = 'newsletter/doc/'.$docfileName; 
            }

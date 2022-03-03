@@ -20,7 +20,7 @@
                             <div class="form-check form-switch w-full sm:w-auto sm:ml-auto mt-3 sm:mt-0">
                             <a href="{{ url('admin/newsletter_edit',$data->id) }}" class="btn btn-primary shadow-md mr-2">Edit</a>
                           
-                            <a class="btn btn-danger shadow-md mr-2" id="smallButton" data-attr="{{ url('admin/newsletter_delete',$data->id) }}" title="Delete Project">
+                            <a class="btn btn-danger shadow-md mr-2 dltButton"  data-url="{{ url('admin/newsletter_delete',$data->id) }}" title="Delete Project">
                              Delete
                             </a>
                             </div>
@@ -43,7 +43,7 @@
                         <div class="border-2 border-dashed dark:border-darkmode-400 rounded-md pt-4 @error('image') border-danger @enderror">
                             <div class="flex flex-wrap px-4">
                             <div class="w-24 h-24 relative image-fit  mb-5 mr-5 ">
-                                 <img class="rounded-md img-preview" id="img-preview">
+                                 <img class="rounded-md img-preview" id="img-preview" src="{{ asset('uploads/'.$data->image) }}">
                             </div>
                             </div> 
                         </div>     
@@ -55,7 +55,8 @@
                         <div class="flex flex-wrap px-4">
                         <div class="w-24 h-24 relative image-fit mb-5 mr-5 ">
                                 <label  class="rounded-md doc-preview" id="doc-preview"></label >
-                                <img class="rounded-md" src="{{asset('adminAssets/images/file_demo.png')}}"> 
+                                <a href="{{ asset('uploads/'.$data->news_file) }}" >
+                                <img class="rounded-md" src="{{asset('adminAssets/images/file_demo.png')}}"> </a>
                         </div>
                         </div>
                         

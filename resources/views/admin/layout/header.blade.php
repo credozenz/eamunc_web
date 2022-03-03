@@ -11,5 +11,8 @@
         <!-- BEGIN: CSS Assets-->
         <link href="{{asset('adminAssets/css/app.css')}}" rel="stylesheet">
         <link href="{{asset('adminAssets/css/devstyle.css')}}" rel="stylesheet">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+    
+ 
         <!-- END: CSS Assets-->
     </head>

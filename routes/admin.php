@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashbordController;
 use App\Http\Controllers\Admin\NewsletterController;
+use App\Http\Controllers\Admin\PresidentMessagesController;
+use App\Http\Controllers\Admin\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,12 +20,21 @@ use App\Http\Controllers\Admin\NewsletterController;
      Route::post('/login', [AuthController::class,'postLogin']);
 
  Route::group(['middleware' => 'adminchecker'], function() {
-     Route::get('/dashbord', [DashbordController::class,'getDashbord']);
-     Route::get('/newsletter', [NewsletterController::class,'index']);
-     Route::get('/newsletter_create', [NewsletterController::class,'create']);
-     Route::post('/newsletter_store', [NewsletterController::class,'store']);
-     Route::get('/newsletter_edit/{id}', [NewsletterController::class,'edit']);
-     Route::get('/newsletter_show/{id}', [NewsletterController::class,'show']);
-     Route::post('/newsletter_update/{id}', [NewsletterController::class,'update']);
-     Route::post('/newsletter_delete/{id}', [NewsletterController::class,'destroy']);
+     
+     Route::get('/dashbord', [DashbordController::class,'getDashbord'])->name('admin.dashbord');
+    
+     Route::get('/newsletter', [NewsletterController::class,'index'])->name('admin.newsletter');
+     Route::get('/newsletter_create', [NewsletterController::class,'create'])->name('admin.newsletter.create');
+     Route::post('/newsletter_store', [NewsletterController::class,'store'])->name('admin.newsletter.store');
+     Route::get('/newsletter_edit/{id}', [NewsletterController::class,'edit'])->name('admin.newsletter.edit');
+     Route::get('/newsletter_show/{id}', [NewsletterController::class,'show'])->name('admin.newsletter.show');
+     Route::post('/newsletter_update/{id}', [NewsletterController::class,'update'])->name('admin.newsletter.update');
+     Route::post('/newsletter_delete/{id}', [NewsletterController::class,'destroy'])->name('admin.newsletter.destroy');
+
+     Route::get('/president_messages', [PresidentMessagesController::class,'index'])->name('admin.president_messages');
+     Route::post('/president_messages_update', [PresidentMessagesController::class,'update'])->name('admin.president_messages.update');
+
+     Route::get('/profile', [ProfileController::class,'profile']);
+     Route::post('/profile_update', [ProfileController::class,'update_profile'])->name('admin.profile.update');
+
  });

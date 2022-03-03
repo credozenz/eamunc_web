@@ -4,6 +4,10 @@
     @include('admin.layout.header')
     <!-- END: Head -->
     <body class="main">
+
+    @include('sweet::alert')
+
+        <?php Session::forget('sweet_alert'); ?>
     <!-- BEGIN: Mobile Menu -->
     @include('admin.layout.mobileMenu')    
     <!-- END: Mobile Menu -->
@@ -18,6 +22,7 @@
 
         <!-- BEGIN: Content -->
             @section('content')
+            
             @show
         <!-- END: Content -->
 

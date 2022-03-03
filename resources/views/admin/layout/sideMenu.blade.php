@@ -46,16 +46,24 @@
                             </ul>
                         </li>
 
+                        <li>
+                                    <a href="{{ url('admin/president_messages') }}" class="side-menu">
+                                        <div class="side-menu__icon"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg> </div>
+                                        <div class="side-menu__title"> President Messages </div>
+                                    </a>
+                                </li>
+
 
                         <li class="side-nav__devider my-6"></li>
 
                            
                                 <li>
-                                    <a href="side-menu-light-update-profile.html" class="side-menu">
+                                    <a href="{{ url('admin/profile') }}" class="side-menu">
                                         <div class="side-menu__icon"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg> </div>
                                         <div class="side-menu__title"> Update profile </div>
                                     </a>
                                 </li>
+
                                 <li>
                                     <a href="side-menu-light-change-password.html" class="side-menu">
                                         <div class="side-menu__icon"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg> </div>
