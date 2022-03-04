@@ -15,12 +15,14 @@
                                     <h3 class="font-medium text-base mr-auto">
                                         Update
                                     </h3>
-                                    <div class="form-check form-switch w-full sm:w-auto sm:ml-auto mt-3 sm:mt-0">
-                                   <a href="" class="btn btn-primary w-32 ml-2">Show</a>
-                                    </div>
+                                   
                                 </div>
                                 
-
+@if(Session::has('success'))
+<p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+@elseif(Session::has('error'))
+<p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+@endif
         <form method="post" action="{{ url('admin/newsletter_update',$data->id) }}"  enctype="multipart/form-data">
                     @csrf
                     

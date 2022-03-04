@@ -12,20 +12,15 @@ use Carbon\Carbon;
 use Str;
 use Image;
 use Storage;
-use Alert;
 use League\Flysystem\File;
 
 class NewsletterController extends Controller
 {
   
     public function index(Request $request)
-    {
-       
+    {   
         $data = Newsletter::where('deleted_at', null)->paginate(10); 
-        Alert::message('Tickets retrieved!');
-        
         return view('admin/newsletter/index', compact('data'));
-       
     }
 
     
@@ -96,7 +91,7 @@ class NewsletterController extends Controller
 
            $news->save();
            
-
+           Session::flash('msg', 'Thanks for voting');
            return  redirect()->back()->with('status',"Newsletter successfully");
     }
 
@@ -179,13 +174,15 @@ class NewsletterController extends Controller
             $news->news_file = 'newsletter/doc/'.$docfileName; 
            }
 
-          
-
-
            $news->save();
-           
+          
+          if(!$news->id){
+            Session::flash('message', 'This is a message!');
+          }else{
+            Session::flash('message', 'This is a message!');
+          }
 
-           return  redirect()->back()->with('status',"Newsletter successfully");
+           return  redirect()->back();
     }
 
     

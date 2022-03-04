@@ -9,7 +9,6 @@
                     </div>
                     <div class="grid grid-cols-12 gap-6 mt-5">
                         <div class="intro-y col-span-12 lg:col-span-12">
-                            <!-- BEGIN: Input -->
                             <div class="intro-y box">
                                 <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
                                     <h3 class="font-medium text-base mr-auto">
@@ -32,7 +31,6 @@
                         @error('name')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                     </div>
                 <div class="col-span-6">
-
                 <label for="input-filter-1" class="form-label text-xs">Email</label>
                         <input type="text" name="email" value="{{ $data->email }}" class="form-control flex-1 @error('title') border-danger @enderror" placeholder="Title">
                         @error('email')<div class="text-danger mt-2">{{ $message }}</div>@enderror

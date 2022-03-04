@@ -18,16 +18,24 @@ class AuthController extends Controller
 
     public function postLogin(Request $request)
     {
-        
+        $validatedData = $request->validate([
+            'email' => 'required|max:255',
+            'password' => ['required'],
+        ],[
+            'email.required' => 'The Email field is required',
+            'password.required' => 'The Password field is required',
+        ]);
+
         if($request->email != '' && $request->password != '')
         {
             $admin = DB::table('users')
                         ->where('email', $request->email);
                         // ->where('status', 1);
-                       
+                  
             if($admin->count() > 0)
             {
                 $admin = $admin->first();
+                
                 if(Hash::check($request->password,$admin->password))
                 {
                    
@@ -36,13 +44,16 @@ class AuthController extends Controller
                     $datas['NAME'] = $admin->name;
                     $datas['EMAIL'] = $admin->email;
                     Session::put($datas);
-                  
+                    
+
+               
                 return redirect('/admin/dashbord'); 
-                 
+  
                 }
                 else
                 {
-                    return redirect()->back()->with('not_found','Invalid Login');
+                    Session::flash('error', 'Something went wrong!');
+                    return redirect()->back();
                 }
             }
             else

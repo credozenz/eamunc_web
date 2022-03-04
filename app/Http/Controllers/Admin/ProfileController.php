@@ -9,11 +9,14 @@ use Illuminate\Support\Facades\Session;
 use App\Helper\AdminHelper;
 use App\Models\User;
 
+use App\Http\Requests;
+ use Flash;
+use Alert;
 use Carbon\Carbon;
 use Str;
 use Image;
 use Storage;
-use Alert;
+
 use League\Flysystem\File;
 
 class ProfileController extends Controller
@@ -23,11 +26,13 @@ class ProfileController extends Controller
     {
         $data = User::find(1); 
         
-        return view('admin/profile/profile_edit', compact('data'));  
+        return view('admin/profile/profile_edit', compact('data'));
+  
     }
 
     public function update_profile()
     {
+
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|max:255',
@@ -69,7 +74,7 @@ class ProfileController extends Controller
 
            $news->save();
            
-
+           
            return  redirect()->back()->with('status',"Profile updated successfully"); 
     }
 

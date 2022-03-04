@@ -1,36 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
+<html lang="en">
     <!-- BEGIN: Head -->
     @include('admin.layout.header')
     <!-- END: Head -->
-    <body class="main">
-
-    @include('sweet::alert')
-
-        <?php Session::forget('sweet_alert'); ?>
-    <!-- BEGIN: Mobile Menu -->
-    @include('admin.layout.mobileMenu')    
-    <!-- END: Mobile Menu -->
-   
-    @include('admin.layout.headMenu')
-    <div class="wrapper">
-        <div class="wrapper-box">
-
-        <!-- BEGIN: Side Menu -->
-        @include('admin.layout.sideMenu')
-        <!-- END: Side Menu -->
-
+    <body> 
+    @include('admin.layout.menu')
+    <div id="main">
         <!-- BEGIN: Content -->
-            @section('content')
-            
+            @section('content')       
             @show
-        <!-- END: Content -->
-
-        </div>
-    </div>
+        <!-- END: Content --> 
     @include('admin.layout.footer')
     </body>
-    
 
-    
 </html>
