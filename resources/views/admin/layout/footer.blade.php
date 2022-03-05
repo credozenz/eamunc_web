@@ -12,9 +12,7 @@
             
         </div>
     </div>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="{{asset('js/admin/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset('js/admin/apexcharts.js')}}"></script>
-<script src="{{asset('js/admin/pages/dashboard.js')}}"></script>
 <script src="{{asset('js/admin/sidebar.js')}}"></script>
 <script src="{{asset('js/admin/admin.js')}}"></script>

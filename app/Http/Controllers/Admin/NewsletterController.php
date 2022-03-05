@@ -19,7 +19,7 @@ class NewsletterController extends Controller
   
     public function index(Request $request)
     {   
-        $data = Newsletter::where('deleted_at', null)->paginate(10); 
+        $data = Newsletter::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4); 
         return view('admin/newsletter/index', compact('data'));
     }
 
@@ -42,7 +42,7 @@ class NewsletterController extends Controller
             'title.required' => 'The Title field is required',
             'description.required' => 'The Description field is required',
             'image.required' => 'The Image field is required',
-            'news_doc.required' => 'The PDF field is required',
+            'news_doc.required' => 'The News File field is required',
             'image.max' => 'Image  must be smaller than 2 MB',
             'news_doc.max' => 'Image  must be smaller than 2 MB',
             'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
@@ -90,9 +90,18 @@ class NewsletterController extends Controller
 
 
            $news->save();
-           
-           Session::flash('msg', 'Thanks for voting');
-           return  redirect()->back()->with('status',"Newsletter successfully");
+
+
+        if($news->id){
+            Session::flash('success', 'Newsletter added successfully!');
+            return redirect('/admin/newsletter');
+          }else{
+            Session::flash('error', 'Something went wrong!!');
+            return  redirect()->back();
+          }
+
+          
+        
     }
 
    
@@ -175,14 +184,16 @@ class NewsletterController extends Controller
            }
 
            $news->save();
-          
-          if(!$news->id){
-            Session::flash('message', 'This is a message!');
+        
+          if($news->id){
+            Session::flash('success', 'Newsletter updated successfully!');
+            return redirect('/admin/newsletter');
           }else{
-            Session::flash('message', 'This is a message!');
+            Session::flash('error', 'Something went wrong!!');
+            return  redirect()->back();
           }
 
-           return  redirect()->back();
+           
     }
 
     

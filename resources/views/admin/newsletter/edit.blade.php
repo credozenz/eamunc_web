@@ -1,94 +1,97 @@
 
 @extends('admin.layout.main')
 @section('content')
-<div class="content">
-                    <div class="intro-y flex items-center mt-8">
-                        <h2 class="text-lg font-medium mr-auto">
-                            News Letter
-                        </h2>
+
+
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3> News Letter</h3>
+                <p class="text-subtitle text-muted"></p>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ url('admin/newsletter') }}"> News Letter</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"> Edit</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+            @if(Session::has('success'))
+            <div class="alert alert-success"><i class="bi bi-star"></i>{{ Session::get('success') }}</div>
+             @elseif(Session::has('error'))
+            <div class="alert alert-danger"><i class="bi bi-file-excel"></i> {{ Session::get('error') }}</div>
+            @endif
+    <!-- // Basic multiple Column Form section start -->
+    <section id="multiple-column-form">
+        <div class="row match-height">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Edit</h4>
                     </div>
-                    <div class="grid grid-cols-12 gap-6 mt-5">
-                        <div class="intro-y col-span-12 lg:col-span-12">
-                            <!-- BEGIN: Input -->
-                            <div class="intro-y box">
-                                <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
-                                    <h3 class="font-medium text-base mr-auto">
-                                        Update
-                                    </h3>
-                                   
-                                </div>
-                                
-@if(Session::has('success'))
-<p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
-@elseif(Session::has('error'))
-<p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
-@endif
-        <form method="post" action="{{ url('admin/newsletter_update',$data->id) }}"  enctype="multipart/form-data">
+                    <div class="card-content">
+                        <div class="card-body">
+                <form method="post" action="{{ url('admin/newsletter_update',$data->id) }}"  enctype="multipart/form-data">
                     @csrf
                     
-            <div class="grid grid-cols-12 gap-4 gap-y-3 p-3">
-
-                <div class="col-span-6">
-                        <label for="input-filter-1" class="form-label text-xs">Title</label>
-                        <input type="text" name="title" value="{{ $data->title }}" class="form-control flex-1 @error('title') border-danger @enderror" placeholder="Title">
+                                <div class="row">
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label class="form-label text-danger">Title</label>
+                        <input type="text" name="title" value="{{ $data->title }}" class="form-control @error('title') border-danger @enderror" placeholder="Title">
                         @error('title')<div class="text-danger mt-2">{{ $message }}</div>@enderror
-                    </div>
-                <div class="col-span-6"></div>
-                
-                <div class="col-span-6">
-                        <label for="input-filter-2" class="form-label text-xs">Image</label>
-                        <div class="border-2 border-dashed dark:border-darkmode-400 rounded-md pt-4 @error('image') border-danger @enderror">
-                            <div class="flex flex-wrap px-4">
-                            <div class="w-24 h-24 relative image-fit  mb-5 mr-5 ">
-                                 <img class="rounded-md img-preview" id="img-preview" src="{{ asset('uploads/'.$data->image) }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                      
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label class="form-label text-danger">Image</label>
+                            <div class="w-30 h-30 relative image-fit  mb-2 mr-5 ">
+                                 <img class="rounded-md img-preview" src="{{ asset('uploads/'.$data->image) }}" style="width: 103px;">
                             </div>
-                            </div> 
-                          
                         <input type="file" name="image" class="form-control  @error('image') border-danger @enderror">
-                           
                         @error('image')<div class="text-danger mt-2">{{ $message }}</div>@enderror
-                        </div>   
-                </div>
-                <div class="col-span-6">
-                        <label for="input-filter-3" class="form-label text-xs">News File</label>
-                        <div class="border-2 border-dashed dark:border-darkmode-400 rounded-md pt-4 @error('news_doc') border-danger @enderror">
-                        <div class="flex flex-wrap px-4">
-                        <div class="w-24 h-24 relative image-fit mb-5 mr-5 ">
-                                <label  class="rounded-md doc-preview" id="doc-preview"></label >
-                                <a href="{{ asset('uploads/'.$data->news_file) }}" >
-                                <img class="rounded-md" src="{{asset('adminAssets/images/file_demo.png')}}"> </a>
-                        </div>
-                        </div>
-                        
-                    
-                  <input type="file" name="news_doc" class="form-control">
-                       
-                    @error('news_doc')<div class="text-danger mt-2">{{ $message }}</div>@enderror
-                    </div>
-                </div>
-                    
-                <div class="col-span-12">
-                        <label for="input-filter-5" class="form-label text-xs">Description</label>
-                        <textarea id="input-filter-5" type="text" name="description" class="form-control flex-1  @error('description') border-danger @enderror" placeholder="Description" style="height: 250px;">{{ $data->description }}</textarea>
-                        @error('description')<div class="text-danger mt-2">{{ $message }}</div>@enderror
-                </div>
-                    
-                <div class="col-span-12 flex items-center mt-3">
-                        <a href="{{ url('admin/newsletter') }}" class="btn btn-secondary w-32 ml-auto">Back</a>
-                        <button class="btn btn-primary w-32 ml-2">Update</button>
-                </div>
-
-            </div>
-            </form>
-
-
-
-
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label class="form-label text-danger">News File</label>
+                            <div class="w-30 h-30 relative image-fit  mb-2 mr-5 ">
+                            <a href="{{ asset('uploads/'.$data->news_file) }}" >
+                                <img class="rounded-md img-preview" src="{{asset('assets/admin/img/file_demo.png')}}" style="width: 47px;"> 
+                            </a>
                             </div>
-                            <!-- END: Input -->
-                        
+                        <input type="file" name="news_doc" class="form-control">
+                       @error('news_doc')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-12">
+                                        <div class="form-group">
+                                            <label class="form-label text-danger">Description</label>
+                        <textarea id="input-filter-5" type="text" name="description" class="form-control @error('description') border-danger @enderror" placeholder="Description" style="height: 250px;">{{ $data->description }}</textarea>
+                        @error('description')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                        </div>
+                                    </div>
+                                  
+                                    <div class="col-12 d-flex justify-content-end">
+                                    <a href="{{ url('admin/newsletter') }}" class="btn btn-light-secondary me-1 mb-1">Back</a>
+                                    <button class="btn btn-primary me-1 mb-1">Update</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+    <!-- // Basic multiple Column Form section end -->
+</div>
 
-                @endsection
+  @endsection
