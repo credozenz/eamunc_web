@@ -4,6 +4,7 @@ $(function(){
         e.preventDefault();
         
         var url = $(this).data('url');
+        var replace_url = $(this).data('replaceurl');
 
         $.ajaxSetup({
             headers: {
@@ -37,9 +38,10 @@ $(function(){
                             swal("Poof! Your file has been deleted!", {
                                 icon: "success",
                             });
-
+                            window.location.replace(replace_url);
                         }else{
                             swal("something went wrong please try again !");
+                            window.location.reload()
                         }
 
                     },
@@ -48,13 +50,14 @@ $(function(){
                     error: function(xhr, status, error) {
                         var err = eval("(" + xhr.responseText + ")");
                         swal(err.Message);
-                        
+                        window.location.reload()
                     }
             
                 });
             
             } else {
             swal("Your imaginary file is safe!");
+            window.location.reload()
             }
         });
 

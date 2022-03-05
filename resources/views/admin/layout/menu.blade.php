@@ -43,6 +43,51 @@
                     <span>President Message</span>
                 </a>
             </li>
+
+            <li class="sidebar-item  has-sub">
+                <a href="#" class='sidebar-link'>
+                    <i class="bi bi-stack"></i>
+                    <span>Faculties Message</span>
+                </a>
+                <ul class="submenu ">
+                    <li class="submenu-item ">
+                        <a href="{{ url('admin/facultiesmessages') }}">Index</a>
+                    </li>
+                    <li class="submenu-item ">
+                        <a href="{{ url('admin/facultiesmessages_create') }}">Add</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="sidebar-item  has-sub">
+                <a href="#" class='sidebar-link'>
+                    <i class="bi bi-stack"></i>
+                    <span>Our Mentors</span>
+                </a>
+                <ul class="submenu ">
+                    <li class="submenu-item ">
+                        <a href="{{ url('admin/our_mentors') }}">Index</a>
+                    </li>
+                    <li class="submenu-item ">
+                        <a href="{{ url('admin/our_mentors_create') }}">Add</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="sidebar-item  has-sub">
+                <a href="#" class='sidebar-link'>
+                    <i class="bi bi-stack"></i>
+                    <span>Gallery</span>
+                </a>
+                <ul class="submenu ">
+                    <li class="submenu-item ">
+                        <a href="{{ url('admin/gallery') }}">Index</a>
+                    </li>
+                    <li class="submenu-item ">
+                        <a href="{{ url('admin/gallery_create') }}">Add</a>
+                    </li>
+                </ul>
+            </li>
             
             <li class="sidebar-title">Settings</li>
         
@@ -53,7 +98,7 @@
                 </a>
             </li>
             <li class="sidebar-item  ">
-                <a href="form-layout.html" class='sidebar-link'>
+                <a href="{{ url('admin/change_password') }}" class='sidebar-link'>
                     <i class="bi bi-file-earmark-medical-fill"></i>
                     <span>Change Password</span>
                 </a>

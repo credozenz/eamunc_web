@@ -49,11 +49,11 @@ class PresidentMessagesController extends Controller
         ]);
 
     
-        $news = president_message::where('id', 1)->first(); 
-        $news->title = $request->title;
-        $news->name = $request->name;
-        $news->post = $request->post;
-        $news->description  = $request->description;
+        $message = president_message::where('id', 1)->first(); 
+        $message->title = $request->title;
+        $message->name = $request->name;
+        $message->post = $request->post;
+        $message->description  = $request->description;
         
        
         
@@ -75,13 +75,19 @@ class PresidentMessagesController extends Controller
             
             Storage::disk('public')->put('president_image/'.$fileName,$img,'public');
 
-            $news->image = 'president_image/'.$fileName; 
+            $message->image = 'president_image/'.$fileName; 
            }
 
-           $news->save();
+           $message->save();
            
-
-           return  redirect()->back()->with('status',"president message add successfully");
+           if($message->id){
+            Session::flash('success', 'President messages updated successfully!');
+            return redirect('/admin/president_messages');
+          }else{
+            Session::flash('error', 'Something went wrong!!');
+            return  redirect()->back();
+          }
+           
     }
 
     
