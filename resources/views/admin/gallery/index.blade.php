@@ -5,13 +5,13 @@
 <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3> Our Mentors</h3>
+                <h3> Gallery</h3>
                 <p class="text-subtitle text-muted"></p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ url('admin/our_mentors') }}">Our Mentors</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('admin/gallery') }}">Gallery</a></li>
                         <li class="breadcrumb-item active" aria-current="page"> Index</li>
                     </ol>
                 </nav>
@@ -33,7 +33,7 @@
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="{{ url('admin/our_mentors_create') }}" class="btn btn-primary shadow-md mr-2">Add</a>
+                            <a href="{{ url('admin/gallery_create') }}" class="btn btn-primary shadow-md mr-2">Add</a>
                         </li>
                     </ol>
                     </nav>
@@ -54,18 +54,18 @@
                                 @foreach ($data as $key => $value)
                                     <tr>
                                         <td class="text-bold-500">{{ $key+1 }}</td>
-                                        <td class="text-bold-500">{{ $value->title }}</td>
+                                        <td class="text-bold-500">{{ $value->name }}</td>
                                         <td>
 
                                         <div class="tabulator-cell" role="gridcell" tabulator-field="images" title="" style="width: 224px; text-align: center; display: inline-flex; align-items: center; justify-content: center; height: 64px;"><div class="flex lg:justify-center">
                                         <div class="intro-x w-10 h-10 image-fit">
-                                            <img alt="{{ $value->title }}" class="rounded-full" src="{{ asset('uploads/'.$value->image) }}">
+                                            <img alt="{{ $value->title }}" class="rounded-full" src="{{ asset('uploads/'.$value->cover_image) }}">
                                         </div>
     
                                         </td>
                                         <td>
-                                        <a href="{{ url('admin/our_mentors_show',$value->id) }}" class="btn btn-sm btn-primary w-24 mr-1 mb-2">View</a>
-                                        </td>
+                                        <a href="{{ url('admin/gallery_show',$value->id) }}" class="btn btn-sm btn-primary w-24 mr-1 mb-2">View</a>
+                                    </td>
                                     </tr>
                                 @endforeach
                             @else
@@ -79,7 +79,6 @@
                             </div>
                             </div>
                         
-                         
                             @include('admin.layout.pagination', ['paginator' => $data])
                      
             </div>

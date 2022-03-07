@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Helper\AdminHelper;
-use App\Models\our_mentors;
+use App\Models\Our_mentors;
 
 use Carbon\Carbon;
 use Str;
@@ -19,7 +19,7 @@ class MentorsController extends Controller
   
     public function index(Request $request)
     {   
-        $data = our_mentors::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4); 
+        $data = Our_mentors::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4); 
         return view('admin/ourmentors/index', compact('data'));
     }
 
@@ -45,7 +45,7 @@ class MentorsController extends Controller
             'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
         ]);
 
-        $mentors = new our_mentors;
+        $mentors = new Our_mentors;
         $mentors->title = $request->title;
         $mentors->name = $request->name;
         
@@ -88,7 +88,7 @@ class MentorsController extends Controller
    
     public function show($id)
     {
-        $data = our_mentors::find($id); 
+        $data = Our_mentors::find($id); 
         
         return view('admin/ourmentors/show', compact('data'));
     }
@@ -96,7 +96,7 @@ class MentorsController extends Controller
    
     public function edit($id)
     {
-        $data = our_mentors::find($id); 
+        $data = Our_mentors::find($id); 
         
         return view('admin/ourmentors/edit', compact('data'));
     }
@@ -114,7 +114,7 @@ class MentorsController extends Controller
         ]);
 
     
-        $mentors = our_mentors::where('id', $id)->first(); 
+        $mentors = Our_mentors::where('id', $id)->first(); 
         $mentors->title = $request->title;
         $mentors->name = $request->name;
        
@@ -169,7 +169,7 @@ class MentorsController extends Controller
     public function destroy(Request $request,$id)
     {
 
-        $news = our_mentors::where('id', $id)->first(); 
+        $news = Our_mentors::where('id', $id)->first(); 
         $mytime = Carbon::now();
         $timestamp=$mytime->toDateTimeString();
         $news->deleted_at = $timestamp;

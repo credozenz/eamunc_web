@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Helper\AdminHelper;
-use App\Models\gallery;
-use App\Models\gallery_images;
+use App\Models\Gallery;
+use App\Models\Gallery_images;
 use Carbon\Carbon;
 use Str;
 use Image;
@@ -19,14 +19,8 @@ class GalleryController extends Controller
   
     public function index(Request $request)
     {   
-        
-        $data = DB::table('galleries')
-              ->join('gallery_images', 'gallery_images.gallery_id', '=', 'galleries.id')
-              ->get(['galleries.*', 'gallery_images.image'])
-              ->where('galleries.deleted_at', null)
-              ->orderBy('galleries.id','desc')
-              ->paginate(4);
-
+        $data = Gallery::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4); 
+       
         return view('admin/gallery/index', compact('data'));
     }
 
@@ -41,21 +35,75 @@ class GalleryController extends Controller
     {
 
         $validatedData = $request->validate([
-            'name' => 'required|max:255',
             'title' => 'required|max:255',
+            'cover_image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:255'],
+        ],[
+            'title.required' => 'The Title field is required',
+            'cover_image.required' => 'The Image field is required',
+            'cover_image.max' => 'Image  must be smaller than 2 MB',
+            'cover_image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
+        ]);
+
+        $gallery = new Gallery;
+        $gallery->name = $request->title;
+        $gallery->status = 0;
+        if ($request->hasFile('cover_image')) {
+            $image = $request->file('cover_image');
+            $fileName   =  time().'_'.str_random(5).'_'.rand(1111,9999). '.' . $image->getClientOriginalExtension();
+          
+            $extension=$image->getClientOriginalExtension();
+           
+            if($extension=='svg'){
+               $img = $image->get();
+            }else{
+                $img = Image::make($image->getRealPath());
+                $img->resize(100, 100, function ($constraint) {
+                   $constraint->aspectRatio();                 
+                });
+                $img->stream('png', 100);
+            }
+            
+            Storage::disk('public')->put('gallery/'.$fileName,$img,'public');
+           }
+
+           $gallery->cover_image = 'gallery/'.$fileName; 
+
+           $gallery->save();
+
+
+        if($gallery->id){
+            Session::flash('success', 'Gallery added successfully!');
+            return redirect('/admin/gallery_images/'.$gallery->id);
+          }else{
+            Session::flash('error', 'Something went wrong!!');
+            return  redirect()->back();
+          }
+
+          
+        
+    }
+
+    public function gallery_images($id)
+    {
+        $data = Gallery_images::where('gallery_id', $id)->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4);
+        return view('admin/gallery/add_images', compact('data','id'));
+    }
+
+    public function add_images(Request $request)
+    {
+
+        $validatedData = $request->validate([
+            'gallery_id' => 'required|max:255',
             'image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:255'],
         ],[
-            'name.required' => 'The Name field is required',
-            'title.required' => 'The Title field is required',
+            'gallery_id.required' => 'The Title field is required',
             'image.required' => 'The Image field is required',
             'image.max' => 'Image  must be smaller than 2 MB',
             'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
         ]);
 
-        $mentors = new our_mentors;
-        $mentors->title = $request->title;
-        $mentors->name = $request->name;
-        
+        $gallery = new Gallery_images;
+        $gallery->gallery_id = $request->gallery_id;
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $fileName   =  time().'_'.str_random(5).'_'.rand(1111,9999). '.' . $image->getClientOriginalExtension();
@@ -75,35 +123,34 @@ class GalleryController extends Controller
             Storage::disk('public')->put('gallery/'.$fileName,$img,'public');
            }
 
-           $mentors->image = 'gallery/'.$fileName; 
+           $gallery->image = 'gallery/'.$fileName; 
 
-           $mentors->save();
+           $gallery->save();
 
+           $data = Gallery::where('id', $request->gallery_id)->first(); 
+           $data->status = 1;
+           $data->save();
 
-        if($mentors->id){
-            Session::flash('success', 'Mentors added successfully!');
-            return redirect('/admin/our_mentors');
+        if($gallery->id){
+            Session::flash('success', 'Image added successfully!');
+            return  redirect()->back();
           }else{
             Session::flash('error', 'Something went wrong!!');
             return  redirect()->back();
           }
-
-          
-        
+       
     }
-
-   
     public function show($id)
     {
-        $data = our_mentors::find($id); 
-        
-        return view('admin/gallery/show', compact('data'));
+        $gallery = Gallery::find($id); 
+        $images = Gallery_images::where('gallery_id', $id)->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4);
+        return view('admin/gallery/show', compact('gallery','images','id'));
     }
 
    
     public function edit($id)
     {
-        $data = our_mentors::find($id); 
+        $data = Gallery::find($id); 
         
         return view('admin/gallery/edit', compact('data'));
     }
@@ -113,32 +160,29 @@ class GalleryController extends Controller
     {
         
         $validatedData = $request->validate([
-            'name' => 'required|max:255',
             'title' => 'required|max:255',
         ],[
-            'name.required' => 'The Name field is required',
             'title.required' => 'The Title field is required',
         ]);
 
     
-        $mentors = our_mentors::where('id', $id)->first(); 
-        $mentors->title = $request->title;
-        $mentors->name = $request->name;
+        $gallery = Gallery::where('id', $id)->first(); 
+        $gallery->name = $request->title;
        
         
-        if ($request->hasFile('image')) {
+        if ($request->hasFile('cover_image')) {
 
             $validatedData = $request->validate([
-                'image' => ['mimes:jpeg,png,jpg,gif,svg', 'max:255'],
+                'cover_image' => ['mimes:jpeg,png,jpg,gif,svg', 'max:255'],
             ],[
-                'image.max' => 'Image  must be smaller than 2 MB',
-                'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
+                'cover_image.max' => 'Image  must be smaller than 2 MB',
+                'cover_image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
             ]);
     
 
 
 
-            $image = $request->file('image');
+            $image = $request->file('cover_image');
             $fileName   =  time().'_'.str_random(5).'_'.rand(1111,9999). '.' . $image->getClientOriginalExtension();
           
             $extension=$image->getClientOriginalExtension();
@@ -155,15 +199,15 @@ class GalleryController extends Controller
             
             Storage::disk('public')->put('gallery/'.$fileName,$img,'public');
 
-            $mentors->image = 'gallery/'.$fileName; 
+            $gallery->cover_image = 'gallery/'.$fileName; 
            }
 
          
-           $mentors->save();
+           $gallery->save();
         
-          if($mentors->id){
-            Session::flash('success', 'Mentors updated successfully!');
-            return redirect('/admin/our_mentors');
+          if($gallery->id){
+            Session::flash('success', 'Gallery updated successfully!');
+            return redirect('/admin/gallery_images/'.$gallery->id);
           }else{
             Session::flash('error', 'Something went wrong!!');
             return  redirect()->back();
@@ -172,16 +216,27 @@ class GalleryController extends Controller
            
     }
 
+    public function gallery_img_delete(Request $request,$id)
+    {
+
+        $gallery = Gallery_images::where('id', $id)->first(); 
+        $mytime = Carbon::now();
+        $timestamp=$mytime->toDateTimeString();
+        $gallery->deleted_at = $timestamp;
+        $gallery->save();
+
+        echo json_encode(['status'=>true,'message'=>'Gallery Image Deleted Successfully !']);exit();
+    }
     
     public function destroy(Request $request,$id)
     {
 
-        $news = our_mentors::where('id', $id)->first(); 
+        $gallery = Gallery::where('id', $id)->first(); 
         $mytime = Carbon::now();
         $timestamp=$mytime->toDateTimeString();
-        $news->deleted_at = $timestamp;
-        $news->save();
+        $gallery->deleted_at = $timestamp;
+        $gallery->save();
 
-        echo json_encode(['status'=>true,'message'=>'Agent Deleted Successfully !']);exit();
+        echo json_encode(['status'=>true,'message'=>'Gallery Deleted Successfully !']);exit();
     }
 }

@@ -35,33 +35,27 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                <form method="post" action="{{ url('admin/our_mentors_update',$data->id) }}"  enctype="multipart/form-data">
+                <form method="post" action="{{ url('admin/gallery_update',$data->id) }}"  enctype="multipart/form-data">
                     @csrf
                     
                                 <div class="row">
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                            <label class="form-label text-danger">Name</label>
-                        <input type="text" name="name" value="{{ $data->name }}" class="form-control @error('name') border-danger @enderror" placeholder="Name">
-                        @error('name')<div class="text-danger mt-2">{{ $message }}</div>@enderror
-                                        </div>
-                                    </div>
+                               
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label class="form-label text-danger">Title</label>
-                        <input type="text" name="title" value="{{ $data->title }}" class="form-control @error('title') border-danger @enderror" placeholder="Title">
+                        <input type="text" name="title" value="{{ $data->name }}" class="form-control @error('title') border-danger @enderror" placeholder="Title">
                         @error('title')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
-                                    
+                                    <div class="col-md-6 col-12"></div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label class="form-label text-danger">Image</label>
+                                            <label class="form-label text-danger">Cover Image</label>
                             <div class="w-30 h-30 relative image-fit  mb-2 mr-5 ">
-                                 <img class="rounded-md img-preview" src="{{ asset('uploads/'.$data->image) }}" style="width: 103px;">
+                                 <img class="rounded-md img-preview" src="{{ asset('uploads/'.$data->cover_image) }}" style="width: 103px;">
                             </div>
-                        <input type="file" name="image" class="form-control  @error('image') border-danger @enderror">
-                        @error('image')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                        <input type="file" name="cover_image" class="form-control  @error('cover_image') border-danger @enderror">
+                        @error('cover_image')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
                                   

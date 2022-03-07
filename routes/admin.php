@@ -58,9 +58,14 @@ use App\Http\Controllers\Admin\GalleryController;
      Route::post('/gallery_store', [GalleryController::class,'store'])->name('admin.gallery.store');
      Route::get('/gallery_edit/{id}', [GalleryController::class,'edit'])->name('admin.gallery.edit');
      Route::get('/gallery_show/{id}', [GalleryController::class,'show'])->name('admin.gallery.show');
+     Route::get('/gallery_images/{id}', [GalleryController::class,'gallery_images'])->name('admin.gallery.images');
+     Route::post('/gallery_add_images', [GalleryController::class,'add_images'])->name('admin.gallery.add_images');
      Route::post('/gallery_update/{id}', [GalleryController::class,'update'])->name('admin.gallery.update');
      Route::post('/gallery_delete/{id}', [GalleryController::class,'destroy'])->name('admin.gallery.destroy');
-     
+     Route::post('/gallery_img_delete/{id}', [GalleryController::class,'gallery_img_delete'])->name('admin.gallery.dlt_images');
+
+     Route::get('/live', [PresidentMessagesController::class,'index'])->name('admin.live');
+     Route::post('/live_update', [PresidentMessagesController::class,'update'])->name('admin.live.update');
 
      Route::get('/profile', [ProfileController::class,'profile']);
      Route::post('/profile_update', [ProfileController::class,'update_profile'])->name('admin.profile.update');
