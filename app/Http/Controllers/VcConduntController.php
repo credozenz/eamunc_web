@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Live;
+use App\Models\Vc_condunt;
 use Illuminate\Http\Request;
 
-class LiveController extends Controller
+class VcConduntController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class LiveController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Live  $live
+     * @param  \App\Models\Vc_condunt  $vc_condunt
      * @return \Illuminate\Http\Response
      */
-    public function show(Live $live)
+    public function show(Vc_condunt $vc_condunt)
     {
         //
     }
@@ -52,10 +52,10 @@ class LiveController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Live  $live
+     * @param  \App\Models\Vc_condunt  $vc_condunt
      * @return \Illuminate\Http\Response
      */
-    public function edit(Live $live)
+    public function edit(Vc_condunt $vc_condunt)
     {
         //
     }
@@ -64,10 +64,10 @@ class LiveController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Live  $live
+     * @param  \App\Models\Vc_condunt  $vc_condunt
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Live $live)
+    public function update(Request $request, Vc_condunt $vc_condunt)
     {
         //
     }
@@ -75,10 +75,10 @@ class LiveController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Live  $live
+     * @param  \App\Models\Vc_condunt  $vc_condunt
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Live $live)
+    public function destroy(Vc_condunt $vc_condunt)
     {
         //
     }

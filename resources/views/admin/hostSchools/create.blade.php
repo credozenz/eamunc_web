@@ -5,13 +5,13 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3> Our Mentors</h3>
+                <h3> Host School</h3>
                 <p class="text-subtitle text-muted"></p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ url('admin/newsletter') }}"> Our Mentors</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('admin/host_schools') }}">Host School</a></li>
                         <li class="breadcrumb-item active" aria-current="page"> Create</li>
                     </ol>
                 </nav>
@@ -33,7 +33,7 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                        <form method="post" action="{{ url('admin/our_mentors_store') }}"  enctype="multipart/form-data">
+                        <form method="post" action="{{ url('admin/host_schools_store') }}"  enctype="multipart/form-data">
                           @csrf
                     
                                 <div class="row">
@@ -60,6 +60,7 @@
                         @error('image')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
+                                   
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
                                             <label class="form-label text-danger">Description</label>
@@ -67,9 +68,9 @@
                         @error('description')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
-                                  
+                                         
                                     <div class="col-12 d-flex justify-content-end">
-                                    <a href="{{ url('admin/our_mentors') }}" class="btn btn-light-secondary me-1 mb-1">Back</a>
+                                    <a href="{{ url('admin/host_schools') }}" class="btn btn-light-secondary me-1 mb-1">Back</a>
                                     <button class="btn btn-primary me-1 mb-1">Submit</button>
                                     </div>
                                 </div>

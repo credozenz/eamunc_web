@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOurMentorsTable extends Migration
+class CreateVcConduntsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateOurMentorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('our_mentors', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('image');
+        Schema::create('vc_condunts', function (Blueprint $table) {
+            $table->increments('id'); 
             $table->string('title');
+            $table->string('image');
             $table->text('description');
+            $table->string('doc_file');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -31,6 +31,6 @@ class CreateOurMentorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('our_mentors');
+        Schema::dropIfExists('vc_condunts');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOurMentorsTable extends Migration
+class CreateCommitteeMembersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateOurMentorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('our_mentors', function (Blueprint $table) {
+        Schema::create('committee_members', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('image');
             $table->string('title');
-            $table->text('description');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -31,6 +30,6 @@ class CreateOurMentorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('our_mentors');
+        Schema::dropIfExists('committee_members');
     }
 }

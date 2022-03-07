@@ -37,20 +37,19 @@
                           @csrf
                           <input type="hidden" name="gallery_id" value="{{ $id }}" class="form-control  @error('gallery_id') border-danger @enderror">
                                 <div class="row">
-                                    
-                                    <div class="col-md-6 col-12">
+                                <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label class="form-label text-danger">image</label>
-                        <input type="file" name="image" class="form-control  @error('image') border-danger @enderror">
-                        @error('image')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                     <fieldset>
+                                        <div class="input-group">
+                                            <input type="file" name="image"  class="form-control  @error('image') border-danger @enderror"  aria-label="Upload">
+                                            <button class="btn btn-primary">Upload</button>
+                                        </div>
+                                    </fieldset>
+                                    @error('image')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
-                                   
-                                    
-                                  
-                                    <div class="col-12 d-flex justify-content-end">
-                                    <button class="btn btn-primary me-1 mb-1">Add Images</button>
-                                    </div>
+                                
                                 </div>
                             </form>
                         </div>

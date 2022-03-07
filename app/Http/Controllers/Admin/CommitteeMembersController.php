@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Helper\AdminHelper;
-use App\Models\Our_mentors;
+use App\Models\Committee_members;
 
 use Carbon\Carbon;
 use Str;
@@ -14,19 +14,19 @@ use Image;
 use Storage;
 use League\Flysystem\File;
 
-class MentorsController extends Controller
+class CommitteeMembersController extends Controller
 {
   
     public function index(Request $request)
     {   
-        $data = Our_mentors::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4); 
-        return view('admin/ourmentors/index', compact('data'));
+        $data = Committee_members::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4); 
+        return view('admin/committeeMembers/index', compact('data'));
     }
 
     
     public function create()
     {
-        return view('admin/ourmentors/create');
+        return view('admin/committeeMembers/create');
     }
 
     
@@ -36,21 +36,18 @@ class MentorsController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'title' => 'required|max:255',
-            'description' => 'required',
             'image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:255'],
         ],[
             'name.required' => 'The Name field is required',
             'title.required' => 'The Title field is required',
-            'description.required' => 'The Description field is required',
             'image.required' => 'The Image field is required',
             'image.max' => 'Image  must be smaller than 2 MB',
             'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
         ]);
 
-        $mentors = new Our_mentors;
-        $mentors->title = $request->title;
-        $mentors->name = $request->name;
-        $mentors->description = $request->description;
+        $member = new Committee_members;
+        $member->title = $request->title;
+        $member->name = $request->name;
         
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -68,17 +65,17 @@ class MentorsController extends Controller
                 $img->stream('png', 100);
             }
             
-            Storage::disk('public')->put('our_mentors/'.$fileName,$img,'public');
+            Storage::disk('public')->put('committee_members/'.$fileName,$img,'public');
            }
 
-           $mentors->image = 'our_mentors/'.$fileName; 
+           $member->image = 'committee_members/'.$fileName; 
 
-           $mentors->save();
+           $member->save();
 
 
-        if($mentors->id){
-            Session::flash('success', 'Mentors added successfully!');
-            return redirect('/admin/our_mentors');
+        if($member->id){
+            Session::flash('success', 'Committee members added successfully!');
+            return redirect('/admin/committee_members');
           }else{
             Session::flash('error', 'Something went wrong!!');
             return  redirect()->back();
@@ -91,17 +88,17 @@ class MentorsController extends Controller
    
     public function show($id)
     {
-        $data = Our_mentors::find($id); 
+        $data = Committee_members::find($id); 
         
-        return view('admin/ourmentors/show', compact('data'));
+        return view('admin/committeeMembers/show', compact('data'));
     }
 
    
     public function edit($id)
     {
-        $data = Our_mentors::find($id); 
+        $data = Committee_members::find($id); 
         
-        return view('admin/ourmentors/edit', compact('data'));
+        return view('admin/committeeMembers/edit', compact('data'));
     }
 
     
@@ -111,18 +108,16 @@ class MentorsController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'title' => 'required|max:255',
-            'description' => 'required',
         ],[
             'name.required' => 'The Name field is required',
             'title.required' => 'The Title field is required',
-            'description.required' => 'The Description field is required',
         ]);
 
     
-        $mentors = Our_mentors::where('id', $id)->first(); 
-        $mentors->title = $request->title;
-        $mentors->name = $request->name;
-        $mentors->description = $request->description;
+        $member = Committee_members::where('id', $id)->first(); 
+        $member->title = $request->title;
+        $member->name = $request->name;
+       
         
         if ($request->hasFile('image')) {
 
@@ -151,17 +146,17 @@ class MentorsController extends Controller
                 $img->stream('png', 100);
             }
             
-            Storage::disk('public')->put('our_mentors/'.$fileName,$img,'public');
+            Storage::disk('public')->put('committee_members/'.$fileName,$img,'public');
 
-            $mentors->image = 'our_mentors/'.$fileName; 
+            $member->image = 'committee_members/'.$fileName; 
            }
 
          
-           $mentors->save();
+           $member->save();
         
-          if($mentors->id){
-            Session::flash('success', 'Mentors updated successfully!');
-            return redirect('/admin/our_mentors');
+          if($member->id){
+            Session::flash('success', 'Committee members updated successfully!');
+            return redirect('/admin/committee_members');
           }else{
             Session::flash('error', 'Something went wrong!!');
             return  redirect()->back();
@@ -174,12 +169,12 @@ class MentorsController extends Controller
     public function destroy(Request $request,$id)
     {
 
-        $news = Our_mentors::where('id', $id)->first(); 
+        $news = Committee_members::where('id', $id)->first(); 
         $mytime = Carbon::now();
         $timestamp=$mytime->toDateTimeString();
         $news->deleted_at = $timestamp;
         $news->save();
 
-        echo json_encode(['status'=>true,'message'=>'Agent Deleted Successfully !']);exit();
+        echo json_encode(['status'=>true,'message'=>'Committee members Deleted Successfully !']);exit();
     }
 }

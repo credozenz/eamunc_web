@@ -40,23 +40,25 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label class="form-label text-danger">Name</label>
-                            <input type="text" name="name" value="{{ $data->name }}" class="form-control" placeholder="Name">
+                            <input type="text" name="name" value="{{ $data->name ?? '' }}" class="form-control" placeholder="Name">
                             @error('name')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                     <div class="form-group">
                                             <label class="form-label text-danger">Post</label>
-                                            <input type="text" name="post" value="{{ $data->post }}" class="form-control" placeholder="Post">
+                                            <input type="text" name="post" value="{{ $data->post ?? '' }}" class="form-control" placeholder="Post">
                                             @error('post')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label class="form-label text-danger">Image</label>
+                            @if(!empty($data->image))
                             <div class="w-30 h-30 relative image-fit  mb-2 mr-5 ">
                                  <img class="rounded-md img-preview" src="{{ asset('uploads/'.$data->image) }}" style="width: 103px;">
                             </div>
+                            @endif
                         <input type="file" name="image" class="form-control  @error('image') border-danger @enderror">
                         @error('image')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
@@ -66,14 +68,14 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label class="form-label text-danger">Title</label>
-         <input type="text" name="title" value="{{ $data->title }}" class="form-control" placeholder="Title">
+         <input type="text" name="title" value="{{ $data->title ?? '' }}" class="form-control" placeholder="Title">
         @error('title')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
                                             <label class="form-label text-danger">Description</label>
-                        <textarea id="input-filter-5" type="text" name="description" class="form-control @error('description') border-danger @enderror" placeholder="Description" style="height: 250px;">{{ $data->description }}</textarea>
+                        <textarea id="input-filter-5" type="text" name="description" class="form-control @error('description') border-danger @enderror" placeholder="Description" style="height: 250px;">{{ $data->description ?? '' }}</textarea>
                         @error('description')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>

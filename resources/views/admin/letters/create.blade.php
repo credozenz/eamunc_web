@@ -5,13 +5,13 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3> Our Mentors</h3>
+                <h3>Letter</h3>
                 <p class="text-subtitle text-muted"></p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ url('admin/newsletter') }}"> Our Mentors</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('admin/letters') }}"> Letter</a></li>
                         <li class="breadcrumb-item active" aria-current="page"> Create</li>
                     </ol>
                 </nav>
@@ -33,7 +33,7 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                        <form method="post" action="{{ url('admin/our_mentors_store') }}"  enctype="multipart/form-data">
+                        <form method="post" action="{{ url('admin/letters_store') }}"  enctype="multipart/form-data">
                           @csrf
                     
                                 <div class="row">
@@ -49,6 +49,14 @@
                                             <label class="form-label text-danger">Title</label>
                         <input type="text" name="title" value="{{ old('title') }}" class="form-control @error('title') border-danger @enderror" placeholder="Title">
                         @error('title')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label class="form-label text-danger">Post</label>
+                        <input type="text" name="post" value="{{ old('post') }}" class="form-control @error('post') border-danger @enderror" placeholder="Title">
+                        @error('post')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
                                    
@@ -69,7 +77,7 @@
                                     </div>
                                   
                                     <div class="col-12 d-flex justify-content-end">
-                                    <a href="{{ url('admin/our_mentors') }}" class="btn btn-light-secondary me-1 mb-1">Back</a>
+                                    <a href="{{ url('admin/letters') }}" class="btn btn-light-secondary me-1 mb-1">Back</a>
                                     <button class="btn btn-primary me-1 mb-1">Submit</button>
                                     </div>
                                 </div>

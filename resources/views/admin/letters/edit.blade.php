@@ -3,19 +3,18 @@
 @section('content')
 
 
-
 <div class="page-heading">
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3> Our Mentors</h3>
+                <h3>Letter</h3>
                 <p class="text-subtitle text-muted"></p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ url('admin/our_mentors') }}">Our Mentors</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Show </li>
+                        <li class="breadcrumb-item"><a href="{{ url('admin/letters') }}">Letter</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"> Edit</li>
                     </ol>
                 </nav>
             </div>
@@ -32,55 +31,62 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Show</h4>
-                   <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a href="{{ url('admin/our_mentors_edit',$data->id) }}" class="btn-sm btn-primary shadow-md mr-2">Edit</a>
-                            <a class="btn-sm btn-danger shadow-md mr-2 dltButton"  data-url="{{ url('admin/our_mentors_delete',$data->id) }}" data-replaceurl="{{ url('admin/our_mentors') }}" title="Delete Project">Delete</a>
-                        </li>
-                    </ol>
-                    </nav>
+                        <h4 class="card-title">Edit</h4>
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                        <div class="row">
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="text-danger">Name</label>
-                        <input type="text" name="name" value="{{ $data->name }}" class="form-control" disabled placeholder="Name">
-                      
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-12">
+                <form method="post" action="{{ url('admin/letters_update',$data->id) }}"  enctype="multipart/form-data">
+                    @csrf
+                    
+                                <div class="row">
+                                <div class="col-md-6 col-12">
                                     <div class="form-group">
-                                            <label for="text-danger">Title</label>
-                        <input type="text" name="title" value="{{ $data->title }}" class="form-control" disabled placeholder="Title">
-                      
+                                            <label class="form-label text-danger">Name</label>
+                        <input type="text" name="name" value="{{ $data->name }}" class="form-control @error('name') border-danger @enderror" placeholder="Name">
+                        @error('name')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="text-danger">Image</label>
+                                            <label class="form-label text-danger">Title</label>
+                        <input type="text" name="title" value="{{ $data->title }}" class="form-control @error('title') border-danger @enderror" placeholder="Title">
+                        @error('title')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label class="form-label text-danger">Post</label>
+                        <input type="text" name="post" value="{{ $data->post }}" class="form-control @error('post') border-danger @enderror" placeholder="Title">
+                        @error('post')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label class="form-label text-danger">Image</label>
                             <div class="w-30 h-30 relative image-fit  mb-2 mr-5 ">
                                  <img class="rounded-md img-preview" src="{{ asset('uploads/'.$data->image) }}" style="width: 103px;">
                             </div>
-                        
+                        <input type="file" name="image" class="form-control  @error('image') border-danger @enderror">
+                        @error('image')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
+
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="text-danger">Description</label>
-                        <textarea id="input-filter-5" type="text" name="description" class="form-control" placeholder="Description" disabled style="height: 250px;">{{ $data->description }}</textarea>
+                                            <label class="form-label text-danger">Description</label>
+                        <textarea id="input-filter-5" type="text" name="description" class="form-control @error('description') border-danger @enderror" placeholder="Description" style="height: 250px;">{{ $data->description }}</textarea>
                         @error('description')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
                                   
                                     <div class="col-12 d-flex justify-content-end">
-                                    <a href="{{ url('admin/our_mentors') }}" class="btn btn-light-secondary me-1 mb-1">Back</a>
-                                    
+                                    <a href="{{ url('admin/letters') }}" class="btn btn-light-secondary me-1 mb-1">Back</a>
+                                    <button class="btn btn-primary me-1 mb-1">Update</button>
                                     </div>
                                 </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -90,5 +96,4 @@
     <!-- // Basic multiple Column Form section end -->
 </div>
 
-     @endsection
-
+  @endsection

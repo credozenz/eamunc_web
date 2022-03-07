@@ -8,13 +8,13 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3> Our Mentors</h3>
+                <h3> Committee Members</h3>
                 <p class="text-subtitle text-muted"></p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ url('admin/our_mentors') }}">Our Mentors</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('admin/our_mentors') }}">Committee Members</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Show </li>
                     </ol>
                 </nav>
@@ -36,8 +36,8 @@
                    <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="{{ url('admin/our_mentors_edit',$data->id) }}" class="btn-sm btn-primary shadow-md mr-2">Edit</a>
-                            <a class="btn-sm btn-danger shadow-md mr-2 dltButton"  data-url="{{ url('admin/our_mentors_delete',$data->id) }}" data-replaceurl="{{ url('admin/our_mentors') }}" title="Delete Project">Delete</a>
+                            <a href="{{ url('admin/committee_members_edit',$data->id) }}" class="btn-sm btn-primary shadow-md mr-2">Edit</a>
+                            <a class="btn-sm btn-danger shadow-md mr-2 dltButton"  data-url="{{ url('admin/committee_members_delete',$data->id) }}" data-replaceurl="{{ url('admin/committee_members') }}" title="Delete Project">Delete</a>
                         </li>
                     </ol>
                     </nav>
@@ -68,16 +68,10 @@
                         
                                         </div>
                                     </div>
-                                    <div class="col-md-12 col-12">
-                                        <div class="form-group">
-                                            <label for="text-danger">Description</label>
-                        <textarea id="input-filter-5" type="text" name="description" class="form-control" placeholder="Description" disabled style="height: 250px;">{{ $data->description }}</textarea>
-                        @error('description')<div class="text-danger mt-2">{{ $message }}</div>@enderror
-                                        </div>
-                                    </div>
+                                    
                                   
                                     <div class="col-12 d-flex justify-content-end">
-                                    <a href="{{ url('admin/our_mentors') }}" class="btn btn-light-secondary me-1 mb-1">Back</a>
+                                    <a href="{{ url('admin/committee_members') }}" class="btn btn-light-secondary me-1 mb-1">Back</a>
                                     
                                     </div>
                                 </div>

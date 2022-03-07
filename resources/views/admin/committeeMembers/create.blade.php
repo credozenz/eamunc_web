@@ -5,13 +5,13 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3> Our Mentors</h3>
+                <h3> Committee Members</h3>
                 <p class="text-subtitle text-muted"></p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ url('admin/newsletter') }}"> Our Mentors</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('admin/newsletter') }}">Committee Members</a></li>
                         <li class="breadcrumb-item active" aria-current="page"> Create</li>
                     </ol>
                 </nav>
@@ -33,7 +33,7 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                        <form method="post" action="{{ url('admin/our_mentors_store') }}"  enctype="multipart/form-data">
+                        <form method="post" action="{{ url('admin/committee_members_store') }}"  enctype="multipart/form-data">
                           @csrf
                     
                                 <div class="row">
@@ -60,16 +60,10 @@
                         @error('image')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-12 col-12">
-                                        <div class="form-group">
-                                            <label class="form-label text-danger">Description</label>
-                        <textarea id="input-filter-5" type="text" name="description" class="form-control @error('description') border-danger @enderror" placeholder="Description" style="height: 250px;">{{ old('description') }}</textarea>
-                        @error('description')<div class="text-danger mt-2">{{ $message }}</div>@enderror
-                                        </div>
-                                    </div>
+                                   
                                   
                                     <div class="col-12 d-flex justify-content-end">
-                                    <a href="{{ url('admin/our_mentors') }}" class="btn btn-light-secondary me-1 mb-1">Back</a>
+                                    <a href="{{ url('admin/committee_members') }}" class="btn btn-light-secondary me-1 mb-1">Back</a>
                                     <button class="btn btn-primary me-1 mb-1">Submit</button>
                                     </div>
                                 </div>

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Helper\AdminHelper;
-use App\Models\News_letter;
+use App\Models\Host_schools;
 
 use Carbon\Carbon;
 use Str;
@@ -14,19 +14,19 @@ use Image;
 use Storage;
 use League\Flysystem\File;
 
-class NewsletterController extends Controller
+class HostSchoolController extends Controller
 {
   
     public function index(Request $request)
     {   
-        $data = News_letter::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4); 
-        return view('admin/newsletter/index', compact('data'));
+        $data = Host_schools::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4); 
+        return view('admin/hostSchools/index', compact('data'));
     }
 
     
     public function create()
     {
-        return view('admin/newsletter/create');
+        return view('admin/hostSchools/create');
     }
 
     
@@ -34,27 +34,23 @@ class NewsletterController extends Controller
     {
 
         $validatedData = $request->validate([
+            'name' => 'required|max:255',
             'title' => 'required|max:255',
             'description' => ['required'],
             'image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:255'],
-            'news_doc' => ['required','mimes:pdf', 'max:255'],
         ],[
-            'title.required' => 'The Title field is required',
+            'name.required' => 'The Name field is required',
             'description.required' => 'The Description field is required',
+            'title.required' => 'The Title field is required',
             'image.required' => 'The Image field is required',
-            'news_doc.required' => 'The News File field is required',
             'image.max' => 'Image  must be smaller than 2 MB',
-            'news_doc.max' => 'Image  must be smaller than 2 MB',
             'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
-            'news_doc.mimes' => 'Input accept only pdf',
         ]);
 
-        $news = new News_letter;
-        $news->title = $request->title;
-        $news->description  = $request->description;
-        
-        
-        
+        $host = new Host_schools;
+        $host->title = $request->title;
+        $host->name = $request->name;
+        $host->description = $request->description;
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $fileName   =  time().'_'.str_random(5).'_'.rand(1111,9999). '.' . $image->getClientOriginalExtension();
@@ -71,30 +67,17 @@ class NewsletterController extends Controller
                 $img->stream('png', 100);
             }
             
-            Storage::disk('public')->put('newsletter/image/'.$fileName,$img,'public');
+            Storage::disk('public')->put('host_schools/'.$fileName,$img,'public');
            }
 
-           $news->image = 'newsletter/image/'.$fileName; 
+           $host->image = 'host_schools/'.$fileName; 
+
+           $host->save();
 
 
-           if ($request->hasFile('news_doc')) {
-            $doc = $request->file('news_doc');
-            $docfileName   =  time().'_'.str_random(5).'_'.rand(1111,9999). '.' . $doc->getClientOriginalExtension();
-            $file = $doc->get();
-            
-          
-            Storage::disk('public')->put('newsletter/doc/'.$docfileName,$file,'public');
-           }
-
-           $news->news_file = 'newsletter/doc/'.$docfileName; 
-
-
-           $news->save();
-
-
-        if($news->id){
-            Session::flash('success', 'Newsletter added successfully!');
-            return redirect('/admin/newsletter');
+        if($host->id){
+            Session::flash('success', 'Host schools added successfully!');
+            return redirect('/admin/host_schools');
           }else{
             Session::flash('error', 'Something went wrong!!');
             return  redirect()->back();
@@ -107,17 +90,17 @@ class NewsletterController extends Controller
    
     public function show($id)
     {
-        $data = News_letter::find($id); 
+        $data = Host_schools::find($id); 
         
-        return view('admin/newsletter/show', compact('data'));
+        return view('admin/hostSchools/show', compact('data'));
     }
 
    
     public function edit($id)
     {
-        $data = News_letter::find($id); 
+        $data = Host_schools::find($id); 
         
-        return view('admin/newsletter/edit', compact('data'));
+        return view('admin/hostSchools/edit', compact('data'));
     }
 
     
@@ -125,27 +108,33 @@ class NewsletterController extends Controller
     {
         
         $validatedData = $request->validate([
+            'name' => 'required|max:255',
             'title' => 'required|max:255',
-            'description' => ['required'],
-            'image' => ['mimes:jpeg,png,jpg,gif,svg', 'max:255'],
-            'news_doc' => ['mimes:pdf', 'max:255'],
+            'description' => 'required',
         ],[
+            'name.required' => 'The Name field is required',
             'title.required' => 'The Title field is required',
             'description.required' => 'The Description field is required',
-            'image.max' => 'Image  must be smaller than 2 MB',
-            'news_doc.max' => 'Image  must be smaller than 2 MB',
-            'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
-            'news_doc.mimes' => 'Input accept only pdf',
         ]);
 
     
-        $news = Newsletter::where('id', $id)->first(); 
-        $news->title = $request->title;
-        $news->description  = $request->description;
-        
-       
+        $host = Host_schools::where('id', $id)->first(); 
+        $host->title = $request->title;
+        $host->name = $request->name;
+        $host->description  = $request->description;
         
         if ($request->hasFile('image')) {
+
+            $validatedData = $request->validate([
+                'image' => ['mimes:jpeg,png,jpg,gif,svg', 'max:255'],
+            ],[
+                'image.max' => 'Image  must be smaller than 2 MB',
+                'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
+            ]);
+    
+
+
+
             $image = $request->file('image');
             $fileName   =  time().'_'.str_random(5).'_'.rand(1111,9999). '.' . $image->getClientOriginalExtension();
           
@@ -161,33 +150,17 @@ class NewsletterController extends Controller
                 $img->stream('png', 100);
             }
             
-            Storage::disk('public')->put('newsletter/image/'.$fileName,$img,'public');
+            Storage::disk('public')->put('host_schools/'.$fileName,$img,'public');
 
-            $news->image = 'newsletter/image/'.$fileName; 
+            $host->image = 'host_schools/'.$fileName; 
            }
 
-           
-
-
-           if ($request->hasFile('news_doc')) {
-            $doc = $request->file('news_doc');
-            $docfileName   =  time().'_'.str_random(5).'_'.rand(1111,9999). '.' . $doc->getClientOriginalExtension();
-          
-            $extension=$doc->getClientOriginalExtension();
-           
-            $file = $doc->get();
-            
-          
-            Storage::disk('public')->put('newsletter/doc/'.$docfileName,$file,'public');
-
-            $news->news_file = 'newsletter/doc/'.$docfileName; 
-           }
-
-           $news->save();
+         
+           $host->save();
         
-          if($news->id){
-            Session::flash('success', 'Newsletter updated successfully!');
-            return redirect('/admin/newsletter');
+          if($host->id){
+            Session::flash('success', 'Host schools updated successfully!');
+            return redirect('/admin/host_schools');
           }else{
             Session::flash('error', 'Something went wrong!!');
             return  redirect()->back();
@@ -200,12 +173,12 @@ class NewsletterController extends Controller
     public function destroy(Request $request,$id)
     {
 
-        $news = News_letter::where('id', $id)->first(); 
+        $news = Host_schools::where('id', $id)->first(); 
         $mytime = Carbon::now();
         $timestamp=$mytime->toDateTimeString();
         $news->deleted_at = $timestamp;
         $news->save();
 
-        echo json_encode(['status'=>true,'message'=>'Agent Deleted Successfully !']);exit();
+        echo json_encode(['status'=>true,'message'=>'Host schools Deleted Successfully !']);exit();
     }
 }

@@ -64,6 +64,14 @@
                         @error('image')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
+
+                                    <div class="col-md-12 col-12">
+                                        <div class="form-group">
+                                            <label class="form-label text-danger">Description</label>
+                        <textarea id="input-filter-5" type="text" name="description" class="form-control @error('description') border-danger @enderror" placeholder="Description" style="height: 250px;">{{ $data->description }}</textarea>
+                        @error('description')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                        </div>
+                                    </div>
                                   
                                     <div class="col-12 d-flex justify-content-end">
                                     <a href="{{ url('admin/newsletter') }}" class="btn btn-light-secondary me-1 mb-1">Back</a>

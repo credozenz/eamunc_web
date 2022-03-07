@@ -37,6 +37,22 @@
                     </li>
                 </ul>
             </li>
+
+            <li class="sidebar-item  has-sub">
+                <a href="#" class='sidebar-link'>
+                    <i class="bi bi-stack"></i>
+                    <span>Letter</span>
+                </a>
+                <ul class="submenu ">
+                    <li class="submenu-item ">
+                        <a href="{{ url('admin/letters') }}">Index</a>
+                    </li>
+                    <li class="submenu-item ">
+                        <a href="{{ url('admin/letters_create') }}">Add</a>
+                    </li>
+                </ul>
+            </li>
+
             <li class="sidebar-item  ">
                 <a href="{{ url('admin/president_messages') }}" class='sidebar-link'>
                     <i class="bi bi-file-earmark-medical-fill"></i>
@@ -74,6 +90,37 @@
                 </ul>
             </li>
 
+
+            <li class="sidebar-item  has-sub">
+                <a href="#" class='sidebar-link'>
+                    <i class="bi bi-stack"></i>
+                    <span>Committee Members</span>
+                </a>
+                <ul class="submenu ">
+                    <li class="submenu-item ">
+                        <a href="{{ url('admin/committee_members') }}">Index</a>
+                    </li>
+                    <li class="submenu-item ">
+                        <a href="{{ url('admin/committee_members_create') }}">Add</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="sidebar-item  has-sub">
+                <a href="#" class='sidebar-link'>
+                    <i class="bi bi-stack"></i>
+                    <span>Host Schools</span>
+                </a>
+                <ul class="submenu ">
+                    <li class="submenu-item ">
+                        <a href="{{ url('admin/host_schools') }}">Index</a>
+                    </li>
+                    <li class="submenu-item ">
+                        <a href="{{ url('admin/host_schools_create') }}">Add</a>
+                    </li>
+                </ul>
+            </li>
+
             <li class="sidebar-item  has-sub">
                 <a href="#" class='sidebar-link'>
                     <i class="bi bi-stack"></i>
@@ -87,6 +134,34 @@
                         <a href="{{ url('admin/gallery_create') }}">Add</a>
                     </li>
                 </ul>
+            </li>
+
+            <li class="sidebar-item  ">
+                <a href="{{ url('admin/live') }}" class='sidebar-link'>
+                    <i class="bi bi-file-earmark-medical-fill"></i>
+                    <span>Live</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item  ">
+                <a href="{{ url('admin/act_impacts') }}" class='sidebar-link'>
+                    <i class="bi bi-file-earmark-medical-fill"></i>
+                    <span>Act to Impact</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item  ">
+                <a href="{{ url('admin/vc_condunt') }}" class='sidebar-link'>
+                    <i class="bi bi-file-earmark-medical-fill"></i>
+                    <span>Virtual Code Of Conduct</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item  ">
+                <a href="{{ url('admin/vision') }}" class='sidebar-link'>
+                    <i class="bi bi-file-earmark-medical-fill"></i>
+                    <span>Vision</span>
+                </a>
             </li>
             
             <li class="sidebar-title">Settings</li>
@@ -104,7 +179,7 @@
                 </a>
             </li>
                
-            
+           
         </ul>
     </div>
     
