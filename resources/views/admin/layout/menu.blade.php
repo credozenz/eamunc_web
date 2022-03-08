@@ -52,7 +52,35 @@
                     </li>
                 </ul>
             </li>
+            <li class="sidebar-item  has-sub">
+                <a href="#" class='sidebar-link'>
+                    <i class="bi bi-stack"></i>
+                    <span>Conference schedule</span>
+                </a>
+                <ul class="submenu ">
+                    <li class="submenu-item ">
+                        <a href="{{ url('admin/conference_schedule') }}">Index</a>
+                    </li>
+                    <li class="submenu-item ">
+                        <a href="{{ url('admin/conference_schedule_create') }}">Add</a>
+                    </li>
+                </ul>
+            </li>
 
+            <li class="sidebar-item  has-sub">
+                <a href="#" class='sidebar-link'>
+                    <i class="bi bi-stack"></i>
+                    <span>Conference Updates</span>
+                </a>
+                <ul class="submenu ">
+                    <li class="submenu-item ">
+                        <a href="{{ url('admin/conference_updates') }}">Index</a>
+                    </li>
+                    <li class="submenu-item ">
+                        <a href="{{ url('admin/conference_updates_create') }}">Add</a>
+                    </li>
+                </ul>
+            </li>
             <li class="sidebar-item  ">
                 <a href="{{ url('admin/president_messages') }}" class='sidebar-link'>
                     <i class="bi bi-file-earmark-medical-fill"></i>
@@ -184,5 +212,7 @@
     </div>
     
     <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
-</div>
+            </div>
         </div>
+</div>
+

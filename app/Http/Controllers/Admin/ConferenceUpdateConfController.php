@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Vc_condunt;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class VcConduntController extends Controller
+class ConferenceUpdateConfController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class VcConduntController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Vc_condunt  $vc_condunt
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Vc_condunt $vc_condunt)
+    public function show($id)
     {
         //
     }
@@ -52,10 +52,10 @@ class VcConduntController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Vc_condunt  $vc_condunt
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Vc_condunt $vc_condunt)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +64,10 @@ class VcConduntController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Vc_condunt  $vc_condunt
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vc_condunt $vc_condunt)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +75,10 @@ class VcConduntController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Vc_condunt  $vc_condunt
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Vc_condunt $vc_condunt)
+    public function destroy($id)
     {
         //
     }

@@ -16,6 +16,8 @@ use App\Http\Controllers\Admin\ActImpactsController;
 use App\Http\Controllers\Admin\VcconduntController;
 use App\Http\Controllers\Admin\VisionController;
 use App\Http\Controllers\Admin\LetterController;
+use App\Http\Controllers\Admin\ScheduleConfController;
+use App\Http\Controllers\Admin\ConferenceUpdatesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -98,6 +100,22 @@ Route::group(['middleware' => 'adminchecker'], function() {
      Route::post('/letters_update/{id}', [LetterController::class,'update'])->name('admin.letters.update');
      Route::post('/letters_delete/{id}', [LetterController::class,'destroy'])->name('admin.letters.destroy');
 
+
+     Route::get('/conference_schedule', [ScheduleConfController::class,'index'])->name('admin.conference_schedule');
+     Route::get('/conference_schedule_create', [ScheduleConfController::class,'create'])->name('admin.conference_schedule.create');
+     Route::post('/conference_schedule_store', [ScheduleConfController::class,'store'])->name('admin.conference_schedule.store');
+     Route::get('/conference_schedule_edit/{id}', [ScheduleConfController::class,'edit'])->name('admin.conference_schedule.edit');
+     Route::get('/conference_schedule_show/{id}', [ScheduleConfController::class,'show'])->name('admin.conference_schedule.show');
+     Route::post('/conference_schedule_update/{id}', [ScheduleConfController::class,'update'])->name('admin.conference_schedule.update');
+     Route::post('/conference_schedule_delete/{id}', [ScheduleConfController::class,'destroy'])->name('admin.conference_schedule.destroy');
+
+     Route::get('/conference_updates', [ConferenceUpdatesController::class,'index'])->name('admin.conference_updates');
+     Route::get('/conference_updates_create', [ConferenceUpdatesController::class,'create'])->name('admin.conference_updates.create');
+     Route::post('/conference_updates_store', [ConferenceUpdatesController::class,'store'])->name('admin.conference_updates.store');
+     Route::get('/conference_updates_edit/{id}', [ConferenceUpdatesController::class,'edit'])->name('admin.conference_updates.edit');
+     Route::get('/conference_updates_show/{id}', [ConferenceUpdatesController::class,'show'])->name('admin.conference_updates.show');
+     Route::post('/conference_updates_update/{id}', [ConferenceUpdatesController::class,'update'])->name('admin.conference_updates.update');
+     Route::post('/conference_updates_delete/{id}', [ConferenceUpdatesController::class,'destroy'])->name('admin.conference_updates.destroy');
 
      Route::get('/act_impacts', [ActImpactsController::class,'index'])->name('admin.act_impacts');
      Route::post('/act_impacts_update', [ActImpactsController::class,'update'])->name('admin.act_impacts.update');

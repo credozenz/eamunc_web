@@ -1,6 +1,6 @@
    
         
-             <footer>
+            <footer>
                 <div class="footer clearfix mb-0 text-muted">
                     <div class="float-start">   
                     </div>
@@ -10,8 +10,7 @@
                 </div>
             </footer>
             
-        </div>
-    </div>
+     
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="{{asset('js/admin/bootstrap.bundle.min.js')}}"></script>

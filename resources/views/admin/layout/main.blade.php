@@ -10,6 +10,7 @@
             @section('content')       
             @show
         <!-- END: Content --> 
+    </div>
     @include('admin.layout.footer')
     </body>
 
