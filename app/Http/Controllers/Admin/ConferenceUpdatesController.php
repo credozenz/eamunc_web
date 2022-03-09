@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Helper\AdminHelper;
-use App\Models\Conference_updates;
+use App\Models\SiteIndexes;
 use Carbon\Carbon;
 use Str;
 use Image;
@@ -18,7 +18,7 @@ class ConferenceUpdatesController extends Controller
   
     public function index(Request $request)
     {   
-        $data = Conference_updates::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4); 
+        $data = SiteIndexes::where('deleted_at', null)->where('type', 'conference_update')->orderBy('id', 'DESC')->paginate(4); 
         return view('admin/conferenceUpdates/index', compact('data'));
     }
 
@@ -44,10 +44,10 @@ class ConferenceUpdatesController extends Controller
             'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
         ]);
 
-        $conference = new Conference_updates;
+        $conference = new SiteIndexes;
         $conference->title = $request->title;
         $conference->description = $request->description;
-        
+        $conference->type = 'conference_update';
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $fileName   =  time().'_'.str_random(5).'_'.rand(1111,9999). '.' . $image->getClientOriginalExtension();
@@ -87,7 +87,7 @@ class ConferenceUpdatesController extends Controller
    
     public function show($id)
     {
-        $data = Conference_updates::find($id); 
+        $data = SiteIndexes::find($id); 
         
         return view('admin/conferenceUpdates/show', compact('data'));
     }
@@ -95,7 +95,7 @@ class ConferenceUpdatesController extends Controller
    
     public function edit($id)
     {
-        $data = Conference_updates::find($id); 
+        $data = SiteIndexes::find($id); 
         
         return view('admin/conferenceUpdates/edit', compact('data'));
     }
@@ -113,7 +113,7 @@ class ConferenceUpdatesController extends Controller
         ]);
 
     
-        $conference = Conference_updates::where('id', $id)->first(); 
+        $conference = SiteIndexes::where('id', $id)->first(); 
         $conference->title = $request->title;
         $conference->description = $request->description;
         
@@ -167,7 +167,7 @@ class ConferenceUpdatesController extends Controller
     public function destroy(Request $request,$id)
     {
 
-        $news = Conference_updates::where('id', $id)->first(); 
+        $news = SiteIndexes::where('id', $id)->first(); 
         $mytime = Carbon::now();
         $timestamp=$mytime->toDateTimeString();
         $news->deleted_at = $timestamp;

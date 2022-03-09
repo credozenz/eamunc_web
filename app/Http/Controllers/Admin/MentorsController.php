@@ -6,8 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Helper\AdminHelper;
-use App\Models\Our_mentors;
-
+use App\Models\SiteIndexes;
 use Carbon\Carbon;
 use Str;
 use Image;
@@ -19,7 +18,7 @@ class MentorsController extends Controller
   
     public function index(Request $request)
     {   
-        $data = Our_mentors::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4); 
+        $data = SiteIndexes::where('deleted_at', null)->where('type', 'our_mentors')->orderBy('id', 'DESC')->paginate(4); 
         return view('admin/ourmentors/index', compact('data'));
     }
 
@@ -47,10 +46,11 @@ class MentorsController extends Controller
             'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
         ]);
 
-        $mentors = new Our_mentors;
+        $mentors = new SiteIndexes;
         $mentors->title = $request->title;
         $mentors->name = $request->name;
         $mentors->description = $request->description;
+        $mentors->type = 'our_mentors';
         
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -91,7 +91,7 @@ class MentorsController extends Controller
    
     public function show($id)
     {
-        $data = Our_mentors::find($id); 
+        $data = SiteIndexes::find($id); 
         
         return view('admin/ourmentors/show', compact('data'));
     }
@@ -99,7 +99,7 @@ class MentorsController extends Controller
    
     public function edit($id)
     {
-        $data = Our_mentors::find($id); 
+        $data = SiteIndexes::find($id); 
         
         return view('admin/ourmentors/edit', compact('data'));
     }
@@ -119,7 +119,7 @@ class MentorsController extends Controller
         ]);
 
     
-        $mentors = Our_mentors::where('id', $id)->first(); 
+        $mentors = SiteIndexes::where('id', $id)->first(); 
         $mentors->title = $request->title;
         $mentors->name = $request->name;
         $mentors->description = $request->description;
@@ -174,7 +174,7 @@ class MentorsController extends Controller
     public function destroy(Request $request,$id)
     {
 
-        $news = Our_mentors::where('id', $id)->first(); 
+        $news = SiteIndexes::where('id', $id)->first(); 
         $mytime = Carbon::now();
         $timestamp=$mytime->toDateTimeString();
         $news->deleted_at = $timestamp;

@@ -6,8 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Helper\AdminHelper;
-use App\Models\Faculties_messages;
-
+use App\Models\SiteIndexes;
 use Carbon\Carbon;
 use Str;
 use Image;
@@ -19,7 +18,7 @@ class FacultiesMessagesController extends Controller
   
     public function index(Request $request)
     {   
-        $data = Faculties_messages::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4); 
+        $data = SiteIndexes::where('deleted_at', null)->where('type', 'faculties_messages')->orderBy('id', 'DESC')->paginate(4); 
         return view('admin/facultiesMessage/index', compact('data'));
     }
 
@@ -38,21 +37,22 @@ class FacultiesMessagesController extends Controller
             'name' => 'required|max:255',
             'post' => 'required|max:255',
             'thumbnail' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:255'],
-            'video_url' => ['required', 'max:255'],
+            'video_url' => 'required|max:255|url',
         ],[
             'title.required' => 'The Title field is required',
             'name.required' => 'The Name field is required',
             'post.required' => 'The Post field is required',
             'thumbnail.required' => 'The Thumbnail field is required',
             'video_url.required' => 'The video url field is required',
+            'video_url.url' => 'The video url not url',
             'thumbnail.max' => 'Image  must be smaller than 2 MB',
         ]);
 
-        $message = new Faculties_messages;
+        $message = new SiteIndexes;
         $message->title = $request->title;
         $message->name  = $request->name;
         $message->post  = $request->post;
-        
+        $message->type  = 'faculties_messages';
         
         
         if ($request->hasFile('thumbnail')) {
@@ -74,11 +74,11 @@ class FacultiesMessagesController extends Controller
             Storage::disk('public')->put('thumbnail/'.$fileName,$img,'public');
            }
 
-           $message->thumbnail = 'thumbnail/'.$fileName; 
+           $message->image = 'thumbnail/'.$fileName; 
 
            $youtubeurl = AdminHelper::getYoutubeIdFromUrl($request->video_url);
-          
-           $message->video_url  = $youtubeurl;
+           if(!empty($youtubeurl)){
+           $message->video  = $youtubeurl;
 
            $message->save();
 
@@ -91,14 +91,17 @@ class FacultiesMessagesController extends Controller
             return  redirect()->back();
           }
 
-          
+        }else{
+            Session::flash('error', 'Check Your Youtube url correct!!');
+            return  redirect()->back();
+          }     
         
     }
 
    
     public function show($id)
     {
-        $data = Faculties_messages::find($id); 
+        $data = SiteIndexes::find($id); 
         
         return view('admin/facultiesMessage/show', compact('data'));
     }
@@ -106,7 +109,7 @@ class FacultiesMessagesController extends Controller
    
     public function edit($id)
     {
-        $data = Faculties_messages::find($id); 
+        $data = SiteIndexes::find($id); 
         
         return view('admin/facultiesMessage/edit', compact('data'));
     }
@@ -119,17 +122,18 @@ class FacultiesMessagesController extends Controller
             'title' => 'required|max:255',
             'name' => 'required|max:255',
             'post' => 'required|max:255',
-            'video_url' => ['required', 'max:255'],
+            'video_url' => 'required|max:255|url',
         ],[
             'title.required' => 'The Title field is required',
             'name.required' => 'The Name field is required',
             'post.required' => 'The Post field is required',
+            'video_url.url' => 'The video url not url',
             'video_url.required' => 'The video url field is required',
             'thumbnail.max' => 'Image  must be smaller than 2 MB',
         ]);
 
     
-        $message = Faculties_messages::where('id', $id)->first(); 
+        $message = SiteIndexes::where('id', $id)->first(); 
         $message->title = $request->title;
         $message->name  = $request->name;
         $message->post  = $request->post;
@@ -161,14 +165,14 @@ class FacultiesMessagesController extends Controller
             }
             
             Storage::disk('public')->put('thumbnail/'.$fileName,$img,'public');
-            $message->thumbnail = 'thumbnail/'.$fileName; 
+            $message->image = 'thumbnail/'.$fileName; 
            }
 
            
 
            $youtubeurl = AdminHelper::getYoutubeIdFromUrl($request->video_url);
-          
-           $message->video_url  = $youtubeurl;
+           if(!empty($youtubeurl)){
+           $message->video  = $youtubeurl;
 
            $message->save();
 
@@ -180,7 +184,11 @@ class FacultiesMessagesController extends Controller
             Session::flash('error', 'Something went wrong!!');
             return  redirect()->back();
           }
-         
+          
+        }else{
+            Session::flash('error', 'Check Your Youtube url correct!!');
+            return  redirect()->back();
+          } 
                      
     }
           
@@ -188,7 +196,7 @@ class FacultiesMessagesController extends Controller
     public function destroy(Request $request,$id)
     {
 
-        $news = Faculties_messages::where('id', $id)->first(); 
+        $news = SiteIndexes::where('id', $id)->first(); 
         $mytime = Carbon::now();
         $timestamp=$mytime->toDateTimeString();
         $news->deleted_at = $timestamp;

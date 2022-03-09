@@ -6,8 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Helper\AdminHelper;
-use App\Models\Host_schools;
-
+use App\Models\SiteIndexes;
 use Carbon\Carbon;
 use Str;
 use Image;
@@ -19,7 +18,7 @@ class HostSchoolController extends Controller
   
     public function index(Request $request)
     {   
-        $data = Host_schools::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4); 
+        $data = SiteIndexes::where('deleted_at', null)->where('type', 'host_schools')->orderBy('id', 'DESC')->paginate(4); 
         return view('admin/hostSchools/index', compact('data'));
     }
 
@@ -47,10 +46,11 @@ class HostSchoolController extends Controller
             'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
         ]);
 
-        $host = new Host_schools;
+        $host = new SiteIndexes;
         $host->title = $request->title;
         $host->name = $request->name;
         $host->description = $request->description;
+        $host->type = 'host_schools';
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $fileName   =  time().'_'.str_random(5).'_'.rand(1111,9999). '.' . $image->getClientOriginalExtension();
@@ -90,7 +90,7 @@ class HostSchoolController extends Controller
    
     public function show($id)
     {
-        $data = Host_schools::find($id); 
+        $data = SiteIndexes::find($id); 
         
         return view('admin/hostSchools/show', compact('data'));
     }
@@ -98,7 +98,7 @@ class HostSchoolController extends Controller
    
     public function edit($id)
     {
-        $data = Host_schools::find($id); 
+        $data = SiteIndexes::find($id); 
         
         return view('admin/hostSchools/edit', compact('data'));
     }
@@ -118,7 +118,7 @@ class HostSchoolController extends Controller
         ]);
 
     
-        $host = Host_schools::where('id', $id)->first(); 
+        $host = SiteIndexes::where('id', $id)->first(); 
         $host->title = $request->title;
         $host->name = $request->name;
         $host->description  = $request->description;
@@ -173,7 +173,7 @@ class HostSchoolController extends Controller
     public function destroy(Request $request,$id)
     {
 
-        $news = Host_schools::where('id', $id)->first(); 
+        $news = SiteIndexes::where('id', $id)->first(); 
         $mytime = Carbon::now();
         $timestamp=$mytime->toDateTimeString();
         $news->deleted_at = $timestamp;

@@ -40,16 +40,16 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label class="form-label text-danger">Youtube Live Url</label>
-                            <input type="text" name="live_url" value="{{ $data->live_url ?? '' }}" class="form-control" placeholder="Live URL">
+                            <input type="text" name="live_url" value="{{ $data->video ?? '' }}" class="form-control" placeholder="Live URL">
                             @error('live_url')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
-                                    @if(!empty($data->live_url))
+                                    @if(!empty($data->video))
 
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                         
-                                            <iframe width="250" height="300" src="https://www.youtube.com/embed/{{ $data->live_url }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                            <iframe width="250" height="300" src="https://www.youtube.com/embed/{{ $data->video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
                                         </div>
                                     </div>

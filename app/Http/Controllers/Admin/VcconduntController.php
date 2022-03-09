@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Helper\AdminHelper;
-use App\Models\Vc_condunt;
+use App\Models\SiteIndexes;
 use Carbon\Carbon;
 use Str;
 use Image;
@@ -20,7 +20,7 @@ class VcconduntController extends Controller
     public function index(Request $request)
     {
        
-        $data = Vc_condunt::find(1); 
+        $data = SiteIndexes::where('deleted_at', null)->where('type','vc_condunt')->first(); 
         
         return view('admin/vcCondunt/index', compact('data'));
        
@@ -47,10 +47,10 @@ class VcconduntController extends Controller
         ]);
 
     
-        $condunt = Vc_condunt::where('id', 1)->first(); 
+        $condunt = SiteIndexes::where('type','vc_condunt')->first(); 
         $condunt->title = $request->title;
         $condunt->description  = $request->description;
-        
+        $condunt->type  = 'vc_condunt';
        
         
         if ($request->hasFile('image')) {
@@ -86,7 +86,7 @@ class VcconduntController extends Controller
           
             Storage::disk('public')->put('vc_condunts/doc/'.$docfileName,$file,'public');
 
-            $condunt->doc_file = 'vc_condunts/doc/'.$docfileName; 
+            $condunt->file = 'vc_condunts/doc/'.$docfileName; 
            }
 
 

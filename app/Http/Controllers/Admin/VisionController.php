@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Helper\AdminHelper;
-use App\Models\Vision;
+use App\Models\SiteIndexes;
 use Carbon\Carbon;
 use Str;
 use Image;
@@ -20,7 +20,7 @@ class VisionController extends Controller
     public function index(Request $request)
     {
        
-        $data = Vision::find(1); 
+        $data = SiteIndexes::where('deleted_at', null)->where('type','vision')->first(); 
         
         return view('admin/vision/index', compact('data'));
        
@@ -44,10 +44,10 @@ class VisionController extends Controller
         ]);
 
     
-        $vision = Vision::where('id', 1)->first(); 
+        $vision = SiteIndexes::where('type','vision')->first(); 
         $vision->title = $request->title;
         $vision->description  = $request->description;
-        
+        $vision->type  = 'vision';
        
         
         if ($request->hasFile('image')) {

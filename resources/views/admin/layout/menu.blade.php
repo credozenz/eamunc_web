@@ -4,7 +4,7 @@
     <div class="sidebar-header">
         <div class="d-flex justify-content-between">
             <div class="logo">
-                <a href="{{ url('admin/dashbord') }}"><img src="assets/images/logo/logo.png" alt="Logo" srcset=""></a>
+                <a href="{{ url('admin/dashbord') }}"><img src="{{ asset('assets/admin/img/logo.png') }}" style="width: 35px;height: 30px;" alt="EAMUNC" srcset="">EAMUNC</a>
             </div>
             <div class="toggler">
                 <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
@@ -21,6 +21,21 @@
                     <i class="bi bi-grid-fill"></i>
                     <span>Dashboard</span>
                 </a>
+            </li>
+
+            <li class="sidebar-item  has-sub">
+                <a href="#" class='sidebar-link'>
+                    <i class="bi bi-stack"></i>
+                    <span>Banner</span>
+                </a>
+                <ul class="submenu ">
+                    <li class="submenu-item ">
+                        <a href="{{ url('admin/banner') }}">Index</a>
+                    </li>
+                    <li class="submenu-item ">
+                        <a href="{{ url('admin/banner_create') }}">Add</a>
+                    </li>
+                </ul>
             </li>
             
             <li class="sidebar-item  has-sub">
@@ -81,11 +96,71 @@
                     </li>
                 </ul>
             </li>
+
             <li class="sidebar-item  ">
                 <a href="{{ url('admin/president_messages') }}" class='sidebar-link'>
                     <i class="bi bi-file-earmark-medical-fill"></i>
                     <span>President Message</span>
                 </a>
+            </li>
+
+            <li class="sidebar-item  ">
+                <a href="{{ url('admin/rules') }}" class='sidebar-link'>
+                    <i class="bi bi-file-earmark-medical-fill"></i>
+                    <span>Rules and Regulations</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item  ">
+                <a href="{{ url('admin/alumni') }}" class='sidebar-link'>
+                    <i class="bi bi-file-earmark-medical-fill"></i>
+                    <span>Alumni</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item  has-sub">
+                <a href="#" class='sidebar-link'>
+                    <i class="bi bi-stack"></i>
+                    <span>Alumni News</span>
+                </a>
+                <ul class="submenu ">
+                    <li class="submenu-item ">
+                        <a href="{{ url('admin/alumninews') }}">Index</a>
+                    </li>
+                    <li class="submenu-item ">
+                        <a href="{{ url('admin/alumninews_create') }}">Add</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="sidebar-item  has-sub">
+                <a href="#" class='sidebar-link'>
+                    <i class="bi bi-stack"></i>
+                    <span>Committee</span>
+                </a>
+                <ul class="submenu ">
+                    <li class="submenu-item ">
+                        <a href="{{ url('admin/committee') }}">Index</a>
+                    </li>
+                    <li class="submenu-item ">
+                        <a href="{{ url('admin/committee_create') }}">Add</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="sidebar-item  has-sub">
+                <a href="#" class='sidebar-link'>
+                    <i class="bi bi-stack"></i>
+                    <span>Important Date</span>
+                </a>
+                <ul class="submenu ">
+                    <li class="submenu-item ">
+                        <a href="{{ url('admin/importantdate') }}">Index</a>
+                    </li>
+                    <li class="submenu-item ">
+                        <a href="{{ url('admin/importantdate_create') }}">Add</a>
+                    </li>
+                </ul>
             </li>
 
             <li class="sidebar-item  has-sub">
@@ -122,14 +197,14 @@
             <li class="sidebar-item  has-sub">
                 <a href="#" class='sidebar-link'>
                     <i class="bi bi-stack"></i>
-                    <span>Committee Members</span>
+                    <span>Working Committee Members</span>
                 </a>
                 <ul class="submenu ">
                     <li class="submenu-item ">
-                        <a href="{{ url('admin/committee_members') }}">Index</a>
+                        <a href="{{ url('admin/work_members') }}">Index</a>
                     </li>
                     <li class="submenu-item ">
-                        <a href="{{ url('admin/committee_members_create') }}">Add</a>
+                        <a href="{{ url('admin/work_members_create') }}">Add</a>
                     </li>
                 </ul>
             </li>

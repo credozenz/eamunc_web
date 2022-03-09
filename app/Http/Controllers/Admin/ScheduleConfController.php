@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Session;
 use App\Helper\AdminHelper;
 use App\Models\Conference_schedule;
 use App\Models\Conference_schedule_time;
+use App\Models\SiteIndexes;
 use App\Http\Requests;
 use Flash;
 use Alert;
@@ -50,7 +51,7 @@ class ScheduleConfController extends Controller
      
         $schedule = new Conference_schedule;
         $schedule->title = $request->title;
-        $schedule->date  = date('Y-m-d',strtotime($request->date));;
+        $schedule->date  = date('Y-m-d',strtotime($request->date));
         $schedule->description = $request->description;
         $schedule->save();
 

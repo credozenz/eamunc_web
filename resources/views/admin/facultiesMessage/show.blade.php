@@ -69,7 +69,7 @@
                                         <div class="form-group">
                                             <label class="form-label text-danger">Thumbnail</label>
                                             <div class="w-30 h-30 relative image-fit  mb-2 mr-5 ">
-                                 <img class="rounded-md img-preview" src="{{ asset('uploads/'.$data->thumbnail) }}" style="width: 103px;">
+                                 <img class="rounded-md img-preview" src="{{ asset('uploads/'.$data->image) }}" style="width: 103px;">
                                             </div>
                                         </div>
                                     </div>
@@ -78,7 +78,7 @@
                                         <div class="form-group">
                                             <label class="form-label text-danger">Youtube link</label>
 
-                                            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ $data->video_url }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ $data->video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         
                                         </div>
                                     </div>

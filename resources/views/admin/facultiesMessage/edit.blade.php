@@ -62,7 +62,7 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label class="form-label text-danger">Youtube link</label>
-                        <input type="text" name="video_url" value="https://www.youtube.com/watch?v={{ $data->video_url }}" class="form-control @error('video_url') border-danger @enderror" placeholder="Youtube link">
+                        <input type="text" name="video_url" value="https://www.youtube.com/watch?v={{ $data->video }}" class="form-control @error('video_url') border-danger @enderror" placeholder="Youtube link">
                         @error('video_url')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
@@ -70,7 +70,7 @@
                                         <div class="form-group">
                                             <label class="form-label text-danger">Thumbnail</label>
                                             <div class="w-30 h-30 relative image-fit  mb-2 mr-5 ">
-                                 <img class="rounded-md img-preview" src="{{ asset('uploads/'.$data->thumbnail) }}" style="width: 103px;">
+                                 <img class="rounded-md img-preview" src="{{ asset('uploads/'.$data->image) }}" style="width: 103px;">
                             </div>
                         <input type="file" name="thumbnail" class="form-control  @error('thumbnail') border-danger @enderror">
                         @error('thumbnail')<div class="text-danger mt-2">{{ $message }}</div>@enderror

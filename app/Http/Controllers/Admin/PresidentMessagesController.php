@@ -6,8 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Helper\AdminHelper;
-use App\Models\President_message;
-
+use App\Models\SiteIndexes;
 use Carbon\Carbon;
 use Str;
 use Image;
@@ -20,9 +19,8 @@ class PresidentMessagesController extends Controller
   
     public function index(Request $request)
     {
-       
-        $data = President_message::find(1); 
-        
+        $data = SiteIndexes::where('deleted_at', null)->where('type','president_messages')->first(); 
+      
         return view('admin/presidentMessage/index', compact('data'));
        
     }
@@ -49,12 +47,12 @@ class PresidentMessagesController extends Controller
         ]);
 
     
-        $message = President_message::where('id', 1)->first(); 
+        $message = SiteIndexes::where('type', 'president_messages')->first(); 
         $message->title = $request->title;
         $message->name = $request->name;
         $message->post = $request->post;
         $message->description  = $request->description;
-        
+        $message->type  = 'president_messages';
        
         
         if ($request->hasFile('image')) {

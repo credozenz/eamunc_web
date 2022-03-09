@@ -58,8 +58,8 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label class="form-label text-danger">News File</label>
-                        <input type="file" name="news_doc" class="form-control">
-                       @error('news_doc')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                        <input type="file" name="news_doc" class="form-control @error('file') border-danger @enderror">
+                       @error('file')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-12">

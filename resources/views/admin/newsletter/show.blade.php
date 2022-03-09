@@ -68,7 +68,7 @@
                                         <div class="form-group">
                                             <label for="text-danger">News File</label>
                             <div class="w-30 h-30 relative image-fit  mb-2 mr-5 ">
-                            <a href="{{ asset('uploads/'.$data->news_file) }}" >
+                            <a href="{{ asset('uploads/'.$data->file) }}" >
                                 <img class="rounded-md img-preview" src="{{asset('assets/admin/img/file_demo.png')}}" style="width: 47px;"> 
                             </a>
                             </div>

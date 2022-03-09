@@ -5,9 +5,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Route;
+use View;
 use App\Helper\AdminHelper;
-use App\Models\Letters;
-
+use App\Models\SiteIndexes;
 use Carbon\Carbon;
 use Str;
 use Image;
@@ -16,10 +17,17 @@ use League\Flysystem\File;
 
 class LetterController extends Controller
 {
+
+    public function __construct()
+    {
+        // $currentPath= Route::currentRouteName();
+        // View::share('currentPath',$currentPath);
+    }
   
     public function index(Request $request)
     {   
-        $data = Letters::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4); 
+
+        $data = SiteIndexes::where('deleted_at', null)->where('type', 'letter')->orderBy('id', 'DESC')->paginate(4); 
         return view('admin/letters/index', compact('data'));
     }
 
@@ -49,11 +57,12 @@ class LetterController extends Controller
             'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
         ]);
 
-        $letter = new Letters;
+        $letter = new SiteIndexes;
         $letter->title = $request->title;
         $letter->name = $request->name;
         $letter->post = $request->post;
         $letter->description = $request->description;
+        $letter->type = 'letter';
         
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -94,7 +103,7 @@ class LetterController extends Controller
    
     public function show($id)
     {
-        $data = Letters::find($id); 
+        $data = SiteIndexes::find($id); 
         
         return view('admin/letters/show', compact('data'));
     }
@@ -102,7 +111,7 @@ class LetterController extends Controller
    
     public function edit($id)
     {
-        $data = Letters::find($id); 
+        $data = SiteIndexes::find($id); 
         
         return view('admin/letters/edit', compact('data'));
     }
@@ -124,7 +133,7 @@ class LetterController extends Controller
         ]);
 
     
-        $letter = Letters::where('id', $id)->first(); 
+        $letter = SiteIndexes::where('id', $id)->first(); 
         $letter->title = $request->title;
         $letter->name = $request->name;
         $letter->description = $request->description;
@@ -180,7 +189,7 @@ class LetterController extends Controller
     public function destroy(Request $request,$id)
     {
 
-        $news = Letters::where('id', $id)->first(); 
+        $news = SiteIndexes::where('id', $id)->first(); 
         $mytime = Carbon::now();
         $timestamp=$mytime->toDateTimeString();
         $news->deleted_at = $timestamp;

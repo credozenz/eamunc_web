@@ -6,8 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Helper\AdminHelper;
-use App\Models\News_letter;
-
+use App\Models\SiteIndexes;
 use Carbon\Carbon;
 use Str;
 use Image;
@@ -19,7 +18,7 @@ class NewsletterController extends Controller
   
     public function index(Request $request)
     {   
-        $data = News_letter::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4); 
+        $data = SiteIndexes::where('deleted_at', null)->where('type', 'news_letter')->orderBy('id', 'DESC')->paginate(4); 
         return view('admin/newsletter/index', compact('data'));
     }
 
@@ -49,10 +48,10 @@ class NewsletterController extends Controller
             'news_doc.mimes' => 'Input accept only pdf',
         ]);
 
-        $news = new News_letter;
+        $news = new SiteIndexes;
         $news->title = $request->title;
         $news->description  = $request->description;
-        
+        $news->type  = 'news_letter';
         
         
         if ($request->hasFile('image')) {
@@ -86,7 +85,7 @@ class NewsletterController extends Controller
             Storage::disk('public')->put('newsletter/doc/'.$docfileName,$file,'public');
            }
 
-           $news->news_file = 'newsletter/doc/'.$docfileName; 
+           $news->file = 'newsletter/doc/'.$docfileName; 
 
 
            $news->save();
@@ -107,7 +106,7 @@ class NewsletterController extends Controller
    
     public function show($id)
     {
-        $data = News_letter::find($id); 
+        $data = SiteIndexes::find($id); 
         
         return view('admin/newsletter/show', compact('data'));
     }
@@ -115,7 +114,7 @@ class NewsletterController extends Controller
    
     public function edit($id)
     {
-        $data = News_letter::find($id); 
+        $data = SiteIndexes::find($id); 
         
         return view('admin/newsletter/edit', compact('data'));
     }
@@ -139,7 +138,7 @@ class NewsletterController extends Controller
         ]);
 
     
-        $news = Newsletter::where('id', $id)->first(); 
+        $news = SiteIndexes::where('id', $id)->first(); 
         $news->title = $request->title;
         $news->description  = $request->description;
         
@@ -180,7 +179,7 @@ class NewsletterController extends Controller
           
             Storage::disk('public')->put('newsletter/doc/'.$docfileName,$file,'public');
 
-            $news->news_file = 'newsletter/doc/'.$docfileName; 
+            $news->file = 'newsletter/doc/'.$docfileName; 
            }
 
            $news->save();
@@ -200,7 +199,7 @@ class NewsletterController extends Controller
     public function destroy(Request $request,$id)
     {
 
-        $news = News_letter::where('id', $id)->first(); 
+        $news = SiteIndexes::where('id', $id)->first(); 
         $mytime = Carbon::now();
         $timestamp=$mytime->toDateTimeString();
         $news->deleted_at = $timestamp;

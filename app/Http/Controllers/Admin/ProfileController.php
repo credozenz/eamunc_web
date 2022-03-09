@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Helper\AdminHelper;
 use App\Models\User;
-
+use App\Models\SiteIndexes;
 use App\Http\Requests;
  use Flash;
 use Alert;

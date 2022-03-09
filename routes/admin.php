@@ -10,7 +10,7 @@ use App\Http\Controllers\Admin\FacultiesMessagesController;
 use App\Http\Controllers\Admin\MentorsController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\LiveController;
-use App\Http\Controllers\Admin\CommitteeMembersController;
+use App\Http\Controllers\Admin\WorkMembersController;
 use App\Http\Controllers\Admin\HostSchoolController;
 use App\Http\Controllers\Admin\ActImpactsController;
 use App\Http\Controllers\Admin\VcconduntController;
@@ -18,6 +18,13 @@ use App\Http\Controllers\Admin\VisionController;
 use App\Http\Controllers\Admin\LetterController;
 use App\Http\Controllers\Admin\ScheduleConfController;
 use App\Http\Controllers\Admin\ConferenceUpdatesController;
+use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\RulesController;
+use App\Http\Controllers\Admin\AlumniController;
+use App\Http\Controllers\Admin\AlumniNewsController;
+use App\Http\Controllers\Admin\ImportantDateController;
+use App\Http\Controllers\Admin\CommitteeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,6 +53,36 @@ Route::group(['middleware' => 'adminchecker'], function() {
      Route::get('/president_messages', [PresidentMessagesController::class,'index'])->name('admin.president_messages');
      Route::post('/president_messages_update', [PresidentMessagesController::class,'update'])->name('admin.president_messages.update');
 
+     Route::get('/rules', [RulesController::class,'index'])->name('admin.rules');
+     Route::post('/rules_update', [RulesController::class,'update'])->name('admin.rules.update');
+
+     Route::get('/alumni', [AlumniController::class,'index'])->name('admin.alumni');
+     Route::post('/alumni_update', [AlumniController::class,'update'])->name('admin.alumni.update');
+
+     Route::get('/alumninews', [AlumniNewsController::class,'index'])->name('admin.alumninews');
+     Route::get('/alumninews_create', [AlumniNewsController::class,'create'])->name('admin.alumninews.create');
+     Route::post('/alumninews_store', [AlumniNewsController::class,'store'])->name('admin.alumninews.store');
+     Route::get('/alumninews_edit/{id}', [AlumniNewsController::class,'edit'])->name('admin.alumninews.edit');
+     Route::get('/alumninews_show/{id}', [AlumniNewsController::class,'show'])->name('admin.alumninews.show');
+     Route::post('/alumninews_update/{id}', [AlumniNewsController::class,'update'])->name('admin.alumninews.update');
+     Route::post('/alumninews_delete/{id}', [AlumniNewsController::class,'destroy'])->name('admin.alumninews.destroy');
+
+     Route::get('/importantdate', [ImportantDateController::class,'index'])->name('admin.importantdate');
+     Route::get('/importantdate_create', [ImportantDateController::class,'create'])->name('admin.importantdate.create');
+     Route::post('/importantdate_store', [ImportantDateController::class,'store'])->name('admin.importantdate.store');
+     Route::get('/importantdate_edit/{id}', [ImportantDateController::class,'edit'])->name('admin.importantdate.edit');
+     Route::get('/importantdate_show/{id}', [ImportantDateController::class,'show'])->name('admin.importantdate.show');
+     Route::post('/importantdate_update/{id}', [ImportantDateController::class,'update'])->name('admin.importantdate.update');
+     Route::post('/importantdate_delete/{id}', [ImportantDateController::class,'destroy'])->name('admin.importantdate.destroy');
+
+     Route::get('/banner', [BannerController::class,'index'])->name('admin.banner');
+     Route::get('/banner_create', [BannerController::class,'create'])->name('admin.banner.create');
+     Route::post('/banner_store', [BannerController::class,'store'])->name('admin.banner.store');
+     Route::get('/banner_edit/{id}', [BannerController::class,'edit'])->name('admin.banner.edit');
+     Route::get('/banner_show/{id}', [BannerController::class,'show'])->name('admin.banner.show');
+     Route::post('/banner_update/{id}', [BannerController::class,'update'])->name('admin.banner.update');
+     Route::post('/banner_delete/{id}', [BannerController::class,'destroy'])->name('admin.banner.destroy');
+     
      Route::get('/facultiesmessages', [FacultiesMessagesController::class,'index'])->name('admin.facultiesmessages');
      Route::get('/facultiesmessages_create', [FacultiesMessagesController::class,'create'])->name('admin.facultiesmessages.create');
      Route::post('/facultiesmessages_store', [FacultiesMessagesController::class,'store'])->name('admin.facultiesmessages.store');
@@ -76,13 +113,13 @@ Route::group(['middleware' => 'adminchecker'], function() {
      Route::get('/live', [LiveController::class,'index'])->name('admin.live');
      Route::post('/live_update', [LiveController::class,'update'])->name('admin.live.update');
 
-     Route::get('/committee_members', [CommitteeMembersController::class,'index'])->name('admin.committee_members');
-     Route::get('/committee_members_create', [CommitteeMembersController::class,'create'])->name('admin.committee_members.create');
-     Route::post('/committee_members_store', [CommitteeMembersController::class,'store'])->name('admin.committee_members.store');
-     Route::get('/committee_members_edit/{id}', [CommitteeMembersController::class,'edit'])->name('admin.committee_members.edit');
-     Route::get('/committee_members_show/{id}', [CommitteeMembersController::class,'show'])->name('admin.committee_members.show');
-     Route::post('/committee_members_update/{id}', [CommitteeMembersController::class,'update'])->name('admin.committee_members.update');
-     Route::post('/committee_members_delete/{id}', [CommitteeMembersController::class,'destroy'])->name('admin.committee_members.destroy');
+     Route::get('/work_members', [WorkMembersController::class,'index'])->name('admin.work_members');
+     Route::get('/work_members_create', [WorkMembersController::class,'create'])->name('admin.work_members.create');
+     Route::post('/work_members_store', [WorkMembersController::class,'store'])->name('admin.work_members.store');
+     Route::get('/work_members_edit/{id}', [WorkMembersController::class,'edit'])->name('admin.work_members.edit');
+     Route::get('/work_members_show/{id}', [WorkMembersController::class,'show'])->name('admin.work_members.show');
+     Route::post('/work_members_update/{id}', [WorkMembersController::class,'update'])->name('admin.work_members.update');
+     Route::post('/work_members_delete/{id}', [WorkMembersController::class,'destroy'])->name('admin.work_members.destroy');
 
      Route::get('/host_schools', [HostSchoolController::class,'index'])->name('admin.host_schools');
      Route::get('/host_schools_create', [HostSchoolController::class,'create'])->name('admin.host_schools.create');
@@ -100,7 +137,6 @@ Route::group(['middleware' => 'adminchecker'], function() {
      Route::post('/letters_update/{id}', [LetterController::class,'update'])->name('admin.letters.update');
      Route::post('/letters_delete/{id}', [LetterController::class,'destroy'])->name('admin.letters.destroy');
 
-
      Route::get('/conference_schedule', [ScheduleConfController::class,'index'])->name('admin.conference_schedule');
      Route::get('/conference_schedule_create', [ScheduleConfController::class,'create'])->name('admin.conference_schedule.create');
      Route::post('/conference_schedule_store', [ScheduleConfController::class,'store'])->name('admin.conference_schedule.store');
@@ -116,6 +152,17 @@ Route::group(['middleware' => 'adminchecker'], function() {
      Route::get('/conference_updates_show/{id}', [ConferenceUpdatesController::class,'show'])->name('admin.conference_updates.show');
      Route::post('/conference_updates_update/{id}', [ConferenceUpdatesController::class,'update'])->name('admin.conference_updates.update');
      Route::post('/conference_updates_delete/{id}', [ConferenceUpdatesController::class,'destroy'])->name('admin.conference_updates.destroy');
+     
+     Route::get('/committee', [CommitteeController::class,'index'])->name('admin.committee');
+     Route::get('/committee_create', [CommitteeController::class,'create'])->name('admin.committee.create');
+     Route::post('/committee_store', [CommitteeController::class,'store'])->name('admin.committee.store');
+     Route::get('/committee_edit/{id}', [CommitteeController::class,'edit'])->name('admin.committee.edit');
+     Route::get('/committee_show/{id}', [CommitteeController::class,'show'])->name('admin.committee.show');
+     Route::post('/committee_update/{id}', [CommitteeController::class,'update'])->name('admin.committee.update');
+     Route::post('/committee_delete/{id}', [CommitteeController::class,'destroy'])->name('admin.committee.destroy');
+     Route::get('/committee_members/{id}', [CommitteeController::class,'committee_members'])->name('admin.committee.members');
+     Route::post('/committee_add_members', [CommitteeController::class,'add_members'])->name('admin.committee.add_members');
+     Route::post('/member_delete/{id}', [CommitteeController::class,'member_delete'])->name('admin.committee.dlt_member');
 
      Route::get('/act_impacts', [ActImpactsController::class,'index'])->name('admin.act_impacts');
      Route::post('/act_impacts_update', [ActImpactsController::class,'update'])->name('admin.act_impacts.update');

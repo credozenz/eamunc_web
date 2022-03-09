@@ -60,9 +60,9 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label class="form-label text-danger">Doc File</label>
-                        @if(!empty($data->doc_file))
+                        @if(!empty($data->file))
                             <div class="w-30 h-30 relative image-fit  mb-2 mr-5 ">
-                            <a href="{{ asset('uploads/'.$data->doc_file) }}" >
+                            <a href="{{ asset('uploads/'.$data->file) }}" >
                                 <img class="rounded-md img-preview" src="{{asset('assets/admin/img/file_demo.png')}}" style="width: 57px;"> 
                             </a>
                             </div>

@@ -63,12 +63,12 @@
                                         <div class="form-group">
                                             <label class="form-label text-danger">News File</label>
                             <div class="w-30 h-30 relative image-fit  mb-2 mr-5 ">
-                            <a href="{{ asset('uploads/'.$data->news_file) }}" >
+                            <a href="{{ asset('uploads/'.$data->file) }}" >
                                 <img class="rounded-md img-preview" src="{{asset('assets/admin/img/file_demo.png')}}" style="width: 47px;"> 
                             </a>
                             </div>
-                        <input type="file" name="news_doc" class="form-control">
-                       @error('news_doc')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                        <input type="file" name="file" class="form-control">
+                       @error('file')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-12">

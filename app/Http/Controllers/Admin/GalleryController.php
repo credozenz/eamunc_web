@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use App\Helper\AdminHelper;
 use App\Models\Gallery;
 use App\Models\Gallery_images;
+use App\Models\SiteIndexes;
 use Carbon\Carbon;
 use Str;
 use Image;

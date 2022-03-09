@@ -6,8 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Helper\AdminHelper;
-use App\Models\Act_impact;
-
+use App\Models\SiteIndexes;
 use Carbon\Carbon;
 use Str;
 use Image;
@@ -21,7 +20,7 @@ class ActImpactsController extends Controller
     public function index(Request $request)
     {
        
-        $data = Act_impact::find(1); 
+        $data = SiteIndexes::where('deleted_at', null)->where('type','act_impact')->first();  
         
         return view('admin/actImpact/index', compact('data'));
        
@@ -45,9 +44,10 @@ class ActImpactsController extends Controller
         ]);
 
     
-        $message = Act_impact::where('id', 1)->first(); 
+        $message = SiteIndexes::where('type', 'act_impact')->first(); 
         $message->title = $request->title;
         $message->description  = $request->description;
+        $message->type  = 'act_impact';
         
        
         
