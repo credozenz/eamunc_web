@@ -277,7 +277,7 @@
                 </a>
             </li>
            
-            <li class="sidebar-title" style="font-weight: bold;">Virtual Code Of Conduct</li>
+            <li class="sidebar-title" style="font-weight: bold;color: #9197a8;">Virtual Code Of Conduct</li>
             <hr>
             
             <li class="sidebar-item  @if($routeGroup=='vc_condunt') active @endif">
