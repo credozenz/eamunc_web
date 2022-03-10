@@ -24,6 +24,8 @@ use App\Http\Controllers\Admin\AlumniController;
 use App\Http\Controllers\Admin\AlumniNewsController;
 use App\Http\Controllers\Admin\ImportantDateController;
 use App\Http\Controllers\Admin\CommitteeController;
+use App\Http\Controllers\Admin\PastConferenceController;
+use App\Http\Controllers\Admin\TimerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -91,13 +93,13 @@ Route::group(['middleware' => 'adminchecker'], function() {
      Route::post('/facultiesmessages_update/{id}', [FacultiesMessagesController::class,'update'])->name('admin.facultiesmessages.update');
      Route::post('/facultiesmessages_delete/{id}', [FacultiesMessagesController::class,'destroy'])->name('admin.facultiesmessages.destroy');
      
-     Route::get('/our_mentors', [MentorsController::class,'index'])->name('admin.ourmentors');
-     Route::get('/our_mentors_create', [MentorsController::class,'create'])->name('admin.ourmentors.create');
-     Route::post('/our_mentors_store', [MentorsController::class,'store'])->name('admin.ourmentors.store');
-     Route::get('/our_mentors_edit/{id}', [MentorsController::class,'edit'])->name('admin.ourmentors.edit');
-     Route::get('/our_mentors_show/{id}', [MentorsController::class,'show'])->name('admin.ourmentors.show');
-     Route::post('/our_mentors_update/{id}', [MentorsController::class,'update'])->name('admin.ourmentors.update');
-     Route::post('/our_mentors_delete/{id}', [MentorsController::class,'destroy'])->name('admin.ourmentors.destroy');
+     Route::get('/our_mentors', [MentorsController::class,'index'])->name('admin.our_mentors');
+     Route::get('/our_mentors_create', [MentorsController::class,'create'])->name('admin.our_mentors.create');
+     Route::post('/our_mentors_store', [MentorsController::class,'store'])->name('admin.our_mentors.store');
+     Route::get('/our_mentors_edit/{id}', [MentorsController::class,'edit'])->name('admin.our_mentors.edit');
+     Route::get('/our_mentors_show/{id}', [MentorsController::class,'show'])->name('admin.our_mentors.show');
+     Route::post('/our_mentors_update/{id}', [MentorsController::class,'update'])->name('admin.our_mentors.update');
+     Route::post('/our_mentors_delete/{id}', [MentorsController::class,'destroy'])->name('admin.our_mentors.destroy');
 
      Route::get('/gallery', [GalleryController::class,'index'])->name('admin.gallery');
      Route::get('/gallery_create', [GalleryController::class,'create'])->name('admin.gallery.create');
@@ -112,6 +114,9 @@ Route::group(['middleware' => 'adminchecker'], function() {
 
      Route::get('/live', [LiveController::class,'index'])->name('admin.live');
      Route::post('/live_update', [LiveController::class,'update'])->name('admin.live.update');
+
+     Route::get('/timer', [TimerController::class,'index'])->name('admin.timer');
+     Route::post('/timer_update', [TimerController::class,'update'])->name('admin.timer.update');
 
      Route::get('/work_members', [WorkMembersController::class,'index'])->name('admin.work_members');
      Route::get('/work_members_create', [WorkMembersController::class,'create'])->name('admin.work_members.create');
@@ -164,6 +169,18 @@ Route::group(['middleware' => 'adminchecker'], function() {
      Route::post('/committee_add_members', [CommitteeController::class,'add_members'])->name('admin.committee.add_members');
      Route::post('/member_delete/{id}', [CommitteeController::class,'member_delete'])->name('admin.committee.dlt_member');
 
+     Route::get('/pastconference', [PastConferenceController::class,'index'])->name('admin.pastconference');
+     Route::get('/pastconference_create', [PastConferenceController::class,'create'])->name('admin.pastconference.create');
+     Route::post('/pastconference_store', [PastConferenceController::class,'store'])->name('admin.pastconference.store');
+     Route::get('/pastconference_edit/{id}', [PastConferenceController::class,'edit'])->name('admin.pastconference.edit');
+     Route::get('/pastconference_show/{id}', [PastConferenceController::class,'show'])->name('admin.pastconference.show');
+     Route::post('/pastconference_update/{id}', [PastConferenceController::class,'update'])->name('admin.pastconference.update');
+     Route::post('/pastconference_delete/{id}', [PastConferenceController::class,'destroy'])->name('admin.pastconference.destroy');
+     
+     Route::get('/pastconference_images/{id}', [PastConferenceController::class,'pastconference_images'])->name('admin.pastconference.images');
+     Route::post('/pastconference_add_images', [PastConferenceController::class,'add_images'])->name('admin.pastconference.add_images');
+     Route::post('/pastconference_img_delete/{id}', [PastConferenceController::class,'gallery_img_delete'])->name('admin.pastconference.dlt_image');
+
      Route::get('/act_impacts', [ActImpactsController::class,'index'])->name('admin.act_impacts');
      Route::post('/act_impacts_update', [ActImpactsController::class,'update'])->name('admin.act_impacts.update');
 
@@ -173,10 +190,12 @@ Route::group(['middleware' => 'adminchecker'], function() {
      Route::get('/vision', [VisionController::class,'index'])->name('admin.vision');
      Route::post('/vision_update', [VisionController::class,'update'])->name('admin.vision.update');
 
-     Route::get('/profile', [ProfileController::class,'profile']);
+     Route::get('/profile', [ProfileController::class,'profile'])->name('admin.profile');
      Route::post('/profile_update', [ProfileController::class,'update_profile'])->name('admin.profile.update');
 
-     Route::get('/change_password', [ProfileController::class,'change_password']);
+     Route::get('/change_password', [ProfileController::class,'change_password'])->name('admin.change_password');
      Route::post('/password_update', [ProfileController::class,'update_password'])->name('admin.password.update');
+
+     Route::get('/log_out', [ProfileController::class,'log_out'])->name('admin.log_out');
 
 });

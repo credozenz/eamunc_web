@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Route;
+use View;
 use App\Helper\AdminHelper;
 use App\Models\Conference_schedule;
 use App\Models\Conference_schedule_time;
@@ -22,6 +24,10 @@ use League\Flysystem\File;
 
 class ScheduleConfController extends Controller
 {
+    public function __construct()
+    {
+        View::share('routeGroup','conference_schedule');
+    }
     public function index(Request $request)
     {   
         $data = Conference_schedule::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4); 

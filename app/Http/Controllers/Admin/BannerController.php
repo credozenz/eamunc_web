@@ -20,8 +20,7 @@ class BannerController extends Controller
 
     public function __construct()
     {
-        // $currentPath= Route::currentRouteName();
-        // View::share('currentPath',$currentPath);
+        View::share('routeGroup','banner');
     }
   
     public function index(Request $request)

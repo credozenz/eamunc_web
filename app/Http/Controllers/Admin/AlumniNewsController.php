@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Route;
+use View;
 use App\Helper\AdminHelper;
 use App\Models\SiteIndexes;
 use Carbon\Carbon;
@@ -15,6 +17,10 @@ use League\Flysystem\File;
 
 class AlumniNewsController extends Controller
 {
+    public function __construct()
+    {
+        View::share('routeGroup','alumninews');
+    }
   
     public function index(Request $request)
     {   

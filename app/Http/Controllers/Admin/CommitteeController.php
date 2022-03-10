@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Route;
+use View;
 use App\Helper\AdminHelper;
 use App\Models\Committee;
 use App\Models\Committee_member;
@@ -16,6 +18,10 @@ use League\Flysystem\File;
 
 class CommitteeController extends Controller
 {
+    public function __construct()
+    {
+        View::share('routeGroup','committee');
+    }
   
     public function index(Request $request)
     {   

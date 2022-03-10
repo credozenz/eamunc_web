@@ -16,7 +16,7 @@
     <div class="col-lg-5 col-12">
         <div id="auth-left">
             <div class="auth-logo">
-                <a href="index.html"><img src="{{ asset('assets/admin/img/logo.png') }}" alt="Logo"></a>
+                <img src="{{ asset('assets/admin/img/logo.png') }}" alt="EAMUNC" style="border: inset;"><h2 class="title">EAMUNC.COM</h2>
             </div>
             <h1 class="auth-title">Log in.</h1>
             @if(Session::has('success'))
@@ -40,15 +40,7 @@
                         <i class="bi bi-shield-lock"></i>
                     </div>
                 </div>
-                <!-- @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>                          
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-                @endif -->
+                
                 <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Log in</button>
                 </form>
             
@@ -56,11 +48,20 @@
     </div>
     <div class="col-lg-7 d-none d-lg-block">
         <div id="auth-right">
-
+        <img src="{{ asset('assets/admin/img/hero.jpg') }}" alt="Logo">
+        
+                <div class="footer clearfix mb-0 text-muted">
+                    <div class="float-start">   
+                    </div>
+                    <div class="float-end">
+                    <p>2022 &copy; EAMUNC</p>
+                    </div>
+                </div>
+            
         </div>
     </div>
 </div>
-
+           
     </div>
 </body>
 

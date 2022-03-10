@@ -20,8 +20,7 @@ class LetterController extends Controller
 
     public function __construct()
     {
-        // $currentPath= Route::currentRouteName();
-        // View::share('currentPath',$currentPath);
+        View::share('routeGroup','letters');
     }
   
     public function index(Request $request)

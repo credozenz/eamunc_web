@@ -6,25 +6,30 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Route;
+use View;
 use App\Helper\AdminHelper;
 use App\Models\User;
 use App\Models\SiteIndexes;
 use App\Http\Requests;
- use Flash;
-use Alert;
 use Carbon\Carbon;
 use Str;
 use Image;
 use Storage;
 
+
 use League\Flysystem\File;
 
 class ProfileController extends Controller
 {
+    public function __construct()
+    {
+        View::share('routeGroup','settings');
+    }
     
     public function profile()
     {
-        $data = User::find(1); 
+        $data = User::where('role','1')->first();  
         
         return view('admin/profile/profile_edit', compact('data'));
   
@@ -134,6 +139,13 @@ class ProfileController extends Controller
             return  redirect()->back();
         }
     }
+
+    public function log_out()
+    {
+        Session::flush();
+       return redirect('/admin');
+    }
+
 
    
 }

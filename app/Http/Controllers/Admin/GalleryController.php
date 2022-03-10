@@ -5,9 +5,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Route;
+use View;
 use App\Helper\AdminHelper;
 use App\Models\Gallery;
-use App\Models\Gallery_images;
+use App\Models\Images;
 use App\Models\SiteIndexes;
 use Carbon\Carbon;
 use Str;
@@ -18,6 +20,11 @@ use League\Flysystem\File;
 class GalleryController extends Controller
 {
   
+    public function __construct()
+    {
+        View::share('routeGroup','gallery');
+    }
+    
     public function index(Request $request)
     {   
         $data = Gallery::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4); 
@@ -86,7 +93,7 @@ class GalleryController extends Controller
 
     public function gallery_images($id)
     {
-        $data = Gallery_images::where('gallery_id', $id)->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4);
+        $data = Images::where('connect_id', $id)->where('type', 'gallery')->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4);
         return view('admin/gallery/add_images', compact('data','id'));
     }
 
@@ -103,8 +110,10 @@ class GalleryController extends Controller
             'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
         ]);
 
-        $gallery = new Gallery_images;
-        $gallery->gallery_id = $request->gallery_id;
+        $gallery = new Images;
+        $gallery->type = 'gallery';
+        $gallery->connect_id = $request->gallery_id;
+
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $fileName   =  time().'_'.str_random(5).'_'.rand(1111,9999). '.' . $image->getClientOriginalExtension();
@@ -144,7 +153,7 @@ class GalleryController extends Controller
     public function show($id)
     {
         $gallery = Gallery::find($id); 
-        $images = Gallery_images::where('gallery_id', $id)->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4);
+        $images = Images::where('connect_id', $id)->where('type', 'gallery')->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4);
         return view('admin/gallery/show', compact('gallery','images','id'));
     }
 
@@ -220,7 +229,7 @@ class GalleryController extends Controller
     public function gallery_img_delete(Request $request,$id)
     {
 
-        $gallery = Gallery_images::where('id', $id)->first(); 
+        $gallery = Images::where('id', $id)->first(); 
         $mytime = Carbon::now();
         $timestamp=$mytime->toDateTimeString();
         $gallery->deleted_at = $timestamp;

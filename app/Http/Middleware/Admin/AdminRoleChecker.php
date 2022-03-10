@@ -29,7 +29,7 @@ class AdminRoleChecker
         }
         else
         {
-            return redirect()->back();          
+            return redirect('/admin');          
         }
     }
 }
