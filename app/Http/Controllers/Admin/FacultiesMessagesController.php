@@ -43,7 +43,7 @@ class FacultiesMessagesController extends Controller
             'title' => 'required|max:255',
             'name' => 'required|max:255',
             'post' => 'required|max:255',
-            'thumbnail' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:255'],
+            'thumbnail' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:2050'],
             'video_url' => 'required|max:255|url',
         ],[
             'title.required' => 'The Title field is required',
@@ -72,7 +72,7 @@ class FacultiesMessagesController extends Controller
                $img = $image->get();
             }else{
                 $img = Image::make($image->getRealPath());
-                $img->resize(100, 100, function ($constraint) {
+                $img->resize(379, 239, function ($constraint) {
                    $constraint->aspectRatio();                 
                 });
                 $img->stream('png', 100);
@@ -149,7 +149,7 @@ class FacultiesMessagesController extends Controller
 
 
             $validatedData = $request->validate([
-                'thumbnail' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:255'],
+                'thumbnail' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:2050'],
             ],[
                 'thumbnail.required' => 'The Thumbnail field is required',
                 'thumbnail.max' => 'Image  must be smaller than 2 MB',
@@ -165,7 +165,7 @@ class FacultiesMessagesController extends Controller
                $img = $image->get();
             }else{
                 $img = Image::make($image->getRealPath());
-                $img->resize(100, 100, function ($constraint) {
+                $img->resize(379, 239, function ($constraint) {
                    $constraint->aspectRatio();                 
                 });
                 $img->stream('png', 100);

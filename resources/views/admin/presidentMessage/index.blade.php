@@ -34,7 +34,7 @@
                     <div class="card-content">
                         <div class="card-body">
                     <form method="post" action="{{ url('admin/president_messages_update') }}"  enctype="multipart/form-data">
-                    @csrf   
+                            @csrf   
                     
                                 <div class="row">
                                     <div class="col-md-6 col-12">
@@ -56,10 +56,11 @@
                                             <label class="form-label text-danger">Image</label>
                             @if(!empty($data->image))
                             <div class="w-30 h-30 relative image-fit  mb-2 mr-5 ">
-                                 <img class="rounded-md img-preview" src="{{ asset('uploads/'.$data->image) }}" style="width: 103px;">
+                                 <img class="rounded-md img-preview" src="{{ asset('uploads/'.$data->image) }}" style="width: 303px;">
                             </div>
                             @endif
                         <input type="file" name="image" class="form-control  @error('image') border-danger @enderror">
+                        <small>Image Dimension:348x418, Size below 3MB</small>
                         @error('image')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>

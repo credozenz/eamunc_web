@@ -41,7 +41,7 @@ class ConferenceUpdatesController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'description' => 'required',
-            'image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:255'],
+            'image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:2050'],
         ],[
             'title.required' => 'The Title field is required',
             'description.required' => 'The Description field is required',
@@ -64,7 +64,7 @@ class ConferenceUpdatesController extends Controller
                $img = $image->get();
             }else{
                 $img = Image::make($image->getRealPath());
-                $img->resize(100, 100, function ($constraint) {
+                $img->resize(345, 225, function ($constraint) {
                    $constraint->aspectRatio();                 
                 });
                 $img->stream('png', 100);
@@ -126,7 +126,7 @@ class ConferenceUpdatesController extends Controller
         if ($request->hasFile('image')) {
 
             $validatedData = $request->validate([
-                'image' => ['mimes:jpeg,png,jpg,gif,svg', 'max:255'],
+                'image' => ['mimes:jpeg,png,jpg,gif,svg', 'max:2050'],
             ],[
                 'image.max' => 'Image  must be smaller than 2 MB',
                 'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
@@ -144,7 +144,7 @@ class ConferenceUpdatesController extends Controller
                $img = $image->get();
             }else{
                 $img = Image::make($image->getRealPath());
-                $img->resize(100, 100, function ($constraint) {
+                $img->resize(345, 225, function ($constraint) {
                    $constraint->aspectRatio();                 
                 });
                 $img->stream('png', 100);

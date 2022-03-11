@@ -39,7 +39,7 @@ class VisionController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'description' => ['required'],
-            'image' => ['mimes:jpeg,png,jpg,gif,svg', 'max:255']
+            'image' => ['mimes:jpeg,png,jpg,gif,svg', 'max:2055']
         ],[
             'title.required' => 'The Title field is required',
             'description.required' => 'The Description field is required',
@@ -64,7 +64,7 @@ class VisionController extends Controller
                $img = $image->get();
             }else{
                 $img = Image::make($image->getRealPath());
-                $img->resize(100, 100, function ($constraint) {
+                $img->resize(440, 654, function ($constraint) {
                    $constraint->aspectRatio();                 
                 });
                 $img->stream('png', 100);

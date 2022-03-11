@@ -42,10 +42,10 @@ class BannerController extends Controller
 
         $validatedData = $request->validate([
             'title' => 'max:255',
-            'image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:255'],
+            'image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:3075'],
         ],[
             'image.required' => 'The Image field is required',
-            'image.max' => 'Image  must be smaller than 2 MB',
+            'image.max' => 'Image  must be smaller than 3 MB',
             'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
         ]);
 
@@ -63,7 +63,7 @@ class BannerController extends Controller
                $img = $image->get();
             }else{
                 $img = Image::make($image->getRealPath());
-                $img->resize(100, 100, function ($constraint) {
+                $img->resize(1213, 666, function ($constraint) {
                    $constraint->aspectRatio();                 
                 });
                 $img->stream('png', 100);
@@ -122,7 +122,7 @@ class BannerController extends Controller
         if ($request->hasFile('image')) {
 
             $validatedData = $request->validate([
-                'image' => ['mimes:jpeg,png,jpg,gif,svg', 'max:255'],
+                'image' => ['mimes:jpeg,png,jpg,gif,svg', 'max:3075'],
             ],[
                 'image.max' => 'Image  must be smaller than 2 MB',
                 'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
@@ -140,7 +140,7 @@ class BannerController extends Controller
                $img = $image->get();
             }else{
                 $img = Image::make($image->getRealPath());
-                $img->resize(100, 100, function ($constraint) {
+                $img->resize(1213, 666, function ($constraint) {
                    $constraint->aspectRatio();                 
                 });
                 $img->stream('png', 100);

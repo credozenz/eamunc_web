@@ -68,6 +68,7 @@
                                             <label class="form-label text-danger">Thumbnail</label>
                            
                         <input type="file" name="thumbnail" class="form-control  @error('thumbnail') border-danger @enderror">
+                        <small>Image Dimension:380x240, Size below 3MB</small>
                         @error('thumbnail')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>

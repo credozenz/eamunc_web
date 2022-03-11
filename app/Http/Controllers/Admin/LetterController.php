@@ -45,7 +45,7 @@ class LetterController extends Controller
             'title' => 'required|max:255',
             'post' => 'required|max:255',
             'description' => 'required',
-            'image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:255'],
+            'image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:2055'],
         ],[
             'name.required' => 'The Name field is required',
             'title.required' => 'The Title field is required',
@@ -73,7 +73,7 @@ class LetterController extends Controller
                $img = $image->get();
             }else{
                 $img = Image::make($image->getRealPath());
-                $img->resize(100, 100, function ($constraint) {
+                $img->resize(256, 291, function ($constraint) {
                    $constraint->aspectRatio();                 
                 });
                 $img->stream('png', 100);
@@ -141,7 +141,7 @@ class LetterController extends Controller
         if ($request->hasFile('image')) {
 
             $validatedData = $request->validate([
-                'image' => ['mimes:jpeg,png,jpg,gif,svg', 'max:255'],
+                'image' => ['mimes:jpeg,png,jpg,gif,svg', 'max:2055'],
             ],[
                 'image.max' => 'Image  must be smaller than 2 MB',
                 'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
@@ -159,7 +159,7 @@ class LetterController extends Controller
                $img = $image->get();
             }else{
                 $img = Image::make($image->getRealPath());
-                $img->resize(100, 100, function ($constraint) {
+                $img->resize(256, 291, function ($constraint) {
                    $constraint->aspectRatio();                 
                 });
                 $img->stream('png', 100);

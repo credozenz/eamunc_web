@@ -42,6 +42,7 @@
                                         <div class="form-group">
                                             <label class="form-label">Title</label>
                         <input type="text" name="title" value="{{ old('title') }}" class="form-control @error('title') border-danger @enderror" placeholder="Title">
+                      
                         @error('title')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
@@ -51,6 +52,7 @@
                                             <label class="form-label text-danger">Image</label>
                            
                         <input type="file" name="image" class="form-control  @error('image') border-danger @enderror">
+                        <small>Image Dimension:1213x666, Size below 3MB</small>
                         @error('image')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>

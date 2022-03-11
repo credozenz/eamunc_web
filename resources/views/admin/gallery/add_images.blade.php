@@ -46,6 +46,7 @@
                                             <button class="btn btn-primary">Upload</button>
                                         </div>
                                     </fieldset>
+                                    <small>Image Dimension:532x300, Size below 3MB</small>
                                     @error('image')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>

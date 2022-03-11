@@ -32,9 +32,9 @@
                         <h5 class="card-title">Index</h5>
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
+                        <!-- <li class="breadcrumb-item">
                             <a href="{{ url('admin/banner_create') }}" class="btn btn-primary shadow-md mr-2">Add</a>
-                        </li>
+                        </li> -->
                     </ol>
                     </nav>
                     </div>
@@ -55,9 +55,8 @@
                                         <td class="text-bold-500">{{ $key+1 }}</td>
                                         <td>
 
-                                        <div class="tabulator-cell" role="gridcell" tabulator-field="images" title="" style="width: 224px; text-align: center; display: inline-flex; align-items: center; justify-content: center; height: 64px;"><div class="flex lg:justify-center">
-                                        <div class="intro-x w-10 h-10 image-fit">
-                                            <img alt="{{ $value->title }}" class="rounded-full" src="{{ asset('uploads/'.$value->image) }}">
+                                        <div class="w-30 h-30 relative image-fit  mb-2 mr-5 ">
+                                            <img alt="{{ $value->title }}" class="rounded-full" src="{{ asset('uploads/'.$value->image) }}" width="800px" height="300px">
                                         </div>
     
                                         </td>

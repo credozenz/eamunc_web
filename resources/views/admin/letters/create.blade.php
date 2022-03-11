@@ -65,6 +65,7 @@
                                             <label class="form-label text-danger">Image</label>
                            
                         <input type="file" name="image" class="form-control  @error('image') border-danger @enderror">
+                        <small>Image Dimension:256x291, Size below 3MB</small>
                         @error('image')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>

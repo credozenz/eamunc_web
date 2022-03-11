@@ -41,7 +41,7 @@ class WorkMembersController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'title' => 'required|max:255',
-            'image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:255'],
+            'image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:2055'],
         ],[
             'name.required' => 'The Name field is required',
             'title.required' => 'The Title field is required',
@@ -65,7 +65,7 @@ class WorkMembersController extends Controller
                $img = $image->get();
             }else{
                 $img = Image::make($image->getRealPath());
-                $img->resize(100, 100, function ($constraint) {
+                $img->resize(256, 291, function ($constraint) {
                    $constraint->aspectRatio();                 
                 });
                 $img->stream('png', 100);
@@ -146,7 +146,7 @@ class WorkMembersController extends Controller
                $img = $image->get();
             }else{
                 $img = Image::make($image->getRealPath());
-                $img->resize(100, 100, function ($constraint) {
+                $img->resize(256, 291, function ($constraint) {
                    $constraint->aspectRatio();                 
                 });
                 $img->stream('png', 100);

@@ -57,8 +57,10 @@
                                      <fieldset>
                                         <div class="input-group">
                                             <input type="file" name="image"  class="form-control  @error('image') border-danger @enderror"  aria-label="Upload">
+                                           
                                             <button class="btn btn-primary">Upload</button>
                                         </div>
+                                        <small>Image Dimension:256x291, Size below 3MB</small>
                                     </fieldset>
                                     @error('image')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
@@ -81,6 +83,7 @@
                         <h5 class="card-title">Members</h5>
                     </div>
                     <div class="card-body">
+
                         <div class="row gallery" data-bs-toggle="modal" data-bs-target="#galleryModal">
                        
                             @foreach ($data as $key => $value)

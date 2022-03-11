@@ -39,12 +39,10 @@ class AlumniNewsController extends Controller
     {
 
         $validatedData = $request->validate([
-            'name' => 'required|max:255',
             'title' => 'required|max:255',
             'description' => 'required',
-            'image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:255'],
+            'image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:2055'],
         ],[
-            'name.required' => 'The Name field is required',
             'title.required' => 'The Title field is required',
             'description.required' => 'The Description field is required',
             'image.required' => 'The Image field is required',
@@ -54,7 +52,6 @@ class AlumniNewsController extends Controller
 
         $alumni_news = new SiteIndexes;
         $alumni_news->title = $request->title;
-        $alumni_news->name = $request->name;
         $alumni_news->description = $request->description;
         $alumni_news->type = 'alumni_news';
         
@@ -68,7 +65,7 @@ class AlumniNewsController extends Controller
                $img = $image->get();
             }else{
                 $img = Image::make($image->getRealPath());
-                $img->resize(100, 100, function ($constraint) {
+                $img->resize(345,225, function ($constraint) {
                    $constraint->aspectRatio();                 
                 });
                 $img->stream('png', 100);
@@ -115,11 +112,9 @@ class AlumniNewsController extends Controller
     {
         
         $validatedData = $request->validate([
-            'name' => 'required|max:255',
             'title' => 'required|max:255',
             'description' => 'required',
         ],[
-            'name.required' => 'The Name field is required',
             'title.required' => 'The Title field is required',
             'description.required' => 'The Description field is required',
         ]);
@@ -127,13 +122,12 @@ class AlumniNewsController extends Controller
     
         $alumni_news = SiteIndexes::where('id', $id)->first(); 
         $alumni_news->title = $request->title;
-        $alumni_news->name = $request->name;
         $alumni_news->description = $request->description;
         
         if ($request->hasFile('image')) {
 
             $validatedData = $request->validate([
-                'image' => ['mimes:jpeg,png,jpg,gif,svg', 'max:255'],
+                'image' => ['mimes:jpeg,png,jpg,gif,svg', 'max:2055'],
             ],[
                 'image.max' => 'Image  must be smaller than 2 MB',
                 'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
@@ -151,7 +145,7 @@ class AlumniNewsController extends Controller
                $img = $image->get();
             }else{
                 $img = Image::make($image->getRealPath());
-                $img->resize(100, 100, function ($constraint) {
+                $img->resize(345,225, function ($constraint) {
                    $constraint->aspectRatio();                 
                 });
                 $img->stream('png', 100);

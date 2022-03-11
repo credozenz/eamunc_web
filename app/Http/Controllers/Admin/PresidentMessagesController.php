@@ -42,7 +42,7 @@ class PresidentMessagesController extends Controller
             'name' => 'required|max:255',
             'post' => 'required|max:255',
             'description' => ['required'],
-            'image' => ['mimes:jpeg,png,jpg,gif,svg', 'max:255']
+            'image' => ['mimes:jpeg,png,jpg,gif,svg', 'max:2050']
         ],[
             'title.required' => 'The Title field is required',
             'name.required' => 'The Name field is required',
@@ -71,7 +71,7 @@ class PresidentMessagesController extends Controller
                $img = $image->get();
             }else{
                 $img = Image::make($image->getRealPath());
-                $img->resize(100, 100, function ($constraint) {
+                $img->resize(440, 528, function ($constraint) {
                    $constraint->aspectRatio();                 
                 });
                 $img->stream('png', 100);

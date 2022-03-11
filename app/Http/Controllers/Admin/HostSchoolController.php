@@ -39,12 +39,10 @@ class HostSchoolController extends Controller
     {
 
         $validatedData = $request->validate([
-            'name' => 'required|max:255',
             'title' => 'required|max:255',
             'description' => ['required'],
-            'image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:255'],
+            'image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:2055'],
         ],[
-            'name.required' => 'The Name field is required',
             'description.required' => 'The Description field is required',
             'title.required' => 'The Title field is required',
             'image.required' => 'The Image field is required',
@@ -54,7 +52,6 @@ class HostSchoolController extends Controller
 
         $host = new SiteIndexes;
         $host->title = $request->title;
-        $host->name = $request->name;
         $host->description = $request->description;
         $host->type = 'host_schools';
         if ($request->hasFile('image')) {
@@ -67,7 +64,7 @@ class HostSchoolController extends Controller
                $img = $image->get();
             }else{
                 $img = Image::make($image->getRealPath());
-                $img->resize(100, 100, function ($constraint) {
+                $img->resize(198,252, function ($constraint) {
                    $constraint->aspectRatio();                 
                 });
                 $img->stream('png', 100);
@@ -114,11 +111,9 @@ class HostSchoolController extends Controller
     {
         
         $validatedData = $request->validate([
-            'name' => 'required|max:255',
             'title' => 'required|max:255',
             'description' => 'required',
         ],[
-            'name.required' => 'The Name field is required',
             'title.required' => 'The Title field is required',
             'description.required' => 'The Description field is required',
         ]);
@@ -126,7 +121,6 @@ class HostSchoolController extends Controller
     
         $host = SiteIndexes::where('id', $id)->first(); 
         $host->title = $request->title;
-        $host->name = $request->name;
         $host->description  = $request->description;
         
         if ($request->hasFile('image')) {
@@ -150,7 +144,7 @@ class HostSchoolController extends Controller
                $img = $image->get();
             }else{
                 $img = Image::make($image->getRealPath());
-                $img->resize(100, 100, function ($constraint) {
+                $img->resize(198,252, function ($constraint) {
                    $constraint->aspectRatio();                 
                 });
                 $img->stream('png', 100);

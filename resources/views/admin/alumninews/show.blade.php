@@ -45,13 +45,7 @@
                     <div class="card-content">
                         <div class="card-body">
                         <div class="row">
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="text-danger">Name</label>
-                        <input type="text" name="name" value="{{ $data->name }}" class="form-control" disabled placeholder="Name">
-                      
-                                        </div>
-                                    </div>
+                              
                                     <div class="col-md-6 col-12">
                                     <div class="form-group">
                                             <label for="text-danger">Title</label>

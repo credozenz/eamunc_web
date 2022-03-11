@@ -50,10 +50,11 @@
                                             <label class="form-label text-danger">Image</label>
                             @if(!empty($data->image))
                             <div class="w-30 h-30 relative image-fit  mb-2 mr-5 ">
-                                 <img class="rounded-md img-preview" src="{{ asset('uploads/'.$data->image) }}" style="width: 103px;">
+                                 <img class="rounded-md img-preview" src="{{ asset('uploads/'.$data->image) }}" style="width: 520px;">
                             </div>
                             @endif
                         <input type="file" name="image" class="form-control  @error('image') border-danger @enderror">
+                        <small>Image Dimension:1080x476, Size below 3MB</small>
                         @error('image')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>

@@ -69,7 +69,7 @@
                                         <div class="form-group">
                                             <label class="form-label text-danger">Thumbnail</label>
                                             <div class="w-30 h-30 relative image-fit  mb-2 mr-5 ">
-                                 <img class="rounded-md img-preview" src="{{ asset('uploads/'.$data->image) }}" style="width: 103px;">
+                                 <img class="rounded-md img-preview" src="{{ asset('uploads/'.$data->image) }}" style="width: 350px;">
                                             </div>
                                         </div>
                                     </div>

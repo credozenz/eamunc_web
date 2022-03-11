@@ -42,7 +42,7 @@ class PastConferenceController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'description' => ['required'],
-            'image' => ['required','mimes:jpeg,png,jpg,gif,svg','max:255'],
+            'image' => ['required','mimes:jpeg,png,jpg,gif,svg','max:2055'],
             'file' => ['required','mimes:pdf','max:255'],
         ],[
             'title.required' => 'The Title field is required',
@@ -71,7 +71,7 @@ class PastConferenceController extends Controller
                $img = $image->get();
             }else{
                 $img = Image::make($image->getRealPath());
-                $img->resize(100, 100, function ($constraint) {
+                $img->resize(532,300, function ($constraint) {
                    $constraint->aspectRatio();                 
                 });
                 $img->stream('png', 100);
@@ -100,7 +100,7 @@ class PastConferenceController extends Controller
 
         if($conference->id){
             Session::flash('success', 'Past conference added successfully!');
-            return redirect('/admin/pastconference/'.$conference->id);
+            return redirect('/admin/pastconference_images/'.$conference->id);
           }else{
             Session::flash('error', 'Something went wrong!!');
             return  redirect()->back();
@@ -147,7 +147,7 @@ class PastConferenceController extends Controller
         if ($request->hasFile('image')) {
 
             $validatedData = $request->validate([
-                'image' => ['mimes:jpeg,png,jpg,gif,svg', 'max:255'],
+                'image' => ['mimes:jpeg,png,jpg,gif,svg', 'max:2055'],
             ],[
                 'image.max' => 'Image  must be smaller than 2 MB',
                 'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
@@ -164,7 +164,7 @@ class PastConferenceController extends Controller
                $img = $image->get();
             }else{
                 $img = Image::make($image->getRealPath());
-                $img->resize(100, 100, function ($constraint) {
+                $img->resize(532,300, function ($constraint) {
                    $constraint->aspectRatio();                 
                 });
                 $img->stream('png', 100);
@@ -227,7 +227,7 @@ class PastConferenceController extends Controller
        
         $validatedData = $request->validate([
             'conference_id' => 'required|max:255',
-            'image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:255'],
+            'image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:2055'],
         ],[
             'conference_id.required' => 'The Title field is required',
             'image.required' => 'The Image field is required',
@@ -249,7 +249,7 @@ class PastConferenceController extends Controller
                $img = $image->get();
             }else{
                 $img = Image::make($image->getRealPath());
-                $img->resize(100, 100, function ($constraint) {
+                $img->resize(340, 320, function ($constraint) {
                    $constraint->aspectRatio();                 
                 });
                 $img->stream('png', 100);

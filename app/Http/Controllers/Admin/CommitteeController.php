@@ -46,8 +46,8 @@ class CommitteeController extends Controller
             'agenda' =>'required|max:255',
             'video' =>'required|max:255',
             'description' =>'required',
-            'image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:255'],
-            'file' => ['required','mimes:pdf', 'max:255'],
+            'image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:2055'],
+            'file' => ['required','mimes:pdf', 'max:2055'],
         ],[
             'name.required' => 'The Name field is required',
             'title.required' => 'The Title field is required',
@@ -82,7 +82,7 @@ class CommitteeController extends Controller
                $img = $image->get();
             }else{
                 $img = Image::make($image->getRealPath());
-                $img->resize(100, 100, function ($constraint) {
+                $img->resize(443,161, function ($constraint) {
                    $constraint->aspectRatio();                 
                 });
                 $img->stream('png', 100);
@@ -113,7 +113,7 @@ class CommitteeController extends Controller
 
         if($committee->id){
             Session::flash('success', 'committee added successfully!');
-            return redirect('/admin/committee');
+            return redirect('/admin/committee_members/'.$committee->id);
           }else{
             Session::flash('error', 'Something went wrong!!');
             return  redirect()->back();
@@ -171,7 +171,7 @@ class CommitteeController extends Controller
         if ($request->hasFile('image')) {
 
             $validatedData = $request->validate([
-                'image' => ['mimes:jpeg,png,jpg,gif,svg', 'max:255'],
+                'image' => ['mimes:jpeg,png,jpg,gif,svg', 'max:2055'],
             ],[
                 'image.max' => 'Image  must be smaller than 2 MB',
                 'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
@@ -187,7 +187,7 @@ class CommitteeController extends Controller
                 $img = $image->get();
             }else{
                 $img = Image::make($image->getRealPath());
-                $img->resize(100, 100, function ($constraint) {
+                $img->resize(443,161, function ($constraint) {
                    $constraint->aspectRatio();                 
                 });
                 $img->stream('png', 100);
@@ -202,7 +202,7 @@ class CommitteeController extends Controller
         if ($request->hasFile('news_doc')) {
 
             $validatedData = $request->validate([
-                'file' => ['required','mimes:pdf', 'max:255'],
+                'file' => ['required','mimes:pdf', 'max:2055'],
             ],[
                 'file.required' => 'The file field is required',
                 'file.max' => 'file  must be smaller than 2 MB',
@@ -228,7 +228,7 @@ class CommitteeController extends Controller
         
           if($committee->id){
             Session::flash('success', 'Committee updated successfully!');
-            return redirect('/admin/committee');
+            return redirect('/admin/committee_members/'.$id);
           }else{
             Session::flash('error', 'Something went wrong!!');
             return  redirect()->back();
@@ -253,7 +253,7 @@ class CommitteeController extends Controller
 
     public function committee_members($id)
     {
-        $data = Committee_member::where('committe_id', $id)->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4);
+        $data = Committee_member::where('committe_id', $id)->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(20);
         return view('admin/committee/add_members', compact('data','id'));
     }
 
@@ -264,7 +264,7 @@ class CommitteeController extends Controller
             'committe_id' => 'required|max:255',
             'name' => 'required|max:255',
             'title' => 'required|max:255',
-            'image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:255'],
+            'image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:2055'],
         ],[
             'committe_id.required' => 'The Title field is required',
             'name.required' => 'The Name field is required',
@@ -288,7 +288,7 @@ class CommitteeController extends Controller
                $img = $image->get();
             }else{
                 $img = Image::make($image->getRealPath());
-                $img->resize(100, 100, function ($constraint) {
+                $img->resize(256,291, function ($constraint) {
                    $constraint->aspectRatio();                 
                 });
                 $img->stream('png', 100);

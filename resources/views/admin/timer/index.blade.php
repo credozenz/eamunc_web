@@ -46,7 +46,7 @@
                                     </div>
                                     <div class="col-md-6 col-12">
                                     <div class="form-group">
-                                            <label class="form-label text-danger">Date</label>
+                                            <label class="form-label text-danger">End Date</label>
                                             <input type="date" name="date" value="{{ $data->date ?? '' }}" class="form-control" placeholder="Date">
                                             @error('date')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>

@@ -61,9 +61,8 @@
                                             <td class="text-bold-500">{{ $value->title }}</td>
                                             <td>
 
-                                            <div class="tabulator-cell" role="gridcell" tabulator-field="images" title="" style="width: 224px; text-align: center; display: inline-flex; align-items: center; justify-content: center; height: 64px;"><div class="flex lg:justify-center">
-                                            <div class="intro-x w-10 h-10 image-fit">
-                                                <img alt="{{ $value->title }}" class="rounded-full" src="{{ asset('uploads/'.$value->image) }}">
+                                            <div class="w-30 h-30 relative image-fit  mb-2 mr-5 ">
+                                                <img alt="{{ $value->title }}" class="rounded-full" src="{{ asset('uploads/'.$value->image) }}" width="320" height="130">
                                             </div>
         
                                             </td>

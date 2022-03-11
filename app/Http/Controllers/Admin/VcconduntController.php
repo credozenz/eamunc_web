@@ -41,7 +41,7 @@ class VcconduntController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'description' => ['required'],
-            'image' => ['mimes:jpeg,png,jpg,gif,svg', 'max:255'],
+            'image' => ['mimes:jpeg,png,jpg,gif,svg', 'max:2055'],
             'doc_file' => ['mimes:pdf', 'max:255'],
         ],[
             'title.required' => 'The Title field is required',
@@ -69,7 +69,7 @@ class VcconduntController extends Controller
                $img = $image->get();
             }else{
                 $img = Image::make($image->getRealPath());
-                $img->resize(100, 100, function ($constraint) {
+                $img->resize(1080,480, function ($constraint) {
                    $constraint->aspectRatio();                 
                 });
                 $img->stream('png', 100);
