@@ -24,8 +24,28 @@ class HomeController extends Controller
         $faculties_messages = SiteIndexes::where('deleted_at', null)->where('type', 'faculties_messages')->orderBy('id', 'DESC')->paginate(2);
         $our_mentors = SiteIndexes::where('deleted_at', null)->where('type', 'our_mentors')->orderBy('id', 'DESC')->paginate(8);
         $conference_update = SiteIndexes::where('deleted_at', null)->where('type', 'conference_update')->orderBy('id', 'DESC')->paginate(3); 
-        $conference_schedule = Conference_schedule::where('deleted_at', null)->orderBy('id', 'ASC')->paginate(3);
+        //$conference_schedule = Conference_schedule::where('deleted_at', null)->orderBy('id', 'ASC')->paginate(3);
         
+        $schedule = Conference_schedule::where('deleted_at', null)->orderBy('id', 'ASC')->paginate(3);
+  
+        $conference_schedule = $schedule->map(function($item, $key) {
+
+            $time = Conference_schedule_time::where('schedule_id', $item->id)->get();
+                                return [
+                                    'id' => $item->id,
+                                    'date' => $item->date,
+                                    'title' => $item->title,
+                                    'time' => $time,
+                                ];
+                            });
+             
+      
+
+    //   foreach ($conference_schedule as $val){
+
+    //     dd($val['id']);
+    //   }
+
         return view('web/home', compact('banner','timer','president_messages','faculties_messages','our_mentors','conference_update','conference_schedule'));
     }
 

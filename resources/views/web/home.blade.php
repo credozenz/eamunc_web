@@ -131,26 +131,23 @@
                 @foreach ($conference_schedule as $key => $value)
                 <div class="row schedule-card">
                     <div class="col-md-3 text-head">
-                        <h6 class="color-blue">{{ $value->title ?? '' }}</h6>
+                        <h6 class="color-blue">{{ $value['title'] ?? '' }}</h6>
                     </div>
                     <div class="col-md-9 info-line">
                         <div class="row text-info">
                             <div class="col-md-6 text-card">
+                            @if (!empty($value['time']) && $conference_schedule->count())
+                                @foreach ($value['time'] as $key => $time)
                                 <div class="text-line color-black">
-                                    <p>Opening Ceremony</p>
-                                    <p>3:00-3:30pm</p>
+                                    <p>{{ $time->name ?? '' }}</p>
+                                    <p>{{ date("g:i a", strtotime($time->time_start)) ?? '' }} - {{ date("g:i a", strtotime($time->time_end)) ?? '' ?? ''  }}</p>
                                 </div>
-                                <div class="text-line color-black">
-                                    <p>Break </p>
-                                    <p>3:30-3:45pm</p>
-                                </div>
-                                <div class="text-line color-black">
-                                    <p>Committee Session I </p>
-                                    <p>3:30-7:45pm</p>
-                                </div>
+                                @endforeach
+                            @endif
+                               
                             </div>
                             <div class="col-md-6 text-center text-card">
-                                <h6 class="date-line color-black">{{ date('jS  F l Y',strtotime($value->date)) ?? '' }}</h6>
+                                <h6 class="date-line color-black">{{ date('jS  F l Y',strtotime($value['date'])) ?? '' }}</h6>
                             </div>
                         </div>
                     </div>
