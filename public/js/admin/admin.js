@@ -69,6 +69,16 @@ $(function(){
     }, 1500);
 
 
+    
+        ClassicEditor.create( document.querySelector( '#ckeditor' ) )
+        .then( editor => {
+            editor.ui.view.editable.element.style.height = '500px';
+        } )
+        .catch( error => {
+            console.error( error );
+        } );
+
+
 
 
     $(document).ready(function() {

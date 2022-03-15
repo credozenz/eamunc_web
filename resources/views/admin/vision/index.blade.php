@@ -64,7 +64,7 @@
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
                                             <label class="form-label text-danger">Description</label>
-                        <textarea id="input-filter-5" type="text" name="description" class="form-control @error('description') border-danger @enderror" placeholder="Description" style="height: 250px;">{{ $data->description ?? '' }}</textarea>
+                        <textarea id="ckeditor" type="text" name="description" class="form-control @error('description') border-danger @enderror" placeholder="Description" style="height: 250px;">{{ $data->description ?? '' }}</textarea>
                         @error('description')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>

@@ -16,3 +16,4 @@
 <script src="{{asset('js/admin/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('js/admin/sidebar.js')}}"></script>
 <script src="{{asset('js/admin/admin.js')}}"></script>
+<script src="{{asset('assets//admin/vendor/ckeditor.js')}}"></script>

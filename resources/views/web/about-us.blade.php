@@ -16,7 +16,7 @@
                         </div>
                         <div class="col-md-9">
                             <div class="content">
-                                {{ $vision->description ?? '' }}
+                                {!! $vision->description ?? '' !!}
                             </div>
                         </div>
                     </div>

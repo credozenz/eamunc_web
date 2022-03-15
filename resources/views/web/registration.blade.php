@@ -7,14 +7,20 @@
                     <h3 class="color-darkblue mb-4 text-center">Welcome to EAMUNC 2022</h3>
 
                     <div class="row my-5">
-                        <img src="assets/img/welcome.jpg" alt="" class="p-0">
+                    
+                        <img src="{{ asset('assets/web/img/welcome.jpg') }}" alt="Registration for ISG Students" class="p-0">
+                   
                     </div>
                     <div class="row py-3">
                         <div class="col-md-6 pe-0 pe-md-3 mb-3 mb-md-0 p-0">
+                        <a href="{{ route('isg-registration') }}" class="color-white">
                             <button class="download-btn-inverse w-100 py-3">Registration for ISG Students</button>
+                        </a>
                         </div>
                         <div class="col-md-6 p-0">
-                            <button class="download-btn w-100 py-3">Registration for Host Schools</button>
+                        <a href="{{ route('school-registration') }}" class="color-white">
+                            <button class="download-btn w-100 py-3">Registration for Schools</button>
+                        </a>
                         </div>
                     </div>
                 </div>

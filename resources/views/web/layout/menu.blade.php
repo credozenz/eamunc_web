@@ -48,7 +48,7 @@
                         <li class="nav-item"><a href="{{ route('live') }}" class="color-white font-normal">Live</a></li>
                         <li class="nav-item"><a href="{{ route('gallery') }}" class="color-white font-normal">Gallery</a></li>
                         <li class="nav-item"><a href="{{ route('alumni') }}" class="color-white font-normal">Alumni</a></li>
-                        <li class="nav-item"><a href="#" class="color-white font-normal">Newsletter</a></li>
+                        <li class="nav-item"><a href="{{ route('newsletter') }}" class="color-white font-normal">Newsletter</a></li>
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle color-white font-normal" href="#" id="navbarDropdown"
