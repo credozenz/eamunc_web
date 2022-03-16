@@ -2,12 +2,15 @@
 @section('content')
 <section id="hero" class="section-padding">
         <div class="wrapper">
+
+        @if (!empty($past_conferences) && $past_conferences->count())
+
             <div class="container">
                 <div class="letter-container">
-                    <h3 class="color-darkblue mb-4">EAMUNC 2022</h3>
+                    <h3 class="color-darkblue mb-4">{{ $past_conferences->title ?? '' }}</h3>
 
                     <div class="row mt-5">
-                        <img src="assets/img/past.jpg" alt="">
+                        <img src="{{ asset('uploads/'.$past_conferences->image) ?? '' }}" alt="{{ $past_conferences->name ?? '' }}">
                     </div>
                 </div>
             </div>
@@ -18,33 +21,14 @@
 
                         <div class="col-md-12">
                             <div class="content border-black lh-2">
-                                <p>
-                                    Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out
-                                    print, graphic or web designs. The passage is attributed to an unknown typesetter in
-                                    the 15th century who is thought to have
-                                    scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen
-                                    book. It usually begins with:
-                                </p>
-                                <p>
-                                    “Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.”
-                                    The purpose of lorem ipsum is to create a natural looking block of text (sentence,
-                                    paragraph, page, etc.) that doesn't distract from the layout. A practice not without
-                                    controversy, laying out pages with meaningless
-                                    filler text can be very useful when the focus is meant to be on design, not content.
-                                </p>
-                                <p>
-                                    The passage experienced a surge in popularity during the 1960s when Letraset used it
-                                    on their dry-transfer sheets, and again during the 90s as desktop publishers bundled
-                                    the text with their software. Today it's
-                                    seen all around the web; on templates, websites, and stock designs. Use our
-                                    generator to get your own, or read on for the authoritative history of lorem ipsum.
-                                </p>
+                               {{ $past_conferences->description ?? '' }}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+        @endif
 
         </div>
     </section>
@@ -55,27 +39,26 @@
         </div>
         <div class="container">
             <div class="row justify-content-between">
-                <div class="col-md-4 image-box mb-3 fixed-thumb">
-                    <img src="assets/img/action/1.jpg" alt="">
-                </div>
+            @if (!empty($images) && $images->count())
+                        @foreach ($images as $key => $value)
 
                 <div class="col-md-4 image-box mb-3 fixed-thumb">
-                    <img src="assets/img/action/2.jpg" alt="">
+                <img src="{{ asset('uploads/'.$value->image) ?? '' }}" alt="{{ $value->name ?? '' }}">
                 </div>
-
-                <div class="col-md-4 image-box mb-3 fixed-thumb">
-                    <img src="assets/img/action/3.jpg" alt="">
-                </div>
-                <div class="col-12 text-end">
-                    <a href="#" class="more-button">See More</a>
-                </div>
+                @endforeach
+            @else
+            <div class="col-md-6 text-center text-md-end color-darkblue">
+                EAMUNC In Action isn't available right Now !
+            </div>
+            @endif
+               
 
             </div>
         </div>
 
     </section>
 
-
+    @if (!empty($past_conferences->file))
     <section id="regulations" class="section-padding">
         <div class="wrapper">
             <div class="container p-0">
@@ -85,7 +68,9 @@
                             <p class="color-darkblue h5 mb-3 mb-md-0 text-center text-md-start">Resolutions of EAMUNC 2022</p>
                         </div>
                         <div class="col-md-6 text-center text-md-end">
+                        <a href="{{ asset('uploads/'.$past_conferences->file) ?? '' }}" target="_blank">
                             <button class="download-btn">Download Now</button>
+                        </a>
                         </div>
 
                     </div>
@@ -94,4 +79,5 @@
 
         </div>
     </section>
+    @endif
     @endsection

@@ -197,16 +197,16 @@ class RegistrationController extends Controller
 
 
 
-    public function validate_user_email(Request $request,$id)
+    public function validate_user_email(Request $request)
     {
-
-        $news = $request; 
-        $mytime = Carbon::now();
-        $timestamp=$mytime->toDateTimeString();
-        $news->deleted_at = $timestamp;
-        $news->save();
-
-        echo json_encode(['status'=>true,'message'=>'Agent Deleted Successfully !']);exit();
+       
+        $user = User::where('email', $request->email); 
+      
+        if(empty($user->count())){
+              echo json_encode(['status'=>true]);exit();
+        }else{
+             echo json_encode(['status'=>false]);exit();
+        }
     }
 
 }

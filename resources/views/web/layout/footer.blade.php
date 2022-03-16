@@ -4,19 +4,18 @@
                 <div class="row footer-top">
                     <div class="col-md-4">
                         <ul>
-                            <li><a href="#" class="color-white">About EAMUNC</a></li>
-                            <li><a href="#" class="color-white">Conferences</a></li>
-                            <li><a href="#" class="color-white">Registration</a></li>
-                            <li><a href="#" class="color-white">Committees</a></li>
+                            <li><a href="{{ route('about-us') }}" class="color-white">About EAMUNC</a></li>
+                            <li><a href="{{ route('conference') }}" class="color-white">Conferences</a></li>
+                            <li><a href="{{ route('registration') }}" class="color-white">Registration</a></li>
+                            <li><a href="{{ route('committees') }}" class="color-white">Committees</a></li>
                         </ul>
                     </div>
                     <div class="col-md-4">
                         <ul>
-                            <li><a href="#" class="color-white">Live</a></li>
-                            <li><a href="#" class="color-white">Gallery</a></li>
-                            <li><a href="#" class="color-white">Alumni</a></li>
-                            <li><a href="#" class="color-white">Newsletter</a></li>
-                            <li><a href="#" class="color-white">More Information</a></li>
+                            <li><a href="{{ route('live') }}" class="color-white">Live</a></li>
+                            <li><a href="{{ route('gallery') }}" class="color-white">Gallery</a></li>
+                            <li><a href="{{ route('alumni') }}" class="color-white">Alumni</a></li>
+                            <li><a href="{{ route('newsletter') }}" class="color-white">Newsletter</a></li>
                         </ul>
                     </div>
                     <div class="col-md-4">
@@ -25,7 +24,7 @@
                             <li><a href="#" class="color-white">Terms of Service</a></li>
                             <li><a href="#" class="color-white">Privacy Policy</a></li>
                             <li><a href="#" class="color-white">Contact Us</a></li>
-                            <li><a href="#" class="color-white">Feedback Form</a></li>
+                            <li><a href="{{ route('feedback') }}" class="color-white">Feedback Form</a></li>
                         </ul>
                     </div>
                 </div>

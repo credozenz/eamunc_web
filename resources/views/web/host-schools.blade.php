@@ -40,7 +40,7 @@
         </div>
     </section>
 
-    <!-- <section id="regulations" class="section-padding pt-0">
+    <section id="regulations" class="section-padding pt-0">
         <div class="wrapper">
             <div class="container p-0">
                 <div class="box border-black">
@@ -49,7 +49,10 @@
                             <p class="color-darkblue h5 mb-3 mb-md-0 text-center text-md-start">Be a part of the EAMUNC Alumni Network</p>
                         </div>
                         <div class="col-md-6 text-center text-md-end">
-                            <button class="download-btn">Download Now</button>
+                        <a href="{{ route('registration') }}">
+                             <button class="download-btn">Register Now</button>
+                        </a>
+                            
                         </div>
 
                     </div>
@@ -58,6 +61,6 @@
             <span class="spacer"></span>
 
         </div>
-    </section> -->
+    </section>
 
     @endsection

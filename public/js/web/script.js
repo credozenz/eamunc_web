@@ -111,10 +111,9 @@ var array_no =i-1;
 
     $(document).on('change', '.user_email', function (e) {
         e.preventDefault();
-        
-        var email = $(this).val();
-        var url = $('#reg-form').data('url');
-        
+    
+        var input = $(this);
+        var email = input.val();
         $.ajaxSetup({
             headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -123,39 +122,37 @@ var array_no =i-1;
 
         let _token1   = $('meta[name="csrf-token"]').attr('content');
 
-     
-
                 $.ajax({
                     type: "POST",
-                    url: url,
+                    url: './validate_user_email',
                     dataType:"json",
                     data: {
                         email: email,
+                        
                      },
-                    _token: _token1,
+                     _token: _token1,
                     success: function(responce){
-        
-                        if(responce.status){
-
-                           
+     
+                        if(responce.status==false){
+                            input.val(""); 
+                            input.closest('div').find('.email-valid').remove();
+                            input.after("<div class='text-danger mt-2 email-valid'> This email address is already in use </div>");  
                             
                         }else{
-                            
+
+                            input.closest('div').find('.email-valid').remove();  
                             
                         }
 
                     },
 
-
                     error: function(xhr, status, error) {
                         var err = eval("(" + xhr.responseText + ")");
-                      
-                        
+                           console.log(err);      
                     }
             
                 });
-            
-           
+          
 
     });
 

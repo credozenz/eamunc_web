@@ -30,7 +30,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="form-label">Email*</label>
-                                        <input type="text" name="email" value="{{ old('email') }}" class="form-control @error('email') border-danger @enderror" {{ $errors->has('email') ? 'autofocus' : '' }} placeholder="Email" aria-describedby="textHelp" required>
+                                        <input type="email" name="email" value="{{ old('email') }}" class="form-control user_email @error('email') border-danger @enderror" {{ $errors->has('email') ? 'autofocus' : '' }} placeholder="Email" aria-describedby="textHelp" required>
                                         @error('email')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>

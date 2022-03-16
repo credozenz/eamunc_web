@@ -4,7 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>E.A.MUNC | E. Ahamed Model United Nations Conference</title>
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Primary Meta Tags -->
     <meta name="title" content="E.A.MUNC | E. Ahamed Model United Nations Conference">
     <meta name="description"

@@ -24,7 +24,7 @@
                                 Conference</a>
                         </div>
                         <div class="menu-right">
-                            <a href="#" class="button register-btn">Register Now</a>
+                            <a href="{{ route('registration') }}" class="button register-btn">Register Now</a>
                             <span class="divider"></span>
                             <a href="#" class="button signin-btn">Sign In</a>
                         </div>
@@ -60,6 +60,7 @@
                                 <li><a class="dropdown-item font-normal" href="{{ route('host-school') }}">Host Schools</a></li>
                                 <li><a class="dropdown-item font-normal" href="{{ route('act-impact') }}">Act Impact</a></li>
                                 <li><a class="dropdown-item font-normal" href="{{ route('virtual-code') }}">Virtual Code Of Conduct</a></li>
+                                <li><a class="dropdown-item font-normal" href="{{ route('past-conference') }}">Past Conference</a></li>
                                 <li><a class="dropdown-item font-normal" href="{{ route('feedback') }}">Feedback</a></li>
                             </ul>
                         </li>
@@ -67,7 +68,7 @@
                     <div class="sidemenu-footer">
                         <div class="footer-line d-flex">
                             <p>HELP SHAPE A BETTER FUTURE</p>
-                            <a href="#" class="button register-btn">Register Now</a>
+                            <a href="{{ route('registration') }}" class="button register-btn">Register Now</a>
                         </div>
                         <ul class="d-flex sidemenu-socials">
                             <li><a href="#" class="color-white"><i class="fa fa-instagram"></i></a></li>
