@@ -13,7 +13,7 @@ use App\Models\SiteIndexes;
 use App\Models\Committee;
 use App\Models\School;
 use App\Models\School_Delegates;
-use App\Models\Registration_isg;
+use App\Models\Isg_delegates;
 use App\Models\User;
 
 class RegistrationController extends Controller
@@ -66,7 +66,7 @@ class RegistrationController extends Controller
            
             if($user->id){
 
-            $registration = new Registration_isg;
+            $registration = new Isg_delegates;
             $registration->name  = $request->name;
             $registration->email = $request->email;
             $registration->class = $request->class;

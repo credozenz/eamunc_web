@@ -13,7 +13,7 @@ class CreateRegistrationIsgsTable extends Migration
      */
     public function up()
     {
-        Schema::create('registration_isgs', function (Blueprint $table) {
+        Schema::create('isg_delegates', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
             $table->string('name');
@@ -36,6 +36,6 @@ class CreateRegistrationIsgsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('registration_isgs');
+        Schema::dropIfExists('isg_delegates');
     }
 }

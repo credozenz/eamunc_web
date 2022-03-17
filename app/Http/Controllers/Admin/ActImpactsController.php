@@ -21,7 +21,7 @@ class ActImpactsController extends Controller
   
     public function __construct()
     {
-        View::share('routeGroup','act_impacts');
+        View::share('routeGroup','impact');
     }
     
     public function index(Request $request)

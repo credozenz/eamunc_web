@@ -20,7 +20,7 @@ class LetterController extends Controller
 
     public function __construct()
     {
-        View::share('routeGroup','letters');
+        View::share('routeGroup','conference');
     }
   
     public function index(Request $request)

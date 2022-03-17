@@ -20,7 +20,7 @@ class BannerController extends Controller
 
     public function __construct()
     {
-        View::share('routeGroup','banner');
+        View::share('routeGroup','home');
     }
   
     public function index(Request $request)

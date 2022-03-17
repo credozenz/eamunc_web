@@ -26,6 +26,8 @@ use App\Http\Controllers\Admin\ImportantDateController;
 use App\Http\Controllers\Admin\CommitteeController;
 use App\Http\Controllers\Admin\PastConferenceController;
 use App\Http\Controllers\Admin\TimerController;
+use App\Http\Controllers\Admin\FooterController;
+use App\Http\Controllers\Admin\DelegateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -196,6 +198,29 @@ Route::group(['middleware' => 'adminchecker'], function() {
      Route::get('/change_password', [ProfileController::class,'change_password'])->name('admin.change_password');
      Route::post('/password_update', [ProfileController::class,'update_password'])->name('admin.password.update');
 
+     Route::get('/faq', [FooterController::class,'faq'])->name('admin.faq');
+     Route::post('/faq_update', [FooterController::class,'faq_update'])->name('admin.faq_update');
+
+     Route::get('/terms', [FooterController::class,'terms'])->name('admin.terms');
+     Route::post('/terms_update', [FooterController::class,'terms_update'])->name('admin.terms_update');
+
+     Route::get('/privacy_policy', [FooterController::class,'privacy_policy'])->name('admin.privacy_policy');
+     Route::post('/privacy_policy_update', [FooterController::class,'privacy_policy_update'])->name('admin.privacy_policy_update');
+
      Route::get('/log_out', [ProfileController::class,'log_out'])->name('admin.log_out');
+
+
+
+     Route::get('/isg_delegates', [DelegateController::class,'isg_delegates'])->name('admin.isg_delegates');
+     Route::get('/isg_delegates_edit/{id}', [DelegateController::class,'isg_delegates_edit'])->name('admin.isg_delegates.edit');
+     Route::get('/isg_delegates_show/{id}', [DelegateController::class,'isg_delegates_show'])->name('admin.isg_delegates.show');
+     Route::post('/isg_delegates_update/{id}', [DelegateController::class,'isg_delegates_update'])->name('admin.isg_delegates.update');
+     Route::post('/isg_delegates_delete/{id}', [DelegateController::class,'isg_delegates_destroy'])->name('admin.isg_delegates.destroy');
+
+     Route::get('/school_delegates', [DelegateController::class,'school_delegates'])->name('admin.school_delegates');
+     Route::get('/school_delegates_edit/{id}', [DelegateController::class,'school_delegates_edit'])->name('admin.school_delegates.edit');
+     Route::get('/school_delegates_show/{id}', [DelegateController::class,'school_delegates_show'])->name('admin.school_delegates.show');
+     Route::post('/school_delegates_update/{id}', [DelegateController::class,'school_delegates_update'])->name('admin.school_delegates.update');
+     Route::post('/school_delegates_delete/{id}', [DelegateController::class,'school_delegates_destroy'])->name('admin.school_delegates.destroy');
 
 });

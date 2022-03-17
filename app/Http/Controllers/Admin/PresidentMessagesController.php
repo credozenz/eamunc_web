@@ -20,7 +20,7 @@ class PresidentMessagesController extends Controller
 {
     public function __construct()
     {
-        View::share('routeGroup','president_messages');
+        View::share('routeGroup','home');
     }
     
     public function index(Request $request)

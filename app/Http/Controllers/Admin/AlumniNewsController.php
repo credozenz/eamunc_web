@@ -19,7 +19,7 @@ class AlumniNewsController extends Controller
 {
     public function __construct()
     {
-        View::share('routeGroup','alumninews');
+        View::share('routeGroup','alumni');
     }
   
     public function index(Request $request)

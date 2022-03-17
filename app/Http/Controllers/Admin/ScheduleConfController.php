@@ -26,7 +26,7 @@ class ScheduleConfController extends Controller
 {
     public function __construct()
     {
-        View::share('routeGroup','conference_schedule');
+        View::share('routeGroup','home');
     }
     public function index(Request $request)
     {   

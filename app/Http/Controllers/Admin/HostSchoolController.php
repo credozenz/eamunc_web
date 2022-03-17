@@ -19,7 +19,7 @@ class HostSchoolController extends Controller
 {
     public function __construct()
     {
-        View::share('routeGroup','host_schools');
+        View::share('routeGroup','hostschool');
     }
   
     public function index(Request $request)

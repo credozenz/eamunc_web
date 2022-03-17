@@ -19,7 +19,7 @@ class WorkMembersController extends Controller
 {
     public function __construct()
     {
-        View::share('routeGroup','work_members');
+        View::share('routeGroup','conference');
     }
   
     public function index(Request $request)

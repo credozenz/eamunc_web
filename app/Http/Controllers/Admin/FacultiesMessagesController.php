@@ -19,7 +19,7 @@ class FacultiesMessagesController extends Controller
 {
     public function __construct()
     {
-        View::share('routeGroup','facultiesmessages');
+        View::share('routeGroup','home');
     }
     
   
@@ -165,7 +165,7 @@ class FacultiesMessagesController extends Controller
                $img = $image->get();
             }else{
                 $img = Image::make($image->getRealPath());
-                $img->resize(379, 239, function ($constraint) {
+                $img->resize(379, 245, function ($constraint) {
                    $constraint->aspectRatio();                 
                 });
                 $img->stream('png', 100);

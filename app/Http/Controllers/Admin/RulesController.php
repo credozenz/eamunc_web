@@ -20,7 +20,7 @@ class RulesController extends Controller
 {
     public function __construct()
     {
-        View::share('routeGroup','rules');
+        View::share('routeGroup','conference');
     }
   
     public function index(Request $request)

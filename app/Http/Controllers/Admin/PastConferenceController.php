@@ -20,7 +20,7 @@ class PastConferenceController extends Controller
 {
     public function __construct()
     {
-        View::share('routeGroup','pastconference');
+        View::share('routeGroup','past_conference');
     }
   
     public function index(Request $request)

@@ -19,290 +19,195 @@
                     <span><i class="fa fa-columns" aria-hidden="true">&nbsp</i>Dashboard</span>
                 </a>
             </li>
-            <li class="sidebar-title" style="font-weight: bold;color: #9197a8;">Home</li>
-            <hr>
-            <li class="sidebar-item  has-sub @if($routeGroup=='banner') active @endif ">
+
+            <li class="sidebar-item  has-sub @if($routeGroup=='delegates') active @endif">
                 <a href="#" class='sidebar-link'>
-                    <span><i class="fa fa-file-image-o" aria-hidden="true">&nbsp</i>Banner</span>
+                    <span><i class="fa fa-user-plus" aria-hidden="true">&nbsp</i>Delegates</span>
                 </a>
-                <ul class="submenu @if($routeGroup=='banner') active @endif">
+                <ul class="submenu @if($routeGroup=='delegates') active @endif">
                     <li class="submenu-item ">
-                        <a href="{{ route('admin.banner') }}">Index</a>
+                        <a href="{{ route('admin.isg_delegates') }}">ISG Delegates</a>
                     </li>
                     <li class="submenu-item ">
-                        <a href="{{ route('admin.banner.create') }}">Add</a>
+                        <a href="{{ route('admin.school_delegates') }}">School Delegates</a>
                     </li>
                 </ul>
             </li>
 
-            <li class="sidebar-item @if($routeGroup=='president_messages') active @endif ">
-                <a href="{{ route('admin.president_messages') }}" class='sidebar-link'>
-                    <span><i class="fa fa-black-tie" aria-hidden="true">&nbsp</i>President Message</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item has-sub @if($routeGroup=='facultiesmessages') active @endif">
-                <a href="#" class='sidebar-link'>
-                    <span><i class="fa fa-user-circle-o" aria-hidden="true">&nbsp</i>Faculties Message</span>
-                </a>
-                <ul class="submenu @if($routeGroup=='facultiesmessages') active @endif">
-                    <li class="submenu-item ">
-                        <a href="{{ route('admin.facultiesmessages') }}">Index</a>
-                    </li>
-                    <li class="submenu-item ">
-                        <a href="{{ route('admin.facultiesmessages.create') }}">Add</a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="sidebar-item  has-sub @if($routeGroup=='conference_updates') active @endif">
-                <a href="#" class='sidebar-link'>
-                    <span><i class="fa fa-user-plus" aria-hidden="true">&nbsp</i>Conference Updates</span>
-                </a>
-                <ul class="submenu @if($routeGroup=='conference_updates') active @endif">
-                    <li class="submenu-item ">
-                        <a href="{{ route('admin.conference_updates') }}">Index</a>
-                    </li>
-                    <li class="submenu-item ">
-                        <a href="{{ route('admin.conference_updates.create') }}">Add</a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="sidebar-item  has-sub @if($routeGroup=='conference_schedule') active @endif">
-                <a href="#" class='sidebar-link'>
-                    <span><i class="fa fa-bars" aria-hidden="true">&nbsp</i>Conference schedule</span>
-                </a>
-                <ul class="submenu @if($routeGroup=='conference_schedule') active @endif">
-                    <li class="submenu-item ">
-                        <a href="{{ route('admin.conference_schedule') }}">Index</a>
-                    </li>
-                    <li class="submenu-item ">
-                        <a href="{{ route('admin.conference_schedule.create') }}">Add</a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="sidebar-title" style="font-weight: bold;color: #9197a8;">About Page</li>
+            <li class="sidebar-title" style="font-weight: bold;color: #9197a8;">Web Pages</li>
             <hr>
 
-            <li class="sidebar-item @if($routeGroup=='vision') active @endif ">
-                <a href="{{ route('admin.vision') }}" class='sidebar-link'>
-                    <span><i class="fa fa-eye" aria-hidden="true">&nbsp</i>Vision</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item has-sub @if($routeGroup=='ourmentors') active @endif">
+            <li class="sidebar-item  has-sub @if($routeGroup=='home') active @endif ">
                 <a href="#" class='sidebar-link'>
-                    <span><i class="fa fa-user-circle-o" aria-hidden="true">&nbsp</i>Our Mentors</span>
+                    <span><i class="fa fa-file-o" aria-hidden="true">&nbsp</i>Home</span>
                 </a>
-                <ul class="submenu @if($routeGroup=='ourmentors') active @endif">
+                <ul class="submenu @if($routeGroup=='home') active @endif">
                     <li class="submenu-item ">
-                        <a href="{{ route('admin.our_mentors') }}">Index</a>
+                        <a href="{{ route('admin.banner') }}">Banner</a>
                     </li>
                     <li class="submenu-item ">
-                        <a href="{{ route('admin.our_mentors.create') }}">Add</a>
+                        <a href="{{ route('admin.timer') }}">Timer</a>
+                    </li>
+                    <li class="submenu-item ">
+                        <a href="{{ route('admin.president_messages') }}">President Message</a>
+                    </li>
+                    <li class="submenu-item ">
+                        <a href="{{ route('admin.facultiesmessages') }}">Faculties Message</a>
+                    </li>
+                    <li class="submenu-item ">
+                        <a href="{{ route('admin.conference_updates') }}">Conference Updates</a>
+                    </li>
+                    <li class="submenu-item ">
+                        <a href="{{ route('admin.conference_schedule') }}">Conference schedule</a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li class="sidebar-item  has-sub @if($routeGroup=='about') active @endif ">
+                <a href="#" class='sidebar-link'>
+                    <span><i class="fa fa-file-o" aria-hidden="true">&nbsp</i>About Page</span>
+                </a>
+                <ul class="submenu @if($routeGroup=='about') active @endif">
+                    <li class="submenu-item ">
+                    <a href="{{ route('admin.vision') }}" class='sidebar-link'>Vision</a>
+                    </li>
+                    <li class="submenu-item ">
+                        <a href="{{ route('admin.our_mentors') }}">Our Mentors</a>
                     </li>
                 </ul>
             </li>
 
-            <li class="sidebar-title" style="font-weight: bold;color: #9197a8;">Conference Page</li>
-            <hr>
-
-            <li class="sidebar-item  has-sub @if($routeGroup=='letters') active @endif">
+            <li class="sidebar-item  has-sub @if($routeGroup=='conference') active @endif ">
                 <a href="#" class='sidebar-link'>
-                    <span><i class="fa fa-pencil-square-o" aria-hidden="true">&nbsp</i>Letter</span>
+                    <span><i class="fa fa-file-o" aria-hidden="true">&nbsp</i>Conference Page</span>
                 </a>
-                <ul class="submenu @if($routeGroup=='letters') active @endif">
+                <ul class="submenu @if($routeGroup=='conference') active @endif">
                     <li class="submenu-item ">
-                        <a href="{{ route('admin.letters') }}">Index</a>
+                        <a href="{{ route('admin.letters') }}">Letter</a>
                     </li>
                     <li class="submenu-item ">
-                        <a href="{{ route('admin.letters.create') }}">Add</a>
+                        <a href="{{ route('admin.work_members') }}">Working Members</a>
+                    </li>
+                    <li class="submenu-item ">
+                        <a href="{{ route('admin.importantdate') }}">Important Date</a>
+                    </li>
+                    <li class="submenu-item">
+                           <a href="{{ route('admin.rules') }}">Rules & Regulations</a>
                     </li>
                 </ul>
             </li>
 
-            <li class="sidebar-item  has-sub @if($routeGroup=='work_members') active @endif">
+
+            <li class="sidebar-item  has-sub @if($routeGroup=='committee') active @endif ">
                 <a href="#" class='sidebar-link'>
-                <span><i class="fa fa-users" aria-hidden="true">&nbsp</i>Working Members</span>
-                </a>
-                <ul class="submenu @if($routeGroup=='work_members') active @endif">
-                    <li class="submenu-item ">
-                        <a href="{{ route('admin.work_members') }}">Index</a>
-                    </li>
-                    <li class="submenu-item ">
-                        <a href="{{ route('admin.work_members.create') }}">Add</a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="sidebar-item  has-sub @if($routeGroup=='importantdate') active @endif">
-                <a href="#" class='sidebar-link'>
-                    <span><i class="fa fa-calendar" aria-hidden="true">&nbsp</i>Important Date</span>
-                </a>
-                <ul class="submenu @if($routeGroup=='importantdate') active @endif">
-                    <li class="submenu-item ">
-                        <a href="{{ route('admin.importantdate') }}">Index</a>
-                    </li>
-                    <li class="submenu-item ">
-                        <a href="{{ route('admin.importantdate.create') }}">Add</a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="sidebar-item  @if($routeGroup=='rules') active @endif">
-                <a href="{{ route('admin.rules') }}" class='sidebar-link'>
-                    <span><i class="fa fa-sliders" aria-hidden="true">&nbsp</i>Rules & Regulations</span>
-                </a>
-            </li>
-
-            <li class="sidebar-title" style="font-weight: bold;color: #9197a8;">Committee</li>
-            <hr>
-
-            <li class="sidebar-item  has-sub @if($routeGroup=='committee') active @endif">
-                <a href="#" class='sidebar-link'>
-                    <span><i class="fa fa-users" aria-hidden="true">&nbsp</i>Committee</span>
+                    <span><i class="fa fa-file-o" aria-hidden="true">&nbsp</i>Committee</span>
                 </a>
                 <ul class="submenu @if($routeGroup=='committee') active @endif">
                     <li class="submenu-item ">
-                        <a href="{{ route('admin.committee') }}">Index</a>
-                    </li>
-                    <li class="submenu-item ">
-                        <a href="{{ route('admin.committee.create') }}">Add</a>
+                        <a href="{{ route('admin.committee') }}">Committee</a>
                     </li>
                 </ul>
             </li>
 
-
-            <li class="sidebar-title" style="font-weight: bold;color: #9197a8;">Live</li>
-            <hr>
-
-            <li class="sidebar-item @if($routeGroup=='live') active @endif">
-                <a href="{{ route('admin.live') }}" class='sidebar-link'>
-                    <span><i class="fa fa-podcast" aria-hidden="true">&nbsp</i>Live</span>
-                </a>
-            </li>
-
-            <li class="sidebar-title" style="font-weight: bold;color: #9197a8;">Timer</li>
-            <hr>
-
-            <li class="sidebar-item @if($routeGroup=='timer') active @endif">
-                <a href="{{ route('admin.timer') }}" class='sidebar-link'>
-                    <span><i class="fa fa-hourglass-half" aria-hidden="true">&nbsp</i>Timer</span>
-                </a>
-            </li>
-
-            <li class="sidebar-title" style="font-weight: bold;color: #9197a8;">Gallery</li>
-            <hr>
-
-            <li class="sidebar-item  has-sub @if($routeGroup=='gallery') active @endif">
+            <li class="sidebar-item  has-sub @if($routeGroup=='gallery') active @endif ">
                 <a href="#" class='sidebar-link'>
-                    <span><i class="fa fa-picture-o" aria-hidden="true">&nbsp</i>Gallery</span>
+                    <span><i class="fa fa-file-o" aria-hidden="true">&nbsp</i>Gallery</span>
                 </a>
                 <ul class="submenu @if($routeGroup=='gallery') active @endif">
                     <li class="submenu-item ">
-                        <a href="{{ route('admin.gallery') }}">Index</a>
+                        <a href="{{ route('admin.gallery') }}">Gallery</a>
+                    </li>
+                </ul>
+            </li>
+       
+            <li class="sidebar-item  has-sub @if($routeGroup=='alumni') active @endif ">
+                <a href="#" class='sidebar-link'>
+                    <span><i class="fa fa-file-o" aria-hidden="true">&nbsp</i>Alumni</span>
+                </a>
+                <ul class="submenu @if($routeGroup=='alumni') active @endif">
+                    <li class="submenu-item ">
+                        <a href="{{ route('admin.alumni') }}">Alumni</a>
                     </li>
                     <li class="submenu-item ">
-                        <a href="{{ route('admin.gallery.create') }}">Add</a>
+                        <a href="{{ route('admin.alumninews') }}">Alumni News</a>
                     </li>
                 </ul>
             </li>
 
-            <li class="sidebar-title" style="font-weight: bold;color: #9197a8;">Alumni</li>
-            <hr>
-
-            <li class="sidebar-item @if($routeGroup=='alumni') active @endif">
-                <a href="{{ route('admin.alumni') }}" class='sidebar-link'>
-                    <span><i class="fa fa-graduation-cap" aria-hidden="true">&nbsp</i>Alumni</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item  has-sub @if($routeGroup=='alumninews') active @endif">
+            <li class="sidebar-item  has-sub @if($routeGroup=='newsletter') active @endif ">
                 <a href="#" class='sidebar-link'>
-                <span><i class="fa fa-newspaper-o" aria-hidden="true">&nbsp</i>Alumni News</span>
-                </a>
-                <ul class="submenu @if($routeGroup=='alumninews') active @endif">
-                    <li class="submenu-item ">
-                        <a href="{{ route('admin.alumninews') }}">Index</a>
-                    </li>
-                    <li class="submenu-item ">
-                        <a href="{{ route('admin.alumninews.create') }}">Add</a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="sidebar-title" style="font-weight: bold;color: #9197a8;">News Letter</li>
-            <hr>
-
-            <li class="sidebar-item  has-sub @if($routeGroup=='newsletter') active @endif">
-                <a href="#" class='sidebar-link'>
-                    <span><i class="fa fa-newspaper-o" aria-hidden="true">&nbsp</i>News Letter</span>
+                    <span><i class="fa fa-file-o" aria-hidden="true">&nbsp</i>News Letter</span>
                 </a>
                 <ul class="submenu @if($routeGroup=='newsletter') active @endif">
                     <li class="submenu-item ">
-                        <a href="{{ route('admin.newsletter') }}">Index</a>
-                    </li>
-                    <li class="submenu-item ">
-                        <a href="{{ route('admin.newsletter.create') }}">Add</a>
+                        <a href="{{ route('admin.newsletter') }}">News Letter</a>
                     </li>
                 </ul>
-            </li>
-
-
-            <li class="sidebar-title" style="font-weight: bold;color: #9197a8;">Host Schools</li>
-            <hr>
-
-            <li class="sidebar-item  has-sub @if($routeGroup=='host_schools') active @endif">
-                <a href="#" class='sidebar-link'>
-                    <span><i class="fa fa-share-square-o" aria-hidden="true">&nbsp</i>Host Schools</span>
-                </a>
-                <ul class="submenu @if($routeGroup=='host_schools') active @endif">
-                    <li class="submenu-item ">
-                        <a href="{{ route('admin.host_schools') }}">Index</a>
-                    </li>
-                    <li class="submenu-item ">
-                        <a href="{{ route('admin.host_schools.create') }}">Add</a>
-                    </li>
-                </ul>
-            </li>
-            
-            <li class="sidebar-title" style="font-weight: bold;color: #9197a8;">Act to Impact</li>
-            <hr>
-
-            <li class="sidebar-item @if($routeGroup=='act_impacts') active @endif ">
-                <a href="{{ route('admin.act_impacts') }}" class='sidebar-link'>
-                    <span><i class="fa fa-spinner" aria-hidden="true">&nbsp</i>Act to Impact</span>
-                </a>
             </li>
            
-            <li class="sidebar-title" style="font-weight: bold;color: #9197a8;">Virtual Code Of Conduct</li>
-            <hr>
-            
-            <li class="sidebar-item  @if($routeGroup=='vc_condunt') active @endif">
-                <a href="{{ route('admin.vc_condunt') }}" class='sidebar-link'>
-                    <span><i class="fa fa-window-maximize" aria-hidden="true">&nbsp</i>Virtual Code Of Conduct</span>
-                </a>
-            </li>
-           
-            <li class="sidebar-title" style="font-weight: bold;color: #9197a8;">Past Conference</li>
-            <hr>
-            
-            <li class="sidebar-item  has-sub @if($routeGroup=='pastconference') active @endif">
+            <li class="sidebar-item  has-sub @if($routeGroup=='hostschool') active @endif ">
                 <a href="#" class='sidebar-link'>
-                <span><i class="fa fa-users">&nbsp</i>Past Conference</span>
+                    <span><i class="fa fa-file-o" aria-hidden="true">&nbsp</i>Host Schools</span>
                 </a>
-                <ul class="submenu @if($routeGroup=='pastconference') active @endif">
+                <ul class="submenu @if($routeGroup=='hostschool') active @endif">
                     <li class="submenu-item ">
-                        <a href="{{ route('admin.pastconference') }}">Index</a>
-                    </li>
-                    <li class="submenu-item ">
-                        <a href="{{ route('admin.pastconference.create') }}">Add</a>
+                        <a href="{{ route('admin.host_schools') }}">Host Schools</a>
                     </li>
                 </ul>
             </li>
-            
+
+            <li class="sidebar-item  has-sub @if($routeGroup=='impact') active @endif ">
+                <a href="#" class='sidebar-link'>
+                    <span><i class="fa fa-file-o" aria-hidden="true">&nbsp</i>Act to Impact</span>
+                </a>
+                <ul class="submenu @if($routeGroup=='impact') active @endif">
+                    <li class="submenu-item ">
+                        <a href="{{ route('admin.act_impacts') }}">Act to Impact</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="sidebar-item  has-sub @if($routeGroup=='vc_condunt') active @endif ">
+                <a href="#" class='sidebar-link'>
+                    <span><i class="fa fa-file-o" aria-hidden="true">&nbsp</i>Virtual Code Of Conduct</span>
+                </a>
+                <ul class="submenu @if($routeGroup=='vc_condunt') active @endif">
+                    <li class="submenu-item ">
+                        <a href="{{ route('admin.vc_condunt') }}">Virtual Code Of Conduct</a>
+                    </li>
+                </ul>
+            </li>
+           
+            <li class="sidebar-item  has-sub @if($routeGroup=='past_conference') active @endif ">
+                <a href="#" class='sidebar-link'>
+                    <span><i class="fa fa-file-o" aria-hidden="true">&nbsp</i>Past Conference</span>
+                </a>
+                <ul class="submenu @if($routeGroup=='past_conference') active @endif">
+                    <li class="submenu-item ">
+                        <a href="{{ route('admin.pastconference') }}">Past Conference</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="sidebar-item  has-sub @if($routeGroup=='footer') active @endif ">
+                <a href="#" class='sidebar-link'>
+                    <span><i class="fa fa-file-o" aria-hidden="true">&nbsp</i>Footer</span>
+                </a>
+                <ul class="submenu @if($routeGroup=='footer') active @endif">
+                    <li class="submenu-item ">
+                        <a href="{{ route('admin.faq') }}">FAQ</a>
+                    </li>
+                    <li class="submenu-item ">
+                        <a href="{{ route('admin.terms') }}">Terms of Service</a>
+                    </li>
+                    <li class="submenu-item ">
+                        <a href="{{ route('admin.privacy_policy') }}">Privacy Policy</a>
+                    </li>
+                </ul>
+            </li>
+
+           
             
             <li class="sidebar-title" style="font-weight: bold;color: #9197a8;">Settings</li>
             <hr>

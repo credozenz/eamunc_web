@@ -20,7 +20,7 @@ class VisionController extends Controller
 {
     public function __construct()
     {
-        View::share('routeGroup','vision');
+        View::share('routeGroup','about');
     }
   
     public function index(Request $request)

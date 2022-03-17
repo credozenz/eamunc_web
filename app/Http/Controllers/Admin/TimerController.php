@@ -20,7 +20,7 @@ class TimerController extends Controller
 {
     public function __construct()
     {
-        View::share('routeGroup','timer');
+        View::share('routeGroup','home');
     }
     
     public function index(Request $request)

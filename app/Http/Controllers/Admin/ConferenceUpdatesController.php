@@ -19,7 +19,7 @@ class ConferenceUpdatesController extends Controller
 {
     public function __construct()
     {
-        View::share('routeGroup','conference_updates');
+        View::share('routeGroup','home');
     }
   
     public function index(Request $request)

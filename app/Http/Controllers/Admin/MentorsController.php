@@ -19,7 +19,7 @@ class MentorsController extends Controller
 {
     public function __construct()
     {
-        View::share('routeGroup','ourmentors');
+        View::share('routeGroup','about');
     }
   
     public function index(Request $request)

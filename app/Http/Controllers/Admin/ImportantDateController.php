@@ -19,7 +19,7 @@ class ImportantDateController extends Controller
 {
     public function __construct()
     {
-        View::share('routeGroup','importantdate');
+        View::share('routeGroup','conference');
     }
   
     public function index(Request $request)
