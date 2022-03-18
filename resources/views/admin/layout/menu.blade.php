@@ -4,7 +4,7 @@
     <div class="sidebar-header">
         <div class="d-flex justify-content-between">
             <div class="logo" style="font-size: 1.5rem;padding:5px 5px 5px;">
-                <a href="{{ url('admin/dashbord') }}"><img src="{{ asset('assets/admin/img/logo.png') }}" style="border: inset;width: 40px;height: 35px;" alt="EAMUNC" srcset="">EAMUNC</a>
+                <a href="{{ url('admin/dashbord') }}"><img src="{{ asset('assets/admin/img/logo.png') }}" style="border: inset;width: 40px;height: 35px;" alt="EAMUNC" srcset="">&nbsp&nbspEAMUNC</a>
             </div>
             <div class="toggler">
                 <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
@@ -39,7 +39,7 @@
 
             <li class="sidebar-item  has-sub @if($routeGroup=='home') active @endif ">
                 <a href="#" class='sidebar-link'>
-                    <span><i class="fa fa-file-o" aria-hidden="true">&nbsp</i>Home</span>
+                    <span><i class="fa fa-home" aria-hidden="true">&nbsp</i>Home</span>
                 </a>
                 <ul class="submenu @if($routeGroup=='home') active @endif">
                     <li class="submenu-item ">
@@ -66,7 +66,7 @@
 
             <li class="sidebar-item  has-sub @if($routeGroup=='about') active @endif ">
                 <a href="#" class='sidebar-link'>
-                    <span><i class="fa fa-file-o" aria-hidden="true">&nbsp</i>About Page</span>
+                    <span><i class="fa fa-address-card" aria-hidden="true">&nbsp</i>About Page</span>
                 </a>
                 <ul class="submenu @if($routeGroup=='about') active @endif">
                     <li class="submenu-item ">
@@ -80,7 +80,7 @@
 
             <li class="sidebar-item  has-sub @if($routeGroup=='conference') active @endif ">
                 <a href="#" class='sidebar-link'>
-                    <span><i class="fa fa-file-o" aria-hidden="true">&nbsp</i>Conference Page</span>
+                    <span><i class="fa fa-braille" aria-hidden="true">&nbsp</i>Conference Page</span>
                 </a>
                 <ul class="submenu @if($routeGroup=='conference') active @endif">
                     <li class="submenu-item ">
@@ -101,7 +101,7 @@
 
             <li class="sidebar-item  has-sub @if($routeGroup=='committee') active @endif ">
                 <a href="#" class='sidebar-link'>
-                    <span><i class="fa fa-file-o" aria-hidden="true">&nbsp</i>Committee</span>
+                    <span><i class="fa fa-users" aria-hidden="true">&nbsp</i>Committee</span>
                 </a>
                 <ul class="submenu @if($routeGroup=='committee') active @endif">
                     <li class="submenu-item ">
@@ -112,7 +112,7 @@
 
             <li class="sidebar-item  has-sub @if($routeGroup=='gallery') active @endif ">
                 <a href="#" class='sidebar-link'>
-                    <span><i class="fa fa-file-o" aria-hidden="true">&nbsp</i>Gallery</span>
+                    <span><i class="fa fa-picture-o" aria-hidden="true">&nbsp</i>Gallery</span>
                 </a>
                 <ul class="submenu @if($routeGroup=='gallery') active @endif">
                     <li class="submenu-item ">
@@ -137,7 +137,7 @@
 
             <li class="sidebar-item  has-sub @if($routeGroup=='newsletter') active @endif ">
                 <a href="#" class='sidebar-link'>
-                    <span><i class="fa fa-file-o" aria-hidden="true">&nbsp</i>News Letter</span>
+                    <span><i class="fa fa-newspaper-o" aria-hidden="true">&nbsp</i>News Letter</span>
                 </a>
                 <ul class="submenu @if($routeGroup=='newsletter') active @endif">
                     <li class="submenu-item ">
@@ -148,7 +148,7 @@
            
             <li class="sidebar-item  has-sub @if($routeGroup=='hostschool') active @endif ">
                 <a href="#" class='sidebar-link'>
-                    <span><i class="fa fa-file-o" aria-hidden="true">&nbsp</i>Host Schools</span>
+                    <span><i class="fa fa-university" aria-hidden="true">&nbsp</i>Host Schools</span>
                 </a>
                 <ul class="submenu @if($routeGroup=='hostschool') active @endif">
                     <li class="submenu-item ">
@@ -159,7 +159,7 @@
 
             <li class="sidebar-item  has-sub @if($routeGroup=='impact') active @endif ">
                 <a href="#" class='sidebar-link'>
-                    <span><i class="fa fa-file-o" aria-hidden="true">&nbsp</i>Act to Impact</span>
+                    <span><i class="fa fa-sort" aria-hidden="true">&nbsp</i>Act to Impact</span>
                 </a>
                 <ul class="submenu @if($routeGroup=='impact') active @endif">
                     <li class="submenu-item ">
@@ -170,7 +170,7 @@
 
             <li class="sidebar-item  has-sub @if($routeGroup=='vc_condunt') active @endif ">
                 <a href="#" class='sidebar-link'>
-                    <span><i class="fa fa-file-o" aria-hidden="true">&nbsp</i>Virtual Code Of Conduct</span>
+                    <span><i class="fa fa-code-fork" aria-hidden="true">&nbsp</i>Virtual Code Of Conduct</span>
                 </a>
                 <ul class="submenu @if($routeGroup=='vc_condunt') active @endif">
                     <li class="submenu-item ">
@@ -181,7 +181,7 @@
            
             <li class="sidebar-item  has-sub @if($routeGroup=='past_conference') active @endif ">
                 <a href="#" class='sidebar-link'>
-                    <span><i class="fa fa-file-o" aria-hidden="true">&nbsp</i>Past Conference</span>
+                    <span><i class="fa fa-users" aria-hidden="true">&nbsp</i>Past Conference</span>
                 </a>
                 <ul class="submenu @if($routeGroup=='past_conference') active @endif">
                     <li class="submenu-item ">
@@ -192,7 +192,7 @@
 
             <li class="sidebar-item  has-sub @if($routeGroup=='footer') active @endif ">
                 <a href="#" class='sidebar-link'>
-                    <span><i class="fa fa-file-o" aria-hidden="true">&nbsp</i>Footer</span>
+                    <span><i class="fa fa-object-group" aria-hidden="true">&nbsp</i>Footer</span>
                 </a>
                 <ul class="submenu @if($routeGroup=='footer') active @endif">
                     <li class="submenu-item ">
