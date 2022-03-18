@@ -225,4 +225,17 @@ class DelegateController extends Controller
     
     }
 
+
+    public function school_delegates_destroy(Request $request,$id)
+    {
+
+        $delegate = School_Delegates::where('id', $id)->first(); 
+        $mytime = Carbon::now();
+        $timestamp=$mytime->toDateTimeString();
+        $delegate->deleted_at = $timestamp;
+        $delegate->save();
+
+        echo json_encode(['status'=>true,'message'=>'Delegate Deleted Successfully !']);exit();
+    }
+
 }

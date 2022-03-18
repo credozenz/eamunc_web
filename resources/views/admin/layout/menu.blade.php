@@ -34,6 +34,12 @@
                 </ul>
             </li>
 
+            <li class="sidebar-item  @if($routeGroup =='feedback') active @endif ">
+                <a href="{{ route('admin.user_feedback') }}" class='sidebar-link'>
+                    <span><i class="fa fa-comment-o" aria-hidden="true">&nbsp</i>Feedback</span>
+                </a>
+            </li>
+
             <li class="sidebar-title" style="font-weight: bold;color: #9197a8;">Web Pages</li>
             <hr>
 
@@ -197,6 +203,9 @@
                 <ul class="submenu @if($routeGroup=='footer') active @endif">
                     <li class="submenu-item ">
                         <a href="{{ route('admin.faq') }}">FAQ</a>
+                    </li>
+                    <li class="submenu-item ">
+                        <a href="{{ route('admin.feedback') }}">Feedback</a>
                     </li>
                     <li class="submenu-item ">
                         <a href="{{ route('admin.terms') }}">Terms of Service</a>

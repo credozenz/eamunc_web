@@ -20,10 +20,9 @@
                     </div>
                     <div class="col-md-4">
                         <ul>
-                            <li><a href="#" class="color-white">FAQ</a></li>
+                            <li><a href="{{ route('faq') }}" class="color-white">FAQ</a></li>
                             <li><a href="{{ route('terms-service') }}" class="color-white">Terms of Service</a></li>
                             <li><a href="{{ route('privacy-policy') }}" class="color-white">Privacy Policy</a></li>
-                            <li><a href="#" class="color-white">Contact Us</a></li>
                             <li><a href="{{ route('feedback') }}" class="color-white">Feedback Form</a></li>
                         </ul>
                     </div>

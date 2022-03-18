@@ -17,9 +17,9 @@ class FaqController extends Controller
     {
         
 
-        $data ='';
+        $faq = SiteIndexes::where('deleted_at', null)->where('type', 'faq')->orderBy('id', 'DESC')->paginate(4); 
 
-        return view('web/faq', compact('data'));
+        return view('web/faq', compact('faq'));
 
 
     }

@@ -28,6 +28,9 @@ use App\Http\Controllers\Admin\PastConferenceController;
 use App\Http\Controllers\Admin\TimerController;
 use App\Http\Controllers\Admin\FooterController;
 use App\Http\Controllers\Admin\DelegateController;
+use App\Http\Controllers\Admin\FaqSchoolController;
+use App\Http\Controllers\Admin\FeedbackController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -198,8 +201,23 @@ Route::group(['middleware' => 'adminchecker'], function() {
      Route::get('/change_password', [ProfileController::class,'change_password'])->name('admin.change_password');
      Route::post('/password_update', [ProfileController::class,'update_password'])->name('admin.password.update');
 
-     Route::get('/faq', [FooterController::class,'faq'])->name('admin.faq');
-     Route::post('/faq_update', [FooterController::class,'faq_update'])->name('admin.faq_update');
+     Route::get('/faq', [FaqSchoolController::class,'index'])->name('admin.faq');
+     Route::get('/faq_create', [FaqSchoolController::class,'create'])->name('admin.faq.create');
+     Route::post('/faq_store', [FaqSchoolController::class,'store'])->name('admin.faq.store');
+     Route::get('/faq_edit/{id}', [FaqSchoolController::class,'edit'])->name('admin.faq.edit');
+     Route::get('/faq_show/{id}', [FaqSchoolController::class,'show'])->name('admin.faq.show');
+     Route::post('/faq_update/{id}', [FaqSchoolController::class,'update'])->name('admin.faq.update');
+     Route::post('/faq_delete/{id}', [FaqSchoolController::class,'destroy'])->name('admin.faq.destroy');
+
+     Route::get('/feedback', [FeedbackController::class,'index'])->name('admin.feedback');
+     Route::get('/feedback_create', [FeedbackController::class,'create'])->name('admin.feedback.create');
+     Route::post('/feedback_store', [FeedbackController::class,'store'])->name('admin.feedback.store');
+     Route::get('/feedback_edit/{id}', [FeedbackController::class,'edit'])->name('admin.feedback.edit');
+     Route::post('/feedback_update/{id}', [FeedbackController::class,'update'])->name('admin.feedback.update');
+     Route::post('/feedback_delete/{id}', [FeedbackController::class,'destroy'])->name('admin.feedback.destroy');
+
+     Route::get('/user_feedback', [FeedbackController::class,'feedback'])->name('admin.user_feedback');
+     Route::get('/user_feedback_show/{id}', [FeedbackController::class,'feedback_show'])->name('admin.user_feedback.show');
 
      Route::get('/terms', [FooterController::class,'terms'])->name('admin.terms');
      Route::post('/terms_update', [FooterController::class,'terms_update'])->name('admin.terms_update');

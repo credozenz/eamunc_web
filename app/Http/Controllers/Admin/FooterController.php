@@ -23,45 +23,7 @@ class FooterController extends Controller
         View::share('routeGroup','footer');
     }
   
-    public function faq(Request $request)
-    {
-       
-        $data = SiteIndexes::where('deleted_at', null)->where('type','faq')->first(); 
-        
-        return view('admin/footer/faq', compact('data'));
-       
-    }
-
-   
-    public function faq_update(Request $request)
-    {
-        
-        $validatedData = $request->validate([
-            'title' => 'required|max:255',
-            'description' => ['required'],
-        ],[
-            'title.required' => 'The Title field is required',
-            'description.required' => 'The Description field is required',
-        ]);
-
-    
-        $faq = SiteIndexes::where('type','faq')->first(); 
-        $faq->title = $request->title;
-        $faq->description  = $request->description;
-        $faq->type  = 'faq';
-        $faq->save();
-           
-          if($faq->id){
-            Session::flash('success', 'faq updated successfully!');
-            return redirect('/admin/faq');
-          }else{
-            Session::flash('error', 'Something went wrong!!');
-            return  redirect()->back();
-          }
-           
-    }
-
-
+  
     public function terms(Request $request)
     {
        
