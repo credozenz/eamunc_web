@@ -8,13 +8,13 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Host Schools</h3>
+                <h3>School Delegates</h3>
                 <p class="text-subtitle text-muted"></p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ url('admin/host_schools') }}">Host Schools</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('admin/school_delegates') }}">School Delegates</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Show </li>
                     </ol>
                 </nav>
@@ -36,46 +36,106 @@
                    <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="{{ url('admin/host_schools_edit',$data->id) }}" class="btn-sm btn-primary shadow-md mr-2">Edit</a>
-                            <a class="btn-sm btn-danger shadow-md mr-2 dltButton"  data-url="{{ url('admin/host_schools_delete',$data->id) }}" data-replaceurl="{{ url('admin/host_schools') }}" title="Delete Project">Delete</a>
+                            <a href="{{ url('admin/school_delegates_edit',$data->id) }}" class="btn-sm btn-primary shadow-md mr-2">Edit</a>
+                            <a class="btn-sm btn-danger shadow-md mr-2 dltButton"  data-url="{{ url('admin/school_delegates_delete',$data->id) }}" data-replaceurl="{{ url('admin/school_delegates') }}" title="Delete Project">Delete</a>
                         </li>
                     </ol>
                     </nav>
                     </div>
                     <div class="card-content">
-                        <div class="card-body">
-                        <div class="row">
-                                  
+
+                            <div class="card-body">
+                                <div class="row">
+                                <h4 class="color-darkblue mb-5">School Details</h4>
                                     <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                            <label for="text-danger">Title</label>
-                        <input type="text" name="title" value="{{ $data->title }}" class="form-control" disabled placeholder="Title">
+                                        <div class="form-group">
+                                            <label for="text-danger">School Name</label>
+                                            <input type="text" name="name" value="{{ $school->name }}" class="form-control" disabled placeholder="Title">
                       
                                         </div>
                                     </div>
+
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="text-danger">Image</label>
-                            <div class="w-30 h-30 relative image-fit  mb-2 mr-5 ">
-                                 <img class="rounded-md img-preview" src="{{ asset('uploads/'.$data->image) }}" style="width: 103px;">
-                            </div>
-                        
+                                            <label for="text-danger">Faculty Advisor’s Name</label>
+                                            <input type="text" name="advisor_name" value="{{ $school->advisor_name }}" class="form-control" disabled placeholder="Email">
                                         </div>
                                     </div>
-                                    
-                                    <div class="col-md-12 col-12">
+
+                                    <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="text-danger">Description</label>
-                        <textarea id="input-filter-5" type="text" name="description" class="form-control" placeholder="Description" disabled style="height: 250px;">{{ $data->description }}</textarea>
-                        @error('description')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                            <label for="text-danger">Email</label>
+                                            <input type="text" name="email" value="{{ $school->email }}" class="form-control" disabled placeholder="class">
                                         </div>
                                     </div>
+
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="text-danger">Mobile</label>
+                                            <input type="text" name="mobile" value="{{ $school->mobile }}" class="form-control" disabled placeholder="Whatsapp no">
+                                        </div>
+                                    </div>
+
+                                   
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="card-body">
+                                <div class="row">
+                                <h4 class="color-darkblue mb-5">Delegate Details</h4>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="text-danger">Name</label>
+                                            <input type="text" name="name" value="{{ $data->name }}" class="form-control" disabled placeholder="Title">
+                      
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="text-danger">Email</label>
+                                            <input type="text" name="email" value="{{ $data->email }}" class="form-control" disabled placeholder="Email">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="text-danger">Class & Section</label>
+                                            <input type="text" name="class" value="{{ $data->class }}" class="form-control" disabled placeholder="class">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="text-danger">WhatsApp NO</label>
+                                            <input type="text" name="whatsapp_no" value="{{ $data->whatsapp_no }}" class="form-control" disabled placeholder="Whatsapp no">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="text-danger">MUN Experience</label>
+                                            <input type="text" name="mun_experience" value="{{ $data->mun_experience }}" class="form-control" disabled placeholder="MUN Experience">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="text-danger">Bureau Member Experience</label>
+                                            <input type="text" name="bureaumem_experience" value="{{ $data->bureaumem_experience }}" class="form-control" disabled placeholder="MUN Experience">
+                                        </div>
+                                    </div>
+                                   
+                                   
+                                   
                                     <div class="col-12 d-flex justify-content-end">
-                                    <a href="{{ url('admin/host_schools') }}" class="btn btn-light-secondary me-1 mb-1">Back</a>
-                                    
+                                         <a href="{{ url('admin/school_delegates') }}" class="btn btn-light-secondary me-1 mb-1">Back</a>
                                     </div>
                                 </div>
-                        </div>
+                            </div>
                     </div>
                 </div>
             </div>

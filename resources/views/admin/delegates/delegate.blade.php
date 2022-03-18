@@ -5,13 +5,13 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Host Schools</h3>
+                <h3>School Delegates</h3>
                 <p class="text-subtitle text-muted"></p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ url('admin/host_schools') }}">Host Schools</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('admin/school_delegates') }}">School Delegates</a></li>
                         <li class="breadcrumb-item active" aria-current="page"> Index</li>
                     </ol>
                 </nav>
@@ -32,21 +32,18 @@
                 <div class="card">
                     <div class="card-header">
                         <h5 class="card-title">Index</h5>
-                        <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                        <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a href="{{ url('admin/host_schools_create') }}" class="btn btn-primary shadow-md mr-2">Add</a>
-                        </li>
-                        </ol>
-                        </nav>
+                        
                     </div>
                     <div class="table-responsive">
                         <table class="table table-bordered mb-0">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Title</th>
-                                        <th>Image</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Whatsapp NO</th>
+                                        <th>Class & Section</th>
+                                        <th>School</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -56,16 +53,14 @@
                                 @foreach ($data as $key => $value)
                                     <tr>
                                         <td class="text-bold-500">{{ $key+1 }}</td>
-                                        <td class="text-bold-500">{{ $value->title }}</td>
-                                        <td>
+                                        <td class="text-bold-500">{{ $value->name }}</td>
+                                        <td class="text-bold-500">{{ $value->email }}</td>
+                                        <td class="text-bold-500">{{ $value->whatsapp_no }}</td>
+                                        <td class="text-bold-500">{{ $value->class }}</td>
+                                        <td class="text-bold-500">{{ $value->school_name }}</td>
 
-                                        <div class="w-30 h-30 relative image-fit  mb-2 mr-5 ">
-                                            <img alt="{{ $value->title }}" class="rounded-full" src="{{ asset('uploads/'.$value->image) }}" width="140" height="160">
-                                        </div>
-    
-                                        </td>
                                         <td>
-                                        <a href="{{ url('admin/host_schools_show',$value->id) }}" class="btn btn-sm btn-primary w-24 mr-1 mb-2">View</a>
+                                        <a href="{{ url('admin/school_delegates_show',$value->id) }}" class="btn btn-sm btn-primary w-24 mr-1 mb-2">View</a>
                                         </td>
                                     </tr>
                                 @endforeach

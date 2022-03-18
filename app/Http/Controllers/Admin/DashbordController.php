@@ -32,6 +32,12 @@ class DashbordController extends Controller
 
         $delegate = Isg_delegates::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(10); 
 
-        return view('admin/dashbord', compact('delegate','Isg_count','scoolDelecount','cmtecount','schoolcount'));
+        $school = school_delegates::where('school_delegates.deleted_at', null)
+        ->join('schools', 'school_delegates.school_id', '=', 'schools.id')
+        ->select('school_delegates.*', 'schools.name as school_name')
+        ->orderBy('school_delegates.id', 'desc')
+        ->paginate(4);
+
+        return view('admin/dashbord', compact('delegate','Isg_count','scoolDelecount','cmtecount','schoolcount','school'));
     }
 }

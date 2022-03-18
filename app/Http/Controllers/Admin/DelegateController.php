@@ -137,8 +137,14 @@ class DelegateController extends Controller
 
     public function school_delegates(Request $request)
     {
+
+        $data = school_delegates::where('school_delegates.deleted_at', null)
+                    ->join('schools', 'school_delegates.school_id', '=', 'schools.id')
+                    ->select('school_delegates.*', 'schools.name as school_name')
+                    ->orderBy('school_delegates.id', 'desc')
+                    ->paginate(4);
        
-        $data = School_Delegates::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4); 
+       
         
         return view('admin/delegates/delegate', compact('data'));
        
@@ -148,8 +154,8 @@ class DelegateController extends Controller
     {
        
         $data = School_Delegates::where('deleted_at', null)->first();  
-        
-        return view('admin/delegates/delegate_edit', compact('data'));
+        $school = School::where('deleted_at', null)->first(); 
+        return view('admin/delegates/delegate_edit', compact('data','school'));
        
     }
 
@@ -157,9 +163,66 @@ class DelegateController extends Controller
     {
        
         $data = School_Delegates::where('deleted_at', null)->first();  
-        
-        return view('admin/delegates/delegate_show', compact('data'));
+        $school = School::where('deleted_at', null)->first(); 
+        return view('admin/delegates/delegate_show', compact('data','school'));
        
+    }
+
+
+    public function school_delegates_update(Request $request,$id)
+    {
+        $delegate = School_Delegates::where('id', $id)->first();
+        
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'email' => [
+                'required',
+                Rule::unique('users')->ignore($delegate->user_id, 'id'),
+            ],
+            'class' => 'required|max:255',
+            'whatsapp_no'    => 'required|max:255',
+        ],[
+            'name.required' => 'The Name field is required',
+            'email.required' => 'The Email field is required',
+            'email.email' => 'Please put valid email Number',
+            'email.unique' => 'Email id already exists',
+            'class.required' => 'The Class field is required',
+            'whatsapp_no.required' => 'The WhatsApp No field is required',
+        ]);
+
+
+        
+        
+            $user = User::where('id', $delegate->user_id)->first();
+            $user->name  = $request->name;
+            $user->email = $request->email;
+            $user->role = 3;
+            $user->save();
+           
+            if($user->id){
+
+            $registration = School_Delegates::where('id', $id)->first();
+            $registration->name  = $request->name;
+            $registration->email = $request->email;
+            $registration->class = $request->class;
+            $registration->whatsapp_no    = $request->whatsapp_no;
+            $registration->mun_experience = $request->mun_experience;
+            $registration->bureaumem_experience = $request->bureaumem_experience;
+            $registration->user_id = $user->id;
+            $registration->save();
+            
+            if($registration->id){
+                Session::flash('success', 'Updated successfully Completed!');
+                return redirect('admin/school_delegates');
+            }else{
+                Session::flash('error', 'Something went wrong!!');
+                return  redirect()->back();
+            }
+        }else{
+            Session::flash('error', 'Something went wrong!!');
+            return  redirect()->back();
+        }
+    
     }
 
 }

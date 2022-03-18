@@ -21,7 +21,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="stats-icon purple">
-                                        <i class="iconly-boldShow"></i>
+                                    <i class="fa fa-users" aria-hidden="true"></i>
                                     </div>
                                 </div>
                                 <div class="col-md-8">
@@ -38,7 +38,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="stats-icon blue">
-                                        <i class="iconly-boldProfile"></i>
+                                    <i class="fa fa-users" aria-hidden="true"></i>
                                     </div>
                                 </div>
                                 <div class="col-md-8">
@@ -55,7 +55,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="stats-icon green">
-                                        <i class="iconly-boldAdd-User"></i>
+                                    <i class="fa fa-th-large" aria-hidden="true"></i>
                                     </div>
                                 </div>
                                 <div class="col-md-8">
@@ -72,7 +72,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="stats-icon red">
-                                        <i class="iconly-boldBookmark"></i>
+                                    <i class="fa fa-university" aria-hidden="true"></i>
                                     </div>
                                 </div>
                                 <div class="col-md-8">
@@ -144,6 +144,61 @@
                 </div>              
                          
                     @include('admin.layout.pagination', ['paginator' => $delegate])
+                     
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Latest School Delegates</h5>
+                        
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Whatsapp NO</th>
+                                        <th>Class & Section</th>
+                                        <th>School</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                            @if(!empty($school) && $school->count())
+                                @foreach ($school as $key => $value)
+                                    <tr>
+                                        <td class="text-bold-500">{{ $key+1 }}</td>
+                                        <td class="text-bold-500">{{ $value->name }}</td>
+                                        <td class="text-bold-500">{{ $value->email }}</td>
+                                        <td class="text-bold-500">{{ $value->whatsapp_no }}</td>
+                                        <td class="text-bold-500">{{ $value->class }}</td>
+                                        <td class="text-bold-500">{{ $value->school_name }}</td>
+
+                                        <td>
+                                        <a href="{{ url('admin/school_delegates_show',$value->id) }}" class="btn btn-sm btn-primary w-24 mr-1 mb-2">View</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <tr>
+                                    <td colspan="10">There are no data.</td>
+                                </tr>
+                            @endif
+                                   
+                                </tbody>
+                        </table>
+                    </div>
+                </div>              
+                         
+                    @include('admin.layout.pagination', ['paginator' => $school])
                      
             </div>
         </div>

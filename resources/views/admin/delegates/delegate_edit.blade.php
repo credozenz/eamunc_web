@@ -3,18 +3,19 @@
 @section('content')
 
 
+
 <div class="page-heading">
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Host Schools</h3>
+                <h3>School Delegates</h3>
                 <p class="text-subtitle text-muted"></p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ url('admin/host_schools') }}"> Host Schools</a></li>
-                        <li class="breadcrumb-item active" aria-current="page"> Edit</li>
+                        <li class="breadcrumb-item"><a href="{{ url('admin/school_delegates') }}">School Delegates</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit </li>
                     </ol>
                 </nav>
             </div>
@@ -32,46 +33,74 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Edit</h4>
+                   
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                <form method="post" action="{{ url('admin/host_schools_update',$data->id) }}"  enctype="multipart/form-data">
-                    @csrf
-                    
-                                <div class="row">
-                               
+                        <form method="post" action="{{ url('admin/school_delegates_update',$data->id) }}"  enctype="multipart/form-data">
+                        @csrf
+                             <div class="row">
+                                  
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label class="form-label text-danger">Title</label>
-                        <input type="text" name="title" value="{{ $data->title }}" class="form-control @error('title') border-danger @enderror" placeholder="Title">
-                        @error('title')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                            <label for="text-danger">Name</label>
+                                            <input type="text" name="name" value="{{ $data->name }}" class="form-control @error('name') border-danger @enderror" {{ $errors->has('name') ? 'autofocus' : '' }} placeholder="Delegate Name" aria-describedby="textHelp" required>
+                                            @error('name')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
+
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="text-danger">Email</label>
+                                            <input type="email" name="email" value="{{ $data->email  }}" class="form-control user_email @error('email') border-danger @enderror" {{ $errors->has('email') ? 'autofocus' : '' }} placeholder="Email" aria-describedby="textHelp" required>
+                                            @error('email')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="text-danger">Class & Section</label>
+                                            <input type="text" name="class" value="{{  $data->class }}" class="form-control @error('class') border-danger @enderror" {{ $errors->has('class') ? 'autofocus' : '' }} placeholder="Class & Section" aria-describedby="textHelp" required>
+                                             @error('class')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                        </div>
+                                    </div>
+
+
                                     
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label class="form-label text-danger">Image</label>
-                            <div class="w-30 h-30 relative image-fit  mb-2 mr-5 ">
-                                 <img class="rounded-md img-preview" src="{{ asset('uploads/'.$data->image) }}" style="width: 103px;">
-                            </div>
-                        <input type="file" name="image" class="form-control  @error('image') border-danger @enderror">
-                        <small>Image Dimension:198x252, Size below 3MB</small>
-                        @error('image')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                            <label for="text-danger">WhatsApp NO</label>
+                                            <input type="text" name="whatsapp_no" value="{{ $data->whatsapp_no }}" class="form-control @error('whatsapp_no') border-danger @enderror" {{ $errors->has('whatsapp_no') ? 'autofocus' : '' }} placeholder="WhatsApp Number with country code" aria-describedby="textHelp" required>
+                                            @error('whatsapp_no')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-12 col-12">
+
+                                    <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label class="form-label text-danger">Description</label>
-                        <textarea id="input-filter-5" type="text" name="description" class="form-control @error('description') border-danger @enderror" placeholder="Description" style="height: 250px;">{{ $data->description }}</textarea>
-                        @error('description')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                            <label for="text-danger">MUN Experience</label>
+                                            
+                                            <input type="text" name="mun_experience" value="{{ $data->mun_experience }}" class="form-control @error('mun_experience') border-danger @enderror" {{ $errors->has('mun_experience') ? 'autofocus' : '' }} placeholder="" required>
+                                            @error('mun_experience')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
+                                   
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="text-danger">Bureau Member Experience</label>
+                                            
+                                            <input type="text" name="bureaumem_experience" value="{{ $data->bureaumem_experience }}" class="form-control @error('bureaumem_experience') border-danger @enderror" {{ $errors->has('bureaumem_experience') ? 'autofocus' : '' }} placeholder="" required>
+                                            @error('bureaumem_experience')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                        </div>
+                                    </div>
+                                   
+                                   
+                                   
                                     <div class="col-12 d-flex justify-content-end">
-                                    <a href="{{ url('admin/host_schools') }}" class="btn btn-light-secondary me-1 mb-1">Back</a>
-                                    <button class="btn btn-primary me-1 mb-1">Update</button>
+                                    <a href="{{ url('admin/school_delegates') }}" class="btn btn-light-secondary me-1 mb-1">Back</a>
+                                    <button class="btn btn-primary me-1 mb-1">Submit</button>
                                     </div>
                                 </div>
-                            </form>
+                                </form>
                         </div>
                     </div>
                 </div>
@@ -81,4 +110,5 @@
     <!-- // Basic multiple Column Form section end -->
 </div>
 
-  @endsection
+     @endsection
+
