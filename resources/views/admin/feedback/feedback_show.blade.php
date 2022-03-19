@@ -32,6 +32,13 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Show</h4>
+                    <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a class="btn-sm btn-danger shadow-md mr-2 dltButton"  data-url="{{ url('admin/user_feedback_delete',$feedback->id) }}" data-replaceurl="{{ url('admin/user_feedback') }}" title="Delete Project">Delete</a>
+                            </li>
+                        </ol>
+                    </nav>
                     </div>
                 @if (!empty($feedback) && $feedback->count())
                     <div class="card-content">
@@ -67,9 +74,7 @@
                    
                                     </div>
                                 </div> 
-                                
-                                
-
+                            
                             </div>
                         </div>
                     </div>
@@ -79,11 +84,22 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12 col-12">
-                                    <div class="form-group">
-                                        <label class="form-label text-danger">Question</label>
-                    <textarea id="input-filter-5" type="text" name="question" class="form-control @error('question') border-danger @enderror" placeholder="Question" style="height: 250px;">{{ $data->question }}</textarea>
-                    @error('question')<div class="text-danger mt-2">{{ $message }}</div>@enderror
-                                    </div>
+                                <table>
+                            @if(!empty($data) && $data->count())
+                                @foreach ($data as $key => $value)
+                               
+                                <tr>
+                                    <th>{{ $key+1 }}.</th>
+                                    <th>{{ $value->question }}</th>   
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td> {{ $value->answer }}</td>
+                                </tr>
+                                 
+                                @endforeach
+                            @endif
+                            </table>
                                 </div>  
                             </div>
                         </div>

@@ -218,6 +218,7 @@ Route::group(['middleware' => 'adminchecker'], function() {
 
      Route::get('/user_feedback', [FeedbackController::class,'feedback'])->name('admin.user_feedback');
      Route::get('/user_feedback_show/{id}', [FeedbackController::class,'feedback_show'])->name('admin.user_feedback.show');
+     Route::post('/user_feedback_delete/{id}', [FeedbackController::class,'feedback_destroy'])->name('admin.feedback.feedback_destroy');
 
      Route::get('/terms', [FooterController::class,'terms'])->name('admin.terms');
      Route::post('/terms_update', [FooterController::class,'terms_update'])->name('admin.terms_update');

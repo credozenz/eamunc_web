@@ -10,6 +10,7 @@ use View;
 use App\Helper\AdminHelper;
 use App\Models\SiteIndexes;
 use App\Models\Feedback_qsn;
+use App\Models\Feedback_ans;
 use App\Models\Feedback;
 use Carbon\Carbon;
 use Str;
@@ -46,7 +47,13 @@ class FeedbackController extends Controller
                             ->select('feedback.*','committees.name as committee_name')
                             ->first(); 
 
-                            //dd($feedback);
+
+
+        $data = Feedback_ans::where('feedback_answer.feedback_id', $id)
+                            ->join('feedback_question','feedback_question.id','=','feedback_answer.question_id')
+                            ->select('feedback_question.question','feedback_answer.answers as answer')
+                            ->get(); 
+
         
         return view('admin/feedback/feedback_show', compact('data','feedback'));
     }
@@ -137,5 +144,17 @@ class FeedbackController extends Controller
         $news->save();
 
         echo json_encode(['status'=>true,'message'=>'feedback question Deleted Successfully !']);exit();
+    }
+
+    public function feedback_destroy(Request $request,$id)
+    {
+
+        $news = Feedback::where('id', $id)->first(); 
+        $mytime = Carbon::now();
+        $timestamp=$mytime->toDateTimeString();
+        $news->deleted_at = $timestamp;
+        $news->save();
+
+        echo json_encode(['status'=>true,'message'=>'feedback Deleted Successfully !']);exit();
     }
 }
