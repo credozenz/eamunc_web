@@ -1,0 +1,160 @@
+:root {
+    --color-blue: #166EE1;
+    --color-orange: #FF9C00;
+    --color-red: #F5424B;
+    --color-black: #2d2926;
+    --color-white: #fff;
+    --font-xxs: 10px;
+    --font-xs: 12px;
+    --font-sm: 14px;
+    --font-md: 16px;
+    --font-lg: 20px;
+    --font-xlg: 24px;
+    --font-xxlg: 34px;
+    --font-hg: 48px;
+    --font-xhg: 60px;
+    --font-xxhg: 96px;
+    --font-normal: bold italic 15px/20px 'Inter', sans-serif;
+}
+
+html, body {
+    font-family: 'Inter', sans-serif;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+a {
+    text-decoration: none;
+}
+a:hover {
+    opacity: 0.8;
+}
+h1, .h1 {
+    font: normal normal 500 96px 'Inter', sans-serif;
+}
+
+h2, .h2 {
+    font: normal normal 600 60px 'Inter', sans-serif;
+}
+
+h3, .h3 {
+    font: normal normal 600 48px 'Inter', sans-serif;
+}
+
+h4, .h4 {
+    font: normal normal 600 34px 'Inter', sans-serif;
+}
+
+h5, .h5 {
+    font: normal normal 600 24px 'Inter', sans-serif;
+}
+
+h6, .h6 {
+    font: normal normal 600 20px 'Inter', sans-serif;
+}
+
+p {
+    font: normal normal 400 16px 'Inter', sans-serif;
+}
+.font-normal {
+    font: normal normal 500 16px 'Inter', sans-serif;
+}
+.subtitle {
+    font: normal normal 600 16px 'Inter', sans-serif;
+}
+.subtitle-2 {
+    font: normal normal 600 14px 'Inter', sans-serif;
+}
+.para-1 {
+    font: normal normal 400 16px 'Inter', sans-serif;
+}
+.para-2 {
+    font: normal normal 400 14px 'Inter', sans-serif;
+}
+
+button {
+    font: normal normal 500 16px 'Inter', sans-serif;
+}
+.caption {
+    font: normal normal 400 12px 'Inter', sans-serif;
+}
+.overline {
+    font: normal normal 500 10px 'Inter', sans-serif;
+    text-transform: uppercase;
+}
+.color-blue {
+    color: #166EE1;
+}
+.color-orange {
+    color: #FF9C00;
+}
+.color-red {
+    color: #F5424B;
+}
+.color-black {
+    color: #2d2926;
+}
+.color-darkblue {
+    color: #2763AB;
+}
+.color-white {
+    color: #fff;
+}
+.color-grey {
+    color: #8D9091;
+}
+img {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+}
