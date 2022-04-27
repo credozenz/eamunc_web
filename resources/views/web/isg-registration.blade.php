@@ -67,7 +67,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="form-label">WhatsApp Number with country code*</label>
-                                        <input type="text" name="whatsapp_no" value="{{ old('whatsapp_no') }}" class="form-control @error('whatsapp_no') border-danger @enderror" {{ $errors->has('whatsapp_no') ? 'autofocus' : '' }} placeholder="WhatsApp Number with country code" aria-describedby="textHelp" required>
+                                        <input type="text" name="whatsapp_no" value="{{ old('whatsapp_no') }}" class="form-control user_phone @error('whatsapp_no') border-danger @enderror" {{ $errors->has('whatsapp_no') ? 'autofocus' : '' }} placeholder="WhatsApp Number with country code" aria-describedby="textHelp" required>
                                         @error('whatsapp_no')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>

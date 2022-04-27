@@ -4,7 +4,7 @@
         <div class="wrapper">
             <div class="container">
                 <div class="letter-container">
-                    <h3 class="color-darkblue mb-4 text-center">Welcome to EAMUNC 2022</h3>
+                    <h3 class="color-darkblue mb-4 text-center">Welcome to E.A.MUNC 2022</h3>
 
                     <div class="row my-5">
                     

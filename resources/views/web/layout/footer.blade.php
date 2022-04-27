@@ -4,7 +4,7 @@
                 <div class="row footer-top">
                     <div class="col-md-4">
                         <ul>
-                            <li><a href="{{ route('about-us') }}" class="color-white">About EAMUNC</a></li>
+                            <li><a href="{{ route('about-us') }}" class="color-white">About E.A.MUNC</a></li>
                             <li><a href="{{ route('conference') }}" class="color-white">Conferences</a></li>
                             <li><a href="{{ route('registration') }}" class="color-white">Registration</a></li>
                             <li><a href="{{ route('committees') }}" class="color-white">Committees</a></li>
@@ -29,7 +29,7 @@
                 </div>
                 <div class="row footer-bottom">
                     <div class="col-sm-3 col-12">
-                        <h4 class="logo-text color-white text-center text-sm-start mb-3 mb-sm-0">EAMUNC</h4>
+                        <h4 class="logo-text color-white text-center text-sm-start mb-3 mb-sm-0">E.A.MUNC</h4>
                     </div>
                     <div class="col-sm-3 col-12 d-flex justify-content-center justify-content-sm-end">
                         <ul class="d-flex">

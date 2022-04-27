@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EAMUNC - Admin Dashboard</title>
+    <title>E.A.MUNC - Admin Dashboard</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link href="{{asset('css/admin/bootstrap.css')}}" rel="stylesheet">
@@ -16,7 +16,7 @@
     <div class="col-lg-5 col-12">
         <div id="auth-left">
             <div class="auth-logo">
-                <img src="{{ asset('assets/admin/img/logo.png') }}" alt="EAMUNC" style="border: inset;"><h2 class="title">EAMUNC.COM</h2>
+                <img src="{{ asset('assets/admin/img/logo.png') }}" alt="E.A.MUNC" style="border: inset;"><h2 class="title">E.A.MUNC.COM</h2>
             </div>
             <h1 class="auth-title">Log in.</h1>
             @if(Session::has('success'))
@@ -54,7 +54,7 @@
                     <div class="float-start">   
                     </div>
                     <div class="float-end">
-                    <p>2022 &copy; EAMUNC</p>
+                    <p>2022 &copy; E.A.MUNC</p>
                     </div>
                 </div>
             

@@ -5,7 +5,7 @@
                     <div class="float-start">   
                     </div>
                     <div class="float-end">
-                    <!-- <p>2022 &copy; EAMUNC</p> -->
+                    <!-- <p>2022 &copy; E.A.MUNC</p> -->
                     </div>
                 </div>
             </footer>

@@ -150,20 +150,21 @@ class DelegateController extends Controller
        
     }
 
-    public function school_delegates_edit(Request $request)
+    public function school_delegates_edit(Request $request,$id)
     {
        
-        $data = School_Delegates::where('deleted_at', null)->first();  
-        $school = School::where('deleted_at', null)->first(); 
+        $data = School_Delegates::where('id', $id)->first();  
+        $school = School::where('id', $data->school_id)->first();  
         return view('admin/delegates/delegate_edit', compact('data','school'));
        
     }
 
-    public function school_delegates_show(Request $request)
+    public function school_delegates_show(Request $request,$id)
     {
        
-        $data = School_Delegates::where('deleted_at', null)->first();  
-        $school = School::where('deleted_at', null)->first(); 
+        $data = School_Delegates::where('id', $id)->first();  
+        $school = School::where('id', $data->school_id)->first(); 
+       
         return view('admin/delegates/delegate_show', compact('data','school'));
        
     }

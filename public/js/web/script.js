@@ -32,7 +32,7 @@ $(document).ready(function() {
         var i=3; 
         $('#add-student').click(function() {
             i++;
-var array_no =i-1;
+   var array_no =i-1;
 
 
 
@@ -49,21 +49,21 @@ var array_no =i-1;
                    '<div class="col-md-4">'+
                         '<div class="form-group">'+
                             '<label for="form-label">Delegate Name*</label>'+
-                            '<input type="text" name="name" value="" class="form-control" placeholder="Delegate Name" aria-describedby="textHelp" required>'+
+                            '<input type="text" name="name[]" value="" class="form-control" placeholder="Delegate Name" aria-describedby="textHelp" required>'+
                             '<div class="text-danger mt-2"></div>'+
                         '</div>'+
                     '</div>'+
                     '<div class="col-md-4">'+
                         '<div class="form-group">'+
                             '<label for="form-label">Email*</label>'+
-                            '<input type="email" name="email" value="" class="form-control" placeholder="Email" aria-describedby="textHelp" required>'+
+                            '<input type="email" name="email[]" value="" class="form-control" placeholder="Email" aria-describedby="textHelp" required>'+
                             '<div class="text-danger mt-2"></div>'+
                         '</div>'+
                     '</div>'+     
                     '<div class="col-md-4">'+
                         '<div class="form-group">'+
                             '<label for="form-label">Class & Section*</label>'+
-                            '<input type="text" name="class" value="" class="form-control" placeholder="Class & Section" aria-describedby="textHelp" required>'+
+                            '<input type="text" name="class[]" value="" class="form-control" placeholder="Class & Section" aria-describedby="textHelp" required>'+
                             '<div class="text-danger mt-2"></div>'+
                         '</div>'+
                     '</div>'+
@@ -72,21 +72,21 @@ var array_no =i-1;
                     '<div class="col-md-4">'+
                         '<div class="form-group">'+
                             '<label for="form-label">WhatsApp Number with country code*</label>'+
-                            '<input type="phone" name="whatsapp_no" value="" class="form-control" placeholder="WhatsApp Number with country code" aria-describedby="textHelp" required>'+
+                            '<input type="phone[]" name="whatsapp_no[]" value="" class="user_phone form-control" placeholder="WhatsApp Number with country code" aria-describedby="textHelp" required>'+
                             '<div class="text-danger mt-2"></div>'+
                         '</div>'+
                     '</div>'+     
                     '<div class="col-md-4">'+
                         '<div class="form-group">'+
                             '<label for="form-label">MUN Experience (if any) *</label>'+
-                            '<input type="text" name="mun_experience" value="" class="form-control"  placeholder="MUN Experience (if any)" aria-describedby="textHelp" required>'+
+                            '<input type="text" name="mun_experience[]" value="" class="form-control"  placeholder="MUN Experience (if any)" aria-describedby="textHelp" required>'+
                             '<div class="text-danger mt-2"></div>'+
                         '</div>'+
                    '</div>'+
                     '<div class="col-md-4">'+
                         '<div class="form-group">'+
                             '<label for="form-label">Bureau Member Experience*</label>'+
-                            '<input type="text" name="bureaumem_experience" value="" class="form-control" placeholder="Bureau Member Experience" aria-describedby="textHelp" required>'+
+                            '<input type="text" name="bureaumem_experience[]" value="" class="form-control" placeholder="Bureau Member Experience" aria-describedby="textHelp" required>'+
                             '<div class="text-danger mt-2"></div>'+
                         '</div>'+
                     '</div>'+
@@ -157,7 +157,70 @@ var array_no =i-1;
     });
 
 
+    $(document).on('change', '.user_phone', function (e) {
+        e.preventDefault();
+    
+        var input = $(this);
+            input.closest('div').find('.phone-valid').remove();
+        var phone = input.val();
 
+        var phoneno = /^\d+$/;
+        if(phone.match(phoneno))
+        {
+           
+        
+
+        $.ajaxSetup({
+            headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+        let _token2   = $('meta[name="csrf-token"]').attr('content');
+
+                $.ajax({
+                    type: "POST",
+                    url: './validate_user_phone',
+                    dataType:"json",
+                    data: {
+                        phone: phone,
+                        
+                     },
+                     _token: _token2,
+                    success: function(responce){
+     
+                        if(responce.status==false){
+                            input.val(""); 
+                            input.closest('div').find('.phone-valid').remove();
+                            input.after("<div class='text-danger mt-2 phone-valid'> This Phone number is already in use </div>");  
+                            
+                        }else{
+
+                            input.closest('div').find('.phone-valid').remove();  
+                            
+                        }
+
+                    },
+
+                    error: function(xhr, status, error) {
+                        var err = eval("(" + xhr.responseText + ")");
+                           console.log(err);      
+                    }
+            
+                });
+
+
+            }
+            else
+            {
+                input.val(""); 
+                input.closest('div').find('.whatsapp_no-valid').remove();
+                input.after("<div class='text-danger mt-2 phone-valid'> Not a valid Phone Number </div>");  
+                
+            }
+          
+
+    });
 
 
 

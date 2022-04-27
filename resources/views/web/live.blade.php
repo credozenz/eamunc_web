@@ -4,7 +4,7 @@
 <section id="hero" class="section-padding">
         <div class="wrapper">
             <div class="container">
-                <h3 class="color-darkblue mb-4">🔴 Watch EAMUNC Live</h3>
+                <h3 class="color-darkblue mb-4">🔴 Watch E.A.MUNC Live</h3>
 
                 <div class="row pt-5">
 

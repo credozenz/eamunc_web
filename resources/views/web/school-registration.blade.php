@@ -31,13 +31,20 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
+                                            <label for="">School Logo</label>
+                                            <input type="file" name="school_logo" value="{{ old('school_logo') }}" class="form-control @error('school_logo') border-danger @enderror" {{ $errors->has('school_logo') ? 'autofocus' : '' }} aria-describedby="textHelp" placeholder="School Logo">
+                                            @error('school_logo')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
                                             <label for="">Faculty Advisor’s Name*</label>
                                             <input type="text" name="advisor_name" value="{{ old('advisor_name') }}" class="form-control @error('advisor_name') border-danger @enderror" {{ $errors->has('advisor_name') ? 'autofocus' : '' }} aria-describedby="textHelp" placeholder="Faculty Advisor’s Name" required>
                                             @error('advisor_name')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="">Email*</label>
@@ -49,7 +56,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="">Mobile*</label>
-                                            <input type="phone" name="advisor_mobile" value="{{ old('advisor_mobile') }}" class="form-control @error('advisor_mobile') border-danger @enderror" {{ $errors->has('advisor_mobile') ? 'autofocus' : '' }} aria-describedby="textHelp"
+                                            <input type="phone" name="advisor_mobile" value="{{ old('advisor_mobile') }}" class="form-control user_phone @error('advisor_mobile') border-danger @enderror" {{ $errors->has('advisor_mobile') ? 'autofocus' : '' }} aria-describedby="textHelp"
                                                 placeholder="Mobile" required>
                                                 @error('advisor_mobile')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
@@ -87,7 +94,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="form-label">WhatsApp Number with country code*</label>
-                                        <input type="text" name="whatsapp_no[]" value="{{ old('whatsapp_no.0') }}" class="form-control @error('whatsapp_no') border-danger @enderror" {{ $errors->has('whatsapp_no') ? 'autofocus' : '' }} placeholder="WhatsApp Number with country code" aria-describedby="textHelp" required>
+                                        <input type="text" name="whatsapp_no[]" value="{{ old('whatsapp_no.0') }}" class="form-control user_phone @error('whatsapp_no') border-danger @enderror" {{ $errors->has('whatsapp_no') ? 'autofocus' : '' }} placeholder="WhatsApp Number with country code" aria-describedby="textHelp" required>
                                         @error('whatsapp_no')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
@@ -131,7 +138,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="form-label">Class & Section*</label>
-                                        <input type="text" name="class[]" value="{{ old('class.1') }}" class="form-control @error('class') border-danger @enderror" {{ $errors->has('class') ? 'autofocus' : '' }} placeholder="Class & Section" aria-describedby="textHelp" required>
+                                        <input type="text" name="class[]" value="{{ old('class.1') }}" class="form-control user_phone @error('class') border-danger @enderror" {{ $errors->has('class') ? 'autofocus' : '' }} placeholder="Class & Section" aria-describedby="textHelp" required>
                                         @error('class')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
@@ -140,7 +147,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="form-label">WhatsApp Number with country code*</label>
-                                        <input type="phone" name="whatsapp_no[]" value="{{ old('whatsapp_no.1') }}" class="form-control @error('whatsapp_no') border-danger @enderror" {{ $errors->has('whatsapp_no') ? 'autofocus' : '' }} placeholder="WhatsApp Number with country code" aria-describedby="textHelp" required>
+                                        <input type="phone" name="whatsapp_no[]" value="{{ old('whatsapp_no.1') }}" class="form-control user_phone @error('whatsapp_no') border-danger @enderror" {{ $errors->has('whatsapp_no') ? 'autofocus' : '' }} placeholder="WhatsApp Number with country code" aria-describedby="textHelp" required>
                                         @error('whatsapp_no')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
@@ -192,7 +199,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="form-label">WhatsApp Number with country code*</label>
-                                        <input type="phone" name="whatsapp_no[]" value="{{ old('whatsapp_no.2') }}" class="form-control @error('whatsapp_no') border-danger @enderror" {{ $errors->has('whatsapp_no') ? 'autofocus' : '' }} placeholder="WhatsApp Number with country code" aria-describedby="textHelp" required>
+                                        <input type="phone" name="whatsapp_no[]" value="{{ old('whatsapp_no.2') }}" class="form-control user_phone @error('whatsapp_no') border-danger @enderror" {{ $errors->has('whatsapp_no') ? 'autofocus' : '' }} placeholder="WhatsApp Number with country code" aria-describedby="textHelp" required>
                                         @error('whatsapp_no')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>     

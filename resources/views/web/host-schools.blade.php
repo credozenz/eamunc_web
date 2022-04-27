@@ -5,7 +5,7 @@
             <div class="container">
                 <div class="letter-container">
 
-                    <h3 class="color-darkblue mb-4">Host Schools</h3>
+                    <h3 class="color-darkblue mb-4">Participating Schools</h3>
 
                     @if (!empty($schools) && $schools->count())
                         @foreach ($schools as $key => $value)
@@ -46,7 +46,7 @@
                 <div class="box border-black">
                     <div class="row align-items-center">
                         <div class="col-md-6">
-                            <p class="color-darkblue h5 mb-3 mb-md-0 text-center text-md-start">Be a part of the EAMUNC Alumni Network</p>
+                            <p class="color-darkblue h5 mb-3 mb-md-0 text-center text-md-start">Be a part of the E.A.MUNC Alumni Network</p>
                         </div>
                         <div class="col-md-6 text-center text-md-end">
                         <a href="{{ route('registration') }}">

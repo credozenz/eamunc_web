@@ -42,7 +42,7 @@
 
 
                     <ul class="nav navbar-nav">
-                        <li class="nav-item"><a href="{{ route('about-us') }}" class="color-white font-normal">About EAMUNC</a></li>
+                        <li class="nav-item"><a href="{{ route('about-us') }}" class="color-white font-normal">About E.A.MUNC</a></li>
                         <li class="nav-item"><a href="{{ route('conference') }}" class="color-white font-normal">Conferences</a></li>
                         <li class="nav-item"><a href="{{ route('committees') }}" class="color-white font-normal">Committees</a></li>
                         <li class="nav-item"><a href="{{ route('live') }}" class="color-white font-normal">Live</a></li>
@@ -57,7 +57,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item font-normal" href="{{ route('registration') }}">Registration</a></li>
-                                <li><a class="dropdown-item font-normal" href="{{ route('host-school') }}">Host Schools</a></li>
+                                <li><a class="dropdown-item font-normal" href="{{ route('host-school') }}">Participating Schools</a></li>
                                 <li><a class="dropdown-item font-normal" href="{{ route('act-impact') }}">Act Impact</a></li>
                                 <li><a class="dropdown-item font-normal" href="{{ route('virtual-code') }}">Virtual Code Of Conduct</a></li>
                                 <li><a class="dropdown-item font-normal" href="{{ route('past-conference') }}">Past Conference</a></li>

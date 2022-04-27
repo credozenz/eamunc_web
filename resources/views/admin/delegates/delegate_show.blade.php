@@ -47,13 +47,29 @@
                             <div class="card-body">
                                 <div class="row">
                                 <h4 class="color-darkblue mb-5">School Details</h4>
-                                    <div class="col-md-6 col-12">
+                                    <div class="col-md-4 col-12">
                                         <div class="form-group">
                                             <label for="text-danger">School Name</label>
                                             <input type="text" name="name" value="{{ $school->name }}" class="form-control" disabled placeholder="Title">
                       
                                         </div>
                                     </div>
+                                   
+                                    <div class="col-md-2 col-12">
+                                        <div class="form-group">
+                                            <label for="text-danger">School logo</label>
+                                            <div class="w-30 h-30 relative image-fit  mb-2 mr-5 ">
+                                            @if(!empty($school->logo))
+                                            <img alt="School logo" class="rounded-full" src="{{ asset('uploads/'.$school->logo) }}" width="150" height="80">
+                                            @else
+                                            <div class="stats-icon red">
+                                            <i class="fa fa-ban" aria-hidden="true"></i>
+                                            </div>
+                                            @endif
+                                           </div>
+                                        </div>
+                                    </div>
+                                   
 
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">

@@ -15,6 +15,10 @@ use App\Models\School;
 use App\Models\School_Delegates;
 use App\Models\Isg_delegates;
 use App\Models\User;
+use Str;
+use Image;
+use Storage;
+use League\Flysystem\File;
 
 class RegistrationController extends Controller
 {
@@ -61,6 +65,7 @@ class RegistrationController extends Controller
             $user = new User;
             $user->name  = $request->name;
             $user->email = $request->email;
+            $user->phone = $request->whatsapp_no;
             $user->role = 3;
             $user->save();
            
@@ -102,7 +107,7 @@ class RegistrationController extends Controller
 
     public function school_store(Request $request)
     {
-
+       
         $validatedData = $request->validate([
             'school_name' => 'required|max:255',
             'advisor_name' => 'required|max:255',
@@ -120,6 +125,7 @@ class RegistrationController extends Controller
             "mun_experience.*"  => "required",
             "bureaumem_experience"    => "required|array",
             "bureaumem_experience.*"  => "required",
+            'school_logo' => ['mimes:jpeg,png,jpg,gif,svg', 'max:2055'],
         ],[
             'school_name.required' => 'The School Name field is required',
             'advisor_name.required' => 'The Advisor Name field is required',
@@ -132,6 +138,8 @@ class RegistrationController extends Controller
             'class.required' => 'The Class field is required',
             'whatsapp_no.required' => 'The WhatsApp No field is required',
             'mun_experience.required' => 'The MUN Experience field is required',
+            'school_logo.max' => 'Logo  must be smaller than 2 MB',
+            'school_logo.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
         ]);
       
 
@@ -140,9 +148,32 @@ class RegistrationController extends Controller
             $school->email  = $request->advisor_email;
             $school->mobile = $request->advisor_mobile;
             $school->advisor_name = $request->advisor_name;
+
+
+                if ($request->hasFile('school_logo')) {
+                $image = $request->file('school_logo');
+                $fileName   =  time().'_'.str_random(5).'_'.rand(1111,9999). '.' . $image->getClientOriginalExtension();
+              
+                $extension=$image->getClientOriginalExtension();
+               
+                if($extension=='svg'){
+                   $img = $image->get();
+                }else{
+                    $img = Image::make($image->getRealPath());
+                    $img->resize(220, 280, function ($constraint) {
+                       $constraint->aspectRatio();                 
+                    });
+                    $img->stream('png', 100);
+                }
+                
+                Storage::disk('public')->put('host_schools/'.$fileName,$img,'public');
+               }
+    
+            $school->logo = 'host_schools/'.$fileName; 
+
             $school->save();
 
-            if($school->id){
+        if($school->id){
 
         $name = $request->input('name');
         $email = $request->input('email');
@@ -162,6 +193,7 @@ class RegistrationController extends Controller
             $user = new User;
             $user->name  = $name[$count];
             $user->email = $email[$count];
+            $user->phone = $whatsapp_no[$count];
             $user->role = 3;
             $user->save();
         
@@ -208,5 +240,20 @@ class RegistrationController extends Controller
              echo json_encode(['status'=>false]);exit();
         }
     }
+
+    public function validate_user_phone(Request $request)
+    {
+       
+        $user = User::where('phone', $request->phone); 
+      
+        if(empty($user->count())){
+              echo json_encode(['status'=>true]);exit();
+        }else{
+             echo json_encode(['status'=>false]);exit();
+        }
+    }
+
+
+
 
 }

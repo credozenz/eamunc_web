@@ -35,7 +35,7 @@
 
     <section id="updates" class="section-padding pb-0">
         <div class="container">
-            <h3 class="color-darkblue mb-md-4 mb-5">EAMUNC In Action</h3>
+            <h3 class="color-darkblue mb-md-4 mb-5">E.A.MUNC In Action</h3>
         </div>
         <div class="container">
             <div class="row justify-content-between">
@@ -48,7 +48,7 @@
                 @endforeach
             @else
             <div class="col-md-6 text-center text-md-end color-darkblue">
-                EAMUNC In Action isn't available right Now !
+            E.A.MUNC In Action isn't available right Now !
             </div>
             @endif
                
@@ -65,7 +65,7 @@
                 <div class="box border-black">
                     <div class="row align-items-center">
                         <div class="col-md-6">
-                            <p class="color-darkblue h5 mb-3 mb-md-0 text-center text-md-start">Resolutions of EAMUNC 2022</p>
+                            <p class="color-darkblue h5 mb-3 mb-md-0 text-center text-md-start">Resolutions of E.A.MUNC 2022</p>
                         </div>
                         <div class="col-md-6 text-center text-md-end">
                         <a href="{{ asset('uploads/'.$past_conferences->file) ?? '' }}" target="_blank">
