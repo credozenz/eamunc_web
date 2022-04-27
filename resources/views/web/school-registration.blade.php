@@ -9,7 +9,7 @@
                 @elseif(Session::has('error'))
                 <div class="alert alert-danger"><i class="bi bi-file-excel"></i> {{ Session::get('error') }}</div>
                 @endif
-                    <h3 class="color-darkblue mb-4">Registration for School</h3>
+                    <h3 class="color-darkblue mb-4">Registration for Participating School</h3>
 
                     <div class="row mt-5">
                         <img src="{{ asset('assets/web/img/host.jpg') }}" alt="Registration for School">
