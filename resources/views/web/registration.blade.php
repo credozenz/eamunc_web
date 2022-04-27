@@ -19,7 +19,7 @@
                         </div>
                         <div class="col-md-6 p-0">
                         <a href="{{ route('school-registration') }}" class="color-white">
-                            <button class="download-btn w-100 py-3">Registration for Schools</button>
+                            <button class="download-btn w-100 py-3">Registration for Participating Schools</button>
                         </a>
                         </div>
                     </div>
