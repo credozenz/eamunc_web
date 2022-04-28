@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\LiveController;
 use App\Http\Controllers\Admin\WorkMembersController;
 use App\Http\Controllers\Admin\HostSchoolController;
+use App\Http\Controllers\Admin\ParticipateSchoolController;
 use App\Http\Controllers\Admin\ActImpactsController;
 use App\Http\Controllers\Admin\VcconduntController;
 use App\Http\Controllers\Admin\VisionController;
@@ -138,6 +139,14 @@ Route::group(['middleware' => 'adminchecker'], function() {
      Route::get('/host_schools_show/{id}', [HostSchoolController::class,'show'])->name('admin.host_schools.show');
      Route::post('/host_schools_update/{id}', [HostSchoolController::class,'update'])->name('admin.host_schools.update');
      Route::post('/host_schools_delete/{id}', [HostSchoolController::class,'destroy'])->name('admin.host_schools.destroy');
+
+     Route::get('/participate_schools', [ParticipateSchoolController::class,'index'])->name('admin.participate_schools');
+     Route::get('/participate_schools_create', [ParticipateSchoolController::class,'create'])->name('admin.participate_schools.create');
+     Route::post('/participate_schools_store', [ParticipateSchoolController::class,'store'])->name('admin.participate_schools.store');
+     Route::get('/participate_schools_edit/{id}', [ParticipateSchoolController::class,'edit'])->name('admin.participate_schools.edit');
+     Route::get('/participate_schools_show/{id}', [ParticipateSchoolController::class,'show'])->name('admin.participate_schools.show');
+     Route::post('/participate_schools_update/{id}', [ParticipateSchoolController::class,'update'])->name('admin.participate_schools.update');
+     Route::post('/participate_schools_delete/{id}', [ParticipateSchoolController::class,'destroy'])->name('admin.participate_schools.destroy');
 
      Route::get('/letters', [LetterController::class,'index'])->name('admin.letters');
      Route::get('/letters_create', [LetterController::class,'create'])->name('admin.letters.create');

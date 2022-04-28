@@ -11,6 +11,7 @@ use App\Http\Controllers\Web\FaqController;
 use App\Http\Controllers\Web\FeedbackController;
 use App\Http\Controllers\Web\GalleryController;
 use App\Http\Controllers\Web\HostSchoolController;
+use App\Http\Controllers\Web\ParticipateSchoolController;
 use App\Http\Controllers\Web\LiveController;
 use App\Http\Controllers\Web\PastConferenceController;
 use App\Http\Controllers\Web\RegistrationController;
@@ -42,6 +43,7 @@ Route::post('/feedback-store', [FeedbackController::class,'feedback_store'])->na
 Route::get('/gallery', [GalleryController::class,'index'])->name('gallery');
 Route::get('/gallery-inner/{id}', [GalleryController::class,'index_inner'])->name('gallery-inner');
 Route::get('/host-school', [HostSchoolController::class,'index'])->name('host-school');
+Route::get('/participate-school', [ParticipateSchoolController::class,'index'])->name('participate-school');
 Route::get('/live', [LiveController::class,'index'])->name('live');
 Route::get('/newsletter', [NewsLetterController::class,'index'])->name('newsletter');
 Route::get('/past-conference', [PastConferenceController::class,'index'])->name('past-conference');

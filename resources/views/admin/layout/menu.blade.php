@@ -163,6 +163,17 @@
                 </ul>
             </li>
 
+            <li class="sidebar-item  has-sub @if($routeGroup=='participateschool') active @endif ">
+                <a href="#" class='sidebar-link'>
+                    <span><i class="fa fa-university" aria-hidden="true">&nbsp</i>Participate Schools</span>
+                </a>
+                <ul class="submenu @if($routeGroup=='participateschool') active @endif">
+                    <li class="submenu-item ">
+                        <a href="{{ route('admin.participate_schools') }}">Participate Schools</a>
+                    </li>
+                </ul>
+            </li>
+
             <li class="sidebar-item  has-sub @if($routeGroup=='impact') active @endif ">
                 <a href="#" class='sidebar-link'>
                     <span><i class="fa fa-sort" aria-hidden="true">&nbsp</i>Act to Impact</span>

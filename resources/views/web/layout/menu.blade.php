@@ -58,6 +58,7 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item font-normal" href="{{ route('registration') }}">Registration</a></li>
                                 <li><a class="dropdown-item font-normal" href="{{ route('host-school') }}">Host Schools</a></li>
+                                <li><a class="dropdown-item font-normal" href="{{ route('participate-school') }}">Participate Schools</a></li>
                                 <li><a class="dropdown-item font-normal" href="{{ route('act-impact') }}">Act Impact</a></li>
                                 <li><a class="dropdown-item font-normal" href="{{ route('virtual-code') }}">Virtual Code Of Conduct</a></li>
                                 <li><a class="dropdown-item font-normal" href="{{ route('past-conference') }}">Past Conference</a></li>

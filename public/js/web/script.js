@@ -32,11 +32,10 @@ $(document).ready(function() {
         var i=3; 
         $('#add-student').click(function() {
             i++;
-    var array_no =i-1;
+        var array_no =i-1;
 
-    var html='<div class="form-section mb-5 student'+i+'">'+
+        var html='<div class="form-section mb-5 student'+i+'">'+
                     '<h4 class="color-darkblue mb-5">Student '+i+'</h4>'+
-
                   '<div class="col-sm-12 col-12 d-flex justify-content-center justify-content-sm-end">'+
                     '<div class="form-group">'+
                        '<button type="button" class="btn btn-danger me-1 mb-1 mt-1 btn_remove" name="remove" id="'+ i +'">X</button>'+
