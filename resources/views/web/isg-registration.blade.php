@@ -23,14 +23,14 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="form-label">Delegate Name*</label>
-                                        <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') border-danger @enderror" {{ $errors->has('name') ? 'autofocus' : '' }} placeholder="Delegate Name" aria-describedby="textHelp" required>
+                                        <input type="text" name="name" value="{{ old('name') }}" maxlength="80" class="form-control @error('name') border-danger @enderror" {{ $errors->has('name') ? 'autofocus' : '' }} placeholder="Delegate Name" aria-describedby="textHelp" required>
                                         @error('name')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="form-label">Email*</label>
-                                        <input type="email" name="email" value="{{ old('email') }}" class="form-control user_email @error('email') border-danger @enderror" {{ $errors->has('email') ? 'autofocus' : '' }} placeholder="Email" aria-describedby="textHelp" required>
+                                        <input type="email" name="email" value="{{ old('email') }}" maxlength="80" class="form-control user_email @error('email') border-danger @enderror" {{ $errors->has('email') ? 'autofocus' : '' }} placeholder="Email" aria-describedby="textHelp" required>
                                         @error('email')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
@@ -39,7 +39,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="form-label">Class & Section*</label>
-                                        <input type="text" name="class" value="{{ old('class') }}" class="form-control @error('class') border-danger @enderror" {{ $errors->has('class') ? 'autofocus' : '' }} placeholder="Class & Section" aria-describedby="textHelp" required>
+                                        <input type="text" name="class" value="{{ old('class') }}" maxlength="80" class="form-control @error('class') border-danger @enderror" {{ $errors->has('class') ? 'autofocus' : '' }} placeholder="Class & Section" aria-describedby="textHelp" required>
                                         @error('class')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
@@ -60,14 +60,14 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="form-label">Country of Choice*</label>
-                                        <input type="text" name="country_choice" value="{{ old('country_choice') }}" class="form-control @error('country_choice') border-danger @enderror" {{ $errors->has('country_choice') ? 'autofocus' : '' }} placeholder="Country of Choice" aria-describedby="textHelp" required>
+                                        <input type="text" name="country_choice" value="{{ old('country_choice') }}" maxlength="80" class="form-control @error('country_choice') border-danger @enderror" {{ $errors->has('country_choice') ? 'autofocus' : '' }} placeholder="Country of Choice" aria-describedby="textHelp" required>
                                         @error('country_choice')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="form-label">WhatsApp Number with country code*</label>
-                                        <input type="text" name="whatsapp_no" value="{{ old('whatsapp_no') }}" class="form-control user_phone @error('whatsapp_no') border-danger @enderror" {{ $errors->has('whatsapp_no') ? 'autofocus' : '' }} placeholder="WhatsApp Number with country code" aria-describedby="textHelp" required>
+                                        <input type="text" name="whatsapp_no" value="{{ old('whatsapp_no') }}" maxlength="15" class="form-control user_phone @error('whatsapp_no') border-danger @enderror" {{ $errors->has('whatsapp_no') ? 'autofocus' : '' }} placeholder="WhatsApp Number with country code" aria-describedby="textHelp" required>
                                         @error('whatsapp_no')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
@@ -76,7 +76,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="form-label">MUN Experience (if any) *</label>
-                                        <input type="text" name="mun_experience" value="{{ old('mun_experience') }}" class="form-control @error('mun_experience') border-danger @enderror" {{ $errors->has('mun_experience') ? 'autofocus' : '' }} placeholder="MUN Experience (if any)" aria-describedby="textHelp" required>
+                                        <input type="text" name="mun_experience" value="{{ old('mun_experience') }}" maxlength="80" class="form-control @error('mun_experience') border-danger @enderror" {{ $errors->has('mun_experience') ? 'autofocus' : '' }} placeholder="MUN Experience (if any)" aria-describedby="textHelp" required>
                                         @error('mun_experience')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>

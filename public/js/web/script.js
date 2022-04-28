@@ -32,9 +32,7 @@ $(document).ready(function() {
         var i=3; 
         $('#add-student').click(function() {
             i++;
-   var array_no =i-1;
-
-
+    var array_no =i-1;
 
     var html='<div class="form-section mb-5 student'+i+'">'+
                     '<h4 class="color-darkblue mb-5">Student '+i+'</h4>'+
@@ -49,21 +47,21 @@ $(document).ready(function() {
                    '<div class="col-md-4">'+
                         '<div class="form-group">'+
                             '<label for="form-label">Delegate Name*</label>'+
-                            '<input type="text" name="name[]" value="" class="form-control" placeholder="Delegate Name" aria-describedby="textHelp" required>'+
+                            '<input type="text" name="name[]" value="" maxlength="80" class="form-control" placeholder="Delegate Name" aria-describedby="textHelp" required>'+
                             '<div class="text-danger mt-2"></div>'+
                         '</div>'+
                     '</div>'+
                     '<div class="col-md-4">'+
                         '<div class="form-group">'+
                             '<label for="form-label">Email*</label>'+
-                            '<input type="email" name="email[]" value="" class="form-control" placeholder="Email" aria-describedby="textHelp" required>'+
+                            '<input type="email" name="email[]" value="" maxlength="80" class="form-control" placeholder="Email" aria-describedby="textHelp" required>'+
                             '<div class="text-danger mt-2"></div>'+
                         '</div>'+
                     '</div>'+     
                     '<div class="col-md-4">'+
                         '<div class="form-group">'+
                             '<label for="form-label">Class & Section*</label>'+
-                            '<input type="text" name="class[]" value="" class="form-control" placeholder="Class & Section" aria-describedby="textHelp" required>'+
+                            '<input type="text" name="class[]" value="" maxlength="80" class="form-control" placeholder="Class & Section" aria-describedby="textHelp" required>'+
                             '<div class="text-danger mt-2"></div>'+
                         '</div>'+
                     '</div>'+
@@ -72,21 +70,21 @@ $(document).ready(function() {
                     '<div class="col-md-4">'+
                         '<div class="form-group">'+
                             '<label for="form-label">WhatsApp Number with country code*</label>'+
-                            '<input type="phone[]" name="whatsapp_no[]" value="" class="user_phone form-control" placeholder="WhatsApp Number with country code" aria-describedby="textHelp" required>'+
+                            '<input type="phone[]" name="whatsapp_no[]" maxlength="15" value="" class="user_phone form-control" placeholder="WhatsApp Number with country code" aria-describedby="textHelp" required>'+
                             '<div class="text-danger mt-2"></div>'+
                         '</div>'+
                     '</div>'+     
                     '<div class="col-md-4">'+
                         '<div class="form-group">'+
                             '<label for="form-label">MUN Experience (if any) *</label>'+
-                            '<input type="text" name="mun_experience[]" value="" class="form-control"  placeholder="MUN Experience (if any)" aria-describedby="textHelp" required>'+
+                            '<input type="text" name="mun_experience[]" value="" maxlength="80" class="form-control"  placeholder="MUN Experience (if any)" aria-describedby="textHelp" required>'+
                             '<div class="text-danger mt-2"></div>'+
                         '</div>'+
                    '</div>'+
                     '<div class="col-md-4">'+
                         '<div class="form-group">'+
                             '<label for="form-label">Bureau Member Experience*</label>'+
-                            '<input type="text" name="bureaumem_experience[]" value="" class="form-control" placeholder="Bureau Member Experience" aria-describedby="textHelp" required>'+
+                            '<input type="text" name="bureaumem_experience[]" value="" maxlength="80" class="form-control" placeholder="Bureau Member Experience" aria-describedby="textHelp" required>'+
                             '<div class="text-danger mt-2"></div>'+
                         '</div>'+
                     '</div>'+
@@ -224,7 +222,30 @@ $(document).ready(function() {
 
 
 
+    $(document).on('change', '.img_valid', function (e) {
+        e.preventDefault();
+    
+        var input = $(this);
+            input.closest('div').find('.img_valid_err').remove();
+        var fsize = input[0].files[0].size;
+        var ftype = input[0].files[0].type;
+      if(ftype == "image/jpeg" || ftype == "image/png" || ftype == "image/svg"){
+      
+        var file = Math.round((fsize / 1024));
+            // The size of the file.
+            if (file >= 10240) {
+                input.val("");  
+                input.after("<div class='text-danger mt-2 img_valid_err'> File too Big, please select a file less than 10MB </div>");  
+            } else if (file < 20) {
+                input.val("");  
+                input.after("<div class='text-danger mt-2 img_valid_err'> File too small, please select a file greater than 20 KB </div>");  
+            }
+        }else{
+            input.val(""); 
+            input.after("<div class='text-danger mt-2 img_valid_err'> Upload jpeg/png/svg Images only </div>");  
+        }
 
+        });
 
 
 });
