@@ -4,35 +4,35 @@ $(document).ready(function() {
         $('.alert').fadeOut()
        }, 1500);
 
-var enddate = $('#clock-c').data("date");
+    var enddate = $('#clock-c').data("date");
 
-$('#clock-c').countdown(enddate, function(event) {
-    var $this = $(this).html(event.strftime('' +
-        '<span class="counter-text">%D :<span class="counter-line"> Days</span> </span>' +
-        '<span class="counter-text">%H :<span class="counter-line"> Hours</span> </span>' +
-        '<span class="counter-text">%M :<span class="counter-line"> Minutes</span> </span>' +
-        '<span class="counter-text">%S<span class="counter-line">Seconds</span></span>'));
+    $('#clock-c').countdown(enddate, function(event) {
+        var $this = $(this).html(event.strftime('' +
+            '<span class="counter-text">%D :<span class="counter-line"> Days</span> </span>' +
+            '<span class="counter-text">%H :<span class="counter-line"> Hours</span> </span>' +
+            '<span class="counter-text">%M :<span class="counter-line"> Minutes</span> </span>' +
+            '<span class="counter-text">%S<span class="counter-line">Seconds</span></span>'));
+    });
+
 });
 
-});
 
 $(document).ready(function() {
+
     $('#side_opener').click(function() {
         $("#navbar-menu").fadeIn(500)
     });
+
     $('#side_closer').click(function() {
         $("#navbar-menu").fadeOut(500)
     });
 
 
-
-
-
     $(document).ready(function() {
-        var i=3; 
+        var i=1; 
         $('#add-student').click(function() {
             i++;
-        var array_no =i-1;
+        // var array_no =i-1;
 
         var html='<div class="form-section mb-5 student'+i+'">'+
                     '<h4 class="color-darkblue mb-5">Student '+i+'</h4>'+
@@ -53,7 +53,7 @@ $(document).ready(function() {
                     '<div class="col-md-4">'+
                         '<div class="form-group">'+
                             '<label for="form-label">Email*</label>'+
-                            '<input type="email" name="email[]" value="" maxlength="80" class="form-control" placeholder="Email" aria-describedby="textHelp" required>'+
+                            '<input type="email" name="email[]" value="" maxlength="80" class="form-control user_email" placeholder="Email" aria-describedby="textHelp" required>'+
                             '<div class="text-danger mt-2"></div>'+
                         '</div>'+
                     '</div>'+     
@@ -104,51 +104,61 @@ $(document).ready(function() {
     });
 
 
-
-
     $(document).on('change', '.user_email', function (e) {
         e.preventDefault();
-    
+
         var input = $(this);
         var email = input.val();
-        $.ajaxSetup({
-            headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
+            input.closest('div').find('.email-valid').remove();
+        var i = 0;
 
-        let _token1   = $('meta[name="csrf-token"]').attr('content');
+            $(".user_email").each(function() {
+                if($(this).val() == email){
+                    i++;
+                }
+            });
 
-                $.ajax({
-                    type: "POST",
-                    url: './validate_user_email',
-                    dataType:"json",
-                    data: {
-                        email: email,
-                        
-                     },
-                     _token: _token1,
-                    success: function(responce){
-     
-                        if(responce.status==false){
-                            input.val(""); 
-                            input.closest('div').find('.email-valid').remove();
-                            input.after("<div class='text-danger mt-2 email-valid'> This email address is already in use </div>");  
-                            
-                        }else{
+        if(i<=1){
 
-                            input.closest('div').find('.email-valid').remove();  
-                            
+                    $.ajaxSetup({
+                        headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                }
+                            });
+
+                    let _token1   = $('meta[name="csrf-token"]').attr('content');
+
+                    $.ajax({
+                        type: "POST",
+                        url: './validate_user_email',
+                        dataType:"json",
+                        data: {
+                            email: email,  
+                        },
+                        _token: _token1,
+                        success: function(responce){
+        
+                            if(responce.status==false){
+                                input.val("");
+                                input.after("<div class='text-danger mt-2 email-valid'> This email address is already in use </div>");  
+                                
+                            }
+
+                        },
+
+                        error: function(xhr, status, error) {
+                            var err = eval("(" + xhr.responseText + ")");
+                            console.log(err);      
                         }
+                
+                    });
 
-                    },
+        }else{
 
-                    error: function(xhr, status, error) {
-                        var err = eval("(" + xhr.responseText + ")");
-                           console.log(err);      
-                    }
+            input.val("");
+            input.after("<div class='text-danger mt-2 email-valid'> This email address is already use in this form </div>");  
             
-                });
+        }
           
 
     });
@@ -161,64 +171,74 @@ $(document).ready(function() {
             input.closest('div').find('.phone-valid').remove();
         var phone = input.val();
 
-        var phoneno = /^\d+$/;
-        if(phone.match(phoneno))
-        {
-           
-        
 
-        $.ajaxSetup({
-            headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
+        var i = 0;
 
-        let _token2   = $('meta[name="csrf-token"]').attr('content');
+        $(".user_phone").each(function() {
+            if($(this).val() == phone){
+                i++;
+            }
+        });
 
-                $.ajax({
-                    type: "POST",
-                    url: './validate_user_phone',
-                    dataType:"json",
-                    data: {
-                        phone: phone,
-                        
-                     },
-                     _token: _token2,
-                    success: function(responce){
-     
-                        if(responce.status==false){
-                            input.val(""); 
-                            input.closest('div').find('.phone-valid').remove();
-                            input.after("<div class='text-danger mt-2 phone-valid'> This Phone number is already in use </div>");  
-                            
-                        }else{
+        if(i<=1){
 
-                            input.closest('div').find('.phone-valid').remove();  
-                            
+
+            var phoneno = /^\d+$/;
+            if(phone.match(phoneno))
+            { 
+
+            $.ajaxSetup({
+                headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         }
+                    });
 
-                    },
+            let _token2   = $('meta[name="csrf-token"]').attr('content');
 
-                    error: function(xhr, status, error) {
-                        var err = eval("(" + xhr.responseText + ")");
-                           console.log(err);      
-                    }
-            
-                });
+                    $.ajax({
+                        type: "POST",
+                        url: './validate_user_phone',
+                        dataType:"json",
+                        data: {
+                            phone: phone,
+                            
+                        },
+                        _token: _token2,
+                        success: function(responce){
+        
+                            if(responce.status==false){
+                                input.val(""); 
+                                input.closest('div').find('.phone-valid').remove();
+                                input.after("<div class='text-danger mt-2 phone-valid'> This Phone number is already in use </div>");  
+                                
+                            }
 
+                        },
 
-            }
-            else
-            {
-                input.val(""); 
-                input.closest('div').find('.whatsapp_no-valid').remove();
-                input.after("<div class='text-danger mt-2 phone-valid'> Not a valid Phone Number </div>");  
+                        error: function(xhr, status, error) {
+                            var err = eval("(" + xhr.responseText + ")");
+                            console.log(err);      
+                        }
                 
-            }
-          
+                    });
+
+
+                }
+                else
+                {
+                    input.val(""); 
+                    input.closest('div').find('.phone-valid').remove();
+                    input.after("<div class='text-danger mt-2 phone-valid'> Not a valid Phone Number </div>");  
+                    
+                }
+        }else{
+
+            input.val("");
+            input.after("<div class='text-danger mt-2 phone-valid'> This Phone Number is already use in this form </div>");  
+            
+        }      
 
     });
-
 
 
     $(document).on('change', '.img_valid', function (e) {
@@ -228,23 +248,22 @@ $(document).ready(function() {
             input.closest('div').find('.img_valid_err').remove();
         var fsize = input[0].files[0].size;
         var ftype = input[0].files[0].type;
-      if(ftype == "image/jpeg" || ftype == "image/png" || ftype == "image/svg"){
+        if(ftype == "image/jpeg" || ftype == "image/png" || ftype == "image/svg"){
       
-        var file = Math.round((fsize / 1024));
-            // The size of the file.
-            if (file >= 10240) {
-                input.val("");  
-                input.after("<div class='text-danger mt-2 img_valid_err'> File too Big, please select a file less than 10MB </div>");  
-            } else if (file < 20) {
-                input.val("");  
-                input.after("<div class='text-danger mt-2 img_valid_err'> File too small, please select a file greater than 20 KB </div>");  
-            }
+            var file = Math.round((fsize / 1024));
+                // The size of the file.
+                if (file >= 10240) {
+                    input.val("");  
+                    input.after("<div class='text-danger mt-2 img_valid_err'> File too Big, please select a file less than 10MB </div>");  
+                } else if (file < 20) {
+                    input.val("");  
+                    input.after("<div class='text-danger mt-2 img_valid_err'> File too small, please select a file greater than 20 KB </div>");  
+                }
         }else{
             input.val(""); 
             input.after("<div class='text-danger mt-2 img_valid_err'> Upload jpeg/png/svg Images only </div>");  
         }
 
-        });
-
+    });
 
 });
