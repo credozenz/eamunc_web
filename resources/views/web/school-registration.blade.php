@@ -138,7 +138,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="form-label">Class & Section*</label>
-                                        <input type="text" name="class[]" value="{{ old('class.1') }}" maxlength="80" class="form-control user_phone @error('class') border-danger @enderror" {{ $errors->has('class') ? 'autofocus' : '' }} placeholder="Class & Section" aria-describedby="textHelp" required>
+                                        <input type="text" name="class[]" value="{{ old('class.1') }}" maxlength="80" class="form-control @error('class') border-danger @enderror" {{ $errors->has('class') ? 'autofocus' : '' }} placeholder="Class & Section" aria-describedby="textHelp" required>
                                         @error('class')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
