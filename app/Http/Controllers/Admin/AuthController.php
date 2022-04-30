@@ -29,8 +29,8 @@ class AuthController extends Controller
         if($request->email != '' && $request->password != '')
         {
             $admin = DB::table('users')
-                        ->where('email', $request->email);
-                        // ->where('status', 1);
+                        ->where('email', $request->email)
+                        ->where('role', 1);
                   
             if($admin->count() > 0)
             {

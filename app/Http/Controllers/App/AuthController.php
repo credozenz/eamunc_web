@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Webapp;
+namespace App\Http\Controllers\App;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -10,48 +10,53 @@ use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
-    public function index()
+    public function getLogin()
     {
-        return view('Webapp.login');
+        
+        return view('app/login');
     }
 
 
-    public function login(Request $request)
+    public function postLogin(Request $request)
     {
-        
+        $validatedData = $request->validate([
+            'email' => 'required|max:255',
+            'password' => ['required'],
+        ],[
+            'email.required' => 'The Email field is required',
+            'password.required' => 'The Password field is required',
+        ]);
+
         if($request->email != '' && $request->password != '')
         {
-            $admin = DB::table('users')
-                        ->where('email', $request->email)
-                        ->where('status', 1);
-                        
-            if($admin->count() > 0)
+            $users = DB::table('users')
+                        ->where('email', $request->email);
+                  
+            if($users->count() > 0)
             {
-                $admin = $admin->first();
-                if(Hash::check($request->password,$admin->password))
+                $user = $users->first();
+                
+                if(Hash::check($request->password,$user->password))
                 {
-                    $datas['ID']   = $admin->id;
-                    $datas['ROLE'] = $admin->role;
-                    $datas['NAME'] = $admin->name;
-                    $datas['EMAIL'] = $admin->email;
+                   
+                    $datas['Log_ID']    = $user->id;
+                    $datas['Log_ROLE']  = $user->role;
+                    $datas['Log_NAME']  = $user->name;
+                    $datas['Log_EMAIL'] = $user->email;
                     Session::put($datas);
 
-                return redirect('webapp/dashboard'); 
-                 
+               
+                return redirect('/app/dashbord'); 
+  
+                }else{
+                    Session::flash('error', 'Something went wrong!');
+                    return redirect()->back();
                 }
-                else
-                {
-                    return redirect()->back()->with('not_found','Invalid Login');
-                }
-            }
-            else
-            {
+            }else{
 
                 return redirect()->back()->with('not_found','Invalid Login');
             }
-        }
-        else
-        {
+        }else{
             return redirect()->back()->with('fill','Both fields have to be filled');
         }
     }
