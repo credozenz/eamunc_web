@@ -16,9 +16,8 @@
         <div class="row h-100">
             <div class="col-lg-5 col-12">
                 <div id="auth-left">
-                    <div class="auth-logo">
-                        <img src="{{ asset('assets/admin/img/logo.png') }}" alt="E.A.MUNC" style="border: inset;"><h2 class="title">E.A.MUNC.COM</h2>
-                    </div>
+                    <h5 class="text-primary mb-3 d-inline-block ps-2 " style="line-height: 22px;">  E.Ahamed Model
+                    United Nations Conference</h5>
                     
                     <h1 class="auth-title">Log in.</h1>
 
@@ -28,7 +27,7 @@
                     <div class="alert alert-danger"><i class="bi bi-file-excel"></i> {{ Session::get('error') }}</div>
                     @endif
 
-                    <form method="post" action="{{ url('admin/login') }}">
+                    <form method="post" action="{{ url('app/login') }}">
                                 @csrf
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input type="email" class="form-control form-control-xl"  name="email" placeholder="Enter email" value="{{ old('email') }}">
@@ -49,18 +48,19 @@
                     </form>
                     
                 </div>
-            </div>
-            <div class="col-lg-7 d-none d-lg-block">
-                <div id="auth-right">
-                    <img src="{{ asset('assets/admin/img/hero.jpg') }}" alt="Logo">
-                
-                        <div class="footer clearfix mb-0 text-muted">
+                <div class="footer clearfix mb-0 text-muted">
                             <div class="float-start">   
                             </div>
                             <div class="float-end">
                             <p>2022 &copy; E.A.MUNC</p>
                             </div>
                         </div>
+            </div>
+            <div class="col-lg-7 d-none d-lg-block">
+                <div id="auth-right">
+                    <img src="{{ asset('assets/admin/img/hero.jpg') }}" alt="Logo">
+                
+                       
                 </div>
             </div>
         </div>   
@@ -68,9 +68,5 @@
 </body>
 
 <script src="{{asset('js/admin/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset('js/admin/apexcharts.js')}}"></script>
-<script src="{{asset('js/admin/pages/dashboard.js')}}"></script>
-<script src="{{asset('js/admin/sidebar.js')}}"></script>
-<script src="{{asset('js/admin/admin.js')}}"></script>
 
 </html>

@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Middleware\App;
-
+use Session;
 use Closure;
 use Illuminate\Http\Request;
 
-class LoginRoleChecker
+class BureauChecker
 {
+  
     /**
      * Handle an incoming request.
      *
@@ -16,19 +17,21 @@ class LoginRoleChecker
      */
     public function handle(Request $request, Closure $next)
     {
-        
-        if(Session::has('ID'))
+       
+        if(Session::has('Log_ID'))
         {
           
-            if(Session::get('ROLE') == 'admin')
+            if(Session::get('Log_ROLE') == '3')
             {
-                return redirect('/dashboard');
+                return $next($request); 
             }
             
         }
         else
         {
-            return $next($request);            
+            return redirect('/app');          
         }
+ 
+      
     }
 }

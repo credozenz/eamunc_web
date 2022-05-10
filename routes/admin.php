@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\MentorsController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\LiveController;
 use App\Http\Controllers\Admin\WorkMembersController;
+use App\Http\Controllers\Admin\MembersController;
 use App\Http\Controllers\Admin\HostSchoolController;
 use App\Http\Controllers\Admin\ParticipateSchoolController;
 use App\Http\Controllers\Admin\ActImpactsController;
@@ -43,6 +44,8 @@ use App\Http\Controllers\Admin\FeedbackController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
      Route::get('/', [AuthController::class,'getLogin']);
      Route::post('/login', [AuthController::class,'postLogin']);
 
@@ -250,5 +253,9 @@ Route::group(['middleware' => 'adminchecker'], function() {
      Route::get('/school_delegates_show/{id}', [DelegateController::class,'school_delegates_show'])->name('admin.school_delegates.show');
      Route::post('/school_delegates_update/{id}', [DelegateController::class,'school_delegates_update'])->name('admin.school_delegates.update');
      Route::post('/school_delegates_delete/{id}', [DelegateController::class,'school_delegates_destroy'])->name('admin.school_delegates.destroy');
+
+     Route::get('/members', [MembersController::class,'members'])->name('admin.members');
+     Route::get('/members_show/{id}', [MembersController::class,'members_show'])->name('admin.members.show');
+     Route::post('/member_rolechange/{id}', [MembersController::class,'member_rolechange'])->name('admin.committee.rolechange');
 
 });

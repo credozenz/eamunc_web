@@ -33,7 +33,14 @@ class CommitteesController extends Controller
         
 
         $committees = Committee::find($id); 
-        $members = Committee_member::where('committe_id', $id)->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(20);
+        $members = DB::table('users as u')
+        ->leftjoin('committee_members as cm', 'cm.user_id', '=', 'u.id')
+        ->select('u.*')
+        ->where('u.deleted_at', null)
+        ->where('u.role','3')
+        ->where('committe_id', $id)
+        ->paginate(20);
+        // $members = Committee_member::where('committe_id', $id)->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(20);
         return view('web/committees-inner', compact('committees','members'));
 
 

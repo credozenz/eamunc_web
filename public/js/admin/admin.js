@@ -64,6 +64,97 @@ $(function(){
 });
 
 
+
+
+$(document).on('click', '.roleButton', function (e) {
+    e.preventDefault();
+    
+    var url = $(this).data('url');
+    var replace_url = $(this).data('replaceurl');
+    var data_val = $(this).data('dataval');
+
+    $.ajaxSetup({
+        headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+    let _token1   = $('meta[name="csrf-token"]').attr('content');
+
+    if(data_val=='3'){
+
+        var alert= "You want to change the user role to Bureau members!";
+
+    } else if(data_val=='2') {
+       
+        var alert= "You want to change the user role to Delegates!";
+
+    }
+
+
+    swal({
+        title: "Are you sure?",
+        text: alert,
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+
+
+
+
+    .then((willDelete) => {
+        if (willDelete) {
+
+
+            $.ajax({
+                type: "POST",
+                url: url, 
+                dataType:"json",
+                data: {status:data_val},
+                _token: _token1,
+                success: function(responce){
+        
+                    if(responce.status){
+
+                        swal(responce.message, {
+                            icon: "success",
+                        });
+                        setTimeout(function(){
+                            window.location.reload(1);
+                         }, 2500);
+                    }else{
+                        swal(responce.message);
+                        setTimeout(function(){
+                            window.location.reload(1);
+                         }, 2500);
+                    }
+
+                },
+
+
+                error: function(xhr, status, error) {
+                    var err = eval("(" + xhr.responseText + ")");
+                    swal(err.Message);
+                    setTimeout(function(){
+                        window.location.reload(1);
+                     }, 2500);
+                }
+        
+            });
+        
+        } else {
+        
+            setTimeout(function(){
+                window.location.reload(1);
+             }, 2500);
+        }
+    });
+
+});
+
+
+
     setTimeout(function () {
      $('.alert').fadeOut()
     }, 1500);
@@ -126,6 +217,15 @@ $(function(){
         });
 
 
+    });
+
+
+
+    $(document).ready(function () {
+        $('.select2-multiple').select2({
+            placeholder: "Select",
+            allowClear: true
+        });
     });
 
 

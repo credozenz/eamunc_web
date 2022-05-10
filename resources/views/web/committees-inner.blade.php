@@ -22,7 +22,12 @@
                         @foreach ($members as $key => $value)
 
                         <div class="col-lg-3 col-md-4 col-6 image-box mb-4">
-                        <img src="{{ asset('uploads/'.$value->image) ?? '' }}" alt="{{ $value->name ?? '' }}">
+                              @if(!empty($value->image)) 
+                              <img src="{{ asset('uploads/'.$value->image) ?? '' }}" alt="{{ $value->name ?? '' }}">
+                              @else
+                              <img class="w-100 active" src="{{ asset('assets/img/avatar.svg') }}" style ="min-height: 93%;" data-bs-slide-to="0">
+                              @endif
+                       
                             <p class="mentor-name text-center">{{ $value->name ?? '' }}</p>
                             <p class="mentor-designation text-center color-blue">{{ $value->post ?? '' }}</p>
                         </div>

@@ -26,7 +26,7 @@
                         <div class="menu-right">
                             <a href="{{ route('registration') }}" class="button register-btn">Register Now</a>
                             <span class="divider"></span>
-                            <a href="#" class="button signin-btn">Sign In</a>
+                            <a href="/app" class="button signin-btn">Sign In</a>
                         </div>
                     </div>
 

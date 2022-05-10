@@ -52,19 +52,20 @@ class AuthController extends Controller
                 }
                 else
                 {
-                    Session::flash('error', 'Something went wrong!');
+                    Session::flash('error', 'Invalid Password !');
                     return redirect()->back();
                 }
             }
             else
             {
-
-                return redirect()->back()->with('not_found','Invalid Login');
+                Session::flash('error', 'Not found !,invalid login credentials');
+                return redirect()->back();
             }
         }
         else
         {
-            return redirect()->back()->with('fill','Both fields have to be filled');
+            Session::flash('error', 'Required !,Username and Password fields have to be filled');
+            return redirect()->back();
         }
     }
 

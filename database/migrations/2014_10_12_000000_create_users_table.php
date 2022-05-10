@@ -20,10 +20,12 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('phone')->unique();
             $table->integer('role') ->comment('1->Super admin,2->Delegates,3->Bureau members,4->President');
+            $table->integer('type') ->comment('0->ISG Delegates,2->School Delegates');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

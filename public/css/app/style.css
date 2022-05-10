@@ -1,0 +1,644 @@
+#hero {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.mh-90 {
+    min-height: calc(90vh);
+}
+
+#counter {
+    background: #000;
+    text-align: center;
+}
+
+#counter .countdown {
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    justify-content: center;
+    max-width: 60%;
+    align-items: center;
+    margin: 0 auto;
+    margin-bottom: 16px;
+}
+
+#counter .counter-text {
+    font-weight: normal;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    align-items: center;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 80px;
+    justify-content: space-between;
+    font-family: 'Inter', sans-serif;
+    min-width: 70%;
+}
+#counter .number {
+    position: relative;
+}
+
+#counter .counter-line {
+    position: absolute;
+    text-transform: uppercase;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 10px;
+    bottom: -20px;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.header-padding {
+    padding: 40px 0;
+}
+
+#header .navbar {}
+
+#header .navbar .navbar-header {
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+#header .navbar .navbar-header .navbar-brand {
+    display: inline-block;
+    padding: 0;
+}
+
+#header .menu {
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    width: 100%;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+#header .menu .menu-right {
+    width: 50%;
+    text-align: right;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#header .button {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.menu-helper {
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    align-items: center;
+}
+
+.register-btn {
+    background: #166EE1;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.signin-btn {
+    color: #000;
+}
+
+.divider {
+    height: 30px;
+    width: 1px;
+    background: rgba(0, 0, 0, 0.3);
+    margin: 0 20px;
+    display: block;
+    max-height: 100%;
+}
+
+#header .menu .menu-left {
+    width: 40%;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    align-items: center;
+}
+
+#header .menu .menu-left .toggler {
+    padding-right: 20px;
+    border-right: 1px solid rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+#header .menu .menu-left .main-line {
+    color: #2763AB;
+    padding-left: 20px;
+    font-weight: 600;
+}
+
+#header .sidemenu {
+    position: fixed;
+    left: 0;
+    height: 100%;
+    background: #1B0404;
+    color: #fff;
+    width: 400px;
+    max-width: 100%;
+    bottom: 0;
+    padding: 100px 60px;
+}
+
+#header .sidemenu .nav li {
+    margin-bottom: 10px;
+}
+
+#header .dropdown-menu {
+    background: #1B0404;
+}
+
+#header .sidemenu .nav li a {}
+
+.nav-item.dropdown>.nav-link {
+    padding: 0;
+}
+
+.dropdown-item {
+    color: #fff;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+button {
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+
+.closer {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    color: #fff;
+}
+
+.dropdown-item:hover {
+    color: #fff;
+    opacity: 0.8;
+    background: transparent;
+}
+
+.sidemenu-footer {
+    position: absolute;
+    bottom: 0;
+    padding: 60px 0 60px 0;
+    width: 400px;
+    left: 0;
+}
+
+.sidemenu-footer .footer-line {
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
+    border-top: 1px solid rgba(250, 250, 250, .3);
+    border-bottom: 1px solid rgba(250, 250, 250, .3);
+    padding: 20px 20px;
+    color: #8D9091;
+}
+
+.sidemenu-footer .footer-line p {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.sidemenu-footer .sidemenu-socials {
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidemenu-footer .sidemenu-socials li {
+    margin-right: 10px;
+}
+
+#message {}
+
+#message h3 {
+    font-weight: 500;
+}
+
+#message .box {
+    background: #5A91E4;
+    justify-content: space-between;
+}
+
+#message .box .image-box {
+    padding: 0;
+    margin: 0;
+}
+
+#message .box .image-box img {
+    height: 100%;
+    object-fit: cover;
+}
+
+#message .box .content-box {
+    padding: 80px 40px 40px;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#message .box .content-box .message-text {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 30px;
+}
+
+#message .box .content-box .message-name {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 30px;
+    margin-bottom: 0;
+    margin-top: 30px;
+}
+
+#message .box .content-box .message-designation {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+}
+
+#message .multi-message-box {
+    margin-top: 96px;
+    background: #5A91E4;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    justify-content: space-around;
+    padding: 40px;
+}
+
+#message .multi-message-box img {}
+
+#message .multi-message-box .image-box {
+    padding: 0 20px;
+}
+
+#message .multi-message-box .message-title {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 26px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+#message .multi-message-box .message-name {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+#message .multi-message-box .message-designation {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 30px;
+}
+
+#message .multi-message-box .message-name {}
+
+#message .multi-message-box .message-designation {}
+
+#contact_line {
+    background: #000;
+}
+
+#contact_line p {
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    margin-bottom: 0;
+    align-items: center;
+    font-weight: 600;
+    font-size: 22px;
+    justify-content: center;
+}
+
+#contact_line i {
+    margin-right: 10px;
+}
+
+#contact_line .fa-whatsapp {}
+
+#contact_line .fa-envelope {}
+
+#mentors {}
+
+#mentors h3 {
+    font-weight: 500;
+}
+
+#mentors .image-box {
+    margin-bottom: 24px;
+}
+
+#mentors .image-box img {
+    margin: 0 auto;
+    object-fit: cover;
+}
+
+.mentor-name {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.mentor-designation {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+#updates {}
+
+#updates h3 {
+    font-weight: 500;
+}
+
+.bg-black {
+    background: #000;
+    padding: 60px;
+    justify-content: space-around;
+}
+
+.bg-black .image-box {
+    text-align: center;
+}
+
+.bg-black .image-box .update-name {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: left;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+.bg-black .image-box .update-description {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 20px;
+    text-align: left;
+    margin-top: 10px;
+    width: 90%;
+    line-height: 2;
+}
+
+#schedule {}
+
+#schedule h3 {
+    font-weight: 500;
+}
+
+#schedule .schedule-card {
+    margin-top: 20px;
+}
+
+#schedule .schedule-card .text-head {
+    background: #000;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+#schedule .schedule-card .info-line {
+    border: 2px solid #2763AB;
+}
+
+#schedule .schedule-card .info-line .text-info {
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#schedule .schedule-card .info-line .text-info .text-card {
+    padding: 30px;
+}
+
+#schedule .schedule-card .text-head h6 {
+    margin-bottom: 0;
+    font-weight: 500;
+    font-size: 48px;
+}
+
+#schedule .schedule-card .text-line {
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+#schedule .schedule-card .date-line {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    margin-bottom: 0;
+}
+
+#schedule .notes {
+    margin-top: 20px;
+}
+
+#schedule .notes .note {
+    color: #3F3F3F;
+    margin-bottom: 20px;
+}
+
+footer {
+    background: #000;
+}
+
+.footer-top {
+    margin-bottom: 100px;
+}
+
+.footer-top ul {
+    padding: 0;
+    margin: 0;
+}
+
+.footer-top ul li {
+    margin-bottom: 20px;
+    font-family: "Inter";
+    font-style: normal;
+}
+
+.footer-top ul li a {
+    text-decoration: none;
+    font-family: "Inter";
+    font-style: normal;
+    font-size: 16px;
+}
+
+.footer-bottom {
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 0;
+    border-top: 1px solid #8D9091;
+    border-bottom: 1px solid #8D9091;
+}
+
+.footer-bottom .fa {}
+
+.footer-bottom ul {
+    padding: 0;
+    margin: 0;
+}
+
+.footer-bottom ul li:not(:last-child) {
+    margin-right: 20px;
+}
+
+.footer-bottom ul li a {
+    text-decoration: none;
+    font-size: 30px;
+}
+
+.footer-bottom .logo-text {
+    margin-bottom: 0;
+}
+
+.credit-notes {
+    margin-top: 20px;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    justify-content: space-between;
+}
+
+.vision-thumb {
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vision-image {
+    max-height: 300px;
+    object-fit: contain;
+}
+
+.letter-container {
+    margin-top: 60px;
+}
+
+.dates-container {
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    padding: 40px 0;
+}
+
+.dates-container p, strong {
+    font-size: 20px;
+    line-height: 2;
+}
+
+.download-btn {
+    background: #166EE1;
+    padding: 12px 40px;
+    color: #fff;
+    border: 2px solid #166EE1;
+}
+
+.download-btn-inverse {
+    background: transparent;
+    padding: 12px 40px;
+    color: #000;
+    border: 2px solid #166EE1;
+}
+
+.committee-card {
+    background: #166EE1;
+    margin: 0 0 30px 0;
+}
+
+.committee-thumb {
+    padding: 0;
+}
+
+.committee-thumb img {
+    display: block;
+    overflow: hidden;
+    height: 100%;
+    object-fit: cover;
+    max-height: 160px;
+}
+
+.committee-card .content {
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    color: #fff;
+}
+
+.committee-card .content strong {
+    font-size: 28px;
+    margin-bottom: 0;
+}
+
+.subnote {
+    font-weight: 700;
+}

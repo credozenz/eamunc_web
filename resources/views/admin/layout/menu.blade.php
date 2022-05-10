@@ -34,6 +34,23 @@
                 </ul>
             </li>
 
+            <li class="sidebar-item  @if($routeGroup =='members') active @endif ">
+                <a href="{{ route('admin.members') }}" class='sidebar-link'>
+                    <span><i class="fa fa-users" aria-hidden="true">&nbsp</i>Members</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item  has-sub @if($routeGroup=='committee') active @endif ">
+                <a href="#" class='sidebar-link'>
+                    <span><i class="fa fa-users" aria-hidden="true">&nbsp</i>Committee</span>
+                </a>
+                <ul class="submenu @if($routeGroup=='committee') active @endif">
+                    <li class="submenu-item ">
+                        <a href="{{ route('admin.committee') }}">Committee</a>
+                    </li>
+                </ul>
+            </li>
+
             <li class="sidebar-item  @if($routeGroup =='feedback') active @endif ">
                 <a href="{{ route('admin.user_feedback') }}" class='sidebar-link'>
                     <span><i class="fa fa-comment-o" aria-hidden="true">&nbsp</i>Feedback</span>
@@ -105,16 +122,7 @@
             </li>
 
 
-            <li class="sidebar-item  has-sub @if($routeGroup=='committee') active @endif ">
-                <a href="#" class='sidebar-link'>
-                    <span><i class="fa fa-users" aria-hidden="true">&nbsp</i>Committee</span>
-                </a>
-                <ul class="submenu @if($routeGroup=='committee') active @endif">
-                    <li class="submenu-item ">
-                        <a href="{{ route('admin.committee') }}">Committee</a>
-                    </li>
-                </ul>
-            </li>
+            
 
             <li class="sidebar-item  has-sub @if($routeGroup=='gallery') active @endif ">
                 <a href="#" class='sidebar-link'>

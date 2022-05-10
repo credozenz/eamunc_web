@@ -29,7 +29,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Add Members</h4>
+                        <h4 class="card-title">Add Bureau Members</h4>
                     </div>
                     <div class="card-content">
                         <div class="card-body">
@@ -38,34 +38,29 @@
                           <input type="hidden" name="committe_id" value="{{ $id }}" class="form-control  @error('committe_id') border-danger @enderror">
                                 <div class="row">
                                 <div class="col-md-6 col-12">
-                                <div class="form-group">
-                                        <label class="form-label text-danger">Name</label>
-                                        <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') border-danger @enderror" placeholder="Name">
+                                <div class="form-group ">
+                                        <label class="form-label text-danger">Bureau Members</label>
+                                        <select name="bureau_member" class="form-control select2-multiple" required="">
+                                            <option value=""> Select Bureau Member </option>
+                                            @foreach ($bureau_members as $key => $value)
+                                            <option value="{{ $value->id ?? '' }}" {{ (old('bureau_member') == $value->id ? "selected":"") }}> {{ $value->name ?? '' }}</option>
+                                            @endforeach
+                                        </select>
                                         @error('name')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-12">
                                 <div class="form-group">
-                                        <label class="form-label text-danger">Title</label>
-                                        <input type="text" name="title" value="{{ old('title') }}" class="form-control @error('title') border-danger @enderror" placeholder="Title">
+                                        <label class="form-label text-danger">Position</label>
+                                        <input type="text" name="title" value="{{ old('title') }}" class="form-control @error('title') border-danger @enderror" placeholder="Position">
                                         @error('title')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
+                              
                                 <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label class="form-label text-danger">image</label>
-                                     <fieldset>
-                                        <div class="input-group">
-                                            <input type="file" name="image"  class="form-control  @error('image') border-danger @enderror"  aria-label="Upload">
-                                           
-                                            <button class="btn btn-primary">Upload</button>
-                                        </div>
-                                        <small>Image Dimension:256x291, Size below 3MB</small>
-                                    </fieldset>
-                                    @error('image')<div class="text-danger mt-2">{{ $message }}</div>@enderror
-                                        </div>
-                                    </div>
-                                
+                                <button class="btn btn-primary">ADD</button>
+                                         </div>
                                 </div>
                             </form>
                         </div>
@@ -80,24 +75,27 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="card-title">Members</h5>
+                        <h5 class="card-title">Bureau Members</h5>
                     </div>
                     <div class="card-body">
 
                         <div class="row gallery" data-bs-toggle="modal" data-bs-target="#galleryModal">
                        
                             @foreach ($data as $key => $value)
-                            <div class="col-6 col-sm-6 col-lg-3 mt-2 mt-md-0 mb-md-0 mb-2">
-                            <a class="btn-sm icon btn-danger rounded-pill dltButton"  data-url="{{ url('admin/member_delete',$value->id) }}" data-replaceurl="{{ url('admin/committee_members',$id) }}" title="Delete Member">x</a>
-                                <img class="w-100 active" src="{{ asset('uploads/'.$value->image) }}" data-bs-slide-to="0">
-                                    
+                            <div class="col-6 col-sm-6 col-lg-3 mt-2 mt-md-0 mb-md-0 mb-2" style="margin-bottom: 5rem !important;">
+                            <a class="btn-sm icon btn-danger dltButton"  data-url="{{ url('admin/member_delete',$value->id) }}" data-replaceurl="{{ url('admin/committee_members',$id) }}" title="Delete Member">x</a>
+                              @if(!empty($value->image)) 
+                              <img class="w-100 active" src="{{ asset('uploads/'.$value->image) }}" data-bs-slide-to="0">
+                              @else
+                              <img class="w-100 active" src="{{ asset('assets/img/avatar.svg') }}" style ="min-height: 83%;" data-bs-slide-to="0">
+                              @endif
                                 <span>{{ $value->name }}</span><br>
                                 <span>{{ $value->title }}</span>
                             </div>
                             @endforeach
                            
                         </div>
-
+                        @include('admin.layout.pagination', ['paginator' => $data])
                     </div>
                     </div>
                     <div class="col-12 d-flex justify-content-end">

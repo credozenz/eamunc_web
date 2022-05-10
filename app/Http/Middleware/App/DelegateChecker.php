@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Middleware\Admin;
+namespace App\Http\Middleware\App;
 use Session;
 use Closure;
 use Illuminate\Http\Request;
 
-class AdminRoleChecker
+class DelegateChecker
 {
     /**
      * Handle an incoming request.
@@ -18,10 +18,10 @@ class AdminRoleChecker
     {
        
        
-        if(Session::has('ID'))
+        if(Session::has('Log_ID'))
         {
-          
-            if(Session::get('ROLE') == '1')
+            
+            if(Session::get('Log_ROLE') == '2')
             {
                 return $next($request); 
             }
@@ -29,7 +29,8 @@ class AdminRoleChecker
         }
         else
         {
-            return redirect('/admin');          
+            return redirect('/app');          
         }
+ 
     }
 }

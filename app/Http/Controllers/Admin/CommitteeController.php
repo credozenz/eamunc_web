@@ -10,6 +10,7 @@ use View;
 use App\Helper\AdminHelper;
 use App\Models\Committee;
 use App\Models\Committee_member;
+use App\Models\User;
 use Carbon\Carbon;
 use Str;
 use Image;
@@ -253,53 +254,48 @@ class CommitteeController extends Controller
 
     public function committee_members($id)
     {
-        $data = Committee_member::where('committe_id', $id)->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(20);
-        return view('admin/committee/add_members', compact('data','id'));
+        $data = DB::table('users as u')
+        ->leftjoin('committee_members as cm', 'cm.user_id', '=', 'u.id')
+        ->select('cm.*')
+        ->where('u.deleted_at', null)
+        ->where('u.role','3')
+        ->where('committe_id', $id)
+        ->paginate(20);
+      
+        $bureau_members = DB::table('users as u')
+        ->leftjoin('committee_members as cm', 'cm.user_id', '=', 'u.id')
+        ->select('u.*')
+        ->where('u.deleted_at', null)
+        ->where('u.role','3')
+        ->where('cm.user_id', null)
+        ->get();
+        return view('admin/committee/add_members', compact('data','id','bureau_members'));
     }
 
     public function add_members(Request $request)
     {
-
+        
+        
         $validatedData = $request->validate([
             'committe_id' => 'required|max:255',
-            'name' => 'required|max:255',
-            'title' => 'required|max:255',
-            'image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:2055'],
+            'bureau_member' => 'required|max:255',
+            'title' => 'required|max:255'
         ],[
             'committe_id.required' => 'The Title field is required',
-            'name.required' => 'The Name field is required',
+            'bureau_member.required' => 'The Bureau member field is required',
             'title.required' => 'The Title field is required',
-            'image.required' => 'The Image field is required',
-            'image.max' => 'Image  must be smaller than 2 MB',
-            'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
         ]);
+
+        $bureau_member = User::where('id',$request->bureau_member)->first();
+        
 
         $members = new Committee_member;
         $members->committe_id = $request->committe_id;
-        $members->name = $request->name;
+        $members->name = $bureau_member->name;
+        $members->user_id = $bureau_member->id;
         $members->title = $request->title;
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $fileName   =  time().'_'.str_random(5).'_'.rand(1111,9999). '.' . $image->getClientOriginalExtension();
-          
-            $extension=$image->getClientOriginalExtension();
-           
-            if($extension=='svg'){
-               $img = $image->get();
-            }else{
-                $img = Image::make($image->getRealPath());
-                $img->resize(256,291, function ($constraint) {
-                   $constraint->aspectRatio();                 
-                });
-                $img->stream('png', 100);
-            }
-            
-            Storage::disk('public')->put('committee_members/'.$fileName,$img,'public');
-           }
-
-           $members->image = 'committee_members/'.$fileName; 
-
-           $members->save();
+        $members->image = $bureau_member->avatar;
+        $members->save();
 
 
         if($members->id){
