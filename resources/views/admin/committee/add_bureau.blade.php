@@ -5,13 +5,13 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Committee Members</h3>
+                <h3>Committee Bureau Members</h3>
                 <p class="text-subtitle text-muted"></p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ url('admin/committee') }}">Committee Members</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('admin/committee') }}">Committee Bureau Members</a></li>
                         <li class="breadcrumb-item active" aria-current="page"> Add Members</li>
                     </ol>
                 </nav>
@@ -33,7 +33,7 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                        <form method="post" action="{{ url('admin/committee_add_members') }}"  enctype="multipart/form-data">
+                        <form method="post" action="{{ url('admin/committee_add_bureau') }}"  enctype="multipart/form-data">
                           @csrf
                           <input type="hidden" name="committe_id" value="{{ $id }}" class="form-control  @error('committe_id') border-danger @enderror">
                                 <div class="row">
@@ -83,14 +83,14 @@
                        
                             @foreach ($data as $key => $value)
                             <div class="col-6 col-sm-6 col-lg-3 mt-2 mt-md-0 mb-md-0 mb-2" style="margin-bottom: 5rem !important;">
-                            <a class="btn-sm icon btn-danger dltButton"  data-url="{{ url('admin/member_delete',$value->id) }}" data-replaceurl="{{ url('admin/committee_members',$id) }}" title="Delete Member">x</a>
+                            <a class="btn-sm icon btn-danger dltButton"  data-url="{{ url('admin/committee_dlt_bureau',$value->id) }}" data-replaceurl="{{ url('admin/committee_bureau',$id) }}" title="Delete Member">x</a>
                               @if(!empty($value->image)) 
                               <img class="w-100 active" src="{{ asset('uploads/'.$value->image) }}" data-bs-slide-to="0">
                               @else
                               <img class="w-100 active" src="{{ asset('assets/img/avatar.svg') }}" style ="min-height: 83%;" data-bs-slide-to="0">
                               @endif
-                                <span>{{ $value->name }}</span><br>
-                                <span>{{ $value->title }}</span>
+                                <span>{{ $value->name ?? '' }}</span><br>
+                                <span>{{ $value->title ?? '' }}</span>
                             </div>
                             @endforeach
                            
@@ -100,7 +100,7 @@
                     </div>
                     <div class="col-12 d-flex justify-content-end">
                                     <a href="{{ url('admin/committee') }}" class="btn btn-light-secondary me-1 mb-1">Back</a>
-                                    <a href="{{ url('admin/committee') }}" class="btn btn-primary me-1 mb-1">Done</a>
+                                    <a href="{{ url('admin/committee_delegate',$id) }}" class="btn btn-primary me-1 mb-1">Done</a>
                                     </div>
                 
             </div>

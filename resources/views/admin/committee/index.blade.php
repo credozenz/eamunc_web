@@ -43,8 +43,8 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Title</th>
-                                        <th>Image</th>
+                                        <th>Name</th>
+                                        <th>Members</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -54,13 +54,12 @@
                                 @foreach ($data as $key => $value)
                                     <tr>
                                         <td class="text-bold-500">{{ $key+1 }}</td>
-                                        <td class="text-bold-500">{{ $value->title }}</td>
+                                        <td class="text-bold-500">{{ $value->name ?? '' }}  ({{ $value->title ?? '' }})</td>
                                         <td>
-
-                                        <div class="w-30 h-30 relative image-fit  mb-2 mr-5 ">
-                                            <img alt="{{ $value->title }}" class="rounded-full" src="{{ asset('uploads/'.$value->image) }}" width="300" height="80">
-                                        </div>
-    
+                                        <a href="{{ url('admin/committee_bureau',$value->id) }}" class="btn-sm btn-success shadow-md mr-2">Bureau Members</a>
+                      
+                                       
+                                        <a href="{{ url('admin/committee_delegate',$value->id) }}" class="btn-sm btn-warning shadow-md mr-2">Delegates</a>
                                         </td>
                                         <td>
                                         <a href="{{ url('admin/committee_show',$value->id) }}" class="btn btn-sm btn-primary w-24 mr-1 mb-2">View</a>

@@ -57,7 +57,7 @@ color: #939393;
 }
 
 .dasboard li::before{
-    content: 'â—‰';
+    content: '◉';
     position: absolute;
     top: 0;
     left: 0;

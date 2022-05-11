@@ -39,7 +39,7 @@
                             <div class="row">
                             <div class="col-md-6 col-12">
                                 <div class="form-group">
-                                        <label class="form-label text-danger">Name</label>
+                                        <label class="form-label text-danger">Short Name</label>
                                         <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') border-danger @enderror" placeholder="Name">
                                         @error('name')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
@@ -54,7 +54,7 @@
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
-                                        <label class="form-label text-danger">Title</label>
+                                        <label class="form-label text-danger">Full Name</label>
                                         <input type="text" name="title" value="{{ old('title') }}" class="form-control @error('title') border-danger @enderror" placeholder="Title">
                                         @error('title')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
@@ -68,7 +68,7 @@
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
-                                        <label class="form-label text-danger">Sub Title</label>
+                                        <label class="form-label text-danger">Title</label>
                                         <input type="text" name="sub_title" value="{{ old('sub_title') }}" class="form-control @error('sub_title') border-danger @enderror" placeholder="Sub Title">
                                         @error('sub_title')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>

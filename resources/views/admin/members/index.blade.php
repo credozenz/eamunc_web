@@ -57,9 +57,9 @@
                                         <td class="text-bold-500">{{ $value->email }}</td>
                                         <td class="text-bold-500">{{ $value->phone }}</td>
                                         <td class="text-bold-500">
-                                        @if($value->type=='0')
+                                        @if($value->type=='1')
                                         <small>ISG Student</small>
-                                        @elseif($value->type=='1')
+                                        @elseif($value->type=='2')
                                         <small>Participating School Student</small>
                                         @endif
                                         </td>

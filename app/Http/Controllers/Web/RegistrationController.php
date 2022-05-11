@@ -66,7 +66,8 @@ class RegistrationController extends Controller
             $user->name  = $request->name;
             $user->email = $request->email;
             $user->phone = $request->whatsapp_no;
-            $user->role = 3;
+            $user->role = 2;
+            $user->type = 1;
             $user->save();
            
             if($user->id){
@@ -194,7 +195,8 @@ class RegistrationController extends Controller
             $user->name  = $name[$count];
             $user->email = $email[$count];
             $user->phone = $whatsapp_no[$count];
-            $user->role = 3;
+            $user->role = 2;
+            $user->type = 2;
             $user->save();
         
              $delegate = new School_Delegates;

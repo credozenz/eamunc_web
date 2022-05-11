@@ -22,21 +22,21 @@
 
             <li class="sidebar-item  has-sub @if($routeGroup=='delegates') active @endif">
                 <a href="#" class='sidebar-link'>
-                    <span><i class="fa fa-user-plus" aria-hidden="true">&nbsp</i>Delegates</span>
+                    <span><i class="fa fa-graduation-cap" aria-hidden="true">&nbsp</i>Students</span>
                 </a>
                 <ul class="submenu @if($routeGroup=='delegates') active @endif">
                     <li class="submenu-item ">
-                        <a href="{{ route('admin.isg_delegates') }}">ISG Delegates</a>
+                        <a href="{{ route('admin.isg_delegates') }}">ISG Students</a>
                     </li>
                     <li class="submenu-item ">
-                        <a href="{{ route('admin.school_delegates') }}">School Delegates</a>
+                        <a href="{{ route('admin.school_delegates') }}">Participating School Students</a>
                     </li>
                 </ul>
             </li>
 
             <li class="sidebar-item  @if($routeGroup =='members') active @endif ">
                 <a href="{{ route('admin.members') }}" class='sidebar-link'>
-                    <span><i class="fa fa-users" aria-hidden="true">&nbsp</i>Members</span>
+                    <span><i class="fa fa-sitemap" aria-hidden="true">&nbsp</i>Role Manage</span>
                 </a>
             </li>
 

@@ -8,13 +8,13 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>School Delegates</h3>
+                <h3>Participating School Student</h3>
                 <p class="text-subtitle text-muted"></p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ url('admin/school_delegates') }}">School Delegates</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('admin/school_delegates') }}">Participating School Student</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Show </li>
                     </ol>
                 </nav>
@@ -101,7 +101,7 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                <h4 class="color-darkblue mb-5">Delegate Details</h4>
+                                <h4 class="color-darkblue mb-5">Student Details</h4>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="text-danger">Name</label>
@@ -144,8 +144,36 @@
                                             <input type="text" name="bureaumem_experience" value="{{ $data->bureaumem_experience }}" class="form-control" disabled placeholder="MUN Experience">
                                         </div>
                                     </div>
+
+                                    <div class="card-body">
+
+                                <form method="post" action="{{ url('admin/school_delegates_update',$user->id) }}"  enctype="multipart/form-data">
+                                  @csrf
+                                  
                                    
-                                   
+                                    <h4 class="color-darkblue mb-5">Change Status</h4>
+                                    <div class="row">
+                                    <div class="col-md-10 col-12">
+                                        <div class="form-group">
+                                           
+                                            <select name="committee_choice" class="form-control " placeholder="Committee of Choice" required="">
+                                            <option value=""> User status </option>
+                                                <option value="0"> Pending</option>
+                                                <option value="1"> Approve</option>
+                                                <option value="2"> Active</option>
+                                                <option value="3"> Reject</option>
+                                            </select>
+                                        </div>
+                                      </div>
+                                        <div class="col-md-2 col-12">
+                                       
+                                        <button class="btn btn-primary me-1 mb-1">Change</button>
+                                    </div>
+                                    </div>
+                                    
+
+                                </form>
+                                </div>
                                    
                                     <div class="col-12 d-flex justify-content-end">
                                          <a href="{{ url('admin/school_delegates') }}" class="btn btn-light-secondary me-1 mb-1">Back</a>

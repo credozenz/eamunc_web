@@ -42,8 +42,8 @@ class DelegateController extends Controller
     {
        
         $data = Isg_delegates::where('id', $id)->where('deleted_at', null)->first();   
-        
-        return view('admin/delegates/isg_delegate_show', compact('data'));
+        $user = User::where('id', $data->user_id)->first(); 
+        return view('admin/delegates/isg_delegate_show', compact('data','user'));
        
     }
 
@@ -124,11 +124,17 @@ class DelegateController extends Controller
     public function isg_delegates_destroy(Request $request,$id)
     {
 
-        $delegate = Isg_delegates::where('id', $id)->first(); 
         $mytime = Carbon::now();
         $timestamp=$mytime->toDateTimeString();
+
+        $delegate = Isg_delegates::where('id', $id)->first(); 
         $delegate->deleted_at = $timestamp;
         $delegate->save();
+
+        $user = User::where('id', $delegate->user_id)->first(); 
+        $user->deleted_at = $timestamp;
+        $user->save();
+
 
         echo json_encode(['status'=>true,'message'=>'Delegate Deleted Successfully !']);exit();
     }
@@ -164,8 +170,8 @@ class DelegateController extends Controller
        
         $data = School_Delegates::where('id', $id)->first();  
         $school = School::where('id', $data->school_id)->first(); 
-       
-        return view('admin/delegates/delegate_show', compact('data','school'));
+        $user = User::where('id', $data->user_id)->first(); 
+        return view('admin/delegates/delegate_show', compact('data','school','user'));
        
     }
 
@@ -229,12 +235,16 @@ class DelegateController extends Controller
 
     public function school_delegates_destroy(Request $request,$id)
     {
-
-        $delegate = School_Delegates::where('id', $id)->first(); 
         $mytime = Carbon::now();
         $timestamp=$mytime->toDateTimeString();
+
+        $delegate = School_Delegates::where('id', $id)->first(); 
         $delegate->deleted_at = $timestamp;
         $delegate->save();
+
+        $user = User::where('id', $delegate->user_id)->first(); 
+        $user->deleted_at = $timestamp;
+        $user->save();
 
         echo json_encode(['status'=>true,'message'=>'Delegate Deleted Successfully !']);exit();
     }

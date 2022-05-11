@@ -5,13 +5,13 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>ISG Delegates</h3>
+                <h3>ISG Student</h3>
                 <p class="text-subtitle text-muted"></p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ url('admin/isg_delegates') }}">ISG Delegates</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('admin/isg_delegates') }}">ISG Student</a></li>
                         <li class="breadcrumb-item active" aria-current="page"> Index</li>
                     </ol>
                 </nav>
@@ -44,7 +44,7 @@
                                         <th>Whatsapp NO</th>
                                         <th>Class & Section</th>
                                         <th>Committee of Choice</th>
-                                        <th>Country</th>
+                                        <th>status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -59,7 +59,16 @@
                                         <td class="text-bold-500">{{ $value->whatsapp_no }}</td>
                                         <td class="text-bold-500">{{ $value->class }}</td>
                                         <td class="text-bold-500">{{ $value->committee_choice }}</td>
-                                        <td class="text-bold-500">{{ $value->country_choice }}</td>
+                                        <td class="text-bold-500">
+                                             @if($value->status=='0')
+                                            <a class="btn btn-sm btn-warning shadow-md mr-2 roleButton"  data-url="{{ url('admin/member_rolechange',$value->id) }}" data-replaceurl="{{ url('admin/members') }}" data-dataval="3" title="Role Change">Pending</a>
+                                            @elseif($value->status=='1')
+                                            <a class="btn btn-sm btn-info shadow-md mr-2 roleButton"  data-url="{{ url('admin/member_rolechange',$value->id) }}" data-replaceurl="{{ url('admin/members') }}" data-dataval="2" title="Role Change">Approve</a>
+                                            @elseif($value->status=='2')
+                                            <a class="btn btn-sm btn-success shadow-md mr-2 roleButton"  data-url="{{ url('admin/member_rolechange',$value->id) }}" data-replaceurl="{{ url('admin/members') }}" data-dataval="2" title="Role Change">Active</a>
+                                            @elseif($value->status=='3')
+                                            <a class="btn btn-sm btn-danger shadow-md mr-2 roleButton"  data-url="{{ url('admin/member_rolechange',$value->id) }}" data-replaceurl="{{ url('admin/members') }}" data-dataval="2" title="Role Change">Reject</a>
+                                            @endif</td>
 
                                         <td>
                                         <a href="{{ url('admin/isg_delegates_show',$value->id) }}" class="btn btn-sm btn-primary w-24 mr-1 mb-2">View</a>

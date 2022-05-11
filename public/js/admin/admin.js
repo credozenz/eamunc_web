@@ -41,23 +41,28 @@ $(function(){
                             window.location.replace(replace_url);
                         }else{
                             swal("something went wrong please try again !");
-                            window.location.reload()
+                            setTimeout(function(){
+                                window.location.reload(1);
+                             }, 2500);
                         }
 
                     },
 
 
                     error: function(xhr, status, error) {
-                        var err = eval("(" + xhr.responseText + ")");
-                        swal(err.Message);
-                        window.location.reload()
+                        swal(error);
+                        setTimeout(function(){
+                            window.location.reload(1);
+                         }, 2500);
                     }
             
                 });
             
             } else {
             swal("Your imaginary file is safe!");
-            window.location.reload()
+            setTimeout(function(){
+                window.location.reload(1);
+             }, 2500);
             }
         });
 
@@ -166,7 +171,7 @@ $(document).on('click', '.roleButton', function (e) {
             editor.ui.view.editable.element.style.height = '500px';
         } )
         .catch( error => {
-            console.error( error );
+            console.log(error);
         } );
 
 
@@ -227,6 +232,97 @@ $(document).on('click', '.roleButton', function (e) {
             allowClear: true
         });
     });
+
+
+    $(document).on('change', '.delegate_member', function() {
+        var member_id = $(this).val();
+       
+       var div = document.getElementById("delegatedtl");
+
+
+       $.ajaxSetup({
+        headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+        let _token1   = $('meta[name="csrf-token"]').attr('content');
+
+
+
+        $.ajax({
+            type: "POST",
+            url: '/admin/committee_get_delegate', 
+            dataType:"json",
+            data: {user_id:member_id},
+            _token: _token1,
+            success: function(responce){
+          
+                if(responce.status==true){
+                
+                    var delegate =responce.data;
+                    
+                   
+                      
+                    if (delegate.id) 
+                    {  
+
+                        document.getElementById("del_name").value = delegate.name;
+                        document.getElementById("del_school").value = delegate.school;
+                        document.getElementById("del_email").value = delegate.email;
+                        document.getElementById("del_class").value = delegate.class;
+                        document.getElementById("del_no").value = delegate.whatsapp_no;
+                        document.getElementById("del_munexp").value = delegate.mun_experience;
+                        document.getElementById("del_buroexp").value = delegate.bureaumem_experience;
+
+
+                        div.style.display = "block"; 
+                          
+                    }  
+                    else
+                    {  
+                        div.style.display = "none"; 
+                    }  
+
+
+
+
+                }else{
+                    div.style.display = "none"; 
+                }
+
+            },
+
+
+            error: function(xhr, status, error) {
+                // var err = eval("(" + xhr.responseText + ")");
+                // swal(err.Message);
+                div.style.display = "none"; 
+            }
+    
+        });
+
+
+
+
+
+
+
+
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 })

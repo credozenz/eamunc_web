@@ -11,6 +11,9 @@ use App\Helper\AdminHelper;
 use App\Models\Committee;
 use App\Models\Committee_member;
 use App\Models\User;
+use App\Models\School;
+use App\Models\School_Delegates;
+use App\Models\Isg_delegates;
 use Carbon\Carbon;
 use Str;
 use Image;
@@ -114,7 +117,7 @@ class CommitteeController extends Controller
 
         if($committee->id){
             Session::flash('success', 'committee added successfully!');
-            return redirect('/admin/committee_members/'.$committee->id);
+            return redirect('/admin/committee_bureau/'.$committee->id);
           }else{
             Session::flash('error', 'Something went wrong!!');
             return  redirect()->back();
@@ -252,27 +255,97 @@ class CommitteeController extends Controller
     }
 
 
-    public function committee_members($id)
+    public function committee_delegate($id)
     {
         $data = DB::table('users as u')
         ->leftjoin('committee_members as cm', 'cm.user_id', '=', 'u.id')
         ->select('cm.*')
-        ->where('u.deleted_at', null)
+        ->where('cm.deleted_at', null)
+        ->where('u.role','2')
+        ->where('committe_id', $id)
+        ->paginate(20);
+      
+        $delegate_members = DB::table('users as u')
+        ->leftjoin('committee_members as cm', 'cm.user_id', '=', 'u.id')
+        ->select('u.*')
+        ->where([['u.deleted_at', null],['cm.deleted_at', null],['u.role','2'],['cm.user_id', null]])
+        ->get();
+        return view('admin/committee/add_delegate', compact('data','id','delegate_members'));
+    }
+
+    public function add_delegate(Request $request)
+    {
+        
+        
+        $validatedData = $request->validate([
+            'committe_id' => 'required|max:255',
+            'delegate_member' => 'required|max:255',
+        ],[
+            'committe_id.required' => 'The Title field is required',
+            'delegate_member.required' => 'The Bureau member field is required',
+        ]);
+
+        $delegate = User::where('id',$request->delegate_member)->first();
+        
+
+        $members = new Committee_member;
+        $members->committe_id = $request->committe_id;
+        $members->name = $delegate->name;
+        $members->user_id = $delegate->id;
+        $members->title = '';
+        $members->image = $delegate->avatar;
+        $members->save();
+
+
+        if($members->id){
+            Session::flash('success', 'Delegate member added successfully!');
+            return  redirect()->back();
+          }else{
+            Session::flash('error', 'Something went wrong!!');
+            return  redirect()->back();
+          }
+       
+    }
+
+
+
+
+    public function delete_delegate(Request $request,$id)
+    {
+
+        $mytime = Carbon::now();
+        $timestamp=$mytime->toDateTimeString();
+
+        $member = Committee_member::where('id', $id)->first(); 
+        $member->deleted_at = $timestamp;
+        $member->delete();
+
+        echo json_encode(['status'=>true,'message'=>'Committee member Deleted Successfully !']);exit();
+    }
+
+
+
+    public function committee_bureau($id)
+    {
+        $data = DB::table('users as u')
+        ->leftjoin('committee_members as cm', 'cm.user_id', '=', 'u.id')
+        ->select('cm.*')
+        ->where('cm.deleted_at', null)
         ->where('u.role','3')
         ->where('committe_id', $id)
         ->paginate(20);
       
         $bureau_members = DB::table('users as u')
         ->leftjoin('committee_members as cm', 'cm.user_id', '=', 'u.id')
-        ->select('u.*')
+        ->select('cm.*')
         ->where('u.deleted_at', null)
         ->where('u.role','3')
         ->where('cm.user_id', null)
         ->get();
-        return view('admin/committee/add_members', compact('data','id','bureau_members'));
+        return view('admin/committee/add_bureau', compact('data','id','bureau_members'));
     }
 
-    public function add_members(Request $request)
+    public function add_bureau(Request $request)
     {
         
         
@@ -299,7 +372,7 @@ class CommitteeController extends Controller
 
 
         if($members->id){
-            Session::flash('success', 'members added successfully!');
+            Session::flash('success', 'bureau members added successfully!');
             return  redirect()->back();
           }else{
             Session::flash('error', 'Something went wrong!!');
@@ -311,22 +384,49 @@ class CommitteeController extends Controller
 
 
 
-    public function member_delete(Request $request,$id)
+    public function delete_bureau(Request $request,$id)
     {
-
-        $gallery = Committee_member::where('id', $id)->first(); 
         $mytime = Carbon::now();
         $timestamp=$mytime->toDateTimeString();
-        $gallery->deleted_at = $timestamp;
-        $gallery->save();
 
-        echo json_encode(['status'=>true,'message'=>'Committee member Deleted Successfully !']);exit();
+        $member = Committee_member::where('id', $id)->first(); 
+        $member->deleted_at = $timestamp;
+        $member->delete();
+
+      
+
+        echo json_encode(['status'=>true,'message'=>'Committee bureau member Deleted Successfully !']);exit();
     }
 
 
 
 
-    
+    public function get_delegate(Request $request)
+    {
+        
+        
+       $userid = $request->user_id;
+
+       $user = User::where('id', $userid)->where('deleted_at', null)->first();   
+       $type = $user->type;
+        if($type == '1'){
+            $delegate = School_Delegates::where('user_id', $user->id)->first();  
+            $school = School::where('id', $delegate->school_id)->first(); 
+            $delegate['school'] = $school->name;
+        }elseif($type == '0'){
+            $delegate = Isg_delegates::where('user_id', $user->id)->where('deleted_at', null)->first();
+            $school =''; 
+            $delegate['school'] = $school;
+        }
+
+
+        if($delegate->id){
+            echo json_encode(['status'=>true,'data'=>$delegate]);exit();
+          }else{
+            echo json_encode(['status'=>true,'message'=>'Something went wrong']);exit();
+          }
+       
+    }
 
 
 

@@ -6,7 +6,7 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Members</h3>
+                <h3>Member</h3>
                 <p class="text-subtitle text-muted"></p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
@@ -34,19 +34,11 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Show</h4>
-                        <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item">
-                                <a href="{{ url('admin/school_delegates_edit',$data->id) }}" class="btn btn-sm btn-primary shadow-md mr-2">Edit</a>
-                                <a class="btn btn-sm btn-danger shadow-md mr-2 dltButton"  data-url="{{ url('admin/school_delegates_delete',$data->id) }}" data-replaceurl="{{ url('admin/school_delegates') }}" title="Delete Project">Delete</a>
-                               
-                            </li>
-                        </ol>
-                        </nav>
+                        
                     </div>
                     <div class="card-content">
 
-                    @if($type == '1')
+                    @if($type == '2')
 
                             <div class="card-body">
                                 <div class="row">
@@ -54,7 +46,7 @@
                                     <div class="col-md-4 col-12">
                                         <div class="form-group">
                                             <label for="text-danger">School Name</label>
-                                            <input type="text" name="name" value="{{ $school->name }}" class="form-control" disabled placeholder="Title">
+                                            <input type="text" name="name" value="{{ $school->name ?? '' }}" class="form-control" disabled placeholder="Title">
                       
                                         </div>
                                     </div>
@@ -109,7 +101,7 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="text-danger">Name</label>
-                                            <input type="text" name="name" value="{{ $data->name }}" class="form-control" disabled placeholder="Title">
+                                            <input type="text" name="name" value="{{ $data->name ?? '' }}" class="form-control" disabled placeholder="Title">
                       
                                         </div>
                                     </div>
@@ -117,35 +109,35 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="text-danger">Email</label>
-                                            <input type="text" name="email" value="{{ $data->email }}" class="form-control" disabled placeholder="Email">
+                                            <input type="text" name="email" value="{{ $data->email ?? '' }}" class="form-control" disabled placeholder="Email">
                                         </div>
                                     </div>
 
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="text-danger">Class & Section</label>
-                                            <input type="text" name="class" value="{{ $data->class }}" class="form-control" disabled placeholder="class">
+                                            <input type="text" name="class" value="{{ $data->class ?? '' }}" class="form-control" disabled placeholder="class">
                                         </div>
                                     </div>
 
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="text-danger">WhatsApp NO</label>
-                                            <input type="text" name="whatsapp_no" value="{{ $data->whatsapp_no }}" class="form-control" disabled placeholder="Whatsapp no">
+                                            <input type="text" name="whatsapp_no" value="{{ $data->whatsapp_no ?? '' }}" class="form-control" disabled placeholder="Whatsapp no">
                                         </div>
                                     </div>
 
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="text-danger">MUN Experience</label>
-                                            <input type="text" name="mun_experience" value="{{ $data->mun_experience }}" class="form-control" disabled placeholder="MUN Experience">
+                                            <input type="text" name="mun_experience" value="{{ $data->mun_experience ?? '' }}" class="form-control" disabled placeholder="MUN Experience">
                                         </div>
                                     </div>
 
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="text-danger">Bureau Member Experience</label>
-                                            <input type="text" name="bureaumem_experience" value="{{ $data->bureaumem_experience }}" class="form-control" disabled placeholder="MUN Experience">
+                                            <input type="text" name="bureaumem_experience" value="{{ $data->bureaumem_experience ?? '' }}" class="form-control" disabled placeholder="MUN Experience">
                                         </div>
                                     </div>
                                    

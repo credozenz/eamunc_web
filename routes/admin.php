@@ -182,10 +182,16 @@ Route::group(['middleware' => 'adminchecker'], function() {
      Route::get('/committee_show/{id}', [CommitteeController::class,'show'])->name('admin.committee.show');
      Route::post('/committee_update/{id}', [CommitteeController::class,'update'])->name('admin.committee.update');
      Route::post('/committee_delete/{id}', [CommitteeController::class,'destroy'])->name('admin.committee.destroy');
-     Route::get('/committee_members/{id}', [CommitteeController::class,'committee_members'])->name('admin.committee.members');
-     Route::post('/committee_add_members', [CommitteeController::class,'add_members'])->name('admin.committee.add_members');
-     Route::post('/member_delete/{id}', [CommitteeController::class,'member_delete'])->name('admin.committee.dlt_member');
-
+    
+     Route::get('/committee_bureau/{id}', [CommitteeController::class,'committee_bureau'])->name('admin.committee.bureau');
+     Route::post('/committee_add_bureau', [CommitteeController::class,'add_bureau'])->name('admin.committee.add_bureau');
+     Route::post('/committee_dlt_bureau/{id}', [CommitteeController::class,'delete_bureau'])->name('admin.committee.dlt_bureau');
+     
+     Route::get('/committee_delegate/{id}', [CommitteeController::class,'committee_delegate'])->name('admin.committee.delegate');
+     Route::post('/committee_add_delegate', [CommitteeController::class,'add_delegate'])->name('admin.committee.add_delegate');
+     Route::post('/committee_dlt_delegate/{id}', [CommitteeController::class,'delete_delegate'])->name('admin.committee.dlt_delegate');
+     Route::post('/committee_get_delegate', [CommitteeController::class,'get_delegate'])->name('admin.committee.get_delegate');
+    
      Route::get('/pastconference', [PastConferenceController::class,'index'])->name('admin.pastconference');
      Route::get('/pastconference_create', [PastConferenceController::class,'create'])->name('admin.pastconference.create');
      Route::post('/pastconference_store', [PastConferenceController::class,'store'])->name('admin.pastconference.store');
@@ -257,5 +263,5 @@ Route::group(['middleware' => 'adminchecker'], function() {
      Route::get('/members', [MembersController::class,'members'])->name('admin.members');
      Route::get('/members_show/{id}', [MembersController::class,'members_show'])->name('admin.members.show');
      Route::post('/member_rolechange/{id}', [MembersController::class,'member_rolechange'])->name('admin.committee.rolechange');
-
+     
 });

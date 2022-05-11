@@ -33,8 +33,10 @@
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                        <a href="{{ url('admin/committee_members',$data->id) }}" class="btn-sm btn-primary shadow-md mr-2">Members</a>
-                            <a href="{{ url('admin/committee_edit',$data->id) }}" class="btn-sm btn-primary shadow-md mr-2">Edit</a>
+                       
+                        <a href="{{ url('admin/committee_bureau',$data->id) }}" class="btn-sm btn-success shadow-md mr-2">Bureau Members</a>
+                        <a href="{{ url('admin/committee_delegate',$data->id) }}" class="btn-sm btn-warning shadow-md mr-2">Delegates</a>
+                        <a href="{{ url('admin/committee_edit',$data->id) }}" class="btn-sm btn-primary shadow-md mr-2">Edit</a>
                             <a class="btn-sm btn-danger shadow-md mr-2 dltButton"  data-url="{{ url('admin/committee_delete',$data->id) }}" data-replaceurl="{{ url('admin/committee') }}" title="Delete Project">Delete</a>
                         </li>
                     </ol>
@@ -46,7 +48,7 @@
                             <div class="row">
                             <div class="col-md-6 col-12">
                                 <div class="form-group">
-                                        <label class="form-label text-danger">Name</label>
+                                        <label class="form-label text-danger">Short Name</label>
                                         <input type="text" name="name" disabled value="{{ $data->name }}" class="form-control @error('name') border-danger @enderror" placeholder="Name">
                                         
                                     </div>
@@ -66,7 +68,7 @@
                                 <div class="col-md-6 col-12"></div>
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
-                                        <label class="form-label text-danger">Title</label>
+                                        <label class="form-label text-danger">Full Name</label>
                                         <input type="text" name="title" disabled value="{{ $data->title }}" class="form-control @error('title') border-danger @enderror" placeholder="Title">
                                        
                                     </div>
@@ -80,7 +82,7 @@
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
-                                        <label class="form-label text-danger">Sub Title</label>
+                                        <label class="form-label text-danger">Title</label>
                                         <input type="text" name="sub_title" disabled value="{{ $data->sub_title }}" class="form-control @error('sub_title') border-danger @enderror" placeholder="Sub Title">
                                         
                                     </div>

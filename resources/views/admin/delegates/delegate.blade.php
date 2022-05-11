@@ -5,13 +5,13 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>School Delegates</h3>
+                <h3>Participating School Students</h3>
                 <p class="text-subtitle text-muted"></p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ url('admin/school_delegates') }}">School Delegates</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('admin/school_delegates') }}">Participating School Students</a></li>
                         <li class="breadcrumb-item active" aria-current="page"> Index</li>
                     </ol>
                 </nav>
@@ -44,6 +44,7 @@
                                         <th>Whatsapp NO</th>
                                         <th>Class & Section</th>
                                         <th>School</th>
+                                        <th>status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -58,7 +59,17 @@
                                         <td class="text-bold-500">{{ $value->whatsapp_no }}</td>
                                         <td class="text-bold-500">{{ $value->class }}</td>
                                         <td class="text-bold-500">{{ $value->school_name }}</td>
-
+                                        <td>
+                                            @if($value->status=='0')
+                                            <span class="btn-sm btn-warning">Pending</span>
+                                            @elseif($value->status=='1')
+                                            <span class="btn-sm btn-info">Approve</span>
+                                            @elseif($value->status=='2')
+                                            <span class="btn-sm btn-success">Active</span>
+                                            @elseif($value->status=='3')
+                                            <span class="btn-sm btn-danger">Reject</span>
+                                            @endif
+                                        </td>
                                         <td>
                                         <a href="{{ url('admin/school_delegates_show',$value->id) }}" class="btn btn-sm btn-primary w-24 mr-1 mb-2">View</a>
                                         </td>
