@@ -11,6 +11,7 @@ use View;
 use App\Helper\WebHelper;
 use App\Models\SiteIndexes;
 use App\Models\Committee;
+use App\Models\User;
 use App\Models\Committee_member;
 
 
@@ -33,14 +34,18 @@ class CommitteesController extends Controller
         
 
         $committees = Committee::find($id); 
-        $members = DB::table('users as u')
-        ->leftjoin('committee_members as cm', 'cm.user_id', '=', 'u.id')
-        ->select('u.*')
-        ->where('u.deleted_at', null)
-        ->where('u.role','3')
-        ->where('committe_id', $id)
-        ->paginate(20);
-        // $members = Committee_member::where('committe_id', $id)->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(20);
+        
+
+        $members = user::where('users.deleted_at', null)
+        ->join('students', 'users.id', '=', 'students.user_id')
+        ->join('schools', 'students.school_id', '=', 'schools.id')
+        ->select('students.*', 'schools.name as school_name', 'users.role')
+        ->where('users.role', '=' , 3)
+        ->whereIn('students.status', [3])
+        ->where('students.committee_choice', '=' , $id)
+        ->orderBy('students.id', 'desc')
+        ->paginate(12);
+       
         return view('web/committees-inner', compact('committees','members'));
 
 

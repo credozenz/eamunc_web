@@ -12,6 +12,7 @@ use App\Helper\WebHelper;
 use App\Models\SiteIndexes;
 use App\Models\Committee;
 use App\Models\School;
+use App\Models\Students;
 use App\Models\School_Delegates;
 use App\Models\Isg_delegates;
 use App\Models\User;
@@ -32,7 +33,7 @@ class RegistrationController extends Controller
    
     public function isg_registration()
     {
-        $committees = Committee::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4); 
+        $committees = Committee::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(50); 
 
         return view('web/isg-registration', compact('committees'));
     }
@@ -49,6 +50,7 @@ class RegistrationController extends Controller
             'country_choice' => 'required|max:255',
             'whatsapp_no'    => 'required|max:255',
             'mun_experience' => 'required|max:255',
+            "bureaumem_experience"    => "required|max:255",
         ],[
             'name.required' => 'The Name field is required',
             'email.required' => 'The Email field is required',
@@ -59,6 +61,7 @@ class RegistrationController extends Controller
             'country_choice.required' => 'The Country choice field is required',
             'whatsapp_no.required' => 'The WhatsApp No field is required',
             'mun_experience.required' => 'The MUN Experience field is required',
+            'bureaumem_experience.required' => 'The Bureaumem Experience field is required',
         ]);
 
         
@@ -72,18 +75,21 @@ class RegistrationController extends Controller
            
             if($user->id){
 
-            $registration = new Isg_delegates;
-            $registration->name  = $request->name;
-            $registration->email = $request->email;
-            $registration->class = $request->class;
-            $registration->committee_choice = $request->committee_choice;
-            $registration->country_choice   = $request->country_choice;
-            $registration->whatsapp_no    = $request->whatsapp_no;
-            $registration->mun_experience = $request->mun_experience;
-            $registration->user_id = $user->id;
-            $registration->save();
+            $student = new Students;
+            $student->type  = 1;
+            $student->school_id  = 1;
+            $student->name  = $request->name;
+            $student->email = $request->email;
+            $student->class = $request->class;
+            $student->committee_choice = $request->committee_choice;
+            $student->country_choice   = $request->country_choice;
+            $student->whatsapp_no    = $request->whatsapp_no;
+            $student->mun_experience = $request->mun_experience;
+            $student->bureaumem_experience = $request->bureaumem_experience;
+            $student->user_id = $user->id;
+            $student->save();
             
-            if($registration->id){
+            if($student->id){
                 Session::flash('success', 'Registration successfully Completed!');
                 return redirect('isg-registration');
             }else{
@@ -199,21 +205,22 @@ class RegistrationController extends Controller
             $user->type = 2;
             $user->save();
         
-             $delegate = new School_Delegates;
-             $delegate->name  = $name[$count];
-             $delegate->email  = $email[$count];
-             $delegate->user_id    = $user->id;
-             $delegate->school_id  = $school->id;
-             $delegate->class  = $class[$count];
-             $delegate->whatsapp_no = $whatsapp_no[$count];
-             $delegate->mun_experience = $mun_experience[$count];
-             $delegate->bureaumem_experience = $bureaumem_experience[$count];
-             $delegate->save();
+             $student = new Students;
+             $student->type  = 2;
+             $student->name  = $name[$count];
+             $student->email  = $email[$count];
+             $student->user_id    = $user->id;
+             $student->school_id  = $school->id;
+             $student->class  = $class[$count];
+             $student->whatsapp_no = $whatsapp_no[$count];
+             $student->mun_experience = $mun_experience[$count];
+             $student->bureaumem_experience = $bureaumem_experience[$count];
+             $student->save();
             }
 
           }
           
-            if($delegate->id){
+            if($student->id){
                 Session::flash('success', 'Registration successfully Completed!');
                 return redirect('school-registration');
             }else{

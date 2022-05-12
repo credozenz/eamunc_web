@@ -73,11 +73,19 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="form-label">MUN Experience (if any) *</label>
                                         <input type="text" name="mun_experience" value="{{ old('mun_experience') }}" maxlength="80" class="form-control @error('mun_experience') border-danger @enderror" {{ $errors->has('mun_experience') ? 'autofocus' : '' }} placeholder="MUN Experience (if any)" aria-describedby="textHelp" required>
                                         @error('mun_experience')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="form-label">Bureau Member Experience*</label>
+                                        <input type="text" name="bureaumem_experience" value="{{ old('bureaumem_experience') }}" maxlength="80" class="form-control @error('bureaumem_experience') border-danger @enderror" {{ $errors->has('bureaumem_experience') ? 'autofocus' : '' }} placeholder="Bureau Member Experience" aria-describedby="textHelp" required>
+                                        @error('bureaumem_experience')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
 

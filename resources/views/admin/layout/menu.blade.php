@@ -20,25 +20,18 @@
                 </a>
             </li>
 
-            <li class="sidebar-item  has-sub @if($routeGroup=='delegates') active @endif">
+            <li class="sidebar-item  has-sub @if($routeGroup=='students') active @endif">
                 <a href="#" class='sidebar-link'>
                     <span><i class="fa fa-graduation-cap" aria-hidden="true">&nbsp</i>Students</span>
                 </a>
-                <ul class="submenu @if($routeGroup=='delegates') active @endif">
+                <ul class="submenu @if($routeGroup=='students') active @endif">
                     <li class="submenu-item ">
-                        <a href="{{ route('admin.isg_delegates') }}">ISG Students</a>
+                        <a href="{{ route('admin.students') }}">Index</a>
                     </li>
-                    <li class="submenu-item ">
-                        <a href="{{ route('admin.school_delegates') }}">Participating School Students</a>
-                    </li>
+                    
                 </ul>
             </li>
 
-            <li class="sidebar-item  @if($routeGroup =='members') active @endif ">
-                <a href="{{ route('admin.members') }}" class='sidebar-link'>
-                    <span><i class="fa fa-sitemap" aria-hidden="true">&nbsp</i>Role Manage</span>
-                </a>
-            </li>
 
             <li class="sidebar-item  has-sub @if($routeGroup=='committee') active @endif ">
                 <a href="#" class='sidebar-link'>

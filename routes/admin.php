@@ -29,10 +29,11 @@ use App\Http\Controllers\Admin\CommitteeController;
 use App\Http\Controllers\Admin\PastConferenceController;
 use App\Http\Controllers\Admin\TimerController;
 use App\Http\Controllers\Admin\FooterController;
-use App\Http\Controllers\Admin\DelegateController;
 use App\Http\Controllers\Admin\FaqSchoolController;
 use App\Http\Controllers\Admin\FeedbackController;
 
+use App\Http\Controllers\Admin\ForgotPasswordController;
+use App\Http\Controllers\Admin\StudentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,8 @@ use App\Http\Controllers\Admin\FeedbackController;
 
      Route::get('/', [AuthController::class,'getLogin']);
      Route::post('/login', [AuthController::class,'postLogin']);
+
+     Route::get('reset-password/{token}', [ForgotPasswordController::class, 'ResetPassword'])->name('ResetPasswordGet');
 
 Route::group(['middleware' => 'adminchecker'], function() {
      
@@ -183,15 +186,7 @@ Route::group(['middleware' => 'adminchecker'], function() {
      Route::post('/committee_update/{id}', [CommitteeController::class,'update'])->name('admin.committee.update');
      Route::post('/committee_delete/{id}', [CommitteeController::class,'destroy'])->name('admin.committee.destroy');
     
-     Route::get('/committee_bureau/{id}', [CommitteeController::class,'committee_bureau'])->name('admin.committee.bureau');
-     Route::post('/committee_add_bureau', [CommitteeController::class,'add_bureau'])->name('admin.committee.add_bureau');
-     Route::post('/committee_dlt_bureau/{id}', [CommitteeController::class,'delete_bureau'])->name('admin.committee.dlt_bureau');
      
-     Route::get('/committee_delegate/{id}', [CommitteeController::class,'committee_delegate'])->name('admin.committee.delegate');
-     Route::post('/committee_add_delegate', [CommitteeController::class,'add_delegate'])->name('admin.committee.add_delegate');
-     Route::post('/committee_dlt_delegate/{id}', [CommitteeController::class,'delete_delegate'])->name('admin.committee.dlt_delegate');
-     Route::post('/committee_get_delegate', [CommitteeController::class,'get_delegate'])->name('admin.committee.get_delegate');
-    
      Route::get('/pastconference', [PastConferenceController::class,'index'])->name('admin.pastconference');
      Route::get('/pastconference_create', [PastConferenceController::class,'create'])->name('admin.pastconference.create');
      Route::post('/pastconference_store', [PastConferenceController::class,'store'])->name('admin.pastconference.store');
@@ -248,20 +243,39 @@ Route::group(['middleware' => 'adminchecker'], function() {
 
 
 
-     Route::get('/isg_delegates', [DelegateController::class,'isg_delegates'])->name('admin.isg_delegates');
-     Route::get('/isg_delegates_edit/{id}', [DelegateController::class,'isg_delegates_edit'])->name('admin.isg_delegates.edit');
-     Route::get('/isg_delegates_show/{id}', [DelegateController::class,'isg_delegates_show'])->name('admin.isg_delegates.show');
-     Route::post('/isg_delegates_update/{id}', [DelegateController::class,'isg_delegates_update'])->name('admin.isg_delegates.update');
-     Route::post('/isg_delegates_delete/{id}', [DelegateController::class,'isg_delegates_destroy'])->name('admin.isg_delegates.destroy');
+    
 
-     Route::get('/school_delegates', [DelegateController::class,'school_delegates'])->name('admin.school_delegates');
-     Route::get('/school_delegates_edit/{id}', [DelegateController::class,'school_delegates_edit'])->name('admin.school_delegates.edit');
-     Route::get('/school_delegates_show/{id}', [DelegateController::class,'school_delegates_show'])->name('admin.school_delegates.show');
-     Route::post('/school_delegates_update/{id}', [DelegateController::class,'school_delegates_update'])->name('admin.school_delegates.update');
-     Route::post('/school_delegates_delete/{id}', [DelegateController::class,'school_delegates_destroy'])->name('admin.school_delegates.destroy');
 
-     Route::get('/members', [MembersController::class,'members'])->name('admin.members');
-     Route::get('/members_show/{id}', [MembersController::class,'members_show'])->name('admin.members.show');
-     Route::post('/member_rolechange/{id}', [MembersController::class,'member_rolechange'])->name('admin.committee.rolechange');
+
+
+
+    
+
+
+
+     Route::get('/students', [StudentsController::class,'index'])->name('admin.students');
+     Route::get('/student_show/{id}', [StudentsController::class,'show'])->name('admin.student.show'); 
+     Route::get('/student_edit/{id}', [StudentsController::class,'edit'])->name('admin.student.edit');
+     Route::post('/student_update/{id}', [StudentsController::class,'update'])->name('admin.student.update');
+     Route::post('/student_delete/{id}', [StudentsController::class,'destroy'])->name('admin.student.destroy');
+     Route::post('/student_statuschange/{id}', [StudentsController::class,'status_change'])->name('admin.student.statuschange');
      
+     Route::get('/invite_student/{id}', [StudentsController::class,'invite_student'])->name('admin.student.invitestudent');
+
+    
+     Route::get('/committee_bureau/{id}', [CommitteeController::class,'committee_bureau'])->name('admin.committee.bureau');
+     
+     // Route::post('/committee_add_bureau', [CommitteeController::class,'add_bureau'])->name('admin.committee.add_bureau');
+     // Route::post('/committee_dlt_bureau/{id}', [CommitteeController::class,'delete_bureau'])->name('admin.committee.dlt_bureau');
+     
+     Route::get('/committee_delegate/{id}', [CommitteeController::class,'committee_delegate'])->name('admin.committee.delegate');
+     
+     // Route::post('/committee_add_delegate', [CommitteeController::class,'add_delegate'])->name('admin.committee.add_delegate');
+     // Route::post('/committee_dlt_delegate/{id}', [CommitteeController::class,'delete_delegate'])->name('admin.committee.dlt_delegate');
+     // Route::post('/committee_get_delegate', [CommitteeController::class,'get_delegate'])->name('admin.committee.get_delegate');
+    
+
+
+
+
 });

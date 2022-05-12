@@ -46,7 +46,9 @@
                         
                         <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Log in</button>
                     </form>
-                    
+                    <a class="btn btn-link" href="{{ route('ForgetPasswordGet') }}">
+                      {{ __('Forgot Your Password?') }}
+                    </a>
                 </div>
                 <div class="footer clearfix mb-0 text-muted">
                             <div class="float-start">   

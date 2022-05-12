@@ -20,7 +20,7 @@ class CreateSchoolsTable extends Migration
             $table->string('advisor_name');
             $table->string('email');
             $table->string('mobile');
-            $table->integer('status')->comment('0->pending,1->active,2->reject')->default(0);
+            $table->integer('status')->comment('0->pending,1->active,2->reject')->default(1);
             $table->timestamps();
             $table->softDeletes();
         });

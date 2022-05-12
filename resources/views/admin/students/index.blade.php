@@ -5,13 +5,13 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Members</h3>
+                <h3>Students</h3>
                 <p class="text-subtitle text-muted"></p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ url('admin/school_delegates') }}">Members</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('admin/students') }}">Students</a></li>
                         <li class="breadcrumb-item active" aria-current="page"> Index</li>
                     </ol>
                 </nav>
@@ -40,10 +40,11 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Phone</th>
+                                        <th>Class & Section</th>
                                         <th>Type</th>
+                                        <th>School</th>
                                         <th>Role</th>
+                                        <th>status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -54,25 +55,37 @@
                                     <tr>
                                         <td class="text-bold-500">{{ $key+1 }}</td>
                                         <td class="text-bold-500">{{ $value->name }}</td>
-                                        <td class="text-bold-500">{{ $value->email }}</td>
-                                        <td class="text-bold-500">{{ $value->phone }}</td>
+                                        <td class="text-bold-500">{{ $value->class }}</td>
                                         <td class="text-bold-500">
-                                        @if($value->type=='1')
-                                        <small>ISG Student</small>
-                                        @elseif($value->type=='2')
-                                        <small>Participating School Student</small>
-                                        @endif
+                                            @if($value->type=='1')
+                                             <span class="text text-primary">ISG Student</span>
+                                              @elseif($value->type=='2')
+                                             <span class="text text-secondary">Participating School <br>Student</span>
+                                            @endif
+                                        </td>
+                                        <td class="text-bold-500">{{ $value->school_name }}</td>
+                                        <td class="text-bold-500">
+                                        @if($value->role=='2')
+                                             <span class="text text-primary">Delegate</span>
+                                              @elseif($value->role=='3')
+                                             <span class="text text-secondary">Bureau member</span>
+                                            @endif
                                         </td>
                                         <td class="text-bold-500">
-                                       
-                                            @if($value->role=='2')
-                                            <a class="btn btn-sm btn-info shadow-md mr-2 roleButton"  data-url="{{ url('admin/member_rolechange',$value->id) }}" data-replaceurl="{{ url('admin/members') }}" data-dataval="3" title="Role Change">Delegate</a>
-                                            @elseif($value->role=='3')
-                                            <a class="btn btn-sm btn-warning shadow-md mr-2 roleButton"  data-url="{{ url('admin/member_rolechange',$value->id) }}" data-replaceurl="{{ url('admin/members') }}" data-dataval="2" title="Role Change">Bureau member</a>
+                                            @if($value->status=='0')
+                                            <span class="text text-warning">Pending</span>
+                                            @elseif($value->status=='1')
+                                            <span class="text text-info">Approve</span>
+                                            @elseif($value->status=='2')
+                                            <span class="text text-success">Invite</span>
+                                            @elseif($value->status=='3')
+                                            <span class="text text-success">Active</span>
+                                            @elseif($value->status=='4')
+                                            <span class="text text-danger">Reject</span>
                                             @endif
                                         </td>
                                         <td>
-                                        <a href="{{ url('admin/members_show',$value->id) }}" class="btn btn-sm btn-primary w-24 mr-1 mb-2">View</a>
+                                        <a href="{{ url('admin/student_show',$value->id) }}" class="btn btn-sm btn-primary w-24 mr-1 mb-2">View</a>
                                         </td>
                                     </tr>
                                 @endforeach

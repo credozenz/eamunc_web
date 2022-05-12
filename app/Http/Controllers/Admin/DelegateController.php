@@ -19,6 +19,7 @@ use App\Models\Committee;
 use App\Models\User;
 use Carbon\Carbon;
 use Str;
+use Mail;
 use Image;
 use Storage;
 use League\Flysystem\File;
@@ -120,6 +121,55 @@ class DelegateController extends Controller
     
     }
 
+
+    public function isg_delestatus_update(Request $request,$id)
+    {
+        $user = User::where('id', $id)->first();
+        
+        $validatedData = $request->validate([
+            'status' => 'required',
+        ],[
+            'status.required' => 'The status field is required',
+        ]);
+
+
+        
+            $delegate = isg_Delegates::where('user_id', $id)->first();
+            $delegate->status  = $request->status;
+            $delegate->save();
+
+            if($delegate){
+                if($request->status==1){
+
+
+                    $user->status  = 1;
+                    $user->save();
+                    
+                    $token = Str::random(64);
+                    Mail::send('admin.auth.forget-password-email', ['token' => $token], function($message) use($user){
+                        $message->to(trim($user->email));
+                        $message->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'));
+                        $message->subject('Reset Password');
+                    });
+                }else{
+
+                    $user->status  = 0;
+                    $user->save(); 
+                }
+           
+            }
+            
+            if($delegate){
+                Session::flash('success', 'Member status successfully Completed!');
+                return redirect('admin/isg_delegates');
+            }else{
+                Session::flash('error', 'Something went wrong!!');
+                return  redirect()->back();
+            }
+       
+    
+    }
+
     
     public function isg_delegates_destroy(Request $request,$id)
     {
@@ -176,59 +226,50 @@ class DelegateController extends Controller
     }
 
 
-    public function school_delegates_update(Request $request,$id)
+    public function school_delestatus_update(Request $request,$id)
     {
-        $delegate = School_Delegates::where('id', $id)->first();
+        $user = User::where('id', $id)->first();
         
         $validatedData = $request->validate([
-            'name' => 'required|max:255',
-            'email' => [
-                'required',
-                Rule::unique('users')->ignore($delegate->user_id, 'id'),
-            ],
-            'class' => 'required|max:255',
-            'whatsapp_no'    => 'required|max:255',
+            'status' => 'required',
         ],[
-            'name.required' => 'The Name field is required',
-            'email.required' => 'The Email field is required',
-            'email.email' => 'Please put valid email Number',
-            'email.unique' => 'Email id already exists',
-            'class.required' => 'The Class field is required',
-            'whatsapp_no.required' => 'The WhatsApp No field is required',
+            'status.required' => 'The status field is required',
         ]);
 
 
         
-        
-            $user = User::where('id', $delegate->user_id)->first();
-            $user->name  = $request->name;
-            $user->email = $request->email;
-            $user->role = 3;
-            $user->save();
-           
-            if($user->id){
+            $delegate = School_Delegates::where('user_id', $id)->first();
+            $delegate->status  = $request->status;
+            $delegate->save();
 
-            $registration = School_Delegates::where('id', $id)->first();
-            $registration->name  = $request->name;
-            $registration->email = $request->email;
-            $registration->class = $request->class;
-            $registration->whatsapp_no    = $request->whatsapp_no;
-            $registration->mun_experience = $request->mun_experience;
-            $registration->bureaumem_experience = $request->bureaumem_experience;
-            $registration->user_id = $user->id;
-            $registration->save();
+            if($delegate){
+                if($request->status==1){
+                    $user->status  = 1;
+                    $user->save();
+
+                    $token = Str::random(64);
+                    Mail::send('admin.auth.forget-password-email', ['token' => $token], function($message) use($user){
+                        $message->to(trim($user->email));
+                        $message->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'));
+                        $message->subject('Reset Password');
+                    });
+                    
+                }else{
+
+                    $user->status  = 0;
+                    $user->save(); 
+                }
+           
+            }
             
-            if($registration->id){
-                Session::flash('success', 'Updated successfully Completed!');
+            if($delegate){
+                Session::flash('success', 'Member status successfully Completed!');
                 return redirect('admin/school_delegates');
             }else{
                 Session::flash('error', 'Something went wrong!!');
                 return  redirect()->back();
             }
-        }else{
-            Session::flash('error', 'Something went wrong!!');
-            return  redirect()->back();
-        }
+       
     
     }
 

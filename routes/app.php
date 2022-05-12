@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\App\AuthController;
 use App\Http\Controllers\App\Bureau\BureauDashbordController;
 use App\Http\Controllers\App\Delegate\DelegateDashbordController;
+use App\Http\Controllers\Admin\ForgotPasswordController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +21,11 @@ use App\Http\Controllers\App\Delegate\DelegateDashbordController;
 
 Route::get('/', [AuthController::class,'getLogin']);
 Route::post('/login', [AuthController::class,'postLogin']);
+
+Route::get('forget-password', [ForgotPasswordController::class, 'ForgetPassword'])->name('ForgetPasswordGet');
+Route::post('forget-password', [ForgotPasswordController::class, 'ForgetPasswordStore'])->name('ForgetPasswordPost');
+Route::get('reset-password/{token}', [ForgotPasswordController::class, 'ResetPassword'])->name('ResetPasswordGet');
+Route::post('reset-password', [ForgotPasswordController::class, 'ResetPasswordStore'])->name('ResetPasswordPost');
 
 Route::group(['middleware' => 'bureauchecker'], function() {
     
