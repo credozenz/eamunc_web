@@ -133,9 +133,9 @@
                                             <select name="status" class="form-control " placeholder="Committee of Choice" required="">
                                                 <option value="0" {{ ($data->status == 0 ? "selected":"") }}> Pending</option>
                                                 <option value="1" {{ ($data->status == 1 ? "selected":"") }}> Approve</option>
-                                                <option value="1" {{ ($data->status == 2 ? "selected":"") }} disabled> Invite</option>
-                                                <option value="1" {{ ($data->status == 3 ? "selected":"") }} disabled> Active</option>
-                                                <option value="3" {{ ($data->status == 4 ? "selected":"") }}> Reject</option>
+                                                <option value="2" {{ ($data->status == 2 ? "selected":"") }} disabled> Invite</option>
+                                                <option value="3" {{ ($data->status == 3 ? "selected":"") }} disabled> Active</option>
+                                                <option value="4" {{ ($data->status == 4 ? "selected":"") }}> Reject</option>
                                             </select>
                                         </div>
                                     </div>

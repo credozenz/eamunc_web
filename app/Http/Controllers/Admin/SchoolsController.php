@@ -25,9 +25,19 @@ class SchoolsController extends Controller
   
     public function index(Request $request)
     {   
+       
         $myschool = School::where('id', 1)->first();
-        $data = School::where('deleted_at', null)->where('id','!=', 1)->orderBy('id', 'DESC')->paginate(10); 
-        return view('admin/schools/index', compact('data','myschool'));
+        $query = School::where('deleted_at', null)
+        ->where('id','!=', 1)
+        ->orderBy('id', 'DESC');
+        if($request->q){
+            $query->where('name','LIKE', $request->q);
+        }
+        
+        $data=$query->paginate(10); 
+
+        
+        return view('admin/schools/index', compact('data','myschool','request'));
     }
 
     

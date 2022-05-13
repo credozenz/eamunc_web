@@ -139,7 +139,10 @@ class StudentsController extends Controller
             $student->mun_experience = $request->mun_experience;
             $student->user_id  = $user->id;
             $student->position = $position;
-            $student->status   = $request->status;
+            if($request->status != null){
+                $student->status   = $request->status;
+            }
+            
             $student->save();
             
             if($student->id){
