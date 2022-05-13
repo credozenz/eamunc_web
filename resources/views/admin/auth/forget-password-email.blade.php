@@ -16,10 +16,10 @@
         {{ Session::get('message') }}
     </div>
 @endif
-<h1>Forget Password Email</h1>
+<h1>Set Password Email</h1>
 
 You can reset password from bellow link:
-<a href="{{ route('ResetPasswordGet', $token) }}">Reset Password</a>
+<a href="{{ route('ResetPasswordGet', $token) }}">Set Password</a>
 </body>
 
 <script src="{{asset('js/admin/bootstrap.bundle.min.js')}}"></script>

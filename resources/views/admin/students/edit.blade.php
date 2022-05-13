@@ -2,8 +2,6 @@
 @extends('admin.layout.main')
 @section('content')
 
-
-
 <div class="page-heading">
     <div class="page-title">
         <div class="row">
@@ -21,25 +19,29 @@
             </div>
         </div>
     </div>
+
+
             @if(Session::has('success'))
             <div class="alert alert-success"><i class="bi bi-star"></i>{{ Session::get('success') }}</div>
              @elseif(Session::has('error'))
             <div class="alert alert-danger"><i class="bi bi-file-excel"></i> {{ Session::get('error') }}</div>
             @endif
-    <!-- // Basic multiple Column Form section start -->
+
+
+    
     <section id="multiple-column-form">
         <div class="row match-height">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Edit</h4>
-                   
                     </div>
+
                     <div class="card-content">
                         <div class="card-body">
-                        <form method="post" action="{{ url('admin/student_update',$data->id) }}"  enctype="multipart/form-data">
-                        @csrf
-                             <div class="row">
+                            <form method="post" action="{{ url('admin/student_update',$data->id) }}"  enctype="multipart/form-data">
+                              @csrf
+                                <div class="row">
                                   
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
@@ -64,8 +66,6 @@
                                              @error('class')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
-
-
                                     
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
@@ -94,31 +94,29 @@
                                     </div>
                                   
                                     <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="">Committee of Choice*</label>
-                                        <select name="committee_choice" class="form-control @error('committee_choice') border-danger @enderror" {{ $errors->has('committee_choice') ? 'autofocus' : '' }} placeholder="Committee of Choice" required>
-                                            <option value=""> Select Committee of Choice </option>
-                                            @foreach ($committees as $key => $value)
-                                            <option value="{{ $value->id ?? '' }}" {{ ($data->committee_choice == $value->id ? "selected":"") }}> {{ $value->name ?? '' }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('committee_choice')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                        <div class="form-group">
+                                            <label for="">Committee of Choice*</label>
+                                            <select name="committee_choice" class="form-control @error('committee_choice') border-danger @enderror" {{ $errors->has('committee_choice') ? 'autofocus' : '' }} placeholder="Committee of Choice" required>
+                                                <option value=""> Select Committee of Choice </option>
+                                                @foreach ($committees as $key => $value)
+                                                <option value="{{ $value->id ?? '' }}" {{ ($data->committee_choice == $value->id ? "selected":"") }}> {{ $value->name ?? '' }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('committee_choice')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                        </div>
                                     </div>
-                                </div>
                             
-                            
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="form-label">Country of Choice*</label>
-                                        <input type="text" name="country_choice" value="{{ $data->country_choice }}" maxlength="80" class="form-control @error('country_choice') border-danger @enderror" {{ $errors->has('country_choice') ? 'autofocus' : '' }} placeholder="Country of Choice" aria-describedby="textHelp" required>
-                                        @error('country_choice')<div class="text-danger mt-2">{{ $message }}</div>@enderror
-                                    </div>
-                                </div>
-
-                               
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                        <label for="form-label">Status</label>
+                                            <label for="form-label">Country of Choice*</label>
+                                            <input type="text" name="country_choice" value="{{ $data->country_choice }}" maxlength="80" class="form-control @error('country_choice') border-danger @enderror" {{ $errors->has('country_choice') ? 'autofocus' : '' }} placeholder="Country of Choice" aria-describedby="textHelp" required>
+                                            @error('country_choice')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                           <label for="form-label">Status</label>
                                             <select name="status" class="form-control " placeholder="Committee of Choice" required="">
                                                 <option value="0" {{ ($user->status == 0 ? "selected":"") }}> Pending</option>
                                                 <option value="1" {{ ($user->status == 1 ? "selected":"") }}> Approve</option>
@@ -127,33 +125,41 @@
                                                 <option value="3" {{ ($user->status == 4 ? "selected":"") }}> Reject</option>
                                             </select>
                                         </div>
-                                      </div>
+                                    </div>
                                        
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                         <label for="form-label">Role</label>
-                                            <select name="role" class="form-control " placeholder="Role" required="">
+                                            <select name="role" class="form-control" id="role_member" placeholder="Role" required="">
                                                 <option value="2" {{ ($user->role == 2 ? "selected":"") }}> Delegate</option>
                                                 <option value="3" {{ ($user->role == 3 ? "selected":"") }}> Bureau member</option>
                                             </select>
                                         </div>
-                                      </div>
+                                    </div>
                                         
-                                    
+                                    <div class="col-md-6 col-12" id="delegaterol" style="display:none;">
+                                        <div class="form-group">
+                                            <label for="form-label">Position</label>
+                                            <input type="text" name="position" value="{{ $data->position }}" maxlength="80" class="form-control @error('position') border-danger @enderror" {{ $errors->has('position') ? 'autofocus' : '' }} placeholder="Position" aria-describedby="textHelp">
+                                            @error('position')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                        </div>
+                                    </div>
                                 
                                     <div class="col-12 d-flex justify-content-end">
-                                    <a href="{{ url('admin/students') }}" class="btn btn-light-secondary me-1 mb-1">Back</a>
-                                    <button class="btn btn-primary me-1 mb-1">Submit</button>
+                                        <a href="{{ url('admin/students') }}" class="btn btn-light-secondary me-1 mb-1">Back</a>
+                                        <button class="btn btn-primary me-1 mb-1">Submit</button>
                                     </div>
+
                                 </div>
-                                </form>
+                            </form>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </section>
-    <!-- // Basic multiple Column Form section end -->
+   
 </div>
 
      @endsection

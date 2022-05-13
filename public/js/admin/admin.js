@@ -234,90 +234,31 @@ $(document).on('click', '.roleButton', function (e) {
     });
 
 
-    $(document).on('change', '.delegate_member', function() {
-        var member_id = $(this).val();
-       
-       var div = document.getElementById("delegatedtl");
 
+    $(document).on('change', '#role_member', function() {
+        var role = $(this).val();
+        var div = document.getElementById("delegaterol");
 
-       $.ajaxSetup({
-        headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-        let _token1   = $('meta[name="csrf-token"]').attr('content');
-
-
-
-        $.ajax({
-            type: "POST",
-            url: '/admin/committee_get_delegate', 
-            dataType:"json",
-            data: {user_id:member_id},
-            _token: _token1,
-            success: function(responce){
-          
-                if(responce.status==true){
-                
-                    var delegate =responce.data;
-                    
-                   
-                      
-                    if (delegate.id) 
-                    {  
-
-                        document.getElementById("del_name").value = delegate.name;
-                        document.getElementById("del_school").value = delegate.school;
-                        document.getElementById("del_email").value = delegate.email;
-                        document.getElementById("del_class").value = delegate.class;
-                        document.getElementById("del_no").value = delegate.whatsapp_no;
-                        document.getElementById("del_munexp").value = delegate.mun_experience;
-                        document.getElementById("del_buroexp").value = delegate.bureaumem_experience;
-
-
-                        div.style.display = "block"; 
-                          
-                    }  
-                    else
-                    {  
-                        div.style.display = "none"; 
-                    }  
-
-
-
-
-                }else{
-                    div.style.display = "none"; 
-                }
-
-            },
-
-
-            error: function(xhr, status, error) {
-                // var err = eval("(" + xhr.responseText + ")");
-                // swal(err.Message);
-                div.style.display = "none"; 
-            }
-    
-        });
-
-
-
-
-
-
-
-
+            if(role == 2) {  
+                div.style.display = "none";     
+            } else if(role == 3) {  
+                div.style.display = "block"; 
+            }  
 
     });
 
 
+    $(document).ready(function () { 
+        var role = $('#role_member').val();
+        var div  = document.getElementById("delegaterol");
+       
+            if(role == 2) {  
+                div.style.display = "none";     
+            } else if(role == 3) {  
+                div.style.display = "block"; 
+            }  
 
-
-
-
-
+    });
 
 
 

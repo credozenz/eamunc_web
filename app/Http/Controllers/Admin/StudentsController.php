@@ -100,7 +100,20 @@ class StudentsController extends Controller
         ]);
 
 
-      
+
+        $position = NULL;
+
+        if($request->role == '3'){
+
+            $validatedData = $request->validate([
+                'position' => 'required|max:255',
+            ],[
+                'position.required' => 'The position field is required',
+            ]);
+
+            $position = $request->position;
+
+        }
         
             $user = User::where('id', $student->user_id)->first();
             $user->name  = $request->name;
@@ -118,8 +131,9 @@ class StudentsController extends Controller
             $student->country_choice   = $request->country_choice;
             $student->whatsapp_no    = $request->whatsapp_no;
             $student->mun_experience = $request->mun_experience;
-            $student->user_id = $user->id;
-            $student->status = $request->status;
+            $student->user_id  = $user->id;
+            $student->position = $position;
+            $student->status   = $request->status;
             $student->save();
             
             if($student->id){
