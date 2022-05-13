@@ -13,6 +13,7 @@ use App\Models\SiteIndexes;
 use App\Models\Committee;
 use App\Models\School;
 use App\Models\Students;
+use App\Models\Countries;
 use App\Models\User;
 use Str;
 use Image;
@@ -33,7 +34,9 @@ class RegistrationController extends Controller
     {
         $committees = Committee::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(50); 
 
-        return view('web/isg-registration', compact('committees'));
+        $countries = Countries::all();
+
+        return view('web/isg-registration', compact('committees','countries'));
     }
 
 
@@ -46,6 +49,7 @@ class RegistrationController extends Controller
             'class' => 'required|max:255',
             'committee_choice' => 'required|max:255',
             'country_choice' => 'required|max:255',
+            'phone_code'    => 'required|max:255',
             'whatsapp_no'    => 'required|max:255',
             'mun_experience' => 'required|max:255',
             "bureaumem_experience"    => "required|max:255",
@@ -58,11 +62,14 @@ class RegistrationController extends Controller
             'committee_choice.required' => 'The Committee choice field is required',
             'country_choice.required' => 'The Country choice field is required',
             'whatsapp_no.required' => 'The WhatsApp No field is required',
+            'phone_code.required' => 'The Phone code field is required',
             'mun_experience.required' => 'The MUN Experience field is required',
             'bureaumem_experience.required' => 'The Bureaumem Experience field is required',
         ]);
 
-        
+
+       $phone_code = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $request->phone_code);
+       
             $user = new User;
             $user->name  = $request->name;
             $user->email = $request->email;
@@ -81,6 +88,7 @@ class RegistrationController extends Controller
             $student->class = $request->class;
             $student->committee_choice = $request->committee_choice;
             $student->country_choice   = $request->country_choice;
+            $student->phone_code     = $phone_code;
             $student->whatsapp_no    = $request->whatsapp_no;
             $student->mun_experience = $request->mun_experience;
             $student->bureaumem_experience = $request->bureaumem_experience;
@@ -105,8 +113,8 @@ class RegistrationController extends Controller
     public function school_registration()
     {
         $committees = Committee::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4); 
-
-        return view('web/school-registration', compact('committees'));
+        $countries = Countries::all();
+        return view('web/school-registration', compact('committees','countries'));
     }
 
 
@@ -118,12 +126,14 @@ class RegistrationController extends Controller
             'advisor_name' => 'required|max:255',
             'advisor_email' => 'required|max:255',
             'advisor_mobile' => 'required|max:255',
+            'mob_code' => 'required|max:255',
             "name"    => "required|array",
             "name.*"  => "required",
             "email"    => "required|array",
             'email.*' => 'required|max:255|email',
             "class"    => "required|array",
             "class.*"  => "required|string",
+            'phone_code'    => 'required|max:255',
             "whatsapp_no"    => "required|array",
             "whatsapp_no.*"  => "required",
             "mun_experience"    => "required|array",
@@ -136,24 +146,27 @@ class RegistrationController extends Controller
             'advisor_name.required' => 'The Advisor Name field is required',
             'advisor_email.required' => 'The Advisor Email field is required',
             'advisor_mobile.required' => 'The Advisor Mobile field is required',
+            'mob_code.required' => 'The Phone code field is required',
             'name.required' => 'The Name field is required',
             'email.required' => 'The Email field is required',
             'email.email' => 'Please put valid email Number',
             'email.unique' => 'Email id already exists',
             'class.required' => 'The Class field is required',
+            'phone_code.required' => 'The Phone code field is required',
             'whatsapp_no.required' => 'The WhatsApp No field is required',
             'mun_experience.required' => 'The MUN Experience field is required',
             'school_logo.max' => 'Logo  must be smaller than 2 MB',
             'school_logo.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
         ]);
       
+        $phone_code = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $request->mob_code);
 
             $school = new School;
             $school->name   = $request->school_name;
             $school->email  = $request->advisor_email;
-            $school->mobile = $request->advisor_mobile;
+            $school->mobile = $phone_code.$request->advisor_mobile;
             $school->advisor_name = $request->advisor_name;
-
+            
 
                 if ($request->hasFile('school_logo')) {
                 $image = $request->file('school_logo');
@@ -183,6 +196,7 @@ class RegistrationController extends Controller
         $name = $request->input('name');
         $email = $request->input('email');
         $class = $request->input('class');
+        $phone_code = $request->input('phone_code');
         $whatsapp_no = $request->input('whatsapp_no');
         $mun_experience = $request->input('mun_experience');
         $bureaumem_experience = $request->input('bureaumem_experience');
@@ -210,6 +224,7 @@ class RegistrationController extends Controller
              $student->user_id    = $user->id;
              $student->school_id  = $school->id;
              $student->class  = $class[$count];
+             $student->phone_code     = $phone_code[$count];
              $student->whatsapp_no = $whatsapp_no[$count];
              $student->mun_experience = $mun_experience[$count];
              $student->bureaumem_experience = $bureaumem_experience[$count];

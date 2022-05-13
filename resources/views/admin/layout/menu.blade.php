@@ -14,48 +14,31 @@
     
     <div class="sidebar-menu">
         <ul class="menu">
-            <li class="sidebar-item  @if($routeGroup =='dashbord') active @endif ">
+            <li class="sidebar-item @if($routeGroup =='dashbord') active @endif ">
                 <a href="{{ route('admin.dashbord') }}" class='sidebar-link'>
                     <span><i class="fa fa-columns" aria-hidden="true">&nbsp</i>Dashboard</span>
                 </a>
             </li>
 
-            <li class="sidebar-item  has-sub @if($routeGroup=='school') active @endif">
-                <a href="#" class='sidebar-link'>
+            <li class="sidebar-item @if($routeGroup=='school') active @endif">
+                <a href="{{ route('admin.schools') }}" class='sidebar-link'>
                     <span><i class="fa fa-university" aria-hidden="true">&nbsp</i>Schools</span>
                 </a>
-                <ul class="submenu @if($routeGroup=='school') active @endif">
-                    <li class="submenu-item ">
-                        <a href="{{ route('admin.schools') }}">Index</a>
-                    </li>
-                    
-                </ul>
             </li>
 
 
-            <li class="sidebar-item  has-sub @if($routeGroup=='students') active @endif">
-                <a href="#" class='sidebar-link'>
+            <li class="sidebar-item @if($routeGroup=='students') active @endif">
+                <a href="{{ route('admin.students') }}" class='sidebar-link'>
                     <span><i class="fa fa-graduation-cap" aria-hidden="true">&nbsp</i>Students</span>
                 </a>
-                <ul class="submenu @if($routeGroup=='students') active @endif">
-                    <li class="submenu-item ">
-                        <a href="{{ route('admin.students') }}">Index</a>
-                    </li>
-                    
-                </ul>
             </li>
 
 
 
-            <li class="sidebar-item  has-sub @if($routeGroup=='committee') active @endif ">
-                <a href="#" class='sidebar-link'>
+            <li class="sidebar-item @if($routeGroup=='committee') active @endif ">
+                <a href="{{ route('admin.committee') }}" class='sidebar-link'>
                     <span><i class="fa fa-users" aria-hidden="true">&nbsp</i>Committee</span>
                 </a>
-                <ul class="submenu @if($routeGroup=='committee') active @endif">
-                    <li class="submenu-item ">
-                        <a href="{{ route('admin.committee') }}">Committee</a>
-                    </li>
-                </ul>
             </li>
 
             <li class="sidebar-item  @if($routeGroup =='guideline') active @endif ">

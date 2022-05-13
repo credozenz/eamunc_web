@@ -124,7 +124,14 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="text-danger">WhatsApp NO</label>
+                                            <div class="row">
+                                            <div class="col-md-3 col-12">
+                                            <input type="text" name="phone_code" value="{{ $data->phone_code }}" class="form-control" disabled placeholder="Code">
+                                            </div>
+                                            <div class="col-md-9 col-12">
                                             <input type="text" name="whatsapp_no" value="{{ $data->whatsapp_no }}" class="form-control" disabled placeholder="Whatsapp no">
+                                            </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -158,7 +165,12 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="form-label">Country of Choice</label>
-                                            <input type="text" name="country_choice" disabled value="{{ $data->country_choice }}" maxlength="80" class="form-control @error('country_choice') border-danger @enderror" {{ $errors->has('country_choice') ? 'autofocus' : '' }} placeholder="Country of Choice" aria-describedby="textHelp" required>
+                                            <select name="country_choice" disabled class="form-control @error('country_choice') border-danger @enderror" {{ $errors->has('country_choice') ? 'autofocus' : '' }} placeholder="Country of Choice" required>
+                                                <option value=""> </option>
+                                                @foreach ($countries as $key => $value)
+                                                <option value="{{ $value->id }}" {{ ($data->country_choice == $value->id ? "selected":"") }}> {{ $value->name ?? '' }}</option>
+                                                @endforeach
+                                            </select>
                                             @error('country_choice')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
@@ -167,11 +179,11 @@
                                         <div class="form-group">
                                         <label for="form-label">Status</label>
                                             <select name="status" class="form-control " placeholder="Committee of Choice" required="" disabled>
-                                                <option value="0" {{ ($user->status == 0 ? "selected":"") }}> Pending</option>
-                                                <option value="1" {{ ($user->status == 1 ? "selected":"") }}> Approve</option>
-                                                <option value="1" {{ ($user->status == 2 ? "selected":"") }} disabled> Invite</option>
-                                                <option value="1" {{ ($user->status == 3 ? "selected":"") }} disabled> Active</option>
-                                                <option value="3" {{ ($user->status == 4 ? "selected":"") }}> Reject</option>
+                                                <option value="0" {{ ($data->status == 0 ? "selected":"") }}> Pending</option>
+                                                <option value="1" {{ ($data->status == 1 ? "selected":"") }}> Approve</option>
+                                                <option value="2" {{ ($data->status == 2 ? "selected":"") }} disabled> Invite</option>
+                                                <option value="3" {{ ($data->status == 3 ? "selected":"") }} disabled> Active</option>
+                                                <option value="4" {{ ($data->status == 4 ? "selected":"") }}> Reject</option>
                                             </select>
                                         </div>
                                     </div>

@@ -60,14 +60,27 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="form-label">Country of Choice*</label>
-                                        <input type="text" name="country_choice" value="{{ old('country_choice') }}" maxlength="80" class="form-control @error('country_choice') border-danger @enderror" {{ $errors->has('country_choice') ? 'autofocus' : '' }} placeholder="Country of Choice" aria-describedby="textHelp" required>
+                                        <select name="country_choice"  class="form-control @error('country_choice') border-danger @enderror" {{ $errors->has('country_choice') ? 'autofocus' : '' }} placeholder="Country of Choice" required>
+                                            <option value=""> Select Country of Choice </option>
+                                            @foreach ($countries as $key => $value)
+                                            <option value="{{ $value->id }}" {{ (old('country_choice') == $value->id ? "selected":"") }}> {{ $value->name ?? '' }}</option>
+                                            @endforeach
+                                        </select>
+                                       
                                         @error('country_choice')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="form-label">WhatsApp Number with country code*</label>
-                                        <input type="text" name="whatsapp_no" value="{{ old('whatsapp_no') }}" maxlength="15" class="form-control user_phone @error('whatsapp_no') border-danger @enderror" {{ $errors->has('whatsapp_no') ? 'autofocus' : '' }} placeholder="WhatsApp Number with country code" aria-describedby="textHelp" required>
+                                        <div class="row">
+                                         <div class="col-md-3">
+                                         <input type="text" name="phone_code" value="{{ old('phone_code') }}" maxlength="15" class="form-control user_phone @error('whatsapp_no') border-danger @enderror" {{ $errors->has('phone_code') ? 'autofocus' : '' }} placeholder="Code" aria-describedby="textHelp" required>
+                                        </div>
+                                        <div class="col-md-9">
+                                        <input type="text" name="whatsapp_no" value="{{ old('whatsapp_no') }}" maxlength="15" class="form-control user_phone @error('whatsapp_no') border-danger @enderror" {{ $errors->has('whatsapp_no') ? 'autofocus' : '' }} placeholder="WhatsApp Number" aria-describedby="textHelp" required>
+                                        </div>
+                                        </div>
                                         @error('whatsapp_no')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>

@@ -29,6 +29,62 @@
 
     <div class="page-content">
         <section class="section">
+
+
+        <!-- <div class="row">
+            <div class="col-12">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row justify-content-between">
+                            <div class="col-12 d-flex align-items-center">
+                                    <form action="https://web.taswiq.app/task/" id="taskfilter" method="get" class="input-group m-0"> 
+                                    <input type="hidden" name="_token" value="69224d7a667a1ca7fbee">  <select class="custom-select col-2 mr-2" name="creatuser" id="creatuser">
+                                    <option value="">Created By</option>
+                                    <option value="">All User</option>
+                                    <option value="1">Jamsheer Goshalakkal</option>
+                                    <option value="2">Mohsin</option>
+                                    <option value="3">Hasnain</option>
+                                    <option value="4">Fasil</option>
+                                    <option value="5">Colin Peter</option>
+                                    <option value="6">Sarath</option>
+                                    <option value="7">Krishna Raj</option>
+                                    <option value="8">Test</option>
+                                    </select>
+                                    <select class="custom-select col-2 mr-2" name="assignuser" id="assignuser">
+                                    <option value="">Assigned To</option>
+                                    <option value="">All User</option>
+                                    <option value="1">Jamsheer Goshalakkal</option>
+                                    <option value="2">Mohsin</option>
+                                    <option value="3">Hasnain</option>
+                                    <option value="4">Fasil</option>
+                                    <option value="5">Colin Peter</option>
+                                    <option value="6">Sarath</option>
+                                    <option value="7">Krishna Raj</option>
+                                    <option value="8">Test</option>
+                                    </select>
+                                    <select class="custom-select col-2 mr-2" name="status" id="status">
+                                    <option value="">Status</option>
+                                    <option value="">All Status</option>
+                                    
+                                    <option value="0">Pending</option>
+                                    <option value="1">Active</option>
+                                    <option value="2">Over Due</option>
+                                    <option value="3">Canceled</option>
+                                    
+                                    </select>
+                                    
+                                    </form>
+ 
+                                    <a href="https://web.taswiq.app/task/" class="text-dark mr-4" style="text-decoration: underline !important;">Reset</a>
+ 
+ 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
             <div class="row">
                 <div class="col-12">
                     <div class="card">

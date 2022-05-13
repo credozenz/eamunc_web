@@ -109,7 +109,6 @@
                                         <th>Email</th>
                                         <th>Whatsapp NO</th>
                                         <th>Class & Section</th>
-                                        <th>Committee of Choice</th>
                                         <th>Country</th>
                                         <th>Action</th>
                                     </tr>
@@ -122,9 +121,8 @@
                                         <td class="text-bold-500">{{ $key+1 }}</td>
                                         <td class="text-bold-500">{{ $value->name }}</td>
                                         <td class="text-bold-500">{{ $value->email }}</td>
-                                        <td class="text-bold-500">{{ $value->whatsapp_no }}</td>
+                                        <td class="text-bold-500">{{ $value->phone_code }}-{{ $value->whatsapp_no }}</td>
                                         <td class="text-bold-500">{{ $value->class }}</td>
-                                        <td class="text-bold-500">{{ $value->committee_choice }}</td>
                                         <td class="text-bold-500">{{ $value->country_choice }}</td>
 
                                         <td>
@@ -178,7 +176,7 @@
                                         <td class="text-bold-500">{{ $key+1 }}</td>
                                         <td class="text-bold-500">{{ $value->name }}</td>
                                         <td class="text-bold-500">{{ $value->email }}</td>
-                                        <td class="text-bold-500">{{ $value->whatsapp_no }}</td>
+                                        <td class="text-bold-500">{{ $value->phone_code }}-{{ $value->whatsapp_no }}</td>
                                         <td class="text-bold-500">{{ $value->class }}</td>
                                         <td class="text-bold-500">{{ $value->school_name }}</td>
 

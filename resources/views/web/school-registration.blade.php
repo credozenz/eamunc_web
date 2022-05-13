@@ -55,9 +55,16 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="">Mobile*</label>
+                                            <label for="">Mobile Number with country code*</label>
+                                            <div class="row">
+                                         <div class="col-md-3">
+                                         <input type="text" name="mob_code" value="{{ old('mob_code') }}" maxlength="15" class="form-control mob_code @error('mob_code') border-danger @enderror" {{ $errors->has('mob_code') ? 'autofocus' : '' }} placeholder="Code" aria-describedby="textHelp" required>
+                                        </div>
+                                        <div class="col-md-9">
                                             <input type="phone" name="advisor_mobile" value="{{ old('advisor_mobile') }}" maxlength="15" class="form-control user_phone @error('advisor_mobile') border-danger @enderror" {{ $errors->has('advisor_mobile') ? 'autofocus' : '' }} aria-describedby="textHelp"
                                                 placeholder="Mobile" required>
+                                                </div>
+                                                </div>
                                                 @error('advisor_mobile')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
@@ -91,13 +98,28 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4">
+
+                            <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="form-label">WhatsApp Number with country code*</label>
+                                        <div class="row">
+                                         <div class="col-md-3">
+                                         <input type="text" name="phone_code[]" value="{{ old('phone_code.0') }}" maxlength="15" class="form-control user_phone @error('whatsapp_no') border-danger @enderror" {{ $errors->has('phone_code') ? 'autofocus' : '' }} placeholder="Code" aria-describedby="textHelp" required>
+                                        </div>
+                                        <div class="col-md-9">
+                                        <input type="text" name="whatsapp_no[]" value="{{ old('whatsapp_no.0') }}" maxlength="15" class="form-control user_phone @error('whatsapp_no') border-danger @enderror" {{ $errors->has('whatsapp_no') ? 'autofocus' : '' }} placeholder="WhatsApp Number" aria-describedby="textHelp" required>
+                                        </div>
+                                        </div>
+                                        @error('whatsapp_no')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                    </div>
+                                </div>
+                                <!-- <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="form-label">WhatsApp Number with country code*</label>
                                         <input type="text" name="whatsapp_no[]" value="{{ old('whatsapp_no.0') }}" maxlength="15" class="form-control user_phone @error('whatsapp_no') border-danger @enderror" {{ $errors->has('whatsapp_no') ? 'autofocus' : '' }} placeholder="WhatsApp Number with country code" aria-describedby="textHelp" required>
                                         @error('whatsapp_no')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
-                                </div>
+                                </div> -->
                            
                                 <div class="col-md-4">
                                     <div class="form-group">

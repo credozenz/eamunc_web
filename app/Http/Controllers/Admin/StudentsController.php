@@ -14,6 +14,7 @@ use App\Helper\AdminHelper;
 use App\Models\SiteIndexes;
 use App\Models\School;
 use App\Models\Students;
+use App\Models\Countries;
 use App\Models\Committee;
 use App\Models\User;
 use Carbon\Carbon;
@@ -55,7 +56,8 @@ class StudentsController extends Controller
         $data = students::where('id', $id)->first();  
         $school = School::where('id', $data->school_id)->first(); 
         $user = User::where('id', $data->user_id)->first(); 
-        return view('admin/students/edit', compact('data','school','committees','user'));
+        $countries = Countries::all();
+        return view('admin/students/edit', compact('data','school','committees','user','countries'));
        
     }
 
@@ -65,7 +67,8 @@ class StudentsController extends Controller
         $data = students::where('id', $id)->first();  
         $school = School::where('id', $data->school_id)->first(); 
         $user = User::where('id', $data->user_id)->first(); 
-        return view('admin/students/show', compact('data','school','user','committees','id'));
+        $countries = Countries::all();
+        return view('admin/students/show', compact('data','school','user','committees','id','countries'));
        
     }
 
@@ -85,6 +88,7 @@ class StudentsController extends Controller
             'class' => 'required|max:255',
             'committee_choice' => 'required|max:255',
             'country_choice' => 'required|max:255',
+            'phone_code'    => 'required|max:255',
             'whatsapp_no'    => 'required|max:255',
             'mun_experience' => 'required|max:255',
         ],[
@@ -95,12 +99,13 @@ class StudentsController extends Controller
             'class.required' => 'The Class field is required',
             'committee_choice.required' => 'The Committee choice field is required',
             'country_choice.required' => 'The Country choice field is required',
+            'phone_code.required' => 'The Phone code field is required',
             'whatsapp_no.required' => 'The WhatsApp No field is required',
             'mun_experience.required' => 'The MUN Experience field is required',
         ]);
 
 
-
+        $phone_code = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $request->phone_code);
         $position = NULL;
 
         if($request->role == '3'){
@@ -129,6 +134,7 @@ class StudentsController extends Controller
             $student->class = $request->class;
             $student->committee_choice = $request->committee_choice;
             $student->country_choice   = $request->country_choice;
+            $student->phone_code    = $phone_code;
             $student->whatsapp_no    = $request->whatsapp_no;
             $student->mun_experience = $request->mun_experience;
             $student->user_id  = $user->id;

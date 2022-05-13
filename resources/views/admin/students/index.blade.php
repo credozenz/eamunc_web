@@ -44,7 +44,7 @@
                                         <th>Type</th>
                                         <th>School</th>
                                         <th>Role</th>
-                                        <th>status</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>

@@ -17,6 +17,16 @@ $(document).ready(function() {
 });
 
 
+
+$(document).ready(function () {
+    $('.select2').select2({
+        placeholder: "Select",
+        allowClear: true,
+        
+    });
+});
+
+
 $(document).ready(function() {
 
     $('#side_opener').click(function() {
@@ -69,7 +79,14 @@ $(document).ready(function() {
                     '<div class="col-md-4">'+
                         '<div class="form-group">'+
                             '<label for="form-label">WhatsApp Number with country code*</label>'+
-                            '<input type="phone[]" name="whatsapp_no[]" maxlength="15" value="" class="user_phone form-control" placeholder="WhatsApp Number with country code" aria-describedby="textHelp" required>'+
+                                '<div class="row">'+
+                                   '<div class="col-md-3">'+
+                                         '<input type="text" name="phone_code[]" value="" maxlength="15" class="form-control phone_code"  placeholder="Code" aria-describedby="textHelp" required>'+
+                                    '</div>'+
+                                    '<div class="col-md-9">'+
+                                        '<input type="phone[]" name="whatsapp_no[]" value="" maxlength="15" class="form-control user_phone"  placeholder="WhatsApp Number" aria-describedby="textHelp" required>'+
+                                    '</div>'+
+                                '</div>'+
                             '<div class="text-danger mt-2"></div>'+
                         '</div>'+
                     '</div>'+     
