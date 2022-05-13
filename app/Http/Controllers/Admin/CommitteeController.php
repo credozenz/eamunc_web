@@ -12,8 +12,6 @@ use App\Models\Committee;
 use App\Models\Committee_member;
 use App\Models\User;
 use App\Models\School;
-use App\Models\School_Delegates;
-use App\Models\Isg_delegates;
 use Carbon\Carbon;
 use Str;
 use Image;

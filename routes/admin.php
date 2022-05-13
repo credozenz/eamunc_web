@@ -34,6 +34,9 @@ use App\Http\Controllers\Admin\FeedbackController;
 
 use App\Http\Controllers\Admin\ForgotPasswordController;
 use App\Http\Controllers\Admin\StudentsController;
+use App\Http\Controllers\Admin\SchoolsController;
+use App\Http\Controllers\Admin\GuidelineController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -275,7 +278,14 @@ Route::group(['middleware' => 'adminchecker'], function() {
      // Route::post('/committee_get_delegate', [CommitteeController::class,'get_delegate'])->name('admin.committee.get_delegate');
     
 
+     Route::get('/schools', [SchoolsController::class,'index'])->name('admin.schools');
+     Route::get('/school_edit/{id}', [SchoolsController::class,'edit'])->name('admin.school.edit');
+     Route::get('/school_show/{id}', [SchoolsController::class,'show'])->name('admin.school.show');
+     Route::post('/school_update/{id}', [SchoolsController::class,'update'])->name('admin.school.update');
+     Route::post('/school_delete/{id}', [SchoolsController::class,'destroy'])->name('admin.school.destroy');
 
+     Route::get('/guideline', [GuidelineController::class,'index'])->name('admin.guideline');
+     Route::post('/guideline_update', [GuidelineController::class,'update'])->name('admin.guideline.update');
 
 
 });

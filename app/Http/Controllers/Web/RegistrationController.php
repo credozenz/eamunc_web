@@ -13,8 +13,6 @@ use App\Models\SiteIndexes;
 use App\Models\Committee;
 use App\Models\School;
 use App\Models\Students;
-use App\Models\School_Delegates;
-use App\Models\Isg_delegates;
 use App\Models\User;
 use Str;
 use Image;

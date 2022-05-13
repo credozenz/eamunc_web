@@ -20,6 +20,19 @@
                 </a>
             </li>
 
+            <li class="sidebar-item  has-sub @if($routeGroup=='school') active @endif">
+                <a href="#" class='sidebar-link'>
+                    <span><i class="fa fa-university" aria-hidden="true">&nbsp</i>Schools</span>
+                </a>
+                <ul class="submenu @if($routeGroup=='school') active @endif">
+                    <li class="submenu-item ">
+                        <a href="{{ route('admin.schools') }}">Index</a>
+                    </li>
+                    
+                </ul>
+            </li>
+
+
             <li class="sidebar-item  has-sub @if($routeGroup=='students') active @endif">
                 <a href="#" class='sidebar-link'>
                     <span><i class="fa fa-graduation-cap" aria-hidden="true">&nbsp</i>Students</span>
@@ -33,6 +46,7 @@
             </li>
 
 
+
             <li class="sidebar-item  has-sub @if($routeGroup=='committee') active @endif ">
                 <a href="#" class='sidebar-link'>
                     <span><i class="fa fa-users" aria-hidden="true">&nbsp</i>Committee</span>
@@ -42,6 +56,12 @@
                         <a href="{{ route('admin.committee') }}">Committee</a>
                     </li>
                 </ul>
+            </li>
+
+            <li class="sidebar-item  @if($routeGroup =='guideline') active @endif ">
+                <a href="{{ route('admin.guideline') }}" class='sidebar-link'>
+                    <span><i class="fa fa-map-signs" aria-hidden="true">&nbsp</i>Guideline</span>
+                </a>
             </li>
 
             <li class="sidebar-item  @if($routeGroup =='feedback') active @endif ">

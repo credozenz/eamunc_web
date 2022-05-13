@@ -1,0 +1,110 @@
+@extends('admin.layout.main')
+@section('content')
+         
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3> Schools</h3>
+                <p class="text-subtitle text-muted"></p>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ url('admin/schools') }}"> Schools</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"> Index</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+
+    @if(Session::has('success'))
+    <div class="alert alert-success"><i class="bi bi-star"></i>{{ Session::get('success') }}</div>
+        @elseif(Session::has('error'))
+    <div class="alert alert-danger"><i class="bi bi-file-excel"></i> {{ Session::get('error') }}</div>
+    @endif
+
+
+    <div class="page-content">
+        <section class="section">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">Schools</h5>
+                              
+                        </div>
+                        <div class="table-responsive">
+                                <table class="table table-bordered mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Name</th>
+                                            <th>Logo</th>
+                                            <th>Phone</th>
+                                            <th>Faculty Advisor’s Name</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                   
+                                        <tr style="background-color: #d5d1ca;">
+                                            <td class="text-bold-500">1</td>
+                                            <td class="text-bold-500">{{ $myschool->name }}</td>
+                                            <td>
+
+                                            <div class="w-30 h-30 relative image-fit  mb-2 mr-5 ">
+                                            <img alt="{{ $myschool->name }}" class="rounded-full" src="{{ asset('uploads/'.$myschool->logo) }}" width="200" height="80">
+                                             </div>
+        
+                                            </td>
+                                            <td class="text-bold-500">{{ $myschool->mobile }}</td>
+                                            <td class="text-bold-500">{{ $myschool->advisor_name }}</td>
+                                            
+                                            <td>
+                                            <a href="{{ url('admin/school_show',$myschool->id) }}" class="btn btn-sm btn-primary w-24 mr-1 mb-2">View</a>
+                                            </td>
+                                        </tr>
+
+                                @if (!empty($data) && $data->count())
+                                    @foreach ($data as $key => $value)
+                                        <tr>
+                                            <td class="text-bold-500">{{ $key+2 }}</td>
+                                            <td class="text-bold-500">{{ $value->name }}</td>
+                                            <td>
+
+                                            <div class="w-30 h-30 relative image-fit  mb-2 mr-5 ">
+                                            <img alt="{{ $value->name }}" class="rounded-full" src="{{ asset('uploads/'.$value->logo) }}" width="200" height="80">
+                                             </div>
+        
+                                            </td>
+                                            <td class="text-bold-500">{{ $value->mobile }}</td>
+                                            <td class="text-bold-500">{{ $value->advisor_name }}</td>
+                                            
+                                            <td>
+                                            <a href="{{ url('admin/school_show',$value->id) }}" class="btn btn-sm btn-primary w-24 mr-1 mb-2">View</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <tr>
+                                        <td colspan="10">There are no Participating Schools.</td>
+                                    </tr>
+                                @endif
+                                    
+                                    </tbody>
+                                </table>
+                        </div>
+                    </div>         
+                            
+                    @include('admin.layout.pagination', ['paginator' => $data])
+                        
+                </div>
+            </div>
+        </section>
+    </div>
+</div>              
+@endsection

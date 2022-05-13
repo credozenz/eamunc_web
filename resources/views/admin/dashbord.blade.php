@@ -97,7 +97,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="card-title">Latest ISG Delegates</h5>
+                        <h5 class="card-title">Latest ISG Students</h5>
                         
                     </div>
                     <div class="table-responsive">
@@ -128,7 +128,7 @@
                                         <td class="text-bold-500">{{ $value->country_choice }}</td>
 
                                         <td>
-                                        <a href="{{ url('admin/isg_delegates_show',$value->id) }}" class="btn btn-sm btn-primary w-24 mr-1 mb-2">View</a>
+                                        <a href="{{ url('admin/student_show',$value->id) }}" class="btn btn-sm btn-primary w-24 mr-1 mb-2">View</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -154,7 +154,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="card-title">Latest School Delegates</h5>
+                        <h5 class="card-title">Latest Participating School Students</h5>
                         
                     </div>
                     <div class="table-responsive">
@@ -183,7 +183,7 @@
                                         <td class="text-bold-500">{{ $value->school_name }}</td>
 
                                         <td>
-                                        <a href="{{ url('admin/school_delegates_show',$value->id) }}" class="btn btn-sm btn-primary w-24 mr-1 mb-2">View</a>
+                                        <a href="{{ url('admin/student_show',$value->id) }}" class="btn btn-sm btn-primary w-24 mr-1 mb-2">View</a>
                                         </td>
                                     </tr>
                                 @endforeach

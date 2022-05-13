@@ -10,8 +10,6 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Route;
 use App\Models\SiteIndexes;
 use App\Models\School;
-use App\Models\School_Delegates;
-use App\Models\Isg_delegates;
 use App\Models\Committee;
 use View;
 class BureauDashbordController extends Controller
