@@ -14,21 +14,20 @@ use App\Models\School;
 use App\Models\Committee;
 use App\Models\User;
 use View;
-use Illuminate\Support\Facades\Auth;
-class BureauDashbordController extends Controller
+class BureauBlocFormationController extends Controller
 {
 
     public function __construct()
     {
-        
-        View::share('routeGroup','bureau_dashbord');
-       
+        $routeName  = Route::currentRouteName();
+        View::share('routeGroup','bureau_bloc_formation');
+
     }
 
     public function index()
     {
         $member = WebAppHelper::getLogMember();
-        
+
         $guideline = SiteIndexes::where('deleted_at', null)->where('type','guideline')->first();
 
         $committee = Committee::where('id',$member->committee_choice)->first();
@@ -42,6 +41,6 @@ class BureauDashbordController extends Controller
                                 ->paginate(300);
 
 
-        return view('app/bureau/dashbord', compact('guideline','committee','committee_member'));
+        return view('app/bureau/bloc_formation', compact('guideline','committee','committee_member'));
     }
 }

@@ -1,12 +1,11 @@
-<nav class="navbar navbar-expand-lg   fixed-top" id="mainNav">
-      <button class="btn float-end display-sm text-white" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button">
+ <!-- Navigation-->
+ <nav class="navbar navbar-expand-lg   fixed-top" id="mainNav">
+    <button class="btn float-end display-sm text-white" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button">
         <i class="fa fa-bars" aria-hidden="true"></i>
-
-     </button>
-     <div class="display-sm">
+    </button>
+    <div class="display-sm">
       <div class="offcanvas bg-primary offcanvas-start mobile-menu" tabindex="-1" id="offcanvas" data-bs-keyboard="false" data-bs-backdrop="false">
-        <div class="offcanvas-header">
-            
+        <div class="offcanvas-header">      
             <button type="button" class="btn-close text-reset text-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body px-0">
@@ -64,75 +63,68 @@
                
             </ul>
         </div>
+      </div>
     </div>
-   
-  </div>
      
-      <div class="collapse navbar-collapse" id="navbarResponsive">
+    <div class="collapse navbar-collapse" id="navbarResponsive">
           
         <ul class="navbar-nav navbar-sidenav display-lg" id="exampleAccordion">
             <div class="text-center menu-profile">
-              <img src="assets/img/commitee/1.jpg" alt="">
-              <h4>Aditya Sharma</h4>
-              <button type="button" class="btn btn-outline-secondary">My Profile</button>
-          </div>
+                @if(!empty(Session::get('Log_IMG'))) 
+                <img src="{{ asset('uploads/'.Session::get('Log_IMG')) ?? '' }}" alt="{{ Session::get('Log_NAME') ?? '' }}">
+                @else
+                <img src="{{ asset('assets/img/avatar.svg') }}" alt="{{ Session::get('Log_NAME') ?? '' }}">
+                @endif
+              
+              <h4>{{ Session::get('Log_NAME') ?? '' }}</h4>
+              <a href="{{ route('app.delegate_profile') }}" type="button" class="btn btn-outline-secondary">My Profile</a>
+            </div>
+
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-            <a class="nav-link active" href="dashboard.html">
-             
+            <a class="nav-link @if($routeGroup =='delegate_dashbord') active @endif" href="{{ route('app.delegate_dashbord') }}">
               <span >Dashboard</span>
             </a>
           </li>
+
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-            <a class="nav-link" href="paper-submission.html">
-             
+            <a class="nav-link @if($routeGroup =='delegate_paper_submission') active @endif" href="{{ route('app.delegate_paper_submission') }}">
               <span >Paper Submission</span>
             </a>
           </li>
 
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-            <a class="nav-link" href="bloc-formation.html">
-             
+            <a class="nav-link @if($routeGroup =='delegate_bloc_formation') active @endif" href="{{ route('app.delegate_bloc_formation') }}">
               <span >Bloc Formation</span>
             </a>
           </li>
 
-          
-
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-            <a class="nav-link" href="vienna-formula.html">
-             
+            <a class="nav-link @if($routeGroup =='delegate_vienna_formula') active @endif" href="{{ route('app.delegate_vienna_formula') }}">
               <span >Vienna Formula</span>
             </a>
           </li>
-
+          
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-            <a class="nav-link" href="line-by-line.html">
-             
+            <a class="nav-link @if($routeGroup =='delegate_line_by_line') active @endif" href="{{ route('app.delegate_line_by_line') }}">
               <span >Line by Line</span>
             </a>
           </li>
 
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-            <a class="nav-link" href="resolution.html">
-             
+            <a class="nav-link @if($routeGroup =='delegate_resolution') active @endif" href="{{ route('app.delegate_resolution') }}">
               <span >Resolution</span>
             </a>
           </li>
 
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-            <a class="nav-link" href="general-assebly.html">
-             
+            <a class="nav-link @if($routeGroup =='delegate_general_assembly') active @endif" href="{{ route('app.delegate_general_assembly') }}">
               <span >General Assembly</span>
             </a>
           </li>
-          
-         
-          
-        
+
         </ul>
+   
+    </div>
+</nav>
 
-
-      
-        
-      </div>
-    </nav>
+    

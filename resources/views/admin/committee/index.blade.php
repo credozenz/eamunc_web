@@ -24,8 +24,8 @@
             <div class="alert alert-danger"><i class="bi bi-file-excel"></i> {{ Session::get('error') }}</div>
             @endif
 <div class="page-content">
-<section class="section">
-<div class="row">
+    <section class="section">
+        <div class="row">
             <div class="col-12">
                 <div class="card mb-4">
                     <div class="card-body">

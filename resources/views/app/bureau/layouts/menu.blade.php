@@ -70,53 +70,52 @@
           
         <ul class="navbar-nav navbar-sidenav display-lg" id="exampleAccordion">
             <div class="text-center menu-profile">
-              <img src="assets/img/commitee/1.jpg" alt="">
-              <h4>Aditya Sharma</h4>
-              <button type="button" class="btn btn-outline-secondary">My Profile</button>
+                @if(!empty(Session::get('Log_IMG'))) 
+                <img src="{{ asset('uploads/'.Session::get('Log_IMG')) ?? '' }}" alt="{{ Session::get('Log_NAME') ?? '' }}">
+                @else
+                <img src="{{ asset('assets/img/avatar.svg') }}" alt="{{ Session::get('Log_NAME') ?? '' }}">
+                @endif
+              
+              <h4>{{ Session::get('Log_NAME') ?? '' }}</h4>
+              <a href="{{ route('app.bureau_dashbord') }}" type="button" class="btn btn-outline-secondary">My Profile</a>
             </div>
+
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-            <a class="nav-link active" href="dashboard.html">
-             
+            <a class="nav-link @if($routeGroup =='bureau_dashbord') active @endif" href="{{ route('app.bureau_dashbord') }}">
               <span >Dashboard</span>
-            </a>
-          </li>
-          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-            <a class="nav-link" href="paper-submission.html">
-             
-              <span >Paper Submission</span>
             </a>
           </li>
 
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-            <a class="nav-link" href="bloc-formation.html">
-             
+            <a class="nav-link @if($routeGroup =='bureau_bloc_formation') active @endif" href="{{ route('app.bureau_bloc_formation') }}">
               <span >Bloc Formation</span>
             </a>
           </li>
+
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-            <a class="nav-link" href="vienna-formula.html">
-             
+            <a class="nav-link @if($routeGroup =='bureau_vienna_formula') active @endif" href="{{ route('app.bureau_vienna_formula') }}">
               <span >Vienna Formula</span>
             </a>
           </li>
+          
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-            <a class="nav-link" href="line-by-line.html">
-             
+            <a class="nav-link @if($routeGroup =='bureau_line_by_line') active @endif" href="{{ route('app.bureau_line_by_line') }}">
               <span >Line by Line</span>
             </a>
           </li>
+
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-            <a class="nav-link" href="resolution.html">
-             
+            <a class="nav-link @if($routeGroup =='bureau_resolution') active @endif" href="{{ route('app.bureau_resolution') }}">
               <span >Resolution</span>
             </a>
           </li>
+
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-            <a class="nav-link" href="general-assebly.html">
-             
+            <a class="nav-link @if($routeGroup =='bureau_general_assembly') active @endif" href="{{ route('app.bureau_general_assembly') }}">
               <span >General Assembly</span>
             </a>
           </li>
+
         </ul>
    
     </div>

@@ -46,7 +46,8 @@ class AuthController extends Controller
                     $member_datas['Log_ROLE']  = $user->role;
                     $member_datas['Log_NAME']  = $user->name;
                     $member_datas['Log_EMAIL'] = $user->email;
-                   
+                    $member_datas['Log_IMG']   = $user->avatar;
+
                     Session::put($member_datas);
                   
                     if($user->role=='2'){
