@@ -27,12 +27,76 @@
 
 <div class="page-content">
     <section class="section">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row justify-content-between">
+                            <div class="col-12 d-flex align-items-center">
+                                <div class="col-6 d-flex align-items-center">
+                                    <form action="{{ url('/admin/students') }}" method="get" class="input-group m-0"> 
+                                    <input type="text" class="form-control search border-right-0" placeholder="Search" id="main_q" name="q" value="{{ $request->q ?? ''}}">
+                                    <button class="btn-info">Search</button>
+                                    </form>
+                                    </div>
+                                    <div class="col-5 d-flex align-items-center">
+                                    </div>
+                                    
+                                    <div class="col-1">
+                                    <a href="{{ url('/admin/students') }}" class="text-dark mr-4" style="text-decoration: underline !important;">Reset</a>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
                         <h5 class="card-title">Index</h5>
+                        <form action="{{ url('/admin/students') }}" method="get" id="indexfilter"> 
+                        <div class="row">
+                        <div class="col-6 d-flex align-items-center">
+                        </div>
                         
+                                    <div class="col-4 d-flex align-items-center">
+                                    <select name="school" class="custom-select mr-2 col-4 idx-school" style="border: hidden;text-align-last: end;">
+                                    <option value="">School</option>
+                                    @if(!empty($school) && $school->count())
+                                       @foreach ($school as $key => $value)
+                                    <option value="{{ $value->id }}" {{ ($request->school == $value->id ? "selected":"") }}>{{ $value->name }}</option>
+                                       @endforeach
+                                    @endif
+                                    </select>
+                                    <select name="r" class="custom-select mr-2 col-4 idx-role" style="border: hidden;text-align-last: end;">
+                                    <option value="">Role</option>
+                                    <option value="2" {{ ($request->r == '2' ? "selected":"") }}>Delegate</option>
+                                    <option value="3" {{ ($request->r == '3' ? "selected":"") }}>Bureau member</option>
+                                    </select>
+                                    <select name="t" class="custom-select mr-2 col-4 idx-type" style="border: hidden;text-align-last: end;">
+                                    <option value="">Type</option>
+                                    <option value="1" {{ ($request->t == '1' ? "selected":"") }}>ISG Student</option>
+                                    <option value="2" {{ ($request->t == '2' ? "selected":"") }}>Participating School Student</option>
+                                    </select>
+                                    <select name="s" class="custom-select mr-2 col-4 idx-status" style="border: hidden;text-align-last: end;">
+                                    <option value="">Status</option>
+                                    <option value="0" {{ ($request->s == '0' ? "selected":"") }}>Pending</option>
+                                    <option value="1" {{ ($request->s == '1' ? "selected":"") }}>Approve</option>
+                                    <option value="2" {{ ($request->s == '2' ? "selected":"") }}>Invite</option>
+                                    <option value="3" {{ ($request->s == '3' ? "selected":"") }}>Active</option>
+                                    <option value="4" {{ ($request->s == '4' ? "selected":"") }}>Reject</option>
+                                    </select>
+                                  
+                                    </div>
+                                    
+                        </div>
+                        </form>
+
+
                     </div>
                     <div class="table-responsive">
                         <table class="table table-bordered mb-0">

@@ -70,6 +70,36 @@ $(function(){
 
 
 
+$(document).ready(function(){
+    $('.idx-school').change(function(){
+      
+      $('#indexfilter').submit();
+    });
+  
+    $('.idx-role').change(function(){
+      
+      $('#indexfilter').submit();
+    });
+  
+    $('.idx-type').change(function(){
+      
+      $('#indexfilter').submit();
+    });
+  
+    $('.idx-status').change(function(){
+      
+      $('#indexfilter').submit();
+    });
+
+
+   
+
+   
+  });
+
+
+
+
 
 $(document).on('click', '.roleButton', function (e) {
     e.preventDefault();

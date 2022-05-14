@@ -27,6 +27,29 @@
 <section class="section">
         <div class="row">
             <div class="col-12">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row justify-content-between">
+                            <div class="col-12 d-flex align-items-center">
+                                <div class="col-6 d-flex align-items-center">
+                                    <form action="{{ url('/admin/committee_delegate',$id) }}" method="get" class="input-group m-0"> 
+                                    <input type="text" class="form-control search border-right-0" placeholder="Search" id="main_q" name="q" value="{{ $request->q ?? ''}}">
+                                    <button class="btn-info">Search</button>
+                                    </form>
+                                    </div>
+                                    <div class="col-5 d-flex align-items-center">
+                                    </div>
+                                    <div class="col-1 d-flex align-items-center">
+                                    <a href="{{ url('/admin/committee_delegate',$id) }}" class="text-dark mr-4" style="text-decoration: underline !important;">Reset</a>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
                 <div class="card">
                     <div class="card-header">
                         <h5 class="card-title">Index</h5>

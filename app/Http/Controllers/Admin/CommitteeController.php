@@ -27,8 +27,14 @@ class CommitteeController extends Controller
   
     public function index(Request $request)
     {   
-        $data = Committee::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4); 
-        return view('admin/committee/index', compact('data'));
+        $query = Committee::where('deleted_at', null);
+        if($request->q){
+            $query->where('name','LIKE', $request->q)
+            ->orwhere('title','LIKE', $request->q);
+        }
+        $data=$query->orderBy('id', 'DESC')
+                    ->paginate(10); 
+        return view('admin/committee/index', compact('data','request'));
     }
 
     
@@ -259,172 +265,48 @@ class CommitteeController extends Controller
 
 
 
-    public function committee_delegate($id)
+    public function committee_delegate(Request $request,$id)
     {
-        $data = user::where('users.deleted_at', null)
+        $query = user::where('users.deleted_at', null)
         ->join('students', 'users.id', '=', 'students.user_id')
         ->join('schools', 'students.school_id', '=', 'schools.id')
         ->select('students.*', 'schools.name as school_name', 'users.role')
         ->where('users.role', '=' , 2)
         ->whereIn('students.status', [1, 2, 3])
-        ->where('students.committee_choice', '=' , $id)
-        ->orderBy('students.id', 'desc')
+        ->where('students.committee_choice', '=' , $id);
+        if($request->q){
+            $query->where('students.name','LIKE', $request->q);
+        }
+        $data = $query->orderBy('students.id', 'desc')
         ->paginate(4);
       
        
 
-        return view('admin/committee/delegate_members', compact('data','id'));
+        return view('admin/committee/delegate_members', compact('data','id','request'));
     }
 
-    // public function add_delegate(Request $request)
-    // {
-        
-        
-    //     $validatedData = $request->validate([
-    //         'committe_id' => 'required|max:255',
-    //         'delegate_member' => 'required|max:255',
-    //     ],[
-    //         'committe_id.required' => 'The Title field is required',
-    //         'delegate_member.required' => 'The Bureau member field is required',
-    //     ]);
-
-    //     $delegate = User::where('id',$request->delegate_member)->first();
-        
-
-    //     $members = new Committee_member;
-    //     $members->committe_id = $request->committe_id;
-    //     $members->name = $delegate->name;
-    //     $members->user_id = $delegate->id;
-    //     $members->title = '';
-    //     $members->image = $delegate->avatar;
-    //     $members->save();
+   
 
 
-    //     if($members->id){
-    //         Session::flash('success', 'Delegate member added successfully!');
-    //         return  redirect()->back();
-    //       }else{
-    //         Session::flash('error', 'Something went wrong!!');
-    //         return  redirect()->back();
-    //       }
-       
-    // }
-
-
-
-
-    // public function delete_delegate(Request $request,$id)
-    // {
-
-    //     $mytime = Carbon::now();
-    //     $timestamp=$mytime->toDateTimeString();
-
-    //     $member = Committee_member::where('id', $id)->first(); 
-    //     $member->deleted_at = $timestamp;
-    //     $member->delete();
-
-    //     echo json_encode(['status'=>true,'message'=>'Committee member Deleted Successfully !']);exit();
-    // }
-
-
-
-    public function committee_bureau($id)
+    public function committee_bureau(Request $request,$id)
     {
-        $data = user::where('users.deleted_at', null)
+        $query = user::where('users.deleted_at', null)
         ->join('students', 'users.id', '=', 'students.user_id')
         ->join('schools', 'students.school_id', '=', 'schools.id')
         ->select('students.*', 'schools.name as school_name', 'users.role')
         ->where('users.role', '=' , 3)
         ->whereIn('students.status', [1, 2, 3])
-        ->where('students.committee_choice', '=' , $id)
-        ->orderBy('students.id', 'desc')
+        ->where('students.committee_choice', '=' , $id);
+        if($request->q){
+            $query->where('students.name','LIKE', $request->q);
+        }
+        $data = $query->orderBy('students.id', 'desc')
         ->paginate(4);
 
-        return view('admin/committee/bureau_members', compact('data','id'));
+        return view('admin/committee/bureau_members', compact('data','id','request'));
     }
 
-    // public function add_bureau(Request $request)
-    // {
-        
-        
-    //     $validatedData = $request->validate([
-    //         'committe_id' => 'required|max:255',
-    //         'bureau_member' => 'required|max:255',
-    //         'title' => 'required|max:255'
-    //     ],[
-    //         'committe_id.required' => 'The Title field is required',
-    //         'bureau_member.required' => 'The Bureau member field is required',
-    //         'title.required' => 'The Title field is required',
-    //     ]);
-
-    //     $bureau_member = User::where('id',$request->bureau_member)->first();
-        
-
-    //     $members = new Committee_member;
-    //     $members->committe_id = $request->committe_id;
-    //     $members->name = $bureau_member->name;
-    //     $members->user_id = $bureau_member->id;
-    //     $members->title = $request->title;
-    //     $members->image = $bureau_member->avatar;
-    //     $members->save();
-
-
-    //     if($members->id){
-    //         Session::flash('success', 'bureau members added successfully!');
-    //         return  redirect()->back();
-    //       }else{
-    //         Session::flash('error', 'Something went wrong!!');
-    //         return  redirect()->back();
-    //       }
-       
-    // }
-
-
-
-
-    // public function delete_bureau(Request $request,$id)
-    // {
-    //     $mytime = Carbon::now();
-    //     $timestamp=$mytime->toDateTimeString();
-
-    //     $member = Committee_member::where('id', $id)->first(); 
-    //     $member->deleted_at = $timestamp;
-    //     $member->delete();
-
-      
-
-    //     echo json_encode(['status'=>true,'message'=>'Committee bureau member Deleted Successfully !']);exit();
-    // }
-
-
-
-
-    // public function get_delegate(Request $request)
-    // {
-        
-        
-    //    $userid = $request->user_id;
-
-    //    $user = User::where('id', $userid)->where('deleted_at', null)->first();   
-    //    $type = $user->type;
-    //     if($type == '1'){
-    //         $delegate = School_Delegates::where('user_id', $user->id)->first();  
-    //         $school = School::where('id', $delegate->school_id)->first(); 
-    //         $delegate['school'] = $school->name;
-    //     }elseif($type == '0'){
-    //         $delegate = Isg_delegates::where('user_id', $user->id)->where('deleted_at', null)->first();
-    //         $school =''; 
-    //         $delegate['school'] = $school;
-    //     }
-
-
-    //     if($delegate->id){
-    //         echo json_encode(['status'=>true,'data'=>$delegate]);exit();
-    //       }else{
-    //         echo json_encode(['status'=>true,'message'=>'Something went wrong']);exit();
-    //       }
-       
-    // }
+    
 
 
 

@@ -37,16 +37,38 @@ class StudentsController extends Controller
     public function index(Request $request)
     {
 
-        $data = user::where('users.deleted_at', null)
+        $query = user::where('users.deleted_at', null)
         ->join('students', 'users.id', '=', 'students.user_id')
         ->join('schools', 'students.school_id', '=', 'schools.id')
         ->select('students.*', 'schools.name as school_name', 'users.role')
-        ->where('users.role', '!=' , 1)
-        ->orderBy('students.id', 'desc')
+        ->where('users.role', '!=' , 1);
+        if($request->q){
+            $query->where('students.name','LIKE', $request->q)
+            ->orwhere('schools.name','LIKE', $request->q);
+        }
+
+        if($request->s){
+            $query->where('students.status','=', $request->s);
+        }
+
+        if($request->t){
+            $query->where('users.type','=', $request->t);
+        }
+
+        if($request->school){
+            $query->where('students.school_id','=', $request->school);
+        }
+        $data = $query ->orderBy('students.id', 'desc')
         ->paginate(4);
 
+
+
+        $school = School::where('deleted_at', null)
+        ->where('id','!=', 1)
+        ->orderBy('id', 'DESC')
+        ->get();
        
-        return view('admin/students/index', compact('data'));
+        return view('admin/students/index', compact('data','school','request'));
        
     }
 
@@ -223,7 +245,7 @@ class StudentsController extends Controller
 
                 if($student){
 
-                    $token = Str::random(64);
+                  $token = Str::random(64);
                $settoken = DB::table('password_resets')->insert([
                             'email' => $student->email,
                             'token' => $token,

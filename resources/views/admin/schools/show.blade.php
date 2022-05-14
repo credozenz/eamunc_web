@@ -36,6 +36,7 @@
                    <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
+                        <a href="{{ url("/admin/students?school=".$data->id) }}" class="btn-sm btn-success shadow-md mr-2">Students</a>
                             <a href="{{ url('admin/school_edit',$data->id) }}" class="btn-sm btn-primary shadow-md mr-2">Edit</a>
                             @if($data->id != 1)
                             <a class="btn-sm btn-danger shadow-md mr-2 dltButton"  data-url="{{ url('admin/school_delete',$data->id) }}" data-replaceurl="{{ url('admin/schools') }}" title="Delete School">Delete</a>
