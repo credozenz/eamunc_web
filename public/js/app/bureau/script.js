@@ -130,9 +130,7 @@ $(document).ready(function() {
 
 
         });
-
-
-        
+     
 
         $("body").on("click","#mdlbtn",function(){
                    
@@ -147,12 +145,13 @@ $(document).ready(function() {
         });
 
 
-
         $("body").on("click",".close",function(){
             $("#myModal").removeClass("show");
+            setTimeout(function(){
+                window.location.reload(1);
+             }, 500);
             
         });
-
 
 
         $('.select2').select2({
