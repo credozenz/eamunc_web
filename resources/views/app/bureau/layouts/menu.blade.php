@@ -77,7 +77,7 @@
                 @endif
               
               <h4>{{ Session::get('Log_NAME') ?? '' }}</h4>
-              <a href="{{ route('app.bureau_dashbord') }}" type="button" class="btn btn-outline-secondary">My Profile</a>
+              <a href="{{ route('app.bureau_profile') }}" type="button" class="btn btn-outline-secondary">My Profile</a> 
             </div>
 
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">

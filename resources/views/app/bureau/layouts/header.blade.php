@@ -7,23 +7,20 @@
 
     <!-- Primary Meta Tags -->
     <meta name="title" content="E.A.MUNC | E. Ahamed Model United Nations Conference">
-    <meta name="description"
-        content="E. Ahamed Model United Nations Conference, E.A.MUNC, is a MUN conference affiliated with UN4MUN. It offers the delegates enhancement in leadership and diplomacy skills.">
+    <meta name="description" content="E. Ahamed Model United Nations Conference, E.A.MUNC, is a MUN conference affiliated with UN4MUN. It offers the delegates enhancement in leadership and diplomacy skills.">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.eamunc.com/">
     <meta property="og:title" content="E.A.MUNC | E. Ahamed Model United Nations Conference">
-    <meta property="og:description"
-        content="E. Ahamed Model United Nations Conference, E.A.MUNC, is a MUN conference affiliated with UN4MUN. It offers the delegates enhancement in leadership and diplomacy skills.">
+    <meta property="og:description" content="E. Ahamed Model United Nations Conference, E.A.MUNC, is a MUN conference affiliated with UN4MUN. It offers the delegates enhancement in leadership and diplomacy skills.">
     <meta property="og:image" content="https://i.ibb.co/cr6H8BW/hero.jpg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://www.eamunc.com/">
     <meta property="twitter:title" content="E.A.MUNC | E. Ahamed Model United Nations Conference">
-    <meta property="twitter:description"
-        content="E. Ahamed Model United Nations Conference, E.A.MUNC, is a MUN conference affiliated with UN4MUN. It offers the delegates enhancement in leadership and diplomacy skills.">
+    <meta property="twitter:description" content="E. Ahamed Model United Nations Conference, E.A.MUNC, is a MUN conference affiliated with UN4MUN. It offers the delegates enhancement in leadership and diplomacy skills.">
     <meta property="twitter:image" content="https://i.ibb.co/cr6H8BW/hero.jpg">
 
     <!-- favicons -->
@@ -33,18 +30,19 @@
     <link rel="manifest" href="assets/img/favicon/site.webmanifest">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
 
     <!-- styles -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{asset('assets/app/vendor/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
-    <link href="{{asset('css/app/main.css')}}" rel="stylesheet">
-    <link href="{{asset('css/app/style.css')}}" rel="stylesheet">
-    <link href="{{asset('css/app/responsive.css')}}" rel="stylesheet">
-    <link href="{{asset('css/app/dashboard.css')}}" rel="stylesheet">
-    <link href="{{asset('css/app/custom.css')}}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="{{asset('css/app/bureau/main.css')}}" rel="stylesheet">
+    <link href="{{asset('css/app/bureau/style.css')}}" rel="stylesheet">
+    <link href="{{asset('css/app/bureau/responsive.css')}}" rel="stylesheet">
+    <link href="{{asset('css/app/bureau/dashboard.css')}}" rel="stylesheet">
+    <link href="{{asset('css/app/bureau/custom.css')}}" rel="stylesheet">
 </head>

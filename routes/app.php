@@ -13,6 +13,7 @@ use App\Http\Controllers\App\Bureau\BureauLineByLineController;
 use App\Http\Controllers\App\Bureau\BureauResolutionController;
 use App\Http\Controllers\App\Bureau\BureauGeneralAssemblyController;
 use App\Http\Controllers\App\Bureau\BureauProfileController;
+use App\Http\Controllers\App\Bureau\BureauSpeakersController;
 
 use App\Http\Controllers\App\Delegate\DelegateDashbordController;
 use App\Http\Controllers\App\Delegate\DelegatePaperSubmissionController;
@@ -54,6 +55,10 @@ Route::group(['middleware' => 'bureauchecker'], function() {
     Route::get('/bureau_resolution', [BureauResolutionController::class,'index'])->name('app.bureau_resolution');
     Route::get('/bureau_general_assembly', [BureauGeneralAssemblyController::class,'index'])->name('app.bureau_general_assembly');
     Route::get('/bureau_profile', [BureauProfileController::class,'index'])->name('app.bureau_profile');
+    Route::get('/bureau_speaker', [BureauSpeakersController::class,'index'])->name('app.bureau_speaker');
+    Route::post('/bureau_speaker_country', [BureauSpeakersController::class,'bureau_speaker_country'])->name('app.speakers_country');
+    Route::post('/bureau_speaker_store', [BureauSpeakersController::class,'store'])->name('app.speakers_store');
+    Route::post('/speaker_delete/{id}', [BureauSpeakersController::class,'destroy'])->name('app.speaker_delete');
 
 });
 
