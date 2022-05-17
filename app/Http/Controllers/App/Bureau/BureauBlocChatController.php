@@ -44,7 +44,7 @@ class BureauBlocChatController extends Controller
                             ->where('b.bloc_id', '=', $id)
                             ->get();
 
-          $blocs_chats = DB::table('bloc_chat as b')
+          $blocs_chats = DB::table('bloc_chats as b')
                             ->join('users as u', 'b.user_id', '=', 'u.id')
                             ->select('b.*','u.name as user_name','u.avatar as avatar')
                             ->where('u.deleted_at', null)
