@@ -16,7 +16,7 @@
        <input type="hidden" class="form-control" value="{{ $committee->id }}" id="committe_id" name="committe_id">
        <input type="hidden" class="form-control" value="{{ $speakersCount ?? '0' }}" id="speaker_count" name="speaker_count">
        
-      @if(!empty($speakers))
+      @if(!empty($speakersCount))
           @foreach($speakers as $skey => $speaker)
             <div class="d-flex  align-items-center mb-4">
               <div class="form-count ">{{ $skey+1 }}</div>
@@ -37,6 +37,7 @@
               @endif
             </div>
           @endforeach
+
       @else
 
       <div class="d-flex  align-items-center mb-4">
