@@ -50,6 +50,7 @@ Route::group(['middleware' => 'bureauchecker'], function() {
     Route::get('/bureau_dashbord', [BureauDashbordController::class,'index'])->name('app.bureau_dashbord');
     Route::get('/bureau_paper_submission', [BureauPaperSubmissionController::class,'index'])->name('app.bureau_paper_submission');
     Route::get('/bureau_bloc_formation', [BureauBlocFormationController::class,'index'])->name('app.bureau_bloc_formation');
+    Route::post('/bureau_bloc_store', [BureauBlocFormationController::class,'store'])->name('app.bureau_bloc_store');
     Route::get('/bureau_vienna_formula', [BureauViennaFormulaController::class,'index'])->name('app.bureau_vienna_formula');
     Route::get('/bureau_line_by_line', [BureauLineByLineController::class,'index'])->name('app.bureau_line_by_line');
     Route::get('/bureau_resolution', [BureauResolutionController::class,'index'])->name('app.bureau_resolution');

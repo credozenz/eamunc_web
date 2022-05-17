@@ -16,7 +16,7 @@ class CreateBlocsTable extends Migration
         Schema::create('blocs', function (Blueprint $table) {
             $table->id();
             $table->integer('committe_id');
-            $table->integer('name');
+            $table->string('name')->index();
             $table->timestamps();
             $table->softDeletes();
         });
