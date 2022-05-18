@@ -1,4 +1,4 @@
-@extends('app.delegate.layouts.layout')
+@extends('app.bureau.layouts.layout')
 @section('content')
    
 <div class="container-fluid dasboard add-speaker-page">

@@ -1,4 +1,3 @@
-  
 @extends('app.delegate.layouts.layout')
 @section('content')
    
@@ -23,9 +22,13 @@
         <div class="col-md-6 text-center offset-md-3">
     
           <h5 class="text-primary mt-5 mb-3 fs-2">Resolution</h5>
-          <p class="fs-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>
-          
-          <a href="{{ url('app/delegate_resolution_editor') }}" type="button" class="btn btn-primary mt-3"> Start Session</a>
+                <div class="col-md-12 col-12">
+                    <div class="form-group">
+                        <label class="form-label">Description</label>
+                        <textarea id="ckeditor" type="text" name="description" class="form-control @error('description') border-danger @enderror" style="height: 850px;">{{ old('description') }}</textarea>
+                        @error('description')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                    </div>
+                </div>
            
          </div>
       
@@ -35,4 +38,3 @@
 @endsection 
   
    
-

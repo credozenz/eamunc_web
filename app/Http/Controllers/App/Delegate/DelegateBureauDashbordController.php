@@ -2,21 +2,24 @@
 
 namespace App\Http\Controllers\App\Delegate;
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\SiteIndexes;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Route;
 use App\Helper\WebAppHelper;
+use App\Models\SiteIndexes;
 use App\Models\School;
 use App\Models\Committee;
 use App\Models\User;
 use View;
+use Illuminate\Support\Facades\Auth;
 class DelegateDashbordController extends Controller
 {
 
     public function __construct()
     {
-        $routeName = Route::currentRouteName();
         
         View::share('routeGroup','delegate_dashbord');
        

@@ -18,27 +18,40 @@
      
      <p style="color:#4D4D4D; font-size: 15px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>
    
-     
-     <div class="file-upload text-center">
-     
-    
-      <div class="image-upload-wrap">
-        <input class="file-upload-input" type="file" onchange="readURL(this);" accept="image/*">
-        <div class="drag-text">
-          <i class="fa fa-cloud-upload mb-2" style="font-size: 18px;" aria-hidden="true"></i>
-          <h3>Drag and Drop here <br> Or</h3>
+   
+
+    <form method="post" id="paper_submit" action="{{ url('app/delegate_paper_submit') }}"  enctype="multipart/form-data">
+        @csrf
+             
+        <div class="file-upload text-center">   
+          <div class="image-upload-wrap">
+            <input type="file" class="file-upload-input" name="paper" id="paper_submission" onchange="readURL(this);" accept="pdf*/doc*">
+           
+            <div class="drag-text">
+              <i class="fa fa-cloud-upload mb-2" style="font-size: 18px;" aria-hidden="true"></i>
+              <h3>Drag and Drop here <br> Or</h3>
+            </div>
+            <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Select file</button>
+          </div>
+          @error('paper')<div class="text-danger mt-2">{{ $message }}</div>@enderror
         </div>
-        <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Select file</button>
-      </div>
-      <div class="file-upload-content">
-        <img class="file-upload-image" src="#" alt="your image">
-        <div class="image-title-wrap">
-          <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+
+    </form>
+
+    @if(empty($paper))
+
+       <div class="file-upload text-center">   
+          <div class="image-upload-wrap">
+           
+            <div class="drag-text">
+            <i class="fa fa-file" style="font-size: 18px;" aria-hidden="true"></i>
+              <h3> {{ $paper->paper ?? '' }} </h3>
+            </div>
+
+          </div>
         </div>
-      </div>
-    </div>
-    
-     
+
+     @endif
     </div>
      
       

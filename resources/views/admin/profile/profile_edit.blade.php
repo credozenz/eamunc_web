@@ -46,7 +46,7 @@
                                     </div>
                                     <div class="col-md-6 col-12">
                                     <label class="form-label text-danger">Email</label>
-                                    <input type="text" name="email" value="{{ $data->email }}" class="form-control flex-1 @error('title') border-danger @enderror" placeholder="Title">
+                        <input type="text" name="email" value="{{ $data->email }}" class="form-control flex-1 @error('title') border-danger @enderror" placeholder="Title">
                         @error('email')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                     <div class="col-md-6 col-12">

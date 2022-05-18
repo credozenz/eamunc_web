@@ -20,7 +20,7 @@ class WebAppHelper
         $member = User::where('users.deleted_at', null)
         ->join('students', 'users.id', '=', 'students.user_id')
         ->join('schools', 'students.school_id', '=', 'schools.id')
-        ->select('students.*', 'schools.name as school_name', 'users.role')
+        ->select('students.*', 'schools.name as school_name', 'users.role','users.avatar')
         ->where('users.id', '=' , $log_member)
         ->first();
 
