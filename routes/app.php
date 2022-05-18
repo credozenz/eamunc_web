@@ -59,8 +59,15 @@ Route::group(['middleware' => 'bureauchecker'], function() {
     Route::post('/bureau_chat_store/{id}', [BureauBlocChatController::class,'store'])->name('app.bureau_chat_store');
     
     Route::get('/bureau_vienna_formula', [BureauViennaFormulaController::class,'index'])->name('app.bureau_vienna_formula');
+    Route::get('/bureau_vienna_formula_editor', [BureauViennaFormulaController::class,'show'])->name('app.bureau_vienna_formula_editor');
+
     Route::get('/bureau_line_by_line', [BureauLineByLineController::class,'index'])->name('app.bureau_line_by_line');
+    Route::get('/bureau_line_by_line_editor', [BureauLineByLineController::class,'show'])->name('app.bureau_line_by_line_editor');
+
     Route::get('/bureau_resolution', [BureauResolutionController::class,'index'])->name('app.bureau_resolution');
+    Route::get('/bureau_resolution_editor', [BureauResolutionController::class,'show'])->name('app.bureau_resolution_editor');
+
+
     Route::get('/bureau_general_assembly', [BureauGeneralAssemblyController::class,'index'])->name('app.bureau_general_assembly');
     Route::get('/bureau_profile', [BureauProfileController::class,'index'])->name('app.bureau_profile');
     Route::get('/bureau_speaker', [BureauSpeakersController::class,'index'])->name('app.bureau_speaker');

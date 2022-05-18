@@ -44,4 +44,30 @@ class BureauResolutionController extends Controller
 
         return view('app/bureau/resolution', compact('guideline','committee','committee_member'));
     }
+
+
+    public function show()
+    {
+        $member = WebAppHelper::getLogMember();
+
+        $guideline = SiteIndexes::where('deleted_at', null)->where('type','guideline')->first();
+
+        $committee = Committee::where('id',$member->committee_choice)->first();
+       
+        $committee_member = User::where('users.deleted_at', null)
+                                ->join('students', 'users.id', '=', 'students.user_id')
+                                ->join('schools', 'students.school_id', '=', 'schools.id')
+                                ->select('students.*', 'schools.name as school_name', 'users.role')
+                                ->where('students.status', '=', 3)
+                                ->where('students.committee_choice', '=' , $committee->id)
+                                ->paginate(300);
+
+
+        return view('app/bureau/resolution_editor', compact('guideline','committee','committee_member'));
+    }
+
+
+
+
+
 }

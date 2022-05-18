@@ -9,8 +9,7 @@
         
             <div class="d-flex flex-row  mb-3">
               <a href="#" class="text-secondary fs-4 mt-2"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
-              <h5 class="text-primary mb-3 d-inline-block ps-2 " style="line-height: 22px;">  E.Ahamed Model
-                United Nations Conference</h5>
+              <h5 class="text-primary mb-3 d-inline-block ps-2 " style="line-height: 22px;">  {{ $committee->title ?? '' }}</h5>
               
               </div>
              
