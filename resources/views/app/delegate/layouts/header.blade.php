@@ -42,9 +42,9 @@
     <!-- styles -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{asset('assets/app/vendor/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
-    <link href="{{asset('css/app/main.css')}}" rel="stylesheet">
-    <link href="{{asset('css/app/style.css')}}" rel="stylesheet">
-    <link href="{{asset('css/app/responsive.css')}}" rel="stylesheet">
-    <link href="{{asset('css/app/dashboard.css')}}" rel="stylesheet">
-    <link href="{{asset('css/app/custom.css')}}" rel="stylesheet">
+    <link href="{{asset('css/app/delegate/main.css')}}" rel="stylesheet">
+    <link href="{{asset('css/app/delegate/style.css')}}" rel="stylesheet">
+    <link href="{{asset('css/app/delegate/responsive.css')}}" rel="stylesheet">
+    <link href="{{asset('css/app/delegate/dashboard.css')}}" rel="stylesheet">
+    <link href="{{asset('css/app/delegate/custom.css')}}" rel="stylesheet">
 </head>
