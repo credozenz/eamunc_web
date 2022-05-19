@@ -24,7 +24,7 @@
                     <div class="form-group">
                         <label class="form-label">Description</label>
                         <div style="border: ridge;max-height: 600px;overflow: scroll;">
-                        {!! $resolution->content !!}
+                        {!! $resolution->content ?? '' !!}
                         </div>
                     </div>
                 </div>

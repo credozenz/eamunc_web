@@ -22,7 +22,7 @@
                     <div class="form-group">
                         <label class="form-label">Description</label>
                         <div style="border: ridge;max-height: 600px;overflow: scroll;">
-                        {!! $line->content !!}
+                        {!! $line->content ?? '' !!}
                         </div>
                     </div>
                 </div>

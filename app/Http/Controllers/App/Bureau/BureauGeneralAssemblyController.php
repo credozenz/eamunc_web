@@ -12,6 +12,7 @@ use App\Helper\WebAppHelper;
 use App\Models\SiteIndexes;
 use App\Models\School;
 use App\Models\Committee;
+use App\Models\Resolution;
 use App\Models\User;
 use View;
 
@@ -30,19 +31,36 @@ class BureauGeneralAssemblyController extends Controller
     {
         $member = WebAppHelper::getLogMember();
 
-        $guideline = SiteIndexes::where('deleted_at', null)->where('type','guideline')->first();
+        $committee = Committee::where('id',$member->committee_choice)->first();
+       
+        $general_assembly = DB::table('resolution as r')
+                                ->join('committees as c', 'r.committe_id', '=', 'c.id')
+                                ->select('r.*','c.title as committee_title')
+                                ->where('r.deleted_at', null)
+                                ->where('c.deleted_at', null)
+                                ->get();
+
+        return view('app/bureau/general_assembly', compact('committee','general_assembly'));
+    }
+
+    public function show(Request $request,$id)
+    {
+        $member = WebAppHelper::getLogMember();
 
         $committee = Committee::where('id',$member->committee_choice)->first();
        
-        $committee_member = User::where('users.deleted_at', null)
-                                ->join('students', 'users.id', '=', 'students.user_id')
-                                ->join('schools', 'students.school_id', '=', 'schools.id')
-                                ->select('students.*', 'schools.name as school_name', 'users.role')
-                                ->where('students.status', '=', 3)
-                                ->where('students.committee_choice', '=' , $committee->id)
-                                ->paginate(300);
+        $general_assembly = DB::table('resolution as r')
+                                ->join('committees as c', 'r.committe_id', '=', 'c.id')
+                                ->select('r.*','c.title as committee_title')
+                                ->where('r.deleted_at', null)
+                                ->where('r.id', $id)
+                                ->where('c.deleted_at', null)
+                                ->first();
 
-
-        return view('app/bureau/general_assembly', compact('guideline','committee','committee_member'));
+        return view('app/bureau/general_assembly_show', compact('committee','general_assembly'));
     }
+
+
+
+
 }

@@ -79,6 +79,9 @@ Route::group(['middleware' => 'bureauchecker'], function() {
 
 
     Route::get('/bureau_general_assembly', [BureauGeneralAssemblyController::class,'index'])->name('app.bureau_general_assembly');
+    Route::get('/bureau_assembly_show/{id}', [BureauGeneralAssemblyController::class,'show'])->name('app.bureau_assembly_show');
+   
+   
     Route::get('/bureau_profile', [BureauProfileController::class,'index'])->name('app.bureau_profile');
     
     Route::get('/bureau_speaker', [BureauSpeakersController::class,'index'])->name('app.bureau_speaker');
@@ -99,6 +102,8 @@ Route::group(['middleware' => 'delegatechecker'], function() {
     Route::get('/delegate_line_by_line', [DelegateLineByLineController::class,'index'])->name('app.delegate_line_by_line');
     Route::get('/delegate_resolution', [DelegateResolutionController::class,'index'])->name('app.delegate_resolution');
     Route::get('/delegate_general_assembly', [DelegateGeneralAssemblyController::class,'index'])->name('app.delegate_general_assembly');
+    Route::get('/delegate_assembly_show/{id}', [DelegateGeneralAssemblyController::class,'show'])->name('app.delegate_assembly_show');
+   
     Route::get('/delegate_profile', [DelegateProfileController::class,'index'])->name('app.delegate_profile');
     Route::post('/delegate_password', [DelegateProfileController::class,'update_password'])->name('app.delegate_password');
     Route::post('/delegate_avatar', [DelegateProfileController::class,'update_avatar'])->name('app.delegate_avatar');

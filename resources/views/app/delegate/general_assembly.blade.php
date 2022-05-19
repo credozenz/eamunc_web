@@ -1,85 +1,49 @@
 @extends('app.delegate.layouts.layout')
 @section('content')
    
-<div class="container-fluid dasboard add-speaker-page">
-    
-       
+<div class="container-fluid dasboard my-profile">
+        <!-- Breadcrumbs-->
+           
         <div class="row">
           <div class="col-md-4 offset-md-8">
-        
-            <div class="d-flex flex-row  mb-3">
-              <a href="#" class="text-secondary fs-4 mt-2"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
-              <h5 class="text-primary mb-3 d-inline-block ps-2 " style="line-height: 22px;">  {{ $committee->title ?? '' }}</h5>
+            <h5 class="text-primary mb-3 d-inline-block ps-2 " style="line-height: 22px;">  E.Ahamed Model
+              United Nations Conference</h5>
               
-              </div>
              
-           
-             
-            
             </div>
-       <div class="col-md-12">
-    
-     <h5 class="text-primary mt-5 mb-3">General Papers</h5>
-     <p style="color: #4D4D4D; font-size: 14px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>
-    
-    <div class="table-responsive dash-table">
-      <table class="table table-bordered w-100">
-        <thead>
-          <tr>
-            <th scope="col">Delegate Name</th>
-            <th scope="col">Position Paper   </th>
-          
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <img src="assets/img/commitee/1.jpg" class="float-start rounded-circle" style="width: 32px; height: 32px;"> <p class="d-inline float-start p-2 fw-bold">Keerti Hegde</p></td>
-            <td><a href="#"><span class="text-primary text-decoration-underline p-1">View Paper</span> <i class="fa fa-trash text-danger" aria-hidden="true"></i></a></td>
-          
-          </tr>
+          <div class="col-md-8">
+            <h4 class="mb-3 mt-3 text-primary fs-3">General Assembly</h4>
+           <p class="fs-6 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip  </p>
 
-          <tr>
-            <td>
-              <img src="assets/img/commitee/1.jpg" class="float-start rounded-circle" style="width: 32px; height: 32px;"> <p class="d-inline float-start p-2 fw-bold">Keerti Hegde</p></td>
-            <td><a href="#"><span class="text-primary text-decoration-underline p-1">View Paper</span> <i class="fa fa-trash text-danger" aria-hidden="true"></i></a></td>
-          
-          </tr>
+           <table class="table">
+            
+            <tbody>
+            @if($general_assembly)
+              @foreach($general_assembly as $key => $value)
+              <tr class="pt-2 pb-2" style="border-bottom: 1px solid rgba(0, 0, 0, 0.2);">
+                <td><span class="number-round ">{{ $key+1 }}</span></td>
+                <td class="text-center"><h6 class="fw-light text-primary fs-5">{{ $value->committee_title ?? '' }}</h6></td>
+                <td class="text-end">
+                  <a href="{{ url('app/delegate_assembly_show',$value->id) }}" type="button" class="btn btn-primary ">View Resolution</a>
+                </td>
+              </tr>
 
-          <tr>
-            <td>
-              <img src="assets/img/commitee/1.jpg" class="float-start rounded-circle" style="width: 32px; height: 32px;"> <p class="d-inline float-start p-2 fw-bold">Keerti Hegde</p></td>
-            <td><a href="#"><span class="text-primary text-decoration-underline p-1">View Paper</span> <i class="fa fa-trash text-danger" aria-hidden="true"></i></a></td>
-          
-          </tr>
-
-          <tr>
-            <td>
-              <img src="assets/img/commitee/1.jpg" class="float-start rounded-circle" style="width: 32px; height: 32px;"> <p class="d-inline float-start p-2 fw-bold">Keerti Hegde</p></td>
-            <td><a href="#"><span class="text-primary text-decoration-underline p-1">View Paper</span> <i class="fa fa-trash text-danger" aria-hidden="true"></i></a></td>
-          
-          </tr>
-
-
-          <tr>
-            <td>
-              <img src="assets/img/commitee/1.jpg" class="float-start rounded-circle" style="width: 32px; height: 32px;"> <p class="d-inline float-start p-2 fw-bold">Keerti Hegde</p></td>
-            <td><a href="#"><span class="text-primary text-decoration-underline p-1">View Paper</span> <i class="fa fa-trash text-danger" aria-hidden="true"></i></a></td>
-          
-          </tr>
-
+              @endforeach
+            @endif
+              
+              
+            </tbody>
+          </table>
+        </div>
+       
+        
          
-         
-        </tbody>
-      </table>
-    </div>
+            
+      
      
-   
-    </div>
-      
       
       </div>
-      </div>
+</div>
    
 @endsection 
   
