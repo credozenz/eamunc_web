@@ -70,13 +70,13 @@
           
         <ul class="navbar-nav navbar-sidenav display-lg" id="exampleAccordion">
             <div class="text-center menu-profile">
-                @if(!empty(Session::get('Log_IMG'))) 
-                <img src="{{ asset('uploads/'.Session::get('Log_IMG')) ?? '' }}" alt="{{ Session::get('Log_NAME') ?? '' }}">
+                @if(!empty($member->avatar))
+                <img src="{{ asset('uploads/'.$member->avatar) ?? '' }}" alt="{{ $member->name ?? '' }}">
                 @else
-                <img src="{{ asset('assets/img/avatar.svg') }}" alt="{{ Session::get('Log_NAME') ?? '' }}">
+                <img src="{{ asset('assets/img/avatar.svg') }}" alt="{{ $member->name ?? '' }}">
                 @endif
               
-              <h4>{{ Session::get('Log_NAME') ?? '' }}</h4>
+              <h4>{{ $member->name ?? '' }}</h4>
               <a href="{{ route('app.bureau_profile') }}" type="button" class="btn btn-outline-secondary">My Profile</a> 
             </div>
 
