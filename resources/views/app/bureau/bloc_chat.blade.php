@@ -9,8 +9,8 @@
        
         <div class="row">
           <div class="col-md-8">
-          @if(!empty($committee))
-                @foreach($committee as $key => $each)
+          @if(!empty($blocs_members))
+                @foreach($blocs_members as $key => $each)
                     @if(!empty($each->avatar)) 
                     <img src="{{ asset('uploads/'.$each->avatar) ?? '' }}" alt="{{ $each->name ?? '' }}" class="avatar rounded-circle d-inline-block" style="width: 40px; height: 40px;">
                     @else

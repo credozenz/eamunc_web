@@ -32,43 +32,28 @@
           </tr>
         </thead>
         <tbody>
+
+        @if($papers)
+            @foreach($papers as $each)
           <tr>
             <td>
-              <img src="assets/img/commitee/1.jpg" class="float-start rounded-circle" style="width: 32px; height: 32px;"> <p class="d-inline float-start p-2 fw-bold">Keerti Hegde</p></td>
-            <td><a href="#"><span class="text-primary text-decoration-underline p-1">View Paper</span> <i class="fa fa-trash text-danger" aria-hidden="true"></i></a></td>
-          
-          </tr>
-
-          <tr>
+                 @if(!empty($each->avatar)) 
+                    <img src="{{ asset('uploads/'.$each->avatar) ?? '' }}" alt="{{ $each->name ?? '' }}" class="float-start rounded-circle" style="width: 32px; height: 32px;">
+                    @else
+                    <img src="{{ asset('assets/img/avatar.svg') }}" alt="{{ $each->name ?? '' }}" class="float-start rounded-circle" style="width: 32px; height: 32px;">
+                  @endif
+              
+              <p class="d-inline float-start p-2 fw-bold">{{ $each->name ?? '' }}</p>
+            </td>
             <td>
-              <img src="assets/img/commitee/1.jpg" class="float-start rounded-circle" style="width: 32px; height: 32px;"> <p class="d-inline float-start p-2 fw-bold">Keerti Hegde</p></td>
-            <td><a href="#"><span class="text-primary text-decoration-underline p-1">View Paper</span> <i class="fa fa-trash text-danger" aria-hidden="true"></i></a></td>
+              <a href="{{ asset('uploads/'.$each->paper) ?? '' }}" target="_blank"><span class="text-primary text-decoration-underline p-1">View Paper</span></a>
+             
+              <a class="dltButton" data-url="{{ url('app/bureau_paper_delete',$each->paper_id) }}" data-replaceurl="{{ url('app/bureau_general_papers') }}" title="Delete General Papers"><i class="fa fa-trash text-danger" aria-hidden="true" target="_blank"></i></a>
+            </td>
           
           </tr>
-
-          <tr>
-            <td>
-              <img src="assets/img/commitee/1.jpg" class="float-start rounded-circle" style="width: 32px; height: 32px;"> <p class="d-inline float-start p-2 fw-bold">Keerti Hegde</p></td>
-            <td><a href="#"><span class="text-primary text-decoration-underline p-1">View Paper</span> <i class="fa fa-trash text-danger" aria-hidden="true"></i></a></td>
-          
-          </tr>
-
-          <tr>
-            <td>
-              <img src="assets/img/commitee/1.jpg" class="float-start rounded-circle" style="width: 32px; height: 32px;"> <p class="d-inline float-start p-2 fw-bold">Keerti Hegde</p></td>
-            <td><a href="#"><span class="text-primary text-decoration-underline p-1">View Paper</span> <i class="fa fa-trash text-danger" aria-hidden="true"></i></a></td>
-          
-          </tr>
-
-
-          <tr>
-            <td>
-              <img src="assets/img/commitee/1.jpg" class="float-start rounded-circle" style="width: 32px; height: 32px;"> <p class="d-inline float-start p-2 fw-bold">Keerti Hegde</p></td>
-            <td><a href="#"><span class="text-primary text-decoration-underline p-1">View Paper</span> <i class="fa fa-trash text-danger" aria-hidden="true"></i></a></td>
-          
-          </tr>
-
-         
+             @endforeach
+          @endif
          
         </tbody>
       </table>

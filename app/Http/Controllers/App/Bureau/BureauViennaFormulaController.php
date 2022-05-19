@@ -13,6 +13,7 @@ use App\Models\SiteIndexes;
 use App\Models\School;
 use App\Models\Committee;
 use App\Models\User;
+use App\Models\Vienna_formula;
 use View;
 class BureauViennaFormulaController extends Controller
 {
@@ -29,8 +30,6 @@ class BureauViennaFormulaController extends Controller
     {
         $member = WebAppHelper::getLogMember();
 
-        $guideline = SiteIndexes::where('deleted_at', null)->where('type','guideline')->first();
-
         $committee = Committee::where('id',$member->committee_choice)->first();
        
         $committee_member = User::where('users.deleted_at', null)
@@ -42,7 +41,7 @@ class BureauViennaFormulaController extends Controller
                                 ->paginate(300);
 
 
-        return view('app/bureau/vienna_formula', compact('guideline','committee','committee_member'));
+        return view('app/bureau/vienna_formula', compact('committee','committee_member'));
     }
 
 
@@ -50,20 +49,58 @@ class BureauViennaFormulaController extends Controller
     {
         $member = WebAppHelper::getLogMember();
 
-        $guideline = SiteIndexes::where('deleted_at', null)->where('type','guideline')->first();
-
         $committee = Committee::where('id',$member->committee_choice)->first();
+
+        $vienna = Vienna_formula::where('committe_id',$committee->id)->first();
        
-        $committee_member = User::where('users.deleted_at', null)
-                                ->join('students', 'users.id', '=', 'students.user_id')
-                                ->join('schools', 'students.school_id', '=', 'schools.id')
-                                ->select('students.*', 'schools.name as school_name', 'users.role')
-                                ->where('students.status', '=', 3)
-                                ->where('students.committee_choice', '=' , $committee->id)
-                                ->paginate(300);
+        return view('app/bureau/vienna_formula_editor', compact('vienna','committee'));
+    }
 
 
-        return view('app/bureau/vienna_formula_editor', compact('guideline','committee','committee_member'));
+    public function store(Request $request)
+    {
+
+        $validatedData = $request->validate([
+            'vienna'    => 'required',
+        ],[
+            'vienna.required' => 'The vienna field is required', 
+        ]);
+
+
+        $member = WebAppHelper::getLogMember();
+        
+        $committee = Committee::where('id',$member->committee_choice)->first();
+
+        $vienna = Vienna_formula::where('committe_id',$committee->id)->first();
+
+            if($vienna){
+
+        $vienna = Vienna_formula::where('id', $vienna->id)->first(); 
+        $vienna->content = $request->vienna;
+        $vienna->committe_id = $committee->id;
+        $vienna->save();
+
+            }else{
+
+        $vienna = new Vienna_formula;
+        $vienna->content = $request->vienna;
+        $vienna->committe_id = $committee->id;
+        $vienna->save();
+                
+            }
+            
+        
+
+            
+        if($vienna->id){
+            Session::flash('success', 'Vienna Formula Submitted !');
+            return  redirect()->back();
+        }else{
+            Session::flash('error', 'Something went wrong!!');
+            return  redirect()->back();
+        }
+    
+
     }
 
 

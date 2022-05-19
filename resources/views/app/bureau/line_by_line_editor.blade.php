@@ -22,13 +22,17 @@
         <div class="col-md-6 text-center offset-md-3">
     
           <h5 class="text-primary mt-5 mb-3 fs-2">Line By Line </h5>
+          <form method="post" action="{{ url('app/bureau_line_by_line_store') }}" class="mt-5 col-md-12"  enctype="multipart/form-data">
+            @csrf
                 <div class="col-md-12 col-12">
                     <div class="form-group">
                         <label class="form-label">Description</label>
-                        <textarea id="ckeditor" type="text" name="description" class="form-control @error('description') border-danger @enderror" style="height: 850px;">{{ old('description') }}</textarea>
-                        @error('description')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                        <textarea id="ckeditor" type="text" name="line" class="form-control @error('line') border-danger @enderror" style="height: 850px;">{{ $line->content ?? old('line') }}</textarea>
+                        @error('line')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                     </div>
                 </div>
+                <button type="submit" class="btn btn-primary mt-3"> Submit</button>
+          </form>
            
          </div>
       

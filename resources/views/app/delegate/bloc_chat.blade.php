@@ -9,8 +9,8 @@
        
         <div class="row">
           <div class="col-md-8">
-          @if(!empty($committee))
-                @foreach($committee as $key => $each)
+          @if(!empty($blocs_members))
+                @foreach($blocs_members as $key => $each)
                     @if(!empty($each->avatar)) 
                     <img src="{{ asset('uploads/'.$each->avatar) ?? '' }}" alt="{{ $each->name ?? '' }}" class="avatar rounded-circle d-inline-block" style="width: 40px; height: 40px;">
                     @else
@@ -91,6 +91,10 @@
                  
                 </div>
               </div>
+             
+              @if ($blocs_members)
+              @foreach($blocs_members as $key => $bloc_member)
+                 @if ($bloc_member->id == $member->user_id)
               <div class="panel-footer">
               <form method="post" action="{{ url('app/delegate_chat_store',$id) }}" class="col-md-12"  enctype="multipart/form-data">
                                 @csrf 
@@ -102,6 +106,9 @@
                   </div>
                 </form>
               </div>
+                 @endif
+              @endforeach
+              @endif
             </div>
             <!-- End Panel Chat -->
          

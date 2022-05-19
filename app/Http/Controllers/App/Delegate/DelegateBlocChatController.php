@@ -31,7 +31,7 @@ class DelegateBlocChatController extends Controller
     public function index(Request $request,$id)
     {
         $member = WebAppHelper::getLogMember();
-       
+      
         $committee = Committee::where('id',$member->committee_choice)->first();
 
         $committee_bloc = Blocs::where('committe_id',$member->committee_choice)->get();

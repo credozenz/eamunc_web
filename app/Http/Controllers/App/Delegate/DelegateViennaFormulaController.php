@@ -12,6 +12,7 @@ use App\Helper\WebAppHelper;
 use App\Models\SiteIndexes;
 use App\Models\School;
 use App\Models\Committee;
+use App\Models\Vienna_formula;
 use App\Models\User;
 use View;
 
@@ -30,19 +31,11 @@ class DelegateViennaFormulaController extends Controller
     {
         $member = WebAppHelper::getLogMember();
 
-        $guideline = SiteIndexes::where('deleted_at', null)->where('type','guideline')->first();
-
         $committee = Committee::where('id',$member->committee_choice)->first();
        
-        $committee_member = User::where('users.deleted_at', null)
-                                ->join('students', 'users.id', '=', 'students.user_id')
-                                ->join('schools', 'students.school_id', '=', 'schools.id')
-                                ->select('students.*', 'schools.name as school_name', 'users.role')
-                                ->where('students.status', '=', 3)
-                                ->where('students.committee_choice', '=' , $committee->id)
-                                ->paginate(300);
+        $vienna = Vienna_formula::where('committe_id',$committee->id)->first();
 
 
-        return view('app/delegate/vienna_formula', compact('guideline','committee','committee_member'));
+        return view('app/delegate/vienna_formula', compact('committee','vienna'));
     }
 }

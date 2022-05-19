@@ -13,6 +13,7 @@ use App\Models\SiteIndexes;
 use App\Models\School;
 use App\Models\Committee;
 use App\Models\User;
+use App\Models\Resolution;
 use View;
 class BureauResolutionController extends Controller
 {
@@ -29,8 +30,6 @@ class BureauResolutionController extends Controller
     {
         $member = WebAppHelper::getLogMember();
 
-        $guideline = SiteIndexes::where('deleted_at', null)->where('type','guideline')->first();
-
         $committee = Committee::where('id',$member->committee_choice)->first();
        
         $committee_member = User::where('users.deleted_at', null)
@@ -42,7 +41,7 @@ class BureauResolutionController extends Controller
                                 ->paginate(300);
 
 
-        return view('app/bureau/resolution', compact('guideline','committee','committee_member'));
+        return view('app/bureau/resolution', compact('committee','committee_member'));
     }
 
 
@@ -50,22 +49,59 @@ class BureauResolutionController extends Controller
     {
         $member = WebAppHelper::getLogMember();
 
-        $guideline = SiteIndexes::where('deleted_at', null)->where('type','guideline')->first();
-
         $committee = Committee::where('id',$member->committee_choice)->first();
        
-        $committee_member = User::where('users.deleted_at', null)
-                                ->join('students', 'users.id', '=', 'students.user_id')
-                                ->join('schools', 'students.school_id', '=', 'schools.id')
-                                ->select('students.*', 'schools.name as school_name', 'users.role')
-                                ->where('students.status', '=', 3)
-                                ->where('students.committee_choice', '=' , $committee->id)
-                                ->paginate(300);
+        $resolution = Resolution::where('committe_id',$committee->id)->first();
 
-
-        return view('app/bureau/resolution_editor', compact('guideline','committee','committee_member'));
+        return view('app/bureau/resolution_editor', compact('committee','resolution'));
     }
 
+
+    public function store(Request $request)
+    {
+
+        $validatedData = $request->validate([
+            'resolution'    => 'required',
+        ],[
+            'resolution.required' => 'The Resolution field is required', 
+        ]);
+
+
+        $member = WebAppHelper::getLogMember();
+        
+        $committee = Committee::where('id',$member->committee_choice)->first();
+
+        $resolution = Resolution::where('committe_id',$committee->id)->first();
+
+            if($resolution){
+
+                $resolution = Resolution::where('id', $resolution->id)->first(); 
+                $resolution->content = $request->resolution;
+                $resolution->committe_id = $committee->id;
+                $resolution->save();
+
+                    }else{
+
+                $resolution = new Resolution;
+                $resolution->content = $request->resolution;
+                $resolution->committe_id = $committee->id;
+                $resolution->save();
+                
+            }
+            
+        
+
+            
+        if($resolution->id){
+            Session::flash('success', 'Resolution Submitted !');
+            return  redirect()->back();
+        }else{
+            Session::flash('error', 'Something went wrong!!');
+            return  redirect()->back();
+        }
+    
+
+    }
 
 
 

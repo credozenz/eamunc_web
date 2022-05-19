@@ -19,7 +19,7 @@
      <p style="color:#4D4D4D; font-size: 15px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>
    
    
-
+     @if(empty($paper))
     <form method="post" id="paper_submit" action="{{ url('app/delegate_paper_submit') }}"  enctype="multipart/form-data">
         @csrf
              
@@ -38,14 +38,14 @@
 
     </form>
 
-    @if(empty($paper))
+    @else
 
        <div class="file-upload text-center">   
           <div class="image-upload-wrap">
            
             <div class="drag-text">
             <i class="fa fa-file" style="font-size: 18px;" aria-hidden="true"></i>
-              <h3> {{ $paper->paper ?? '' }} </h3>
+              <h3> {{ $paper->paper_name ?? '' }} </h3>
             </div>
 
           </div>

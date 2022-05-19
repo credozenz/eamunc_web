@@ -13,6 +13,7 @@ use App\Models\SiteIndexes;
 use App\Models\School;
 use App\Models\Committee;
 use App\Models\User;
+use App\Models\Line_by_line;
 use View;
 class DelegateLineByLineController extends Controller
 {
@@ -29,19 +30,11 @@ class DelegateLineByLineController extends Controller
     {
         $member = WebAppHelper::getLogMember();
 
-        $guideline = SiteIndexes::where('deleted_at', null)->where('type','guideline')->first();
-
         $committee = Committee::where('id',$member->committee_choice)->first();
        
-        $committee_member = User::where('users.deleted_at', null)
-                                ->join('students', 'users.id', '=', 'students.user_id')
-                                ->join('schools', 'students.school_id', '=', 'schools.id')
-                                ->select('students.*', 'schools.name as school_name', 'users.role')
-                                ->where('students.status', '=', 3)
-                                ->where('students.committee_choice', '=' , $committee->id)
-                                ->paginate(300);
+        $line = Line_by_line::where('committe_id',$committee->id)->first();
 
 
-        return view('app/delegate/line_by_line', compact('guideline','committee','committee_member'));
+        return view('app/delegate/line_by_line', compact('committee','line'));
     }
 }

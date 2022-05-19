@@ -31,8 +31,6 @@ class BureauBlocFormationController extends Controller
     {
         $member = WebAppHelper::getLogMember();
 
-        $guideline = SiteIndexes::where('deleted_at', null)->where('type','guideline')->first();
-
         $committee = Committee::where('id',$member->committee_choice)->first();
 
         $committee_bloc = Blocs::where('committe_id',$member->committee_choice)->get();
@@ -54,7 +52,7 @@ class BureauBlocFormationController extends Controller
 
 
 
-        return view('app/bureau/bloc_formation', compact('guideline','committee','committee_member','committee_bloc'));
+        return view('app/bureau/bloc_formation', compact('committee','committee_member','committee_bloc'));
     }
 
 

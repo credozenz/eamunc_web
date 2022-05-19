@@ -22,13 +22,17 @@
         <div class="col-md-6 text-center offset-md-3">
     
           <h5 class="text-primary mt-5 mb-3 fs-2">Resolution</h5>
+          <form method="post" action="{{ url('app/bureau_resolution_store') }}" class="mt-5 col-md-12"  enctype="multipart/form-data">
+            @csrf
                 <div class="col-md-12 col-12">
                     <div class="form-group">
                         <label class="form-label">Description</label>
-                        <textarea id="ckeditor" type="text" name="description" class="form-control @error('description') border-danger @enderror" style="height: 850px;">{{ old('description') }}</textarea>
-                        @error('description')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                        <textarea id="ckeditor" type="text" name="resolution" class="form-control @error('resolution') border-danger @enderror" style="height: 850px;">{{ $resolution->content ?? old('resolution') }}</textarea>
+                        @error('resolution')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                     </div>
                 </div>
+                <button type="submit" class="btn btn-primary mt-3"> Submit</button>
+          </form>
            
          </div>
       

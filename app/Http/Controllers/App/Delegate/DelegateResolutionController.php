@@ -13,6 +13,7 @@ use App\Models\SiteIndexes;
 use App\Models\School;
 use App\Models\Committee;
 use App\Models\User;
+use App\Models\Resolution;
 use View;
 
 class DelegateResolutionController extends Controller
@@ -30,19 +31,10 @@ class DelegateResolutionController extends Controller
     {
         $member = WebAppHelper::getLogMember();
 
-        $guideline = SiteIndexes::where('deleted_at', null)->where('type','guideline')->first();
-
         $committee = Committee::where('id',$member->committee_choice)->first();
        
-        $committee_member = User::where('users.deleted_at', null)
-                                ->join('students', 'users.id', '=', 'students.user_id')
-                                ->join('schools', 'students.school_id', '=', 'schools.id')
-                                ->select('students.*', 'schools.name as school_name', 'users.role')
-                                ->where('students.status', '=', 3)
-                                ->where('students.committee_choice', '=' , $committee->id)
-                                ->paginate(300);
+        $resolution = Resolution::where('committe_id',$committee->id)->first();
 
-
-        return view('app/delegate/resolution', compact('guideline','committee','committee_member'));
+        return view('app/delegate/resolution', compact('committee','resolution'));
     }
 }
