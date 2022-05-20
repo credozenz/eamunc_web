@@ -83,7 +83,9 @@ Route::group(['middleware' => 'bureauchecker'], function() {
    
    
     Route::get('/bureau_profile', [BureauProfileController::class,'index'])->name('app.bureau_profile');
-    
+    Route::post('/bureau_password', [BureauProfileController::class,'update_password'])->name('app.bureau_password');
+    Route::post('/bureau_avatar', [BureauProfileController::class,'update_avatar'])->name('app.bureau_avatar');
+   
     Route::get('/bureau_speaker', [BureauSpeakersController::class,'index'])->name('app.bureau_speaker');
     Route::post('/bureau_speaker_country', [BureauSpeakersController::class,'bureau_speaker_country'])->name('app.speakers_country');
     Route::post('/bureau_speaker_store', [BureauSpeakersController::class,'store'])->name('app.speakers_store');

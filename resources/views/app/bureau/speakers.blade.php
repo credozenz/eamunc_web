@@ -1,70 +1,89 @@
 @extends('app.bureau.layouts.layout')
 @section('content')
    
-<div class="container-fluid dasboard">
+<div class="container-fluid dasboard add-speaker-page">
+         
   <div class="row">
-    
-    <div class="col-md-8">
-          <h5 class="text-primary mt-5 mb-3">{{ $guideline->title ?? '' }}</h5>
-            {!! $guideline->description ?? '' !!}
-      <button type="button" class="btn btn-primary "><i class="fa fa-microphone" aria-hidden="true"></i> Speakers List</button>
-      <button type="button" class="btn btn-primary ms-3"><i class="fa fa-calendar-o" aria-hidden="true"></i> Create Program Schedule</button><br>
-      <a href="#" class="d-inline-block mt-5 fs-6 fw-bold text-primary text-decoration-underline">View Program Resources</a>  
-    </div>
 
-    <div class="col-md-4">
-
-      <div class="d-flex flex-row  mb-3">
-        <a href="#" class="text-secondary fs-4 mt-2"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
-        <h5 class="text-primary mb-3 d-inline-block ps-2 " style="line-height: 22px;">  {{ $committee->title ?? '' }} </h5>
+      <div class="col-md-8">
+        <h4 class="dash-main-head">{{ $committee->name ?? '' }}</h4>
+        <p class="sub-head">{{ $committee->title ?? '' }}</p>
       </div>
-        
-      <div class="commitee-box">
 
-        <h6 class="text-primary text-start">Bureau Members</h6>
-          @if($committee_member)
-            @foreach($committee_member as $value)
-              @if($value->role==3)
-                  <div class="d-flex flex-row  mb-3">
-                        @if(!empty($value->image)) 
-                        <img src="{{ asset('uploads/'.$value->image) }}" class="rounded-circle" alt="{{ $value->name ?? '' }}">
-                        @else
-                        <img src="{{ asset('assets/img/avatar.svg') }}" alt="{{ $value->name ?? '' }}">
-                        @endif
-                    <p>{{ $value->name ?? '' }}</p>
+      <div class="col-md-4">
+        <div class="d-flex flex-row  mb-3">
+          <a href="#" class="text-secondary fs-4 mt-2"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+          <h5 class="text-primary mb-3 d-inline-block ps-2 " style="line-height: 22px;"> E.Ahamed Model United Nations Conference </h5>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+      
+        <h5 class="text-primary mt-5 mb-3">Add Speaker’s List</h5>
+        <p style="color: #4D4D4D; font-size: 14px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>
+        
+        <form method="post" action="{{ url('app/bureau_speaker_store') }}" class="mt-5 col-md-8"  enctype="multipart/form-data">
+                @csrf
+        
+          <input type="hidden" class="form-control" value="{{ $committee->id }}" id="committe_id" name="committe_id">
+          <input type="hidden" class="form-control" value="{{ $speakersCount ?? '0' }}" id="speaker_count" name="speaker_count">
+          
+          @if(!empty($speakersCount))
+              @foreach($speakers as $skey => $speaker)
+                <div class="d-flex  align-items-center mb-4">
+                  <div class="form-count ">{{ $skey+1 }}</div>
+                  <div class=" flex-fill ps-5 pe-5">
+                    <label class="form-label">Enter Counry Name</label>
+                    <select class="form-control" name="country_id[]" required>
+                    <option value="">Select Country Name</option>
+                      @foreach($committee_member as $key => $value)
+                      <option value="{{ $value->country_id }}" {{ ($speaker->country_id == $value->country_id ? "selected":"") }}>{{ $value->country_name }}</option>
+                      @endforeach
+                    </select>
                   </div>
-              @endif
-            @endforeach
-          @endif
-
-        
-        <h6 class="text-primary text-start">Comittee Members</h6>
-          @if($committee_member)
-              @foreach($committee_member as $value)
-                @if($value->role==2)
-                    <div class="d-flex flex-row  mb-3">
-                          @if(!empty($value->image)) 
-                          <img src="{{ asset('uploads/'.$value->image) }}" class="rounded-circle" alt="{{ $value->name ?? '' }}">
-                          @else
-                          <img src="{{ asset('assets/img/avatar.svg') }}" alt="{{ $value->name ?? '' }}">
-                          @endif
-                      <p>{{ $value->name ?? '' }}</p>
-                    </div>
-                @endif
+                  @if($skey+1 > 1)
+                  <div class="dltspeaker" id="{{ $skey+1 }}"  data-url="{{ url('app/speaker_delete',$speaker->id) }}" data-replaceurl="{{ url('app/bureau_speaker') }}" ><i class="fa Example of check-circle fa-minus-circle text-secondary fs-4"></i></div>
+                  
+                  @else
+                  <div id="add_speaker"><i class="fa Example of check-circle fa-plus-circle text-secondary fs-4"></i></div>
+                  @endif
+                </div>
               @endforeach
+
+          @else
+
+          <div class="d-flex  align-items-center mb-4">
+            <div class="form-count ">1</div>
+            <div class=" flex-fill ps-5 pe-5">
+              <label class="form-label">Enter Counry Name</label>
+              <select class="form-control" name="country_id[]" required>
+              <option value="">Select Country Name</option>
+                @foreach($committee_member as $key => $value)
+                <option value="{{ $value->country_id }}">{{ $value->country_name }}</option>
+                @endforeach
+              </select>
+            </div>
+            <div id="add_speaker"><i class="fa Example of check-circle fa-plus-circle text-secondary fs-4"></i></div>
+          </div>
+
           @endif
 
-        
-        
-        
-        <div class="d-flex flex-row  mb-3 w"></div>
+          <div class="speaker_list"></div>
 
-      </div>
+          <button type="submit" class="btn btn-primary float-end">CONFIRM</button>
+        
+        </form>
+      
     
-    </div>
-  
+      </div>
+
+      <div class="col-md-4">
+      </div>
+      
   </div>
+
 </div>
+    
    
 @endsection 
   

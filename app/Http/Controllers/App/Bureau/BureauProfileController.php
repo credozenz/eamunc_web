@@ -15,6 +15,10 @@ use App\Models\Committee;
 use App\Models\Countries;
 use App\Models\User;
 use View;
+use Str;
+use Image;
+use Storage;
+use League\Flysystem\File;
 class BureauProfileController extends Controller
 {
 
@@ -32,11 +36,96 @@ class BureauProfileController extends Controller
 
         $guideline = SiteIndexes::where('deleted_at', null)->where('type','guideline')->first();
 
-        $committee = Committee::where('id',$member->committee_choice)->first();
+        $committees = Committee::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(50); 
        
-        $country = Countries::where('id',$member->country_choice)->first();
-      
+        $countries = Countries::all();
 
-        return view('app/bureau/bureau_profile', compact('guideline','committee','country','member'));
+        return view('app/bureau/profile', compact('guideline','committees','countries','member'));
+    }
+
+
+    public function update_password(Request $request)
+    {
+
+        $request->validate([
+            'password' => 'required|string|min:8',
+            'password_confirm' => 'required|same:password'
+        ],[
+            'password.min' => 'The Password min 8 required',
+            'password.string' => 'The Password include string',
+            'password.required' => 'The Password field is required',
+            'password_confirm.required' => 'The Password confirmation field is required',
+            'password_confirm.same' => 'Password and Confirm Password must match',
+        ]);
+
+    
+
+        $member = WebAppHelper::getLogMember();
+        $user = User::where('id', $member->user_id)->first(); 
+
+        $user->password = Hash::make($request->password);
+        $user->save();
+           
+           
+           if($user->id){
+            Session::flash('success', 'Password updated successfully!');
+            return redirect('/app/bureau_profile');
+          }else{
+            Session::flash('error', 'Something went wrong!!');
+            return  redirect()->back();
+          }
+
+        
+    }
+
+
+
+    public function update_avatar(Request $request)
+    {
+
+        $validatedData = $request->validate([
+            'avatar' => ['mimes:jpeg,png,jpg,gif,svg', 'max:255']
+        ],[
+            'avatar.max' => 'Image  must be smaller than 2 MB',
+            'avatar.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
+        ]);
+
+        $member = WebAppHelper::getLogMember();
+        $profile = User::where('id', $member->user_id)->first(); 
+       
+        if ($request->hasFile('avatar')) {
+            $image = $request->file('avatar');
+            $fileName   =  time().'_'.str_random(5).'_'.rand(1111,9999). '.' . $image->getClientOriginalExtension();
+          
+            $extension=$image->getClientOriginalExtension();
+           
+            if($extension=='svg'){
+               $img = $image->get();
+            }else{
+                $img = Image::make($image->getRealPath());
+                $img->resize(100, 100, function ($constraint) {
+                   $constraint->aspectRatio();                 
+                });
+                $img->stream('png', 100);
+            }
+            
+            Storage::disk('public')->put('user_image/'.$fileName,$img,'public');
+
+            $profile->avatar = 'user_image/'.$fileName; 
+            
+           }
+
+           $profile->save();
+           
+         
+           if($profile->id){
+            Session::flash('success', 'Profile Image updated successfully!');
+            return  redirect()->back();
+          }else{
+            Session::flash('error', 'Something went wrong!!');
+            return  redirect()->back();
+          }
+
+        
     }
 }

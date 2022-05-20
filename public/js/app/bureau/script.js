@@ -66,7 +66,7 @@ $(document).ready(function() {
             }
         });
 
-});
+    });
 
 
     $(document).on('click', '.dltspeaker', function (e) {
@@ -116,7 +116,7 @@ $(document).ready(function() {
                 });
             
            
-        });
+    });
 
 
 
@@ -239,7 +239,18 @@ $(document).ready(function() {
 
 
 
-
+        $("#avatar").on('change',function(){
+            $( "#avatar_form" ).submit();
+        });
+        
+        
+        $("#avatar").on('change',function(){
+            $( "#avatar_form" ).submit();
+        });
+        
+        $("#paper_submission").on('change',function(){
+            $( "#paper_submit" ).submit();
+        });
 
 
 

@@ -1,17 +1,17 @@
-@extends('app.delegate.layouts.layout')
+@extends('app.bureau.layouts.layout')
 @section('content')
-  
+   
+
       <div class="container-fluid dasboard my-profile">
        
         <div class="row">
-
           <div class="col-md-8">
             <h4 class="mb-3 mt-3 text-primary fs-3">My Profile</h4>
            
             <div class="row">
               <div class="col-md-6">
                 <div class="mb-3">
-                  <label class="form-label">Delegate Name</label>
+                  <label class="form-label">Bureau Name</label>
                   <input type="text" name="name" disabled value="{{ $member->name ?? '' }}" style="border: none;background: white;" class="form-control flex-1 @error('title') border-danger @enderror" placeholder="Title">
                      
                 </div>
@@ -71,53 +71,53 @@
                 </div>
               </div>
             </div>
-            <h4 class="mb-3 mt-3 text-primary  fs-3">Change Password</h4>
-              <form method="post" action="{{ url('app/delegate_password') }}"  enctype="multipart/form-data">
+                <h4 class="mb-3 mt-3 text-primary  fs-3">Change Password</h4>
+                <form method="post" action="{{ url('app/bureau_password') }}"  enctype="multipart/form-data">
                         @csrf
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="mb-3">
-                      <label class="form-label">New Password* </label>
-                      <input type="password" name="password" value="" class="form-control @error('password') border-danger @enderror" placeholder="Old Password">
-                                        @error('password')<div class="text-danger mt-2">{{ $message }}</div>@enderror
-                    </div>
-                  </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="mb-3">
+                          <label class="form-label">New Password* </label>
+                          <input type="password" name="password" value="" class="form-control @error('password') border-danger @enderror" placeholder="Old Password">
+                                            @error('password')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                        </div>
+                      </div>
 
-                  <div class="col-md-6">
-                    <div class="mb-3">
-                      <label class="form-label">Confirm New Password* </label>
-                      <input type="password" name="password_confirm" value="" class="form-control @error('password_confirm') border-danger @enderror" placeholder="New Password">
-                                        @error('password_confirm')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                      <div class="col-md-6">
+                        <div class="mb-3">
+                          <label class="form-label">Confirm New Password* </label>
+                          <input type="password" name="password_confirm" value="" class="form-control @error('password_confirm') border-danger @enderror" placeholder="New Password">
+                                            @error('password_confirm')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <button type="submit" class="btn btn-primary ">CONFIRM</button>
-              </form>
+                    <button type="submit" class="btn btn-primary ">CONFIRM</button>
+                </form>
           
           </div>
 
           <div class="col-md-4">
             <h5 class="text-primary mb-3 d-inline-block ps-2 " style="line-height: 22px;">  {{ $committee->title ?? '' }} </h5>
               <div class="text-center">
-              @if(!empty($member->avatar)) 
-              <img src="{{ asset('uploads/'.$member->avatar) }}" style="width: 150px;" class="rounded m-auto" alt="{{ $member->name ?? '' }}">
-              @else
-              <img src="{{ asset('assets/img/avatar.svg') }}" style="width: 150px;" class="rounded m-auto"  alt="{{ $member->name ?? '' }}">
-              @endif
-              <form method="post" id="avatar_form" action="{{ url('app/delegate_avatar') }}"  enctype="multipart/form-data">
-                    @csrf
-              <label>
-                <input id="avatar" type="file" class="form-control-image" name="avatar" style="width: 0; height: 0;overflow: hidden;opacity: 0;">
-                <span class="btn rounded-circle edit-btn"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-              </label>
-              </form>
+                  @if(!empty($member->avatar)) 
+                  <img src="{{ asset('uploads/'.$member->avatar) }}" style="width: 150px;" class="rounded m-auto" alt="{{ $member->name ?? '' }}">
+                  @else
+                  <img src="{{ asset('assets/img/avatar.svg') }}" style="width: 150px;" class="rounded m-auto"  alt="{{ $member->name ?? '' }}">
+                  @endif
+                    <form method="post" id="avatar_form" action="{{ url('app/bureau_avatar') }}"  enctype="multipart/form-data">
+                          @csrf
+                      <label>
+                        <input id="avatar" type="file" class="form-control-image" name="avatar" style="width: 0; height: 0;overflow: hidden;opacity: 0;">
+                        <span class="btn rounded-circle edit-btn"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                      </label>
+                    </form>
               </div>
           </div>
-
         </div>
 
       </div>
     
+   
 @endsection 
   
    

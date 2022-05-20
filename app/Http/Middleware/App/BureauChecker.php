@@ -36,6 +36,8 @@ class BureauChecker
                 View::share('member', $member);
 
                 return $next($request); 
+            }  else  {
+                return redirect('/app');          
             }
             
         }

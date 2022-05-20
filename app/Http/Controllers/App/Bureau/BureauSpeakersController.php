@@ -23,7 +23,7 @@ class BureauSpeakersController extends Controller
     public function __construct()
     {
         
-        View::share('routeGroup','bureau_speakers');
+        View::share('routeGroup','bureau_dashbord');
        
     }
 
@@ -55,7 +55,7 @@ class BureauSpeakersController extends Controller
                     
                                     $speakersCount = count($speakers);
 
-        return view('app/bureau/bureau_speakers', compact('guideline','committee','committee_member','speakers','speakersCount'));
+        return view('app/bureau/speakers', compact('guideline','committee','committee_member','speakers','speakersCount'));
     }
 
 
