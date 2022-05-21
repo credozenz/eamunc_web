@@ -21,7 +21,7 @@
       <h5 class="text-primary mt-5 mb-3">{{ $guideline->title ?? '' }}</h5>
             {!! $guideline->description ?? '' !!}
       <a href="{{ route('app.bureau_speaker') }}" type="button" class="btn btn-primary "><i class="fa fa-microphone" aria-hidden="true"></i> Speakers List</a>
-      <button type="button" class="btn btn-primary ms-3"><i class="fa fa-calendar-o" aria-hidden="true"></i> Create Program Schedule</button><br>
+      <a href="{{ route('app.program_schedule') }}"  class="btn btn-primary ms-3"><i class="fa fa-calendar-o" aria-hidden="true"></i> Create Program Schedule</a><br>
       <a href="#" class="d-inline-block mt-5 fs-6 fw-bold text-primary text-decoration-underline">View Program Resources</a>  
     </div>
 

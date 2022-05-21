@@ -16,6 +16,7 @@ use App\Http\Controllers\App\Bureau\BureauProfileController;
 use App\Http\Controllers\App\Bureau\BureauSpeakersController;
 use App\Http\Controllers\App\Bureau\BureauBlocChatController;
 use App\Http\Controllers\App\Bureau\BureauGeneralPapersController;
+use App\Http\Controllers\App\Bureau\BureauScheduleProgramController;
 
 use App\Http\Controllers\App\Delegate\DelegateDashbordController;
 use App\Http\Controllers\App\Delegate\DelegatePaperSubmissionController;
@@ -90,6 +91,12 @@ Route::group(['middleware' => 'bureauchecker'], function() {
     Route::post('/bureau_speaker_country', [BureauSpeakersController::class,'bureau_speaker_country'])->name('app.speakers_country');
     Route::post('/bureau_speaker_store', [BureauSpeakersController::class,'store'])->name('app.speakers_store');
     Route::post('/speaker_delete/{id}', [BureauSpeakersController::class,'destroy'])->name('app.speaker_delete');
+
+    Route::get('/program_schedule', [BureauScheduleProgramController::class,'index'])->name('app.program_schedule');
+    Route::get('/program_schedule_create', [BureauScheduleProgramController::class,'create'])->name('app.program_schedule.create');
+    Route::post('/program_schedule_store', [BureauScheduleProgramController::class,'store'])->name('app.program_schedule.store');
+    Route::post('/program_schedule_delete/{id}', [BureauScheduleProgramController::class,'destroy'])->name('app.program_schedule.destroy');
+
 
 });
 

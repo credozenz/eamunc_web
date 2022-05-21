@@ -254,6 +254,68 @@ $(document).ready(function() {
 
 
 
+        $(document).ready(function() {
+            var i=1; 
+            $('#add').click(function() {
+                i++;
+    
+     
+        var html='<div class="row row'+i+'">'+ 
+                    '<div class="col-md-4 col-12">'+
+                      '<div class="form-group">'+                
+                        '<input type="text" name="title[]" value="" class="form-control" placeholder="Title">'+
+                      '</div>'+
+                    '</div>'+
+                    '<div class="col-md-3 col-12">'+
+                       '<div class="form-group">'+       
+                         '<input type="time" name="time_start[]" value="" class="form-control" placeholder="Start Date">'+
+                        '</div>'+
+                    '</div>'+
+                    '<div class="col-md-3 col-12">'+
+                      '<div class="form-group">'+        
+                        '<input type="time" name="time_end[]" value="" class="form-control" placeholder="End Date">'+
+                      '</div>'+
+                    '</div>'+
+                    '<div class="col-md-2 col-12">'+
+                      '<div class="form-group">'+
+                         '<button type="button" class="btn btn-primary me-1 mb-1 mt-1 btn_remove" name="remove" id="'+ i +'">-</button>'+
+                      '</div>'+
+                    '</div>'+
+                  '</div>';
+    
+    
+                $('#dynamic_field').append(html)
+        
+            });
+    
+            $(document).on('click', '.btn_remove', function() {
+                var button_id = $(this).attr("id");
+                $('.row' + button_id + '').remove();
+            });
+    
+            $(document).on('click', '.btn_remove_xst', function() {
+                var button_id = $(this).attr("key");
+                $('.key' + button_id + '').remove();
+            });
+    
+    
+        });
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });
 
 
