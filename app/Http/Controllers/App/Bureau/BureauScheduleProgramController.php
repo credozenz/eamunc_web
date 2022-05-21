@@ -27,7 +27,7 @@ class BureauScheduleProgramController extends Controller
 {
     public function __construct()
     {
-        View::share('routeGroup','schedule_program');
+        View::share('routeGroup','bureau_dashbord');
     }
     public function index(Request $request)
     {   
@@ -111,7 +111,7 @@ class BureauScheduleProgramController extends Controller
 
         if($schedule->id){
             Session::flash('success', 'Schedule added successfully!');
-            return redirect('/app/program_schedule');
+            return redirect('/app/program_schedule_create');
           }else{
             Session::flash('error', 'Something went wrong!!');
             return  redirect()->back();

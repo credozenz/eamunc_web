@@ -19,7 +19,7 @@
       <div class="col-md-8">
         <h5 class="text-primary mt-5 mb-3">{{ $guideline->title ?? '' }}</h5>
         <p> {!! $guideline->description ?? '' !!}<p>
-        <button type="button" class="btn btn-primary "><i class="fa fa-calendar-o" aria-hidden="true"></i> View Program Schedule</button>
+        <a href="{{ route('app.delegate_program_schedule') }}" class="btn btn-primary "><i class="fa fa-calendar-o" aria-hidden="true"></i> View Program Schedule</a>
         <a href="{{ route('app.delegate_speaker') }}" type="button" class="btn btn-primary ms-3"><i class="fa fa-calendar-o" aria-hidden="true"></i> View Speakers List</a><br>
         <a href="#" class="d-inline-block mt-5 fs-6 fw-bold text-primary text-decoration-underline">View Program Resources</a>  
       </div>

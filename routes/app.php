@@ -29,6 +29,7 @@ use App\Http\Controllers\App\Delegate\DelegateProfileController;
 use App\Http\Controllers\App\Delegate\DelegateSpeakersController;
 use App\Http\Controllers\App\Delegate\DelegateBlocChatController;
 use App\Http\Controllers\App\Delegate\DelegateGeneralPapersController;
+use App\Http\Controllers\App\Delegate\DelegateScheduleProgramController;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,7 +93,7 @@ Route::group(['middleware' => 'bureauchecker'], function() {
     Route::post('/bureau_speaker_store', [BureauSpeakersController::class,'store'])->name('app.speakers_store');
     Route::post('/speaker_delete/{id}', [BureauSpeakersController::class,'destroy'])->name('app.speaker_delete');
 
-    Route::get('/program_schedule', [BureauScheduleProgramController::class,'index'])->name('app.program_schedule');
+    Route::get('/bureau_program_schedule', [BureauScheduleProgramController::class,'index'])->name('app.bureau_program_schedule');
     Route::get('/program_schedule_create', [BureauScheduleProgramController::class,'create'])->name('app.program_schedule.create');
     Route::post('/program_schedule_store', [BureauScheduleProgramController::class,'store'])->name('app.program_schedule.store');
     Route::post('/program_schedule_delete/{id}', [BureauScheduleProgramController::class,'destroy'])->name('app.program_schedule.destroy');
@@ -117,6 +118,6 @@ Route::group(['middleware' => 'delegatechecker'], function() {
     Route::post('/delegate_password', [DelegateProfileController::class,'update_password'])->name('app.delegate_password');
     Route::post('/delegate_avatar', [DelegateProfileController::class,'update_avatar'])->name('app.delegate_avatar');
     Route::get('/delegate_speaker', [DelegateSpeakersController::class,'index'])->name('app.delegate_speaker');
-    
+    Route::get('/delegate_program_schedule', [DelegateScheduleProgramController::class,'index'])->name('app.delegate_program_schedule');
     Route::get('/delegate_bloc_chat/{id}', [DelegateBlocChatController::class,'index'])->name('app.bureau_bloc_chat');
 });

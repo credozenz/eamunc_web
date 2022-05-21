@@ -18,11 +18,7 @@
       </div>
     </div>
 
-    <div class="col-md-8"></div>
-    <div class="col-md-4"> 
-            <a href="{{ url('app/program_schedule_create') }}" class="btn btn-primary shadow-md mr-2">Add</a>    
-    </div>
-      
+   
 
         <div class="col-md-8">
     
