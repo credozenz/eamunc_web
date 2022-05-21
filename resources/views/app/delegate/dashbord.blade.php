@@ -27,7 +27,7 @@
       <div class="col-md-4">
         
         <div class="d-grid">
-          <button type="button" class="btn btn-primary "><i class="fa fa-file-text-o" aria-hidden="true"></i> Submit Liability Waiver Form</button>
+          <a href="{{ route('app.liability_waiver_form') }}" class="btn btn-primary "><i class="fa fa-file-text-o" aria-hidden="true"></i> Submit Liability Waiver Form</a>
         </div>
           
         <div class="commitee-box">

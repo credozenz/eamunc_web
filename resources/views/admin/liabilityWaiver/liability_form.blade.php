@@ -32,7 +32,7 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                        <form method="post" action="{{ url('admin/liability_waiver_form_update') }}"  enctype="multipart/form-data">
+                        <form method="post" action="{{ url('app/liability_waiver_form_submit') }}"  enctype="multipart/form-data">
                           @csrf
                           
                         <div class="row">

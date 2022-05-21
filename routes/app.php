@@ -30,7 +30,7 @@ use App\Http\Controllers\App\Delegate\DelegateSpeakersController;
 use App\Http\Controllers\App\Delegate\DelegateBlocChatController;
 use App\Http\Controllers\App\Delegate\DelegateGeneralPapersController;
 use App\Http\Controllers\App\Delegate\DelegateScheduleProgramController;
-
+use App\Http\Controllers\App\Delegate\DelegateLiabilityWaiverController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -120,4 +120,8 @@ Route::group(['middleware' => 'delegatechecker'], function() {
     Route::get('/delegate_speaker', [DelegateSpeakersController::class,'index'])->name('app.delegate_speaker');
     Route::get('/delegate_program_schedule', [DelegateScheduleProgramController::class,'index'])->name('app.delegate_program_schedule');
     Route::get('/delegate_bloc_chat/{id}', [DelegateBlocChatController::class,'index'])->name('app.bureau_bloc_chat');
+
+    Route::get('/liability_waiver_form', [DelegateLiabilityWaiverController::class,'index'])->name('app.liability_waiver_form');
+    Route::post('/liability_waiver_form_submit', [DelegateLiabilityWaiverController::class,'store'])->name('app.liability_waiver_form.liability_form_submit');
+
 });

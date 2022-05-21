@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\App\Delegate;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -7,17 +7,18 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Route;
 use View;
-use App\Helper\AdminHelper;
+use App\Helper\WebAppHelper;
 use App\Models\Gallery;
 use App\Models\Images;
 use App\Models\SiteIndexes;
+use App\Models\Students;
 use Carbon\Carbon;
 use Str;
 use Image;
 use Storage;
 use League\Flysystem\File;
 
-class LiabilityWaiverController extends Controller
+class DelegateLiabilityWaiverController extends Controller
 {
   
     public function __construct()
@@ -29,22 +30,29 @@ class LiabilityWaiverController extends Controller
 
     public function index()
     {
+        $member = WebAppHelper::getLogMember();
+
         $data = SiteIndexes::where('deleted_at', null)->where('type', 'liability_waiver')->orderBy('id', 'DESC')->first(); 
-        return view('admin/liabilityWaiver/liability_form', compact('data'));
+       
+        $student = Students::where('user_id',$member->user_id)->first();
+       
+        return view('app/delegate/liability_form', compact('data','student'));
     }
 
-    public function update(Request $request)
+    public function store(Request $request)
     {
+
+        $member = WebAppHelper::getLogMember();
 
         $validatedData = $request->validate([
             'form' => ['required','mimes:pdf,doc', 'max:2055'],
         ],[
             'form.required' => 'The Form field is required',
-            'form.max'      => 'Form must be smaller than 2 MB',
+            'form.max'      => 'Form  must be smaller than 2 MB',
             'form.mimes'    => 'Input accept only pdf,doc',
         ]);
 
-        $form = SiteIndexes::where('type','liability_waiver')->first();
+        $form = Students::where('user_id',$member->user_id)->first();
 
         if ($request->hasFile('form')) {
 
@@ -58,17 +66,16 @@ class LiabilityWaiverController extends Controller
            
            
            
-            Storage::disk('public')->put('liability_form/'.$fileName,$doc,'public');
+            Storage::disk('public')->put('liability_submitform/'.$fileName,$doc,'public');
 
        
-           $form->name = $origin_name;
-           $form->file = 'liability_form/'.$fileName; 
+           $form->liability_form = 'liability_submitform/'.$fileName; 
 
            $form->save();
 
          
         if($form->id){
-            Session::flash('success', 'Liability form added successfully!');
+            Session::flash('success', 'Liability form Submitted successfully!');
             return  redirect()->back();
           }else{
             Session::flash('error', 'Something went wrong!!');
