@@ -36,6 +36,7 @@ use App\Http\Controllers\Admin\ForgotPasswordController;
 use App\Http\Controllers\Admin\StudentsController;
 use App\Http\Controllers\Admin\SchoolsController;
 use App\Http\Controllers\Admin\GuidelineController;
+use App\Http\Controllers\Admin\LiabilityWaiverController;
 
 
 /*
@@ -69,6 +70,10 @@ Route::group(['middleware' => 'adminchecker'], function() {
 
      Route::get('/president_messages', [PresidentMessagesController::class,'index'])->name('admin.president_messages');
      Route::post('/president_messages_update', [PresidentMessagesController::class,'update'])->name('admin.president_messages.update');
+
+     Route::get('/liability_waiver_form', [LiabilityWaiverController::class,'index'])->name('admin.liability_waiver_form');
+     Route::post('/liability_waiver_form_update', [LiabilityWaiverController::class,'update'])->name('admin.liability_waiver_form.update');
+
 
      Route::get('/rules', [RulesController::class,'index'])->name('admin.rules');
      Route::post('/rules_update', [RulesController::class,'update'])->name('admin.rules.update');

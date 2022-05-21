@@ -47,6 +47,12 @@
                 </a>
             </li>
 
+            <li class="sidebar-item  @if($routeGroup =='liability_form') active @endif ">
+                <a href="{{ route('admin.liability_waiver_form') }}" class='sidebar-link'>
+                    <span><i class="fa fa-file-o" aria-hidden="true">&nbsp</i>Liability Waiver Form</span>
+                </a>
+            </li>
+
             <li class="sidebar-item  @if($routeGroup =='feedback') active @endif ">
                 <a href="{{ route('admin.user_feedback') }}" class='sidebar-link'>
                     <span><i class="fa fa-comment-o" aria-hidden="true">&nbsp</i>Feedback</span>

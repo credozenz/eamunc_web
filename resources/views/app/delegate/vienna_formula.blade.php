@@ -1,8 +1,8 @@
 @extends('app.delegate.layouts.layout')
 @section('content')
-   
+
 <div class="container-fluid dasboard add-speaker-page">
-        
+       
     <div class="row">
        
         <div class="col-md-8">
@@ -15,29 +15,26 @@
             <a href="#" class="text-secondary fs-4 mt-2"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
             <h5 class="text-primary mb-3 d-inline-block ps-2 " style="line-height: 22px;"> E.Ahamed Model United Nations Conference </h5>
           </div>
-        </div>  
-        
-       
-        <div class="col-md-6 text-center offset-md-3">
+        </div>
+      
+        <div class="col-md-12 text-center">
     
           <h5 class="text-primary mt-5 mb-3 fs-2">Vienna Formula</h5>
          
                 <div class="col-md-12 col-12">
                     <div class="form-group">
                         <label class="form-label">Description</label>
-                        <div style="border: ridge;max-height: 600px;overflow: scroll;">
-                        {!! $vienna->content ?? '' !!}
-                        </div>
+                        <textarea id="view_editor" > {!! $vienna->content ?? '' !!}</textarea>
                     </div>
                 </div>
-               
+                 
         </div>
       
     </div>
 
 </div>
    
-   
+
 @endsection 
   
    

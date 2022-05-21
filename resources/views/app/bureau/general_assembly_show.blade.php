@@ -17,14 +17,14 @@
           </div>
         </div>
       
-        <div class="col-md-6 text-center offset-md-3">
+        <div class="col-md-12 text-center">
     
           <h5 class="text-primary mt-5 mb-3 fs-2">Resolution</h5>
          
                 <div class="col-md-12 col-12">
                     <div class="form-group">
                         <label class="form-label">Description</label>
-                        {!! $general_assembly->content !!}
+                        <textarea id="view_editor" > {!! $general_assembly->content !!}</textarea>
                     </div>
                 </div>
                  

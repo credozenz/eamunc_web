@@ -21,7 +21,7 @@
         <p> {!! $guideline->description ?? '' !!}<p>
         <a href="{{ route('app.delegate_program_schedule') }}" class="btn btn-primary "><i class="fa fa-calendar-o" aria-hidden="true"></i> View Program Schedule</a>
         <a href="{{ route('app.delegate_speaker') }}" type="button" class="btn btn-primary ms-3"><i class="fa fa-calendar-o" aria-hidden="true"></i> View Speakers List</a><br>
-        <a href="#" class="d-inline-block mt-5 fs-6 fw-bold text-primary text-decoration-underline">View Program Resources</a>  
+        <a href="{{ url('/committees') }}" class="d-inline-block mt-5 fs-6 fw-bold text-primary text-decoration-underline">View Program Resources</a>  
       </div>
 
       <div class="col-md-4">

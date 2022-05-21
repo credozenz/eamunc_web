@@ -20,7 +20,7 @@
       <div class="col-md-4 offset-md-8">
       </div>
 
-      <div class="col-md-6 text-center offset-md-3">
+      <div class="col-md-12 text-center">
   
         <h5 class="text-primary mt-5 mb-3 fs-2">Vienna Formula</h5>
         <form method="post" action="{{ url('app/bureau_vienna_formula_store') }}" class="mt-5 col-md-12"  enctype="multipart/form-data">
@@ -28,7 +28,7 @@
               <div class="col-md-12 col-12">
                   <div class="form-group">
                       <label class="form-label">Description</label>
-                      <textarea id="ckeditor" type="text" name="vienna" class="form-control @error('vienna') border-danger @enderror" style="height: 850px;">{{ $vienna->content ?? old('vienna') }}</textarea>
+                      <textarea id="txt_editor" type="text" name="vienna" class="form-control @error('vienna') border-danger @enderror" style="height: 850px;">{{ $vienna->content ?? old('vienna') }}</textarea>
                       @error('vienna')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                   </div>
               </div>
