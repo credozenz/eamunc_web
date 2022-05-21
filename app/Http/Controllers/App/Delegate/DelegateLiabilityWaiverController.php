@@ -23,7 +23,7 @@ class DelegateLiabilityWaiverController extends Controller
   
     public function __construct()
     {
-        View::share('routeGroup','liability_waiver');
+        View::share('routeGroup','delegate_dashbord');
     }
     
  

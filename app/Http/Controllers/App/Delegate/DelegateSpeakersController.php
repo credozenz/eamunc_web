@@ -23,7 +23,7 @@ class DelegateSpeakersController extends Controller
     public function __construct()
     {
         
-        View::share('routeGroup','delegate_speakers');
+        View::share('routeGroup','delegate_dashbord');
        
     }
 

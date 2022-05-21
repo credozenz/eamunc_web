@@ -27,7 +27,7 @@ class DelegateScheduleProgramController extends Controller
 {
     public function __construct()
     {
-        View::share('routeGroup','schedule_program');
+        View::share('routeGroup','delegate_dashbord');
     }
     public function index(Request $request)
     {   

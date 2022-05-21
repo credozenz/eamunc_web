@@ -25,11 +25,8 @@
       <div class="col-md-4">
         <div class="d-flex flex-row  mb-3">
             @if(!empty($data->file))
-                <div class="w-30 h-30 relative image-fit  mb-2 mr-5">
-                <a href="{{ asset('uploads/'.$data->file) }}" >
-                    <img class="rounded-md img-preview" src="{{asset('assets/admin/img/file_demo.png')}}" style="width: 40px;">
-                    Download Form
-                </a>
+                <div class="d-grid">
+                   <a href="{{ asset('uploads/'.$data->file) }}" class="btn btn-primary "><i class="fa fa-file-text-o" aria-hidden="true"></i> Downlode Liability Waiver Form</a>
                 </div>
             @endif
           </div>
@@ -66,9 +63,10 @@
               
                 <div class="drag-text">
                
+               
                 <a href="{{ asset('uploads/'.$student->liability_form) }}" >
                 <i class="fa fa-file" style="font-size: 18px;" aria-hidden="true"></i>
-                    Liability Waiver Form
+                  {{ $student->name ?? '' }}  Liability Waiver Form
                 </a>
                  
                 </div>

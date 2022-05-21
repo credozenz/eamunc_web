@@ -1,4 +1,4 @@
-@extends('app.bureau.layouts.layout')
+@extends('app.delegate.layouts.layout')
 @section('content')
 
 
