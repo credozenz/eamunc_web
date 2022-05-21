@@ -47,24 +47,19 @@ class LiabilityWaiverController extends Controller
         $form = SiteIndexes::where('type','liability_waiver')->first();
 
         if ($request->hasFile('form')) {
-
             $doc = $request->file('form');
-
             $origin_name = $doc ->getClientOriginalName();
+            $docfileName   =  time().'_'.str_random(5).'_'.rand(1111,9999). '.' . $doc->getClientOriginalExtension();
+            $file = $doc->get();
            
-            $fileName   =  time().'_'.str_random(5).'_'.rand(1111,9999). '.' . $doc->getClientOriginalExtension();
-          
-            $extension  =  $doc->getClientOriginalExtension();
+            Storage::disk('public')->put('liability_form/'.$docfileName,$file,'public');
            
-           
-           
-            Storage::disk('public')->put('liability_form/'.$fileName,$doc,'public');
+            $form->name = $origin_name;
+            $form->file = 'liability_form/'.$docfileName; 
 
-       
-           $form->name = $origin_name;
-           $form->file = 'liability_form/'.$fileName; 
 
            $form->save();
+
 
          
         if($form->id){

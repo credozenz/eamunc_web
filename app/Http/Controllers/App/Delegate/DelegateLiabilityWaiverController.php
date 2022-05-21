@@ -55,24 +55,20 @@ class DelegateLiabilityWaiverController extends Controller
         $form = Students::where('user_id',$member->user_id)->first();
 
         if ($request->hasFile('form')) {
-
+            
             $doc = $request->file('form');
-
             $origin_name = $doc ->getClientOriginalName();
+            $docfileName   =  time().'_'.str_random(5).'_'.rand(1111,9999). '.' . $doc->getClientOriginalExtension();
+            $file = $doc->get();
            
-            $fileName   =  time().'_'.str_random(5).'_'.rand(1111,9999). '.' . $doc->getClientOriginalExtension();
+            Storage::disk('public')->put('liability_submitform/'.$docfileName,$file,'public');
+           
+           
+            $form->liability_form = 'liability_submitform/'.$docfileName; 
+
+
+            $form->save();
           
-            $extension  =  $doc->getClientOriginalExtension();
-           
-           
-           
-            Storage::disk('public')->put('liability_submitform/'.$fileName,$doc,'public');
-
-       
-           $form->liability_form = 'liability_submitform/'.$fileName; 
-
-           $form->save();
-
          
         if($form->id){
             Session::flash('success', 'Liability form Submitted successfully!');
