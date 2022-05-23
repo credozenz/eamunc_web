@@ -10,6 +10,7 @@ use View;
 use App\Helper\AdminHelper;
 use App\Models\Committee;
 use App\Models\Committee_member;
+use App\Models\Committee_files;
 use App\Models\User;
 use App\Models\School;
 use Carbon\Carbon;
@@ -55,7 +56,8 @@ class CommitteeController extends Controller
             'video' =>'required|max:255',
             'description' =>'required',
             'image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:2055'],
-            'file' => ['required','mimes:pdf', 'max:2055'],
+            'file' => 'required|array',
+            'file.*'  => ['required','mimes:pdf', 'max:2055'],
         ],[
             'name.required' => 'The Name field is required',
             'title.required' => 'The Title field is required',
@@ -101,16 +103,7 @@ class CommitteeController extends Controller
 
            $committee->image = 'committee/'.$fileName; 
 
-           if ($request->hasFile('file')) {
-            $doc = $request->file('file');
-            $docfileName   =  time().'_'.str_random(5).'_'.rand(1111,9999). '.' . $doc->getClientOriginalExtension();
-            $file = $doc->get();
-            
-          
-            Storage::disk('public')->put('committee/doc/'.$docfileName,$file,'public');
-           }
-
-           $committee->file = 'committee/doc/'.$docfileName; 
+           
 
            $youtubeurl = AdminHelper::getYoutubeIdFromUrl($request->video_url);
           
@@ -118,6 +111,31 @@ class CommitteeController extends Controller
 
            $committee->save();
 
+
+        if($committee->id){
+
+       
+            if ($request->hasFile('file')) {
+
+                $doc = $request->file('file');
+
+                for($count = 0; $count < count($doc); $count++)
+                {
+                    $docfileName   =  time().'_'.str_random(5).'_'.rand(1111,9999). '.' . $doc[$count]->getClientOriginalExtension();
+                    $file = $doc[$count]->get();
+                    $origin_name = $doc[$count] ->getClientOriginalName();
+                    Storage::disk('public')->put('committee/doc/'.$docfileName,$file,'public');
+                    
+                    $committeefile = new Committee_files;
+                    $committeefile->committe_id = $committee->id;
+                    $committeefile->name = $origin_name;
+                    $committeefile->file = 'committee/doc/'.$docfileName;
+                    $committeefile->save();
+               }
+            }
+
+           
+        }
 
         if($committee->id){
             Session::flash('success', 'committee added successfully!');
@@ -133,17 +151,20 @@ class CommitteeController extends Controller
    
     public function show($id)
     {
-        $data = Committee::find($id); 
-        
-        return view('admin/committee/show', compact('data'));
+          
+      
+        $data  = Committee::find($id); 
+        $files = Committee_files::where('committe_id', $id)->where('deleted_at', null)->get(); 
+       
+        return view('admin/committee/show', compact('data','files'));
     }
 
    
     public function edit($id)
     {
         $data = Committee::find($id); 
-        
-        return view('admin/committee/edit', compact('data'));
+        $files = Committee_files::where('committe_id', $id)->where('deleted_at', null)->get(); 
+        return view('admin/committee/edit', compact('data','files'));
     }
 
     
@@ -207,32 +228,48 @@ class CommitteeController extends Controller
         }
 
 
-        if ($request->hasFile('news_doc')) {
-
-            $validatedData = $request->validate([
-                'file' => ['required','mimes:pdf', 'max:2055'],
-            ],[
-                'file.required' => 'The file field is required',
-                'file.max' => 'file  must be smaller than 2 MB',
-                'file.mimes' => 'Input accept only pdf',
-            ]);
-
-
-            $doc = $request->file('news_doc');
-            $docfileName   =  time().'_'.str_random(5).'_'.rand(1111,9999). '.' . $doc->getClientOriginalExtension();
-            $file = $doc->get();
-            
-          
-            Storage::disk('public')->put('committee/doc/'.$docfileName,$file,'public');
-
-            $committee->file = 'committee/doc/'.$docfileName; 
-        }
-
            $youtubeurl = AdminHelper::getYoutubeIdFromUrl($request->video);
           
            $committee->video  = $youtubeurl;
 
            $committee->save();
+
+
+           if($committee->id){
+
+       
+            if ($request->hasFile('file')) {
+
+                $validatedData = $request->validate([
+                    'file' => 'required|array',
+                    'file.*'  => ['required','mimes:pdf', 'max:2055'],
+                ],[
+                    'file.required' => 'The file field is required',
+                    'file.max' => 'file  must be smaller than 2 MB',
+                    'file.mimes' => 'Input accept only pdf',
+                ]);
+    
+
+                $doc = $request->file('file');
+
+               for($count = 0; $count < count($doc); $count++)
+               {
+                    $docfileName   =  time().'_'.str_random(5).'_'.rand(1111,9999). '.' . $doc[$count]->getClientOriginalExtension();
+                    $file = $doc[$count]->get();
+                    $origin_name = $doc[$count] ->getClientOriginalName();
+                    Storage::disk('public')->put('committee/doc/'.$docfileName,$file,'public');
+                    
+                    $committeefile = new Committee_files;
+                    $committeefile->committe_id = $committee->id;
+                    $committeefile->name = $origin_name;
+                    $committeefile->file = 'committee/doc/'.$docfileName;
+                    $committeefile->save();
+               }
+            }
+
+           
+        }
+
         
           if($committee->id){
             Session::flash('success', 'Committee updated successfully!');
@@ -259,7 +296,17 @@ class CommitteeController extends Controller
     }
 
 
+    public function file_destroy(Request $request,$id)
+    {
 
+        $file = Committee_files::where('id', $id)->first(); 
+        $mytime = Carbon::now();
+        $timestamp=$mytime->toDateTimeString();
+        $file->deleted_at = $timestamp;
+        $file->save();
+
+        echo json_encode(['status'=>true,'message'=>'Committee file Deleted Successfully !']);exit();
+    }
 
 
 

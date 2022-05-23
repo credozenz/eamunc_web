@@ -83,7 +83,7 @@
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label class="form-label text-danger">File</label>
-                                        <input type="file" name="file" class="form-control  @error('file') border-danger @enderror">
+                                        <input type="file" name="file[]" multiple="multiple" class="form-control  @error('file') border-danger @enderror">
                                         @error('file')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>

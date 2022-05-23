@@ -193,6 +193,7 @@ Route::group(['middleware' => 'adminchecker'], function() {
      Route::get('/committee_show/{id}', [CommitteeController::class,'show'])->name('admin.committee.show');
      Route::post('/committee_update/{id}', [CommitteeController::class,'update'])->name('admin.committee.update');
      Route::post('/committee_delete/{id}', [CommitteeController::class,'destroy'])->name('admin.committee.destroy');
+     Route::post('/committee_file_delete/{id}', [CommitteeController::class,'file_destroy'])->name('admin.committee.file_destroy');
     
      
      Route::get('/pastconference', [PastConferenceController::class,'index'])->name('admin.pastconference');

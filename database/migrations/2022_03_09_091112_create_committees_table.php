@@ -21,8 +21,8 @@ class CreateCommitteesTable extends Migration
             $table->string('agenda');
             $table->string('sub_title');
             $table->text('description');
-            $table->string('video');
-            $table->string('file');
+            $table->string('video')->nullable();
+            $table->string('file')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
