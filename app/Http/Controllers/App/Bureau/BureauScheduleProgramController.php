@@ -111,7 +111,7 @@ class BureauScheduleProgramController extends Controller
 
         if($schedule->id){
             Session::flash('success', 'Schedule added successfully!');
-            return redirect('/app/program_schedule_create');
+            return redirect('/app/bureau_program_schedule');
           }else{
             Session::flash('error', 'Something went wrong!!');
             return  redirect()->back();

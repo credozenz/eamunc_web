@@ -32,16 +32,9 @@ class BureauViennaFormulaController extends Controller
 
         $committee = Committee::where('id',$member->committee_choice)->first();
        
-        $committee_member = User::where('users.deleted_at', null)
-                                ->join('students', 'users.id', '=', 'students.user_id')
-                                ->join('schools', 'students.school_id', '=', 'schools.id')
-                                ->select('students.*', 'schools.name as school_name', 'users.role')
-                                ->where('students.status', '=', 3)
-                                ->where('students.committee_choice', '=' , $committee->id)
-                                ->paginate(300);
+        $vienna = Vienna_formula::where('committe_id',$committee->id)->first();
 
-
-        return view('app/bureau/vienna_formula', compact('committee','committee_member'));
+        return view('app/bureau/vienna_formula', compact('committee','vienna'));
     }
 
 

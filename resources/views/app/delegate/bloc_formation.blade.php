@@ -26,7 +26,7 @@
                 @if($mybloc)  
                 <h4>Start My Discussion</h4>
                 <p class="mt-2 mb-3">Card layouts can vary to support the types of content they contain. The following elements are commonly found among that variety.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>
-                <button type="button" class="btn btn-primary ">Start Now</button>
+                <a href="{{ url('app/delegate_bloc_chat',$mybloc->id) }}" class="btn btn-primary ">Start Now</a>
                 @else
                 <h4>Start My Discussion</h4>
                 <p class="mt-2 mb-3">You are not a part of any bloc !, Please wait for assign to a block</p>

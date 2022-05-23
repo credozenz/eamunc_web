@@ -60,7 +60,7 @@
                 <div >
                     <select class="js-states form-control select2" name="user_id[]" multiple="multiple" style="width: 100%" required="">
                         <option value="">Select Member</option>
-                        @if($blocs_members)
+                          @if($blocs_members)
                             @foreach($blocs_members as $value)
                             <option value="{{ $value->id }}" selected>{{ $value->name }}</option>
                             @endforeach

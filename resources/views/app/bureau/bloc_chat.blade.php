@@ -10,17 +10,17 @@
               @if(!empty($blocs_members))
                     @foreach($blocs_members as $key => $each)
                         @if(!empty($each->avatar)) 
-                        <img src="{{ asset('uploads/'.$each->avatar) ?? '' }}" alt="{{ $each->name ?? '' }}" class="avatar rounded-circle d-inline-block" style="width: 40px; height: 40px;">
+                        <img src="{{ asset('uploads/'.$each->avatar) ?? '' }}" alt="{{ $each->name ?? '' }}" title="{{ ucfirst($each->name) ?? '' }}" class="avatar rounded-circle d-inline-block" style="width: 40px; height: 40px;">
                         @else
-                        <img src="{{ asset('assets/img/avatar.svg') }}" alt="{{ $each->name ?? '' }}" class="avatar rounded-circle d-inline-block" style="width: 40px; height: 40px;">
+                        <img src="{{ asset('assets/img/avatar.svg') }}" alt="{{ $each->name ?? '' }}" title="{{ ucfirst($each->name) ?? '' }}" class="avatar rounded-circle d-inline-block" style="width: 40px; height: 40px;">
                         @endif
                 @endforeach
               @endif
+
+             <small class="text-primary mb-3 d-inline-block ps-2 "> {{ ucfirst($committee_bloc->name) ?? '' }} </small>
           </div>
 
-          <div class="col-md-3 ">
-            <h5 class="text-primary mb-3 d-inline-block ps-2 " style="line-height: 40px;">{{ ucfirst($committee_bloc->name) ?? '' }}</h5>
-          </div>
+          <div class="col-md-3 "></div>
 
           <div class="col-md-3 ">
             <h5 class="text-primary mb-3 d-inline-block ps-2 " style="line-height: 40px;">{{ ucfirst($committee->name) ?? '' }}</h5>

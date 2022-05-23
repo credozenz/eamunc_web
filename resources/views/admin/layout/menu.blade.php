@@ -124,21 +124,15 @@
             </li>
 
 
-            
-
-            <li class="sidebar-item  has-sub @if($routeGroup=='gallery') active @endif ">
-                <a href="#" class='sidebar-link'>
+            <li class="sidebar-item  @if($routeGroup =='gallery') active @endif ">
+                <a href="{{ route('admin.gallery') }}" class='sidebar-link'>
                     <span><i class="fa fa-picture-o" aria-hidden="true">&nbsp</i>Gallery</span>
                 </a>
-                <ul class="submenu @if($routeGroup=='gallery') active @endif">
-                    <li class="submenu-item ">
-                        <a href="{{ route('admin.gallery') }}">Gallery</a>
-                    </li>
-                </ul>
             </li>
+
        
             <li class="sidebar-item  has-sub @if($routeGroup=='alumni') active @endif ">
-                <a href="#" class='sidebar-link'>
+                <a href="{{ route('admin.alumni') }}" class='sidebar-link'>
                     <span><i class="fa fa-file-o" aria-hidden="true">&nbsp</i>Alumni</span>
                 </a>
                 <ul class="submenu @if($routeGroup=='alumni') active @endif">
@@ -151,70 +145,41 @@
                 </ul>
             </li>
 
-            <li class="sidebar-item  has-sub @if($routeGroup=='newsletter') active @endif ">
-                <a href="#" class='sidebar-link'>
+
+            <li class="sidebar-item  @if($routeGroup =='newsletter') active @endif ">
+                <a href="{{ route('admin.newsletter') }}" class='sidebar-link'>
                     <span><i class="fa fa-newspaper-o" aria-hidden="true">&nbsp</i>News Letter</span>
                 </a>
-                <ul class="submenu @if($routeGroup=='newsletter') active @endif">
-                    <li class="submenu-item ">
-                        <a href="{{ route('admin.newsletter') }}">News Letter</a>
-                    </li>
-                </ul>
             </li>
-           
-            <li class="sidebar-item  has-sub @if($routeGroup=='hostschool') active @endif ">
-                <a href="#" class='sidebar-link'>
+
+            <li class="sidebar-item  @if($routeGroup =='hostschool') active @endif ">
+                <a href="{{ route('admin.host_schools') }}" class='sidebar-link'>
                     <span><i class="fa fa-university" aria-hidden="true">&nbsp</i>Host Schools</span>
                 </a>
-                <ul class="submenu @if($routeGroup=='hostschool') active @endif">
-                    <li class="submenu-item ">
-                        <a href="{{ route('admin.host_schools') }}">Host Schools</a>
-                    </li>
-                </ul>
             </li>
 
-            <li class="sidebar-item  has-sub @if($routeGroup=='participateschool') active @endif ">
-                <a href="#" class='sidebar-link'>
+            <li class="sidebar-item  @if($routeGroup =='participateschool') active @endif ">
+                <a href="{{ route('admin.participate_schools') }}" class='sidebar-link'>
                     <span><i class="fa fa-university" aria-hidden="true">&nbsp</i>Participate Schools</span>
                 </a>
-                <ul class="submenu @if($routeGroup=='participateschool') active @endif">
-                    <li class="submenu-item ">
-                        <a href="{{ route('admin.participate_schools') }}">Participate Schools</a>
-                    </li>
-                </ul>
             </li>
 
-            <li class="sidebar-item  has-sub @if($routeGroup=='impact') active @endif ">
-                <a href="#" class='sidebar-link'>
+            <li class="sidebar-item  @if($routeGroup =='impact') active @endif ">
+                <a href="{{ route('admin.act_impacts') }}" class='sidebar-link'>
                     <span><i class="fa fa-sort" aria-hidden="true">&nbsp</i>Act to Impact</span>
                 </a>
-                <ul class="submenu @if($routeGroup=='impact') active @endif">
-                    <li class="submenu-item ">
-                        <a href="{{ route('admin.act_impacts') }}">Act to Impact</a>
-                    </li>
-                </ul>
             </li>
 
-            <li class="sidebar-item  has-sub @if($routeGroup=='vc_condunt') active @endif ">
-                <a href="#" class='sidebar-link'>
-                    <span><i class="fa fa-code-fork" aria-hidden="true">&nbsp</i>Virtual Code Of Conduct</span>
+            <li class="sidebar-item  @if($routeGroup =='vc_condunt') active @endif ">
+                <a href="{{ route('admin.vc_condunt') }}" class='sidebar-link'>
+                    <span><i class="fa fa-sort" aria-hidden="true">&nbsp</i>Virtual Code Of Conduct</span>
                 </a>
-                <ul class="submenu @if($routeGroup=='vc_condunt') active @endif">
-                    <li class="submenu-item ">
-                        <a href="{{ route('admin.vc_condunt') }}">Virtual Code Of Conduct</a>
-                    </li>
-                </ul>
             </li>
-           
-            <li class="sidebar-item  has-sub @if($routeGroup=='past_conference') active @endif ">
-                <a href="#" class='sidebar-link'>
+
+            <li class="sidebar-item  @if($routeGroup =='past_conference') active @endif ">
+                <a href="{{ route('admin.pastconference') }}" class='sidebar-link'>
                     <span><i class="fa fa-users" aria-hidden="true">&nbsp</i>Past Conference</span>
                 </a>
-                <ul class="submenu @if($routeGroup=='past_conference') active @endif">
-                    <li class="submenu-item ">
-                        <a href="{{ route('admin.pastconference') }}">Past Conference</a>
-                    </li>
-                </ul>
             </li>
 
             <li class="sidebar-item  has-sub @if($routeGroup=='footer') active @endif ">
@@ -243,7 +208,7 @@
             <hr>
 
             <li class="sidebar-item  has-sub @if($routeGroup=='settings') active @endif">
-                <a href="#" class='sidebar-link'>
+                <a href="{{ route('admin.profile') }}" class='sidebar-link'>
                 <span><i class="fa fa-user">&nbsp</i>Profile</span>
                 </a>
                 <ul class="submenu @if($routeGroup=='settings') active @endif">

@@ -24,14 +24,8 @@
         
         
       </div>
-      <div class="col-md-8">
+     
       
-      </div>
-      <div class="col-md-4">
-    
-      <button type="button" class="btn btn-primary mt-3" id="add_speaker"><i class="fa fa-plus" aria-hidden="true"></i>  Add Speaker</button>
-       
-      </div>
         
       <div class="col-md-8">    
         
@@ -91,7 +85,10 @@
       </div>
 
       <div class="col-md-4">
-      </div>
+    
+    <button type="button" class="btn btn-primary mt-3" id="add_speaker"><i class="fa fa-plus" aria-hidden="true"></i>  Add Speaker</button>
+     
+    </div>
       
   </div>
 

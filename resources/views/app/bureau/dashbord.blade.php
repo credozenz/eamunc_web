@@ -1,6 +1,6 @@
 @extends('app.bureau.layouts.layout')
 @section('content')
-   
+
 <div class="container-fluid dasboard">
   <div class="row">
 
@@ -27,7 +27,7 @@
 
     <div class="col-md-4">
         
-      <div class="commitee-box">
+      <div class="commitee-box disable-scrollbars" style="max-height: 600px;">
         <h6 class="text-primary text-start">Bureau Members</h6>
           @if($committee_member)
             @foreach($committee_member as $value)

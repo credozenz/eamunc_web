@@ -77,6 +77,7 @@ class BureauSpeakersController extends Controller
         ->join('countries as c', 's.country_choice', '=', 'c.id')
         ->select('s.*','c.name as country_name','c.id as country_id')
         ->where('s.status', '=', 3)
+        ->where('u.role', '=', 2)
         ->where('u.deleted_at', null)
         ->where('s.committee_choice', '=' , $committee->id)
         ->whereNotExists(function($query)

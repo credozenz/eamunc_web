@@ -24,19 +24,13 @@
             <p style="color: #4D4D4D; font-size: 14px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>
 
     </div>
-
-    <div class="col-md-8"></div>
     
-    <div class="col-md-4"> 
-            <a href="{{ url('app/program_schedule_create') }}" class="btn btn-primary shadow-md mr-2"><i class="fa fa-plus" aria-hidden="true"></i>  Create Program Schedule</a>    
-    </div>
-
     <div class="col-md-8">
 
         @if (!empty($program_schedule) && $program_schedule->count())
             @foreach ($program_schedule as $key => $value)         
                 <h5 class="fs-5 text-primary mt-4 d-inline-block border border-secondary p-2 rounded">{{ date("d F, Y (l)", strtotime($value['date'])) ?? '' }}</h5>
-                <a class="btn-sm shadow-md mr-2 dltButton"  data-url="{{ url('app/program_schedule_delete',$value['id']) }}" data-replaceurl="{{ url('app/program_schedule') }}" title="Delete Program"><i class="fa fa-trash text-danger" aria-hidden="true" target="_blank"></i></a>
+                <a class="btn-sm shadow-md mr-2 dltButton"  data-url="{{ url('app/program_schedule_delete',$value['id']) }}" data-replaceurl="{{ url('app/bureau_program_schedule') }}" title="Delete Program"><i class="fa fa-trash text-danger" aria-hidden="true" target="_blank"></i></a>
                 <div class="blue-box mt-3">
                     
                 @if (!empty($value['time']) && $program_schedule->count())
@@ -59,6 +53,10 @@
         @endif 
      
    
+    </div>
+    
+    <div class="col-md-4"> 
+            <a href="{{ url('app/program_schedule_create') }}" class="btn btn-primary shadow-md mr-2"><i class="fa fa-plus" aria-hidden="true"></i>  Create Program Schedule</a>    
     </div>
 
       

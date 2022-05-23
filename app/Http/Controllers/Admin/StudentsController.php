@@ -59,7 +59,7 @@ class StudentsController extends Controller
             $query->where('students.school_id','=', $request->school);
         }
         $data = $query ->orderBy('students.id', 'desc')
-        ->paginate(4);
+        ->paginate(10);
 
 
 

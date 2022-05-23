@@ -39,6 +39,7 @@ class BureauBlocFormationController extends Controller
                                 ->join('students as s', 'u.id', '=', 's.user_id')
                                 ->select('u.*')
                                 ->where('s.status', '=', 3)
+                                ->where('u.role', '=', 2)
                                 ->where('u.deleted_at', null)
                                 ->where('s.committee_choice', '=' , $committee->id)
                                 ->whereNotExists(function($query)
@@ -121,14 +122,16 @@ class BureauBlocFormationController extends Controller
         $blocs_members = DB::table('users as u')
                             ->join('bloc_members as b', 'u.id', '=', 'b.user_id')
                             ->select('u.*')
+                            ->where('b.bloc_id', '=' , $blocs->id)
                             ->where('u.deleted_at', null)
                             ->where('b.deleted_at', null)
                             ->get();
-       
+                           
         $committee_member = DB::table('users as u')
                                 ->join('students as s', 'u.id', '=', 's.user_id')
                                 ->select('u.*')
                                 ->where('s.status', '=', 3)
+                                ->where('u.role', '=', 2)
                                 ->where('u.deleted_at', null)
                                 ->where('s.committee_choice', '=' , $blocs->committe_id)
                                 ->whereNotExists(function($query)

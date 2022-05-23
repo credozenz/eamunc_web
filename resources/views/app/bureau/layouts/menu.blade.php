@@ -87,14 +87,14 @@
           </li>
 
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-            <a class="nav-link @if($routeGroup =='bureau_bloc_formation') active @endif" href="{{ route('app.bureau_bloc_formation') }}">
-              <span >Bloc Formation</span>
+            <a class="nav-link @if($routeGroup =='bureau_general_papers') active @endif" href="{{ route('app.bureau_general_papers') }}">
+              <span >General Papers</span>
             </a>
           </li>
 
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-            <a class="nav-link @if($routeGroup =='bureau_general_papers') active @endif" href="{{ route('app.bureau_general_papers') }}">
-              <span >General Papers</span>
+            <a class="nav-link @if($routeGroup =='bureau_bloc_formation') active @endif" href="{{ route('app.bureau_bloc_formation') }}">
+              <span >Bloc Formation</span>
             </a>
           </li>
 

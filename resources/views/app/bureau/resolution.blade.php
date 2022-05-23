@@ -23,7 +23,12 @@
         <h5 class="text-primary mt-5 mb-3 fs-2">Resolution</h5>
         <p class="fs-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>
         
+        @if(empty($vienna))
         <a href="{{ url('app/bureau_resolution_editor') }}" type="button" class="btn btn-primary mt-3"> Start Session</a>
+        @else
+        <a href="{{ url('app/bureau_resolution_editor') }}" type="button" class="btn btn-primary mt-3">View Resolution</a>
+        @endif
+        
           
       </div>
       

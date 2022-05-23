@@ -121,7 +121,7 @@ class CommitteeController extends Controller
 
         if($committee->id){
             Session::flash('success', 'committee added successfully!');
-            return redirect('/admin/committee_bureau/'.$committee->id);
+            return redirect('/admin/committee');
           }else{
             Session::flash('error', 'Something went wrong!!');
             return  redirect()->back();
@@ -236,7 +236,7 @@ class CommitteeController extends Controller
         
           if($committee->id){
             Session::flash('success', 'Committee updated successfully!');
-            return redirect('/admin/committee_members/'.$id);
+            return redirect('/admin/committee');
           }else{
             Session::flash('error', 'Something went wrong!!');
             return  redirect()->back();

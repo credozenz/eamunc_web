@@ -34,8 +34,8 @@ class DelegateBlocChatController extends Controller
       
         $committee = Committee::where('id',$member->committee_choice)->first();
 
-        $committee_bloc = Blocs::where('committe_id',$member->committee_choice)->get();
-
+        $committee_bloc = Blocs::where('id',$id)->first();
+        
         $blocs_members = DB::table('users as u')
                             ->join('bloc_members as b', 'u.id', '=', 'b.user_id')
                             ->select('u.*')
