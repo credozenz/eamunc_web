@@ -31,45 +31,64 @@ class BureauSpeakersController extends Controller
     {
         $member = WebAppHelper::getLogMember();
         
-        $guideline = SiteIndexes::where('deleted_at', null)->where('type','guideline')->first();
-
         $committee = Committee::where('id',$member->committee_choice)->first();
        
         $committee_member =  User::where('users.deleted_at', null)
                                     ->join('students', 'users.id', '=', 'students.user_id')
                                     ->join('countries', 'students.country_choice', '=', 'countries.id')
                                     ->select('students.*','countries.name as country_name','countries.id as country_id')
-                                    // ->where('users.role', '=', 2)
+                                    ->where('users.role', '=', 2)
                                     ->where('students.status', '=', 3)
                                     ->where('students.committee_choice', '=' , $committee->id)
                                     ->get();
+
+
+                                 
 
         $speakers =  User::where('users.deleted_at', null)
                                     ->join('speakers', 'users.id', '=', 'speakers.user_id')
                                     ->join('countries', 'speakers.country_id', '=', 'countries.id')
                                     ->select('speakers.*','countries.name as country_name','countries.id as country_id')
-                                    // ->where('users.role', '=', 2)
+                                    ->where('users.role', '=', 2)
                                     ->where('speakers.deleted_at', '=', null)
                                     ->where('speakers.committe_id', '=' , $committee->id)
                                     ->get();                            
                     
+                                   
+
                                     $speakersCount = count($speakers);
 
-        return view('app/bureau/speakers', compact('guideline','committee','committee_member','speakers','speakersCount'));
+
+              
+
+        return view('app/bureau/speakers', compact('committee','committee_member','speakers','speakersCount'));
     }
 
 
     public function bureau_speaker_country(Request $request)
     {
+
+        $member = WebAppHelper::getLogMember();
+        
+        $committee = Committee::where('id',$member->committee_choice)->first();
+
+        $speaker_country = DB::table('users as u')
+        ->join('students as s', 'u.id', '=', 's.user_id')
+        ->join('countries as c', 's.country_choice', '=', 'c.id')
+        ->select('s.*','c.name as country_name','c.id as country_id')
+        ->where('s.status', '=', 3)
+        ->where('u.deleted_at', null)
+        ->where('s.committee_choice', '=' , $committee->id)
+        ->whereNotExists(function($query)
+                {
+                    $query->select(DB::raw(1))
+                        ->from('speakers as sp')
+                        ->whereRaw('u.id = sp.user_id')
+                        ->where('sp.deleted_at', null);
+                })
+        ->get();
        
-        $speaker_country = User::where('users.deleted_at', null)
-                                ->join('students', 'users.id', '=', 'students.user_id')
-                                ->join('countries', 'students.country_choice', '=', 'countries.id')
-                                ->select('students.*','countries.name as country_name','countries.id as country_id')
-                                // ->where('users.role', '=', 2)
-                                 ->where('students.status', '=', 3)
-                                ->where('students.committee_choice', '=' , $request->committe_id)
-                                ->get();
+     
 
        echo json_encode(['status'=>true,'data'=>$speaker_country]);exit();
     }
@@ -111,7 +130,7 @@ class BureauSpeakersController extends Controller
             ->join('students', 'users.id', '=', 'students.user_id')
             ->join('countries', 'students.country_choice', '=', 'countries.id')
             ->select('students.*','countries.name as country_name')
-            // ->where('users.role', '=', 2)
+            ->where('users.role', '=', 2)
             ->where('students.status', '=', 3)
             ->where('students.country_choice', '=', $country_id[$count])
             ->where('students.committee_choice', '=' , $committe_id)
@@ -123,7 +142,7 @@ class BureauSpeakersController extends Controller
             $speaker = new Speakers;
             $speaker->country_id  = $country_id[$count];
             $speaker->committe_id = $committe_id;
-            $speaker->user_id = $user->id;
+            $speaker->user_id = $user->user_id;
             $speaker->save();
         
             

@@ -154,10 +154,14 @@ $(document).ready(function() {
                                 '<div class="form-count ">'+i+'</div>'+
                                 '<div class=" flex-fill ps-5 pe-5">'+
                                 '<label class="form-label"> Country Name</label>'+
-                                '<select class="form-control" name="country_id[]" required>';
+                                '<select class="form-control blocspeaker" name="country_id[]" required>'+
+                                ' <option value="">Select Country Name</option>';
+                                if(responce.data.length){
                                 for (var j = 0; j < responce.data.length; j++){
-                                    html+=' <option value="">Select Country Name</option>'+
-                                    '<option value="'+responce.data[j].country_id+'">'+responce.data[j].country_name+'</option>';
+                                    html+='<option value="'+responce.data[j].country_id+'">'+responce.data[j].country_name+'</option>';
+                                }
+                            }else{
+                                    html+='<option value="">No Other students in this Bloc</option>';
                                 }
                                 html+='</select>'+
                                 '</div>'+
@@ -198,6 +202,21 @@ $(document).ready(function() {
 
         });
      
+
+        $("body").on("change",".blocspeaker",function(){
+       
+            $( "#blocspeaker-form" ).submit();
+        });
+        
+
+
+
+
+
+
+
+
+
 
         $("body").on("click","#mdlbtn",function(){
                    
@@ -277,6 +296,9 @@ $(document).ready(function() {
 
 
 
+
+
+
         $(document).ready(function() {
             var i=1; 
             $('#add').click(function() {
@@ -327,8 +349,7 @@ $(document).ready(function() {
 
 
 
-
-
+       
 
 
 

@@ -18,12 +18,12 @@
       </div>
 
 
-      <div class="col-md-8">
+      <div class="col-md-12">
         <h4 class="fs-3 text-primary mb-3 mt-5">Bloc Formation</h4>
         <p style="color:#4D4D4D; font-size: 15px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>    
       </div>
 
-   
+      <div class="col-md-8"> </div>
       <div class="col-md-4">
         <button type="button" class="btn btn-primary mt-3" id="mdlbtn"><i class="fa fa-plus" aria-hidden="true"></i>  Create Bloc</button>
       </div>

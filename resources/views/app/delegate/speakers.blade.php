@@ -23,8 +23,8 @@
            <p class="fs-6 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>
       </div>
 
-      <div class="col-md-8">
-        @if(!empty($speakersCount))
+      <div class="row">
+      @if(!empty($speakersCount))
           @foreach($speakers as $key => $speaker)
           <div class="col-md-4">
             <div class="border-box d-flex ">
@@ -36,11 +36,8 @@
           </div>
           @endforeach
         @endif
-      </div>
-        
-         
-            
-      
+        </div>
+
      
       
   </div>
