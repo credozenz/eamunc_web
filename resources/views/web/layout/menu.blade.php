@@ -18,9 +18,9 @@
                                     </svg>
                                     Menu</i>
                             </div>
-                            <a href="#" class="text-darkblue main-line desk-text">E.Ahamed Model <br>United Nations
+                            <a href="{{ url('/') }}" class="text-darkblue main-line desk-text">E.Ahamed Model <br>United Nations
                                 Conference</a>
-                            <a href="#" class="mobile-text text-darkblue main-line">E.Ahamed Model United Nations
+                            <a href="{{ url('/') }}" class="mobile-text text-darkblue main-line">E.Ahamed Model United Nations
                                 Conference</a>
                         </div>
                         <div class="menu-right">

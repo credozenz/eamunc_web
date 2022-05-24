@@ -31,9 +31,10 @@
       
             <!-- Panel Chat -->
             <div class="chat-box" id="chat">
-              
+          
               <div class="panel-body">
-                <div class="chats">
+             
+                <div class="chats disable-scrollbars" style="max-height: 500px;">
 
                   @if(!empty($blocs_chats))
                     @foreach($blocs_chats as $key => $chat)
@@ -90,6 +91,7 @@
                   @endif
                  
                 </div>
+                
               </div>
 
               <div class="panel-footer">
@@ -107,7 +109,7 @@
             </div>
             <!-- End Panel Chat -->
         
-
+           
       
           </div>
      

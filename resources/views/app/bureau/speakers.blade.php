@@ -64,13 +64,14 @@
             <div class="form-count ">1</div>
             <div class=" flex-fill ps-5 pe-5">
               <label class="form-label">Enter Counry Name</label>
-              <select class="form-control blocspeaker" name="country_id[]"  required>
+              <select class="form-control blocspeaker" name="country_id[]"  required >
               <option value="">Select Country Name</option>
                 @foreach($committee_member as $key => $value)
                 <option value="{{ $value->country_id }}">{{ $value->country_name }}</option>
                 @endforeach
               </select>
             </div>
+            <div><i class="fa Example of check-circle fa-minus-circle fs-4"></i></div>
           </div>
 
           @endif
