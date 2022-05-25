@@ -51,7 +51,7 @@
                   </div>
                   <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Select file</button>
                 </div>
-                @error('paper')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                @error('form')<div class="text-danger mt-2">{{ $message }}</div>@enderror
               </div>
 
           </form>
