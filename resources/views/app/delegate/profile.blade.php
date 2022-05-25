@@ -78,7 +78,7 @@
                   <div class="col-md-6">
                     <div class="mb-3">
                       <label class="form-label">New Password* </label>
-                      <input type="password" name="password" value="" class="form-control @error('password') border-danger @enderror" placeholder="Old Password">
+                      <input type="password" name="password" value="" class="form-control @error('password') border-danger @enderror" placeholder="New Password">
                                         @error('password')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                     </div>
                   </div>
@@ -86,7 +86,7 @@
                   <div class="col-md-6">
                     <div class="mb-3">
                       <label class="form-label">Confirm New Password* </label>
-                      <input type="password" name="password_confirm" value="" class="form-control @error('password_confirm') border-danger @enderror" placeholder="New Password">
+                      <input type="password" name="password_confirm" value="" class="form-control @error('password_confirm') border-danger @enderror" placeholder="Confirm New Password">
                                         @error('password_confirm')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                     </div>
                   </div>
