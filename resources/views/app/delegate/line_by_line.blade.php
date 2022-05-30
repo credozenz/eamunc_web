@@ -20,10 +20,11 @@
         <div class="col-md-12 text-center">
     
           <h5 class="text-primary mt-5 mb-3 fs-2">Line By Line</h5>
-         
+          <label class="form-label text-dark">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+          </label>
                 <div class="col-md-12 col-12">
                     <div class="form-group">
-                        <label class="form-label">Description</label>
                         <textarea id="view_editor" > {!! $vienna->content ?? '' !!}</textarea>
                     </div>
                 </div>

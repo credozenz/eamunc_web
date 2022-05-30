@@ -18,11 +18,14 @@
               <h5 class="text-primary mb-3 d-inline-block ps-2 " style="line-height: 22px;"> E.Ahamed Model United Nations Conference </h5>
             </div>
           </div>  
+
+          <div class="col-md-12">
+          <h4 class="fs-3 text-primary mb-3">Bloc Formation</h4>
+              <p style="color:#4D4D4D; font-size: 15px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>
+          </div>     
             
           <div class="col-md-8">
-              <h4 class="fs-3 text-primary mb-3">Bloc Formation</h4>
-              <p style="color:#4D4D4D; font-size: 15px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>
-              <div class="blue-box mt-3">
+             <div class="blue-box mt-3">
                 @if($mybloc)  
                 <h4>Start My Discussion</h4>
                 <p class="mt-2 mb-3">Card layouts can vary to support the types of content they contain. The following elements are commonly found among that variety.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>
@@ -42,7 +45,7 @@
 
           
               @foreach($committee_bloc as $value)
-              <div class="col-md-3">
+              <div class="col-md-3 mb-3">
                 <div class="bloc-box text-center">
                     <h6>{{ ucfirst($value->name) ?? '' }}</h6>
                     <a href="{{ url('app/delegate_bloc_chat',$value->id) }}">View</a>

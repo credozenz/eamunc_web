@@ -21,11 +21,13 @@
       <div class="col-md-12 text-center">
   
         <h5 class="text-primary mt-5 mb-3 fs-2">Line By Line </h5>
+        <label class="form-label text-dark">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        </label>
         <form method="post" action="{{ url('app/bureau_line_by_line_store') }}" class="mt-5 col-md-12"  enctype="multipart/form-data">
           @csrf
               <div class="col-md-12 col-12">
                   <div class="form-group">
-                      <label class="form-label">Description</label>
                       <textarea id="txt_editor" type="text" name="line" class="form-control @error('line') border-danger @enderror" style="height: 850px;">{{ $line->content ?? old('line') }}</textarea>
                       @error('line')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                   </div>
