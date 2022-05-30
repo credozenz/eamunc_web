@@ -39,7 +39,7 @@ class BureauScheduleProgramController extends Controller
   
         $program_schedule = $schedule->map(function($item, $key) {
 
-            $time = Program_schedule_time::where('schedule_id', $item->id)->get();
+        $time = Program_schedule_time::where('schedule_id', $item->id)->get();
                                 return [
                                     'id' => $item->id,
                                     'date' => $item->date,
@@ -66,7 +66,7 @@ class BureauScheduleProgramController extends Controller
         $committee = Committee::where('id',$member->committee_choice)->first();
        
         $validatedData = $request->validate([
-            'date' => 'required',
+            "date" => 'required',
             "title"    => "required|array",
             "title.*"  => "required",
             "time_start"    => "required|array",

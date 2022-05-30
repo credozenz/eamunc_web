@@ -66,9 +66,13 @@
               <label class="form-label">Enter Counry Name</label>
               <select class="form-control blocspeaker" name="country_id[]"  required >
               <option value="">Select Country Name</option>
+              @if(!empty($committee_member))
                 @foreach($committee_member as $key => $value)
                 <option value="{{ $value->country_id }}">{{ $value->country_name }}</option>
                 @endforeach
+              @else
+                 <option value="">No delegates in this committee !</option>
+              @endif
               </select>
             </div>
             <div><i class="fa Example of check-circle fa-minus-circle fs-4"></i></div>

@@ -161,7 +161,7 @@ $(document).ready(function() {
                                     html+='<option value="'+responce.data[j].country_id+'">'+responce.data[j].country_name+'</option>';
                                 }
                             }else{
-                                    html+='<option value="">No Other students in this Bloc</option>';
+                                    html+='<option value="">No other delegates in this committee !</option>';
                                 }
                                 html+='</select>'+
                                 '</div>'+

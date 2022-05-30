@@ -31,7 +31,7 @@
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
                                                 <label class="form-label text-danger">Date</label>
-                                <input type="date" name="date" value="{{ old('date') }}" class="form-control @error('date') border-danger @enderror" placeholder="Date">
+                                <input type="date" name="date" value="{{ old('date') }}" required='' class="form-control @error('date') border-danger @enderror" placeholder="Date">
                                 @error('date')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                             </div>
                                         </div>
@@ -41,21 +41,21 @@
                                         <div class="col-md-4 col-12">
                                             <div class="form-group">
                                                 <label class="form-label text-danger">Title</label>
-                                <input type="text" name="title[]" value="{{ old('title') }}" class="form-control " placeholder="Title">  
+                                <input type="text" name="title[]" value="{{ old('title') }}" required='' class="form-control " placeholder="Title">  
                                 
                                             </div>
                                         </div>
                                         <div class="col-md-3 col-12">
                                             <div class="form-group">
                                                 <label class="form-label text-danger">Start Date</label>
-                                <input type="time" name="time_start[]" value="{{ old('time_start') }}" class="form-control " placeholder="Start Date">
+                                <input type="time" name="time_start[]" value="{{ old('time_start') }}" required='' class="form-control " placeholder="Start Date">
                                 
                                             </div>
                                         </div>
                                         <div class="col-md-3 col-12">
                                             <div class="form-group">
                                                 <label class="form-label text-danger">End Date</label>
-                                <input type="time" name="time_end[]" value="{{ old('time_end') }}" class="form-control" placeholder="End Date">
+                                <input type="time" name="time_end[]" value="{{ old('time_end') }}" required='' class="form-control" placeholder="End Date">
                                 
                                             </div>
                                         </div>
