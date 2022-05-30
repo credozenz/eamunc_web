@@ -18,7 +18,7 @@
       <div class="col-md-4 offset-md-8">
       </div>
 
-      <div class="col-md-8">
+      <div class="col-md-12">
            <h4 class="mb-3 mt-3 text-primary fs-3">Speaker’s List</h4>
            <p class="fs-6 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>
       </div>

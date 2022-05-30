@@ -18,14 +18,13 @@
       </div>
     </div>
 
-   
+        <div class="col-md-12">
+             <h5 class="text-primary mt-5 mb-3">Program Schedule</h5>
+             <p style="color: #4D4D4D; font-size: 14px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>
+        </div>
 
         <div class="col-md-8">
     
-             <h5 class="text-primary mt-5 mb-3">Program Schedule</h5>
-             <p style="color: #4D4D4D; font-size: 14px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>
-    
-
                 @if (!empty($program_schedule) && $program_schedule->count())
                     @foreach ($program_schedule as $key => $value)         
                         <h5 class="fs-5 text-primary mt-4 d-inline-block border border-secondary p-2 rounded">{{ date("d F, Y (l)", strtotime($value['date'])) ?? '' }}</h5>

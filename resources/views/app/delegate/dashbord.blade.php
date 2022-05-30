@@ -48,7 +48,7 @@
               @endforeach
             @endif
             
-          <h6 class="text-primary">Comittee Members</h6>
+          <h6 class="text-primary">Delegate Members</h6>
             @if($committee_member)
               @foreach($committee_member as $value)
                 @if($value->role==2)
