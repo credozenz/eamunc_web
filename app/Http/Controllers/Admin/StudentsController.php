@@ -42,22 +42,28 @@ class StudentsController extends Controller
         ->join('schools', 'students.school_id', '=', 'schools.id')
         ->select('students.*', 'schools.name as school_name', 'users.role')
         ->where('users.role', '!=' , 1);
+        
         if($request->q){
             $query->where('students.name','LIKE', $request->q)
             ->orwhere('schools.name','LIKE', $request->q);
         }
 
-        if($request->s){
+        if($request->s != NULL){
             $query->where('students.status','=', $request->s);
         }
 
-        if($request->t){
+        if($request->t != NULL){
             $query->where('users.type','=', $request->t);
         }
 
-        if($request->school){
+        if($request->r != NULL){
+            $query->where('users.role','=', $request->r);
+        }
+
+        if($request->school != NULL){
             $query->where('students.school_id','=', $request->school);
         }
+
         $data = $query ->orderBy('students.id', 'desc')
         ->paginate(10);
 

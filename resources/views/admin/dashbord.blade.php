@@ -25,7 +25,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Total<br> ISG Delegates</h6>
+                                    <h6 class="text-muted font-semibold">Total<br> ISG Students</h6>
                                     <h6 class="font-extrabold mb-0">{{ $Isg_count }}</h6>
                                 </div>
                             </div>
@@ -42,7 +42,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Total<br> School Delegates</h6>
+                                    <h6 class="text-muted font-semibold">Total<br> School Students</h6>
                                     <h6 class="font-extrabold mb-0">{{ $scoolDelecount }}</h6>
                                 </div>
                             </div>
