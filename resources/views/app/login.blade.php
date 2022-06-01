@@ -31,14 +31,14 @@
                                 @csrf
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input type="email" class="form-control form-control-xl"  name="email" placeholder="Enter email" value="{{ old('email') }}">
-                           
+                            @error('email')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                             <div class="form-control-icon">
                                 <i class="bi bi-person"></i>
                             </div>
                         </div>
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input type="password" class="form-control form-control-xl" id="exampleInputPassword1"  name="password" placeholder="Password" >
-                           
+                            @error('password')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                             <div class="form-control-icon">
                                 <i class="bi bi-shield-lock"></i>
                             </div>

@@ -28,7 +28,7 @@
                 @if (!empty($program_schedule) && $program_schedule->count())
                     @foreach ($program_schedule as $key => $value)         
                         <h5 class="fs-5 text-primary mt-4 d-inline-block border border-secondary p-2 rounded">{{ date("d F, Y (l)", strtotime($value['date'])) ?? '' }}</h5>
-                        <div class="blue-box mt-3">
+                        <div class="blue-box mt-3  mb-3">
                             
                         @if (!empty($value['time']) && $program_schedule->count())
                                 @foreach ($value['time'] as $key => $time)

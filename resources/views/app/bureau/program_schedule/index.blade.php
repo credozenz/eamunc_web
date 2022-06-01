@@ -31,7 +31,7 @@
             @foreach ($program_schedule as $key => $value)         
                 <h5 class="fs-5 text-primary mt-4 d-inline-block border border-secondary p-2 rounded">{{ date("d F, Y (l)", strtotime($value['date'])) ?? '' }}</h5>
                 <a class="btn-sm shadow-md mr-2 dltButton"  data-url="{{ url('app/program_schedule_delete',$value['id']) }}" data-replaceurl="{{ url('app/bureau_program_schedule') }}" title="Delete Program"><i class="fa fa-trash text-danger" aria-hidden="true" target="_blank"></i></a>
-                <div class="blue-box mt-3">
+                <div class="blue-box mt-3 mb-3">
                     
                 @if (!empty($value['time']) && $program_schedule->count())
                         @foreach ($value['time'] as $key => $time)
