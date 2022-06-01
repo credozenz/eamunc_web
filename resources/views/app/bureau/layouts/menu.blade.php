@@ -12,21 +12,18 @@
             <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start" id="menu">
                
                 <li   class="nav-item">
-                  <a class="nav-link " href="dashboard.html">
-                   
-                    <span >Dashboard</span>
+                  <a class="nav-link @if($routeGroup =='bureau_dashbord') active @endif" href="{{ route('app.bureau_dashbord') }}">
+                     <span >Dashboard</span>
                   </a>
                 </li>
                 <li class="nav-item" >
-                  <a class="nav-link" href="paper-submission.html">
-                   
-                    <span >Paper Submission</span>
+                  <a class="nav-link @if($routeGroup =='bureau_general_papers') active @endif" href="{{ route('app.bureau_general_papers') }}">
+                    <span >General Papers</span>
                   </a>
                 </li>
       
                 <li class="nav-item" >
-                  <a class="nav-link" href="bloc-formation.html">
-                   
+                  <a class="nav-link @if($routeGroup =='bureau_bloc_formation') active @endif" href="{{ route('app.bureau_bloc_formation') }}">
                     <span >Bloc Formation</span>
                   </a>
                 </li>
@@ -34,30 +31,26 @@
                 
       
                 <li class="nav-item" >
-                  <a class="nav-link" href="vienna-formula.html">
-                   
+                  <a class="nav-link @if($routeGroup =='bureau_vienna_formula') active @endif" href="{{ route('app.bureau_vienna_formula') }}">
                     <span >Vienna Formula</span>
                   </a>
                 </li>
       
                 <li class="nav-item" >
-                  <a class="nav-link" href="line-by-line.html">
-                   
+                  <a class="nav-link @if($routeGroup =='bureau_line_by_line') active @endif" href="{{ route('app.bureau_line_by_line') }}">
                     <span >Line by Line</span>
                   </a>
                 </li>
       
                 <li class="nav-item" >
-                  <a class="nav-link" href="registration.html">
-                   
-                    <span >Resolution</span>
+                  <a class="nav-link @if($routeGroup =='bureau_resolution') active @endif" href="{{ route('app.bureau_resolution') }}">
+                     <span >Resolution</span>
                   </a>
                 </li>
       
                 <li class="nav-item" >
-                  <a class="nav-link" href="general-assebly.html">
-                   
-                    <span >General Assembly</span>
+                  <a class="nav-link @if($routeGroup =='bureau_general_assembly') active @endif" href="{{ route('app.bureau_general_assembly') }}">
+                     <span >General Assembly</span>
                   </a>
                 </li>
                

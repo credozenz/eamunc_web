@@ -12,21 +12,18 @@
             <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start" id="menu">
                
                 <li   class="nav-item">
-                  <a class="nav-link " href="dashboard.html">
-                   
+                  <a class="nav-link @if($routeGroup =='delegate_dashbord') active @endif" href="{{ route('app.delegate_dashbord') }}">
                     <span >Dashboard</span>
                   </a>
                 </li>
                 <li class="nav-item" >
-                  <a class="nav-link" href="paper-submission.html">
-                   
-                    <span >Paper Submission</span>
+                  <a class="nav-link @if($routeGroup =='delegate_paper_submission') active @endif" href="{{ route('app.delegate_paper_submission') }}">
+                     <span >Paper Submission</span>
                   </a>
                 </li>
       
                 <li class="nav-item" >
-                  <a class="nav-link" href="bloc-formation.html">
-                   
+                  <a class="nav-link @if($routeGroup =='delegate_bloc_formation') active @endif" href="{{ route('app.delegate_bloc_formation') }}">
                     <span >Bloc Formation</span>
                   </a>
                 </li>
@@ -34,30 +31,26 @@
                 
       
                 <li class="nav-item" >
-                  <a class="nav-link" href="vienna-formula.html">
-                   
+                  <a class="nav-link @if($routeGroup =='delegate_vienna_formula') active @endif" href="{{ route('app.delegate_vienna_formula') }}">
                     <span >Vienna Formula</span>
                   </a>
                 </li>
       
                 <li class="nav-item" >
-                  <a class="nav-link" href="line-by-line.html">
-                   
+                 <a class="nav-link @if($routeGroup =='delegate_line_by_line') active @endif" href="{{ route('app.delegate_line_by_line') }}">
                     <span >Line by Line</span>
                   </a>
                 </li>
       
                 <li class="nav-item" >
-                  <a class="nav-link" href="registration.html">
-                   
-                    <span >Resolution</span>
+                  <a class="nav-link @if($routeGroup =='delegate_resolution') active @endif" href="{{ route('app.delegate_resolution') }}">
+                   <span >Resolution</span>
                   </a>
                 </li>
       
                 <li class="nav-item" >
-                  <a class="nav-link" href="general-assebly.html">
-                   
-                    <span >General Assembly</span>
+                   <a class="nav-link @if($routeGroup =='delegate_general_assembly') active @endif" href="{{ route('app.delegate_general_assembly') }}">
+                      <span >General Assembly</span>
                   </a>
                 </li>
                
