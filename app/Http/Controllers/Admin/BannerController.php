@@ -42,10 +42,10 @@ class BannerController extends Controller
 
         $validatedData = $request->validate([
             'title' => 'max:255',
-            'image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:3075'],
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:3048',
         ],[
             'image.required' => 'The Image field is required',
-            'image.max' => 'Image  must be smaller than 3 MB',
+            'image.uploaded' => 'Image  must be smaller than 3 MB',
             'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
         ]);
 
@@ -124,7 +124,7 @@ class BannerController extends Controller
             $validatedData = $request->validate([
                 'image' => ['mimes:jpeg,png,jpg,gif,svg', 'max:3075'],
             ],[
-                'image.max' => 'Image  must be smaller than 2 MB',
+                'image.uploaded' => 'Image  must be smaller than 2 MB',
                 'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
             ]);
     

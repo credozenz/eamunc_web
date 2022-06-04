@@ -1,9 +1,28 @@
 @extends('web.layout.main')
 @section('content')
 
-    @if (!empty($banner) && $banner->count())   
-        <section id="hero" class="mh-90" style="background-image:url('{{ asset('uploads/'.$banner->image) }}');"></section>
-    @endif
+@if (!empty($banner) && $banner->count())  
+<section id="hero" class="w3-content w3-display-container mh-110" style="max-width:100%">
+
+  @foreach ($banner as $key => $value)
+  <img class="mySlides" src="{{ asset('uploads/'.$value->image) }}" style="width:100%">
+  @endforeach
+
+  <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
+  @foreach ($banner as $key => $value)
+  <span class="demo "></span>
+  @endforeach
+    
+    <div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
+    <div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
+
+  </div>
+</section>
+@endif
+
+    <!-- @if (!empty($banner) && $banner->count())   
+        <section id="hero" class="mh-90" style="background-image:url('{{ asset('uploads/'.$banner[0]->image) }}');"></section>
+    @endif -->
 
     @if (!empty($timer) && $timer->count())
         <section id="counter" class="section-padding">
@@ -36,15 +55,35 @@
                     </div>
                 @endif
 
+
+
+
                 @if (!empty($faculties_messages) && $faculties_messages->count())
                     <div class="row multi-message-box">
                     @foreach ($faculties_messages as $key => $value)
                         <div class="col-md-6 col-sm-5 content-box">
                             <p class="message-title color-white">{{ $value->title ?? '' }}</p>
+                           
                             <div class="image-box">
-                                <img src="{{ asset('uploads/'.$value->image) ?? '' }}" alt="{{ $value->name ?? '' }}">
+                            <div class="btm-img">
+                              <img src="{{ asset('uploads/'.$value->image) ?? '' }}" alt="{{ $value->name ?? '' }}">
+                                <div class="overlay">
+                                 <span onclick="document.getElementById('modal'+{{$key+1}}).style.display='block'"><i class="fa fa-play"></i></span>
+                                </div>
+                            </div>
                                 <p class="message-name color-white">{{ $value->name ?? '' }}</p>
                                 <p class="message-designation color-white">{{ $value->post ?? '' }}</p>
+                            </div>
+                        </div>
+
+                         
+                        <div id="modal{{$key+1}}" class="w3-modal">
+                            <div class="w3-modal-content">
+                            <div class="w3-container">
+                                <span onclick="videoPopup({{$key+1}})" class="w3-button w3-display-topright">&times;</span>
+                                <iframe id="iframe{{$key+1}}" width="100%" height="400" src="https://www.youtube-nocookie.com/embed/_0oxwE5FUB0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+                                </iframe>
+                            </div>
                             </div>
                         </div>
                     @endforeach

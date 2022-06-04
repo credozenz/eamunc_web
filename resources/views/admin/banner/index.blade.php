@@ -32,9 +32,9 @@
                         <h5 class="card-title">Index</h5>
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <!-- <li class="breadcrumb-item">
+                        <li class="breadcrumb-item">
                             <a href="{{ url('admin/banner_create') }}" class="btn btn-primary shadow-md mr-2">Add</a>
-                        </li> -->
+                        </li>
                     </ol>
                     </nav>
                     </div>

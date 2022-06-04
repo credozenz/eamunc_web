@@ -151,6 +151,7 @@
     max-width: 100%;
     bottom: 0;
     padding: 100px 60px;
+    z-index: 5;
 }
 
 #header .sidemenu .nav li {

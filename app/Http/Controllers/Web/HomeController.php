@@ -18,7 +18,8 @@ class HomeController extends Controller
     
     public function index()
     {
-        $banner = SiteIndexes::where('deleted_at', null)->where('type', 'banner')->first(); 
+        $banner = SiteIndexes::where('deleted_at', null)->where('type', 'banner')->orderBy('id', 'ASC')->paginate(4); 
+       
         $timer = SiteIndexes::where('deleted_at', null)->where('type','timer')->first();  
         $president_messages = SiteIndexes::where('deleted_at', null)->where('type','president_messages')->first(); 
         $faculties_messages = SiteIndexes::where('deleted_at', null)->where('type', 'faculties_messages')->orderBy('id', 'DESC')->paginate(2);
