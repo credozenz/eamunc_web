@@ -216,17 +216,17 @@ $(document).on('click', '.roleButton', function (e) {
     var html='<div class="row row'+i+'">'+ 
                 '<div class="col-md-4 col-12">'+
                   '<div class="form-group">'+                
-                    '<input type="text" name="name[]" value="" class="form-control" placeholder="Name">'+
+                    '<input type="text" name="name[]" required value="" class="form-control" placeholder="Name">'+
                   '</div>'+
                 '</div>'+
                 '<div class="col-md-3 col-12">'+
                    '<div class="form-group">'+       
-                     '<input type="time" name="time_start[]" value="" class="form-control" placeholder="Start Date">'+
+                     '<input type="time" name="time_start[]" required value="" class="form-control" placeholder="Start Date">'+
                     '</div>'+
                 '</div>'+
                 '<div class="col-md-3 col-12">'+
                   '<div class="form-group">'+        
-                    '<input type="time" name="time_end[]" value="" class="form-control" placeholder="End Date">'+
+                    '<input type="time" name="time_end[]" required value="" class="form-control" placeholder="End Date">'+
                   '</div>'+
                 '</div>'+
                 '<div class="col-md-2 col-12">'+

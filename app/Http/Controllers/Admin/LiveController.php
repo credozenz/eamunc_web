@@ -48,7 +48,15 @@ class LiveController extends Controller
 
         $youtubeurl = AdminHelper::getYoutubeIdFromUrl($request->live_url);
 
-        $live = SiteIndexes::where('type','live')->first();
+       
+
+        $type_data = SiteIndexes::where('type','live')->first(); 
+
+        if(!empty($type_data)){
+          $live = SiteIndexes::where('type','live')->first(); 
+        }else{
+          $live = new SiteIndexes;
+        }
     
         if(!empty($youtubeurl)){
          

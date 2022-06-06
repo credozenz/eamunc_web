@@ -49,7 +49,17 @@ class AlumniController extends Controller
         ]);
 
     
-        $alumni = SiteIndexes::where('type', 'alumni')->first(); 
+        
+        
+        $type_data = SiteIndexes::where('type','alumni')->first(); 
+        
+        if(!empty($type_data)){
+            $alumni = SiteIndexes::where('type', 'alumni')->first(); 
+        }else{
+            $alumni = new SiteIndexes;
+        }
+
+
         $alumni->title = $request->title;
         $alumni->description  = $request->description;
         $alumni->type  = 'alumni';

@@ -22,7 +22,7 @@ class LiabilityWaiverController extends Controller
   
     public function __construct()
     {
-        View::share('routeGroup','liability_waiver');
+        View::share('routeGroup','liability_form');
     }
     
  
@@ -44,7 +44,15 @@ class LiabilityWaiverController extends Controller
             'form.mimes'    => 'Input accept only pdf,doc',
         ]);
 
-        $form = SiteIndexes::where('type','liability_waiver')->first();
+        
+
+        $type_data = SiteIndexes::where('type','liability_waiver')->first(); 
+        
+        if(!empty($type_data)){
+            $form = SiteIndexes::where('type','liability_waiver')->first(); 
+        }else{
+            $form = new SiteIndexes;
+        }
 
         if ($request->hasFile('form')) {
             $doc = $request->file('form');

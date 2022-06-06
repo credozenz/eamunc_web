@@ -48,7 +48,17 @@ class VisionController extends Controller
         ]);
 
     
-        $vision = SiteIndexes::where('type','vision')->first(); 
+        
+
+        $type_data = SiteIndexes::where('type','vision')->first(); 
+        
+        if(!empty($type_data)){
+            $vision = SiteIndexes::where('type','vision')->first();  
+        }else{
+            $vision = new SiteIndexes;
+        }
+
+
         $vision->title = $request->title;
         $vision->description  = $request->description;
         $vision->type  = 'vision';

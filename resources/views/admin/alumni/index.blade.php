@@ -67,7 +67,7 @@
                                         </div>
                                     </div>
                                     <div class="col-12 d-flex justify-content-end">
-                                    <a href="{{ url('admin/newsletter') }}" class="btn btn-light-secondary me-1 mb-1">Back</a>
+                                    <a href="{{ url('admin/dashbord') }}" class="btn btn-light-secondary me-1 mb-1">Back</a>
                                     <button class="btn btn-primary me-1 mb-1">Update</button>
                                     </div>
                                 </div>

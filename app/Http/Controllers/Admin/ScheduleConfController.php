@@ -43,29 +43,38 @@ class ScheduleConfController extends Controller
     
     public function store(Request $request)
     {
-       
+        
         $validatedData = $request->validate([
             'date' => 'required',
             'title' => 'required|max:255',
-            'description' => 'required',
+            "name" => 'required|array',
+            'name.*' => 'required',
+            "time_start" => 'required|array',
+            'time_start.*' => 'required',
+            "time_end" => 'required|array',
+            'time_end.*' => 'required',
+            // 'description' => 'required',
         ],[
             'date.required' => 'The Date field is required',
             'title.required' => 'The Title field is required',
-            'description.required' => 'The Description field is required',
+            'name.required' => 'The Name field is required',
+            'time_start.required' => 'The time start field is required',
+            'time_end.required' => 'The time end field is required',
+            // 'description.required' => 'The Description field is required',
         ]);
 
-     
+      
         $schedule = new Conference_schedule;
         $schedule->title = $request->title;
         $schedule->date  = date('Y-m-d',strtotime($request->date));
-        $schedule->description = $request->description;
+        $schedule->description = $request->title;//$request->description;
         $schedule->save();
 
         $name = $request->input('name');
         $start_time = $request->input('time_start');
         $end_time = $request->input('time_end');
        
-        $insert_schedule=array();
+        //$insert_schedule=array();
 
     for($count = 0; $count < count($name); $count++)
     {
@@ -76,12 +85,14 @@ class ScheduleConfController extends Controller
                 'time_end'    => $end_time[$count],
                 'schedule_id' => $schedule->id,
               );
-
-        $insert_schedule[] = $data; 
+        Conference_schedule_time::insert($data);
+       // $insert_schedule[] = $data; 
             }
+
+        
      }
      
-     Conference_schedule_time::insert($insert_schedule);
+    
 
 
         if($schedule->id){
@@ -120,18 +131,18 @@ class ScheduleConfController extends Controller
         $validatedData = $request->validate([
             'date' => 'required',
             'title' => 'required|max:255',
-            'description' => 'required',
+            //'description' => 'required',
         ],[
             'date.required' => 'The Date field is required',
             'title.required' => 'The Title field is required',
-            'description.required' => 'The Description field is required',
+            //'description.required' => 'The Description field is required',
         ]);
 
     
         $schedule = Conference_schedule::where('id', $id)->first(); 
         $schedule->title = $request->title;
         $schedule->date  = $request->date;
-        $schedule->description = $request->description;
+        $schedule->description = $request->title;//$request->description;
         
         $schedule->save();
 
@@ -139,7 +150,11 @@ class ScheduleConfController extends Controller
         $start_time = $request->input('time_start');
         $end_time = $request->input('time_end');
 
-        $insert_schedule=array();
+        //$insert_schedule=array();
+
+        if(count($name) > 0){
+        $res = Conference_schedule_time::where('schedule_id', $id)->delete();
+        }
 
     for($count = 0; $count < count($name); $count++)
     {
@@ -151,16 +166,17 @@ class ScheduleConfController extends Controller
                         'schedule_id' => $schedule->id,
                     );
 
-                $insert_schedule[] = $data; 
+                //$insert_schedule[] = $data; 
+                Conference_schedule_time::insert($data);
             }
      }
      
-     if(!empty($insert_schedule)){
-        $res = Conference_schedule_time::where('schedule_id', $id)->delete();
-        if($res){
-            Conference_schedule_time::insert($insert_schedule);
-        }
-     }
+    //  if(!empty($insert_schedule)){
+    //     $res = Conference_schedule_time::where('schedule_id', $id)->delete();
+    //     if($res){
+    //         Conference_schedule_time::insert($insert_schedule);
+    //     }
+    //  }
      
 
         

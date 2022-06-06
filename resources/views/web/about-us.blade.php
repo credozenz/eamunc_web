@@ -26,6 +26,30 @@
     
     @endif
 
+    @if (!empty($mission) && $mission->count())
+        <section id="hero" class="section-padding">
+            <div class="wrapper">
+                <div class="container">
+                    <h3 class="color-darkblue mb-4">The Mission</h3>
+
+                    <div class="row border-blue align-items-center">
+                        <div class="col-md-3">
+                            <div class="vision-thumb p-3">
+                                <img src="{{ asset('uploads/'.$mission->image) ?? '' }}" alt="{{ $mission->name ?? '' }}" class="vision-image">
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="content">
+                                {!! $mission->description ?? '' !!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+    @endif
+
 
 
     @if (!empty($our_mentors) && $our_mentors->count())

@@ -98,6 +98,9 @@
                     <a href="{{ route('admin.vision') }}" class='sidebar-link'>Vision</a>
                     </li>
                     <li class="submenu-item ">
+                    <a href="{{ route('admin.mission') }}" class='sidebar-link'>Mission</a>
+                    </li>
+                    <li class="submenu-item ">
                         <a href="{{ route('admin.our_mentors') }}">Our Mentors</a>
                     </li>
                 </ul>
@@ -167,6 +170,12 @@
             <li class="sidebar-item  @if($routeGroup =='impact') active @endif ">
                 <a href="{{ route('admin.act_impacts') }}" class='sidebar-link'>
                     <span><i class="fa fa-sort" aria-hidden="true">&nbsp</i>Act to Impact</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item  @if($routeGroup =='live') active @endif ">
+                <a href="{{ route('admin.live') }}" class='sidebar-link'>
+                    <span><i class="fa fa-podcast" aria-hidden="true">&nbsp</i>Live</span>
                 </a>
             </li>
 

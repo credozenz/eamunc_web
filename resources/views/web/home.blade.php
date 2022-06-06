@@ -1,24 +1,24 @@
 @extends('web.layout.main')
 @section('content')
 
-@if (!empty($banner) && $banner->count())  
-<section id="hero" class="w3-content w3-display-container mh-110" style="max-width:100%">
+    @if (!empty($banner) && $banner->count())  
+    <section id="hero" class="w3-content w3-display-container mh-110" style="max-width:100%">
 
-  @foreach ($banner as $key => $value)
-  <img class="mySlides" src="{{ asset('uploads/'.$value->image) }}" style="width:100%">
-  @endforeach
+    @foreach ($banner as $key => $value)
+    <img class="mySlides" src="{{ asset('uploads/'.$value->image) }}" style="width:100%">
+    @endforeach
 
-  <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
-  @foreach ($banner as $key => $value)
-  <span class="demo "></span>
-  @endforeach
-    
-    <div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
-    <div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
+    <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
+    @foreach ($banner as $key => $value)
+    <span class="demo "></span>
+    @endforeach
+        
+        <div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
+        <div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
 
-  </div>
-</section>
-@endif
+    </div>
+    </section>
+    @endif
 
     <!-- @if (!empty($banner) && $banner->count())   
         <section id="hero" class="mh-90" style="background-image:url('{{ asset('uploads/'.$banner[0]->image) }}');"></section>
@@ -81,7 +81,7 @@
                             <div class="w3-modal-content">
                             <div class="w3-container">
                                 <span onclick="videoPopup({{$key+1}})" class="w3-button w3-display-topright">&times;</span>
-                                <iframe id="iframe{{$key+1}}" width="100%" height="400" src="https://www.youtube-nocookie.com/embed/_0oxwE5FUB0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+                                <iframe id="iframe{{$key+1}}" width="100%" height="400" src="https://www.youtube-nocookie.com/embed/{{ $value->video ?? '' }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
                                 </iframe>
                             </div>
                             </div>
@@ -156,7 +156,6 @@
                 </div>
             </div>
         </section>
-
     @endif
 
 

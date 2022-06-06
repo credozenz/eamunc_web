@@ -16,54 +16,51 @@ use Storage;
 use Alert;
 use League\Flysystem\File;
 
-class VcconduntController extends Controller
+class MissionController extends Controller
 {
     public function __construct()
     {
-        View::share('routeGroup','vc_condunt');
+        View::share('routeGroup','about');
     }
   
     public function index(Request $request)
     {
        
-        $data = SiteIndexes::where('deleted_at', null)->where('type','vc_condunt')->first(); 
+        $data = SiteIndexes::where('deleted_at', null)->where('type','mission')->first(); 
         
-        return view('admin/vcCondunt/index', compact('data'));
+        return view('admin/mission/index', compact('data'));
        
     }
 
-    
    
-    
     public function update(Request $request)
     {
         
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'description' => ['required'],
-            'image' => ['mimes:jpeg,png,jpg,gif,svg', 'max:2055'],
-            'doc_file' => ['mimes:pdf', 'max:255'],
+            'image' => ['mimes:jpeg,png,jpg,gif,svg', 'max:2055']
         ],[
             'title.required' => 'The Title field is required',
             'description.required' => 'The Description field is required',
             'image.max' => 'Image  must be smaller than 2 MB',
             'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
-            'doc_file.max' => 'File  must be smaller than 2 MB',
-            'doc_file.mimes' => 'Input accept only pdf',
         ]);
 
-    
-         
-        $type_data = SiteIndexes::where('type','vc_condunt')->first(); 
 
+
+        $type_data = SiteIndexes::where('type','mission')->first(); 
+        
         if(!empty($type_data)){
-            $condunt = SiteIndexes::where('type','vc_condunt')->first();
+            $mission = SiteIndexes::where('type','mission')->first(); 
         }else{
-            $condunt = new SiteIndexes;
+            $mission = new SiteIndexes;
         }
-        $condunt->title = $request->title;
-        $condunt->description  = $request->description;
-        $condunt->type  = 'vc_condunt';
+
+        $mission->title = $request->title;
+        $mission->description  = $request->description;
+        $mission->type  = 'mission';
+
        
         
         if ($request->hasFile('image')) {
@@ -76,38 +73,23 @@ class VcconduntController extends Controller
                $img = $image->get();
             }else{
                 $img = Image::make($image->getRealPath());
-                $img->resize(1080,480, function ($constraint) {
+                $img->resize(440, 654, function ($constraint) {
                    $constraint->aspectRatio();                 
                 });
                 $img->stream('png', 100);
             }
             
-            Storage::disk('public')->put('vc_condunts/'.$fileName,$img,'public');
+            Storage::disk('public')->put('mission/'.$fileName,$img,'public');
 
-            $condunt->image = 'vc_condunts/'.$fileName; 
+            $mission->image = 'mission/'.$fileName; 
            }
 
 
-        if ($request->hasFile('doc_file')) {
-            $doc = $request->file('doc_file');
-            $docfileName   =  time().'_'.str_random(5).'_'.rand(1111,9999). '.' . $doc->getClientOriginalExtension();
-          
-            $extension=$doc->getClientOriginalExtension();
+           $mission->save();
            
-            $file = $doc->get();
-            
-          
-            Storage::disk('public')->put('vc_condunts/doc/'.$docfileName,$file,'public');
-
-            $condunt->file = 'vc_condunts/doc/'.$docfileName; 
-           }
-
-
-           $condunt->save();
-           
-           if($condunt->id){
-            Session::flash('success', 'Virtual Code Of Conduct messages updated successfully!');
-            return redirect('/admin/vc_condunt');
+           if($mission->id){
+            Session::flash('success', 'Mission updated successfully!');
+            return redirect('/admin/mission');
           }else{
             Session::flash('error', 'Something went wrong!!');
             return  redirect()->back();

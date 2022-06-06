@@ -41,7 +41,7 @@ class ConferenceUpdatesController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'description' => 'required',
-            'image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:2050'],
+            'image' => ['required','mimes:jpeg,png,jpg,gif,svg','max:2050'],
         ],[
             'title.required' => 'The Title field is required',
             'description.required' => 'The Description field is required',

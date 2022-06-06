@@ -40,7 +40,7 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label class="form-label text-danger">Youtube Live Url</label>
-                            <input type="text" name="live_url" value="{{ $data->video ?? '' }}" class="form-control" placeholder="Live URL">
+                            <input type="text" name="live_url" value="https://www.youtube.com/watch?v={{ $data->video ?? '' }}" class="form-control" placeholder="Live URL">
                             @error('live_url')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>

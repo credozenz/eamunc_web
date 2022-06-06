@@ -50,7 +50,16 @@ class GuidelineController extends Controller
         ]);
 
     
-        $condunt = SiteIndexes::where('type','guideline')->first(); 
+        
+        
+        $type_data = SiteIndexes::where('type','guideline')->first(); 
+        
+        if(!empty($type_data)){
+            $condunt = SiteIndexes::where('type','guideline')->first(); 
+        }else{
+            $condunt = new SiteIndexes;
+        }
+
         $condunt->title = $request->title;
         $condunt->description  = $request->description;
         $condunt->type  = 'guideline';

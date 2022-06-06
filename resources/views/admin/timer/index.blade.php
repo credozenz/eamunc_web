@@ -37,7 +37,8 @@
                     @csrf   
                     
                                 <div class="row">
-                                    <div class="col-md-6 col-12">
+                                   
+                                    <div class="col-md-4 col-12">
                                         <div class="form-group">
                                             <label class="form-label text-danger">Title</label>
                                             <input type="text" name="title" value="{{ $data->title ?? '' }}" class="form-control" placeholder="Title">
@@ -51,9 +52,19 @@
                                             @error('date')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
+                                    <div class="col-md-2 col-12">
+                                        <div class="form-group">
+                                            <label class="form-label text-danger">Show/Hide</label>
+                                            <select name="show_me" class="form-control @error('committee_choice') border-danger @enderror" {{ $errors->has('committee_choice') ? 'autofocus' : '' }} placeholder="Committee of Choice" required>
+                                                <option value="1" {{ ($data->deleted_at == NULL ? "selected":"") }}> Show </option>
+                                                <option value="0" {{ ($data->deleted_at != NULL ? "selected":"") }}> Hide </option>
+                                            </select>
+                                            @error('show_me')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                        </div>
+                                    </div>
                                     
                                     <div class="col-12 d-flex justify-content-end">
-                                         <a href="{{ url('admin/timer') }}" class="btn btn-light-secondary me-1 mb-1">Back</a>
+                                         <a href="{{ url('admin/dashbord') }}" class="btn btn-light-secondary me-1 mb-1">Back</a>
                                          <button class="btn btn-primary me-1 mb-1">Update</button>
                                     </div>
                                 </div>

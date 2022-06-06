@@ -46,7 +46,19 @@ class FooterController extends Controller
         ]);
 
     
-        $terms = SiteIndexes::where('type','terms')->first(); 
+        
+        
+        $type_data = SiteIndexes::where('type','terms')->first(); 
+        
+        if(!empty($type_data)){
+          $terms = SiteIndexes::where('type','terms')->first(); 
+        }else{
+          $terms = new SiteIndexes;
+        }
+
+
+
+
         $terms->title = $request->title;
         $terms->description  = $request->description;
         $terms->type  = 'terms';
@@ -84,7 +96,16 @@ class FooterController extends Controller
         ]);
 
     
-        $policy = SiteIndexes::where('type','policy')->first(); 
+       
+
+        $type_data = SiteIndexes::where('type','policy')->first(); 
+        
+        if(!empty($type_data)){
+          $policy = SiteIndexes::where('type','policy')->first();  
+        }else{
+          $policy = new SiteIndexes;
+        }
+        
         $policy->title = $request->title;
         $policy->description  = $request->description;
         $policy->type  = 'policy';

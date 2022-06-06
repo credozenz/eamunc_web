@@ -50,8 +50,15 @@ class ActImpactsController extends Controller
             'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
         ]);
 
-    
-        $message = SiteIndexes::where('type', 'act_impact')->first(); 
+        $type_data = SiteIndexes::where('type','act_impact')->first(); 
+        
+        if(!empty($type_data)){
+            $message = SiteIndexes::where('type', 'act_impact')->first();  
+        }else{
+            $message = new SiteIndexes;
+        }
+
+         
         $message->title = $request->title;
         $message->description  = $request->description;
         $message->type  = 'act_impact';

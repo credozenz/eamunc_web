@@ -61,6 +61,7 @@
                                         <td class="text-bold-500"><h6>{{ date('d M Y l',strtotime($value->date)) }}</h6></td>
                                         <td>
                                         <a href="{{ url('admin/conference_schedule_show',$value->id) }}" class="btn btn-sm btn-primary w-24 mr-1 mb-2">View</a>
+                                        <a class="btn btn-sm btn-danger shadow-md  w-24 mr-1 mb-2 dltButton"  data-url="{{ url('admin/conference_schedule_delete',$value->id) }}" data-replaceurl="{{ url('admin/conference_schedule') }}" title="Delete Project"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach

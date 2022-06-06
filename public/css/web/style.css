@@ -635,3 +635,9 @@ footer {
 .subnote {
     font-weight: 700;
 }
+
+.mySlides {display:none}
+.btm-img {position: relative;cursor: pointer;}
+.overlay {position: absolute;bottom: 0;left: 0;right: 0;height: 100%;width: 100%;opacity: 0;transition: .5s ease;background-color: rgba(0,0,0,0.7);text-align:center;}
+.top-img:hover .overlay ,.btm-img:hover .overlay {opacity: 1;}
+.overlay i{color:#fff;top: 42%;transform: translate(-50%,0);position: absolute;font-size:50px;}

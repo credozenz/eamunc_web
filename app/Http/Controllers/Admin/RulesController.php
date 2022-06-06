@@ -47,7 +47,16 @@ class RulesController extends Controller
         ]);
 
     
-        $rules = SiteIndexes::where('type', 'rules')->first(); 
+         
+
+        $type_data = SiteIndexes::where('type','rules')->first(); 
+
+        if(!empty($type_data)){
+            $rules = SiteIndexes::where('type', 'rules')->first();
+        }else{
+            $rules = new SiteIndexes;
+        }
+
         $rules->title = $request->title;
         $rules->type  = 'rules';
        

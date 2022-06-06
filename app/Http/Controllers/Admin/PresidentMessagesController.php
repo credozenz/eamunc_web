@@ -53,7 +53,15 @@ class PresidentMessagesController extends Controller
         ]);
 
     
-        $message = SiteIndexes::where('type', 'president_messages')->first(); 
+        
+        
+        $type_data = SiteIndexes::where('type','president_messages')->first(); 
+
+        if(!empty($type_data)){
+            $message = SiteIndexes::where('type', 'president_messages')->first();
+        }else{
+            $message = new SiteIndexes;
+        }
         $message->title = $request->title;
         $message->name = $request->name;
         $message->post = $request->post;

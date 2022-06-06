@@ -25,7 +25,7 @@ class TimerController extends Controller
     
     public function index(Request $request)
     {
-        $data = SiteIndexes::where('deleted_at', null)->where('type','timer')->first(); 
+        $data = SiteIndexes::where('type','timer')->first(); 
       
         return view('admin/timer/index', compact('data'));
        
@@ -43,10 +43,25 @@ class TimerController extends Controller
             'date.required' => 'The Date field is required',
         ]);
     
-        $timer = SiteIndexes::where('type', 'timer')->first(); 
+       
+        
+        $type_data = SiteIndexes::where('type','timer')->first(); 
+
+        if(!empty($type_data)){
+            $timer = SiteIndexes::where('type', 'timer')->first();
+        }else{
+            $timer = new SiteIndexes;
+        }
         $timer->title = $request->title;
         $timer->date = $request->date;
         $timer->type = 'timer';
+        if($request->show_me == '0'){
+            $mytime = Carbon::now();
+            $timestamp=$mytime->toDateTimeString();
+            $timer->deleted_at = $timestamp;
+        }else{
+            $timer->deleted_at = NULL;
+        }
         $timer->save();
            
         if($timer->id){

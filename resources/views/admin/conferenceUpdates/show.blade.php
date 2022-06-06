@@ -73,7 +73,7 @@
                                     </div>
                                   
                                     <div class="col-12 d-flex justify-content-end">
-                                    <a href="{{ url('admin/our_mentors') }}" class="btn btn-light-secondary me-1 mb-1">Back</a>
+                                    <a href="{{ url('admin/conference_updates') }}" class="btn btn-light-secondary me-1 mb-1">Back</a>
                                     
                                     </div>
                                 </div>

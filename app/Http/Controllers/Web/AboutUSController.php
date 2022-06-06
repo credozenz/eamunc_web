@@ -20,9 +20,10 @@ class AboutUSController extends Controller
     {
         
         $vision = SiteIndexes::where('deleted_at', null)->where('type','vision')->first(); 
+        $mission = SiteIndexes::where('deleted_at', null)->where('type','mission')->first(); 
         $our_mentors = SiteIndexes::where('deleted_at', null)->where('type', 'our_mentors')->orderBy('id', 'DESC')->paginate(8);
 
-        return view('web/about-us', compact('vision','our_mentors'));
+        return view('web/about-us', compact('vision','mission','our_mentors'));
 
 
     }

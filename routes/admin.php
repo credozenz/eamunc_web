@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\ParticipateSchoolController;
 use App\Http\Controllers\Admin\ActImpactsController;
 use App\Http\Controllers\Admin\VcconduntController;
 use App\Http\Controllers\Admin\VisionController;
+use App\Http\Controllers\Admin\MissionController;
 use App\Http\Controllers\Admin\LetterController;
 use App\Http\Controllers\Admin\ScheduleConfController;
 use App\Http\Controllers\Admin\ConferenceUpdatesController;
@@ -216,6 +217,9 @@ Route::group(['middleware' => 'adminchecker'], function() {
 
      Route::get('/vision', [VisionController::class,'index'])->name('admin.vision');
      Route::post('/vision_update', [VisionController::class,'update'])->name('admin.vision.update');
+
+     Route::get('/mission', [MissionController::class,'index'])->name('admin.mission');
+     Route::post('/mission_update', [MissionController::class,'update'])->name('admin.mission.update');
 
      Route::get('/profile', [ProfileController::class,'profile'])->name('admin.profile');
      Route::post('/profile_update', [ProfileController::class,'update_profile'])->name('admin.profile.update');
