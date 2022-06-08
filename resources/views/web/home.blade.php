@@ -67,7 +67,7 @@
                             <div class="image-box">
                             <div class="btm-img">
                               <img src="{{ asset('uploads/'.$value->image) ?? '' }}" alt="{{ $value->name ?? '' }}">
-                                <div class="overlay">
+                                <div class="overlay-thumbnail">
                                  <span onclick="document.getElementById('modal'+{{$key+1}}).style.display='block'"><i class="fa fa-play"></i></span>
                                 </div>
                             </div>

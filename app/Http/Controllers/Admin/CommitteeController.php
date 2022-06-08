@@ -56,7 +56,7 @@ class CommitteeController extends Controller
             'video' =>'required|max:255',
             'description' =>'required',
             'image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:2055'],
-            'file' => 'required|array',
+            'file' => 'required|array|mimes:pdf|max:2055',
             'file.*'  => ['required','mimes:pdf', 'max:2055'],
         ],[
             'name.required' => 'The Name field is required',
@@ -241,7 +241,7 @@ class CommitteeController extends Controller
             if ($request->hasFile('file')) {
 
                 $validatedData = $request->validate([
-                    'file' => 'required|array',
+                    'file' => 'required|array|mimes:pdf|max:2055',
                     'file.*'  => ['required','mimes:pdf', 'max:2055'],
                 ],[
                     'file.required' => 'The file field is required',
