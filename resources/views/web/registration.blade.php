@@ -13,7 +13,7 @@
                     </div>
 
 
-                    @if($reg_status->name=='open') 
+                    @if(isset($reg_status->name) && $reg_status->name=='open')
                     <div class="row py-3">
                         <div class="col-md-6 pe-0 pe-md-3 mb-3 mb-md-0 p-0">
                         <a href="{{ route('isg-registration') }}" class="color-white">

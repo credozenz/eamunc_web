@@ -92,7 +92,7 @@
                         <center>
                                 <h1>Registration</h1>
                                 Students Registration 
-                                @if($reg_status->name=='open') 
+                                @if(isset($reg_status->name) && $reg_status->name=='open') 
                                  <span class="label" style="color: green;"><b>Opend</b></span>
                                  @else
                                 <span class="label" style="color: red;"><b>Closed</b></span>
@@ -104,7 +104,7 @@
                                 
                             <input type="checkbox" checked name="reg_status" class="checkbox toggle-checkbox"/>
                             </form>
-                            @if($reg_status->name=='open') 
+                            @if(isset($reg_status->name) && $reg_status->name=='open') 
                             <label class="reg-closed"  onclick="if(confirm('Are you sure!, You Want Open Students registration ?')){ $(this).parent().find('#inaciveuser').submit() }">
                                         <p style="padding: 11px;text-color: white;color: white;"> Closed</p>
                             </label>         

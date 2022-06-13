@@ -15,7 +15,7 @@
                         <img src="{{ asset('assets/web/img/host.jpg') }}" alt="Registration for School">
                     </div>
                     <span class="spacer"></span>
-                    @if($reg_status->name=='open') 
+                    @if(isset($reg_status->name) && $reg_status->name=='open')
                     <div class="form-container">
                     <form method="post" action="{{ url('school-registration-store') }}"  enctype="multipart/form-data">
                           @csrf
