@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Models\SiteIndexes;
 use App\Models\School;
@@ -54,6 +55,54 @@ class DashbordController extends Controller
         ->where('users.role', '!=' , 1)->where('users.type', '=' , 2)->orderBy('users.id', 'DESC')
         ->paginate(10);
 
-        return view('admin/dashbord', compact('delegate','Isg_count','scoolDelecount','cmtecount','schoolcount','school'));
+        $reg_status = SiteIndexes::where('type','reg_status')->first(); 
+
+        return view('admin/dashbord', compact('reg_status','delegate','Isg_count','scoolDelecount','cmtecount','schoolcount','school'));
     }
+
+
+
+    public function reg_status(Request $request)
+    {
+       
+        $type_data = SiteIndexes::where('type','reg_status')->first(); 
+
+        if(!empty($type_data)){
+          $reg = SiteIndexes::where('type','reg_status')->first(); 
+          if($reg->name == 'open'){
+               $reg->name  = 'closed';
+            }else{
+               $reg->name  = 'open';
+          }
+    
+        }else{
+          $reg = new SiteIndexes;
+          $reg->name  = 'open';
+        }
+
+
+        
+        
+        
+
+        $reg->type  = 'reg_status';
+        $reg->save();
+           
+           if($reg->id){
+            Session::flash('success', 'Registration Status updated successfully!');
+            return redirect('/admin/dashbord');
+          }else{
+            Session::flash('error', 'Something went wrong!!');
+            return  redirect()->back();
+          }
+
+       
+           
+    }
+
+
+
+
+
+
 }

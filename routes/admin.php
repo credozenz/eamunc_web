@@ -60,6 +60,7 @@ use App\Http\Controllers\Admin\LiabilityWaiverController;
 Route::group(['middleware' => 'adminchecker'], function() {
      
      Route::get('/dashbord', [DashbordController::class,'getDashbord'])->name('admin.dashbord');
+     Route::post('/reg_status', [DashbordController::class,'reg_status'])->name('admin.reg_status');
     
      Route::get('/newsletter', [NewsletterController::class,'index'])->name('admin.newsletter');
      Route::get('/newsletter_create', [NewsletterController::class,'create'])->name('admin.newsletter.create');

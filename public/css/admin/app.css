@@ -39,3 +39,26 @@
   .dropdown:hover .dropbtn {
     background-color: #3e8e41;
   }
+
+ 
+
+ 
+ .reg-closed {
+  position : relative ;
+  display : inline-block;
+  width: 77px;
+    height: 50px;
+  background-color: red;
+  border-radius: 30px;
+  border: 2px solid gray;
+}
+     
+.reg-open {
+position : relative ;
+display : inline-block;
+width: 70px;
+height: 50px;
+background-color: green;
+border-radius: 30px;
+border: 2px solid gray;
+}

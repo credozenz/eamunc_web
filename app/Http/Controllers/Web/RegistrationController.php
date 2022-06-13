@@ -24,9 +24,9 @@ class RegistrationController extends Controller
 {
     public function index()
     {
-        $data ='';
-
-        return view('web/registration', compact('data'));
+       
+        $reg_status = SiteIndexes::where('type','reg_status')->first();
+        return view('web/registration', compact('reg_status'));
     }
 
    
@@ -35,8 +35,8 @@ class RegistrationController extends Controller
         $committees = Committee::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(50); 
 
         $countries = Countries::all();
-
-        return view('web/isg-registration', compact('committees','countries'));
+        $reg_status = SiteIndexes::where('type','reg_status')->first();
+        return view('web/isg-registration', compact('committees','countries','reg_status'));
     }
 
 
@@ -114,7 +114,8 @@ class RegistrationController extends Controller
     {
         $committees = Committee::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4); 
         $countries = Countries::all();
-        return view('web/school-registration', compact('committees','countries'));
+        $reg_status = SiteIndexes::where('type','reg_status')->first();
+        return view('web/school-registration', compact('committees','countries','reg_status'));
     }
 
 

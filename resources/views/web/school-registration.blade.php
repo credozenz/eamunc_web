@@ -15,7 +15,7 @@
                         <img src="{{ asset('assets/web/img/host.jpg') }}" alt="Registration for School">
                     </div>
                     <span class="spacer"></span>
-      
+                    @if($reg_status->name=='open') 
                     <div class="form-container">
                     <form method="post" action="{{ url('school-registration-store') }}"  enctype="multipart/form-data">
                           @csrf
@@ -152,7 +152,18 @@
                     </div>
 
                     <span class="spacer"></span>
+                    @else
+                    <span class="spacer"></span>
+                    <div class="row py-3">
+                       
+                      <div class="col-md-12 pe-0 pe-md-3 mb-3 mb-md-0 p-0">
+                        
+                            <button class="download-btn-inverse w-100 py-3">Registration for this event now closed !</button>
+                        
+                        </div>
 
+                    </div>
+                    @endif
                 </div>
             </div>
 

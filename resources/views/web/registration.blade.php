@@ -11,6 +11,9 @@
                         <img src="{{ asset('assets/web/img/welcome.jpg') }}" alt="Registration for ISG Students" class="p-0">
                    
                     </div>
+
+
+                    @if($reg_status->name=='open') 
                     <div class="row py-3">
                         <div class="col-md-6 pe-0 pe-md-3 mb-3 mb-md-0 p-0">
                         <a href="{{ route('isg-registration') }}" class="color-white">
@@ -22,7 +25,22 @@
                             <button class="download-btn w-100 py-3">Registration for Participating Schools</button>
                         </a>
                         </div>
+                    </div>        
+                    @else
+                    <div class="row py-3">
+                       
+                      <div class="col-md-12 pe-0 pe-md-3 mb-3 mb-md-0 p-0">
+                        
+                            <button class="download-btn-inverse w-100 py-3">Registration for this event now closed !</button>
+                        
+                        </div>
+
                     </div>
+                    @endif
+
+
+
+                    
                 </div>
             </div>
 
