@@ -5,7 +5,7 @@
     <section id="hero" class="w3-content w3-display-container mh-110" style="max-width:100%">
 
     @foreach ($banner as $key => $value)
-    <img class="mySlides" src="{{ asset('uploads/'.$value->image) }}" width="100%" height="650px">
+    <img class="mySlides" src="{{ asset('uploads/'.$value->image) }}">
     @endforeach
 
     <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
@@ -20,9 +20,7 @@
     </section>
     @endif
 
-    <!-- @if (!empty($banner) && $banner->count())   
-        <section id="hero" class="mh-90" style="background-image:url('{{ asset('uploads/'.$banner[0]->image) }}');"></section>
-    @endif -->
+    
 
     @if (!empty($timer) && $timer->count())
         <section id="counter" class="section-padding">
