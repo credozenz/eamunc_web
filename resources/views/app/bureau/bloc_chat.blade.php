@@ -91,7 +91,7 @@
                   @endif
                  
                 </div>
-                
+                @include('app.bureau.layouts.chat_pagination',['paginator' => $blocs_chats])
               </div>
 
               <div class="panel-footer">

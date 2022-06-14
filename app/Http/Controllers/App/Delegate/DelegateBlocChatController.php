@@ -51,7 +51,7 @@ class DelegateBlocChatController extends Controller
                             ->where('b.deleted_at', null)
                             ->where('b.bloc_id', '=', $id)
                             ->orderBy('b.id', 'DESC')
-                            ->get();
+                            ->paginate(50);
 
         return view('app/delegate/bloc_chat', compact('id','member','committee','committee_bloc','blocs_members','blocs_chats'));
     }

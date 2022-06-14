@@ -87,6 +87,7 @@
                       @endif
                 
               </div>
+              @include('app.delegate.layouts.chat_pagination',['paginator' => $blocs_chats])
             </div>
             
             @if ($blocs_members)
