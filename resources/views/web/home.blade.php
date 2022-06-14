@@ -5,7 +5,7 @@
     <section id="hero" class="w3-content w3-display-container mh-110" style="max-width:100%">
 
     @foreach ($banner as $key => $value)
-    <img class="mySlides" src="{{ asset('uploads/'.$value->image) }}" width="100%" height="450px">
+    <img class="mySlides" src="{{ asset('uploads/'.$value->image) }}" width="100%" height="650px">
     @endforeach
 
     <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
