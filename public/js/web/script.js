@@ -1,18 +1,59 @@
 $(document).ready(function() {
 
+
+    $('.owl-carousel').owlCarousel({
+        loop:true,
+        margin:15,
+        dots: true,
+        responsiveClass:true,
+        responsive:{
+            0:{
+                items:1,
+                nav:true
+            },
+            600:{
+                items:3,
+                nav:false
+            },
+            1000:{
+                items:3,
+                nav:true,
+                loop:false
+            }
+        }
+    })
+     
+   
+        $('#side_opener').click(function() {
+            $("#navbar-menu").fadeIn(500)
+        });
+        $('#side_closer').click(function() {
+            $("#navbar-menu").fadeOut(500)
+        });
+    
+
+
+
+
     setTimeout(function () {
         $('.alert').fadeOut()
        }, 1500);
 
     var enddate = $('#clock-c').data("date");
 
+
     $('#clock-c').countdown(enddate, function(event) {
-        var $this = $(this).html(event.strftime('' +
-            '<span class="counter-text">%D :<span class="counter-line"> Days</span> </span>' +
-            '<span class="counter-text">%H :<span class="counter-line"> Hours</span> </span>' +
-            '<span class="counter-text">%M :<span class="counter-line"> Minutes</span> </span>' +
-            '<span class="counter-text">%S<span class="counter-line">Seconds</span></span>'));
+        var $this = $(this).html(event.strftime(
+            '<span class="counter-text">' +
+                '<span class="number">%D <span class="counter-line">Days</span></span>' + '<span class="seperator"> : </span>' +
+                '<span class="number">%H <span class="counter-line">Hours</span></span>' + '<span class="seperator"> : </span>' +
+                '<span class="number">%M <span class="counter-line">Minutes</span></span>' + '<span class="seperator"> : </span>' +
+                '<span class="number">%S <span class="counter-line">Seconds</span></span>' +
+            '</span>'
+        ));
     });
+
+   
 
 });
 
@@ -287,14 +328,9 @@ $(document).ready(function() {
 
 
     
-
-
-
-
-
-
-
-
+   
+    
+    
 
 
 

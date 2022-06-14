@@ -128,35 +128,40 @@
                     </div>
                 @endforeach
                 </div>
-
             </div>
         </section>
 
     @endif
+
+
+    
 
     @if (!empty($conference_update) && $conference_update->count())
 
-        <section id="updates" class="section-padding">
+    <section id="updates" class="section-padding">
+        <div class="container">
+            <h3 class="color-darkblue mb-md-4 mb-5">Conference Updates</h3>
+        </div>
+        <div class="bg-black">
             <div class="container">
-                <h3 class="color-darkblue mb-md-4 mb-5">Conference Updates</h3>
-            </div>
-            <div class="bg-black">
-                <div class="container">
-                    <div class="row justify-content-between">
-
-                    @foreach ($conference_update as $key => $value)
-                        <div class="col-md-4 image-box fixed-thumb">
-                        <img src="{{ asset('uploads/'.$value->image) ?? '' }}" alt="{{ $value->title ?? '' }}">
+                <div class="row">
+                    <div class="owl-carousel owl-theme">
+                      @foreach ($conference_update as $key => $value)
+                      <a href="{{ route('conference-update-inner',$value->id ?? '') }}" >
+                        <div class="image-box fixed-thumb">
+                            <img src="{{ asset('uploads/'.$value->image) ?? '' }}" alt="{{ $value->title ?? '' }}">
                             <p class="update-name color-blue">{{ $value->title ?? '' }}</p>
-                            <p class="update-description color-white">{{ $value->description ?? '' }}</p>
+                            <p class="update-description color-white">{{ str_limit($value->description, $limit = 100, $end = '...') }}</p>
                         </div>
-                    @endforeach
-
+                      </a>
+                      @endforeach
                     </div>
-                </div>
+                </div> 
             </div>
-        </section>
+        </div>
+    </section>
     @endif
+    
 
 
     @if (!empty($conference_schedule) && $conference_schedule->count())

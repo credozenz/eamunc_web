@@ -47,3 +47,4 @@ function videoPopup(id) {
   location.reload();
   
 }
+

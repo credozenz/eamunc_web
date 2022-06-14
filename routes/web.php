@@ -37,6 +37,7 @@ Route::get('/alumni', [AlumniController::class,'index'])->name('alumni');
 Route::get('/committees', [CommitteesController::class,'index'])->name('committees');
 Route::get('/committees-inner/{id}', [CommitteesController::class,'index_inner'])->name('committees-inner');
 Route::get('/conferences', [ConferencesController::class,'index'])->name('conference');
+Route::get('/conference-update-inner/{id}', [ConferencesController::class,'conference_update_inner'])->name('conference-update-inner');
 Route::get('/faq', [FaqController::class,'index'])->name('faq');
 Route::get('/feedback', [FeedbackController::class,'index'])->name('feedback');
 Route::post('/feedback-store', [FeedbackController::class,'feedback_store'])->name('feedback-store');

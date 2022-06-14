@@ -27,4 +27,16 @@ class ConferencesController extends Controller
 
 
     }
+
+    public function conference_update_inner($id)
+    {
+        
+
+        $conference_update = SiteIndexes::where('id', $id)->where('type', 'conference_update')->orderBy('id', 'DESC')->first(); 
+        
+        
+        return view('web/conference_update_inner', compact('conference_update'));
+
+
+    }
 }
