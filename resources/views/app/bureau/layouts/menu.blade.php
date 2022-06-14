@@ -69,7 +69,7 @@
                 <img src="{{ asset('assets/img/avatar.svg') }}" alt="{{ $member->name ?? '' }}">
                 @endif
               
-              <h4>{{ $member->name ?? '' }}</h4>
+              <h4>{{ str_limit($member->name, $limit = 12, $end = '...') }}</h4>
               <a href="{{ route('app.bureau_profile') }}" type="button" class="btn btn-outline-secondary">My Profile</a> 
             </div>
 

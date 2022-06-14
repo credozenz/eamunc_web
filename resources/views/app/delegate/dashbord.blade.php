@@ -42,7 +42,7 @@
                           @else
                           <img src="{{ asset('assets/img/avatar.svg') }}" alt="{{ $value->name ?? '' }}">
                           @endif
-                      <p>{{ $value->name ?? '' }}</p>
+                      <p>{{ str_limit($value->name, $limit = 12, $end = '...') }}</p>
                     </div>
                 @endif
               @endforeach
@@ -58,7 +58,7 @@
                           @else
                           <img src="{{ asset('assets/img/avatar.svg') }}" alt="{{ $value->name ?? '' }}">
                           @endif
-                      <p>{{ $value->name ?? '' }}</p>
+                      <p>{{ str_limit($value->name, $limit = 12, $end = '...') }}</p>
                     </div>
                 @endif
               @endforeach
