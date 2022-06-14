@@ -38,21 +38,21 @@
                     
                                 <div class="row">
                                    
-                                    <div class="col-md-4 col-12">
+                                    <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label class="form-label text-danger">Title</label>
                                             <input type="text" name="title" value="{{ $data->title ?? '' }}" class="form-control" placeholder="Title">
                                             @error('title')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-12">
+                                    <div class="col-md-3 col-12">
                                     <div class="form-group">
                                             <label class="form-label text-danger">End Date</label>
                                             <input type="date" name="date" value="{{ $data->date ?? '' }}" class="form-control" placeholder="Date">
                                             @error('date')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-2 col-12">
+                                    <div class="col-md-3 col-12">
                                         <div class="form-group">
                                             <label class="form-label text-danger">Show/Hide</label>
                                             <select name="show_me" class="form-control @error('committee_choice') border-danger @enderror" {{ $errors->has('committee_choice') ? 'autofocus' : '' }} placeholder="Committee of Choice" required>

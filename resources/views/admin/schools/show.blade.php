@@ -60,7 +60,7 @@
                                         <div class="form-group">
                                             <label for="">School Logo</label>
                                             <div class="w-30 h-30 relative image-fit  mb-2 mr-5 ">
-                                            <img alt="{{ $data->name }}" class="rounded-full" src="{{ asset('uploads/'.$data->logo) }}" width="200" height="80">
+                                            <img alt="{{ $data->name }}" class="rounded-full" src="{{ asset('uploads/'.$data->logo) }}" width="150" height="80">
                                              </div>
                                         </div>
                                     </div>
