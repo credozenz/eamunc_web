@@ -73,21 +73,21 @@ class BureauSpeakersController extends Controller
         $committee = Committee::where('id',$member->committee_choice)->first();
 
         $speaker_country = DB::table('users as u')
-        ->join('students as s', 'u.id', '=', 's.user_id')
-        ->join('countries as c', 's.country_choice', '=', 'c.id')
-        ->select('s.*','c.name as country_name','c.id as country_id')
-        ->where('s.status', '=', 3)
-        ->where('u.role', '=', 2)
-        ->where('u.deleted_at', null)
-        ->where('s.committee_choice', '=' , $committee->id)
-        ->whereNotExists(function($query)
-                {
-                    $query->select(DB::raw(1))
-                        ->from('speakers as sp')
-                        ->whereRaw('u.id = sp.user_id')
-                        ->where('sp.deleted_at', null);
-                })
-        ->get();
+                                ->join('students as s', 'u.id', '=', 's.user_id')
+                                ->join('countries as c', 's.country_choice', '=', 'c.id')
+                                ->select('s.*','c.name as country_name','c.id as country_id')
+                                ->where('s.status', '=', 3)
+                                ->where('u.role', '=', 2)
+                                ->where('u.deleted_at', null)
+                                ->where('s.committee_choice', '=' , $committee->id)
+                                ->whereNotExists(function($query)
+                                        {
+                                            $query->select(DB::raw(1))
+                                                ->from('speakers as sp')
+                                                ->whereRaw('u.id = sp.user_id')
+                                                ->where('sp.deleted_at', null);
+                                        })
+                                ->get();
        
      
 
@@ -128,14 +128,14 @@ class BureauSpeakersController extends Controller
 
 
             $user = User::where('users.deleted_at', null)
-            ->join('students', 'users.id', '=', 'students.user_id')
-            ->join('countries', 'students.country_choice', '=', 'countries.id')
-            ->select('students.*','countries.name as country_name')
-            ->where('users.role', '=', 2)
-            ->where('students.status', '=', 3)
-            ->where('students.country_choice', '=', $country_id[$count])
-            ->where('students.committee_choice', '=' , $committe_id)
-            ->first();
+                        ->join('students', 'users.id', '=', 'students.user_id')
+                        ->join('countries', 'students.country_choice', '=', 'countries.id')
+                        ->select('students.*','countries.name as country_name')
+                        ->where('users.role', '=', 2)
+                        ->where('students.status', '=', 3)
+                        ->where('students.country_choice', '=', $country_id[$count])
+                        ->where('students.committee_choice', '=' , $committe_id)
+                        ->first();
 
 
            

@@ -21,8 +21,8 @@ class CreateStudentsTable extends Migration
             $table->string('name')->index();
             $table->string('email')->index();
             $table->string('class');
-            $table->string('phone_code')->index();
-            $table->string('whatsapp_no')->index();
+            $table->string('phone_code')->index()->nullable();
+            $table->string('whatsapp_no')->index()->nullable();
             $table->string('mun_experience')->nullable();
             $table->string('bureaumem_experience')->nullable();
             $table->string('committee_choice')->nullable();

@@ -18,15 +18,15 @@ class HomeController extends Controller
     
     public function index()
     {
-        $banner = SiteIndexes::where('deleted_at', null)->where('type', 'banner')->orderBy('id', 'ASC')->paginate(4); 
+        $banner = SiteIndexes::where('deleted_at', null)->where('type', 'banner')->orderBy('id', 'ASC')->paginate(10); 
        
         $timer = SiteIndexes::where('deleted_at', null)->where('type','timer')->first();  
         $president_messages = SiteIndexes::where('deleted_at', null)->where('type','president_messages')->first(); 
-        $faculties_messages = SiteIndexes::where('deleted_at', null)->where('type', 'faculties_messages')->orderBy('id', 'DESC')->paginate(2);
-        $our_mentors = SiteIndexes::where('deleted_at', null)->where('type', 'our_mentors')->orderBy('id', 'DESC')->paginate(8);
+        $faculties_messages = SiteIndexes::where('deleted_at', null)->where('type', 'faculties_messages')->orderBy('id', 'DESC')->paginate(10);
+        $our_mentors = SiteIndexes::where('deleted_at', null)->where('type', 'our_mentors')->orderBy('id', 'DESC')->paginate(20);
         $conference_update = SiteIndexes::where('deleted_at', null)->where('type', 'conference_update')->orderBy('id', 'DESC')->paginate(12); 
         
-        $schedule = Conference_schedule::where('deleted_at', null)->orderBy('id', 'ASC')->paginate(3);
+        $schedule = Conference_schedule::where('deleted_at', null)->where('date', '>=', date('Y-m-d'))->orderBy('id', 'ASC')->paginate(10);
   
         $conference_schedule = $schedule->map(function($item, $key) {
 

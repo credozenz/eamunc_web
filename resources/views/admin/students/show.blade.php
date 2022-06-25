@@ -39,13 +39,15 @@
                                 <li class="breadcrumb-item">
                                     <a href="{{ url('admin/student_edit',$data->id) }}" class="btn-sm btn-primary shadow-md mr-2">Edit</a>
                                     <a class="btn-sm btn-danger shadow-md mr-2 dltButton"  data-url="{{ url('admin/student_delete',$data->id) }}" data-replaceurl="{{ url('admin/students') }}" title="Delete Project">Delete</a>
+                                    <a href="{{ url('admin/student_password',$data->id) }}" class="btn-sm btn-secondary shadow-md mr-2">Change Password</a>
+                                       
                                 </li>
                             </ol>
                         </nav>
                     </div>
 
                     <div class="card-content">
-
+                    @if($data->school_id != '0')
                         <div class="card-body">
                             <div class="row">
                                 <h4 class="color-darkblue mb-5">School Details</h4>
@@ -95,7 +97,7 @@
                             </div>
                         </div>
 
-
+                    @endif
                         <div class="card-body">
                             <div class="row">
                                 <h4 class="color-darkblue mb-5">Student Details</h4>

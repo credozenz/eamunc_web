@@ -39,7 +39,7 @@ class StudentsController extends Controller
 
         $query = user::where('users.deleted_at', null)
         ->join('students', 'users.id', '=', 'students.user_id')
-        ->join('schools', 'students.school_id', '=', 'schools.id')
+        ->leftjoin('schools', 'students.school_id', '=', 'schools.id')
         ->select('students.*', 'schools.name as school_name', 'users.role')
         ->where('users.role', '!=' , 1);
         
@@ -116,8 +116,8 @@ class StudentsController extends Controller
             'class' => 'required|max:255',
             'committee_choice' => 'required|max:255',
             'country_choice' => 'required|max:255',
-            'phone_code'    => 'required|max:255',
-            'whatsapp_no'    => 'required|max:255',
+            // 'phone_code'    => 'required|max:255',
+            // 'whatsapp_no'    => 'required|max:255',
             'mun_experience' => 'required|max:255',
         ],[
             'name.required' => 'The Name field is required',
@@ -127,8 +127,8 @@ class StudentsController extends Controller
             'class.required' => 'The Class field is required',
             'committee_choice.required' => 'The Committee choice field is required',
             'country_choice.required' => 'The Country choice field is required',
-            'phone_code.required' => 'The Phone code field is required',
-            'whatsapp_no.required' => 'The WhatsApp No field is required',
+            // 'phone_code.required' => 'The Phone code field is required',
+            // 'whatsapp_no.required' => 'The WhatsApp No field is required',
             'mun_experience.required' => 'The MUN Experience field is required',
         ]);
 
@@ -168,7 +168,22 @@ class StudentsController extends Controller
             $student->user_id  = $user->id;
             $student->position = $position;
             if($request->status != null){
-                $student->status   = $request->status;
+
+                if($request->status=='1'){
+
+                    $check_student = students::where('committee_choice', $request->committee_choice)
+                    ->where('country_choice', $request->country_choice)
+                    ->first(); 
+
+                    if(!empty($check_student)){
+                        Session::flash('error', 'This country, Committee
+                        combination has already been assigned to another student !');
+                        return  redirect()->back();
+                    }
+
+                }
+
+            $student->status   = $request->status;
             }
             
             $student->save();
@@ -287,10 +302,51 @@ class StudentsController extends Controller
        
     
     
+    public function change_password(Request $request,$id)
+    {
+        
+        
+        $student = students::where('id', $id)->first();
+        return view('admin/students/change_password', compact('student'));
+       
+      
+    }
 
 
 
+    public function update_password(Request $request,$id)
+    {
+        
+        
+        $validatedData = $request->validate([
+            'new_password' => 'required|max:255',
+            'confirm_password' => 'required|max:255|same:new_password',
+        ],[
+            
+            'new_password.required' => 'The New password field is required',
+            'confirm_password.required' => 'The Confirm password field is required',
+            'confirm_password.same' => 'Confirm password not match!',
+        ]);
 
+       
+        $user = User::where('id', $id)->first(); 
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+           
+           
+           if($user->id){
+            Session::flash('success', 'Password updated successfully!');
+            return redirect('/admin/student_show/'.$id);
+          }else{
+            Session::flash('error', 'Something went wrong!!');
+            return  redirect()->back();
+          }
+
+      
+   
+       
+    
+    }
 
 
 

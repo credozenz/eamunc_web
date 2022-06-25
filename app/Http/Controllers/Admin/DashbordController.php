@@ -27,13 +27,13 @@ class DashbordController extends Controller
     {
         $Isg_count = user::where('users.deleted_at', null)
         ->join('students', 'users.id', '=', 'students.user_id')
-        ->join('schools', 'students.school_id', '=', 'schools.id')
+        ->leftjoin('schools', 'students.school_id', '=', 'schools.id')
         ->select('students.*', 'schools.name as school_name', 'users.role')
         ->where('users.role', '!=' , 1)->where('users.type', '=' , 1)->orderBy('users.id', 'DESC')->count();
 
         $scoolDelecount = user::where('users.deleted_at', null)
         ->join('students', 'users.id', '=', 'students.user_id')
-        ->join('schools', 'students.school_id', '=', 'schools.id')
+        ->leftjoin('schools', 'students.school_id', '=', 'schools.id')
         ->select('students.*', 'schools.name as school_name', 'users.role')
         ->where('users.role', '!=' , 1)->where('users.type', '=' , 2)->count();
 
@@ -44,13 +44,13 @@ class DashbordController extends Controller
 
         $delegate = user::where('users.deleted_at', null)
         ->join('students', 'users.id', '=', 'students.user_id')
-        ->join('schools', 'students.school_id', '=', 'schools.id')
+        ->leftjoin('schools', 'students.school_id', '=', 'schools.id')
         ->select('students.*', 'schools.name as school_name', 'users.role')
         ->where('users.role', '!=' , 1)->where('users.type', '=' , 1)->orderBy('users.id', 'DESC')->paginate(10); 
 
         $school = user::where('users.deleted_at', null)
         ->join('students', 'users.id', '=', 'students.user_id')
-        ->join('schools', 'students.school_id', '=', 'schools.id')
+        ->leftjoin('schools', 'students.school_id', '=', 'schools.id')
         ->select('students.*', 'schools.name as school_name', 'users.role')
         ->where('users.role', '!=' , 1)->where('users.type', '=' , 2)->orderBy('users.id', 'DESC')
         ->paginate(10);

@@ -75,7 +75,7 @@
                                             <input type="text" name="phone_code" value="{{ $data->phone_code }}" class="form-control" placeholder="Code">
                                             </div>
                                             <div class="col-md-9 col-12">
-                                            <input type="text" name="whatsapp_no" value="{{ $data->whatsapp_no }}" class="form-control user_phone @error('whatsapp_no') border-danger @enderror" {{ $errors->has('whatsapp_no') ? 'autofocus' : '' }} placeholder="WhatsApp Number" aria-describedby="textHelp" required>
+                                            <input type="text" name="whatsapp_no" value="{{ $data->whatsapp_no }}" class="form-control user_phone @error('whatsapp_no') border-danger @enderror" {{ $errors->has('whatsapp_no') ? 'autofocus' : '' }} placeholder="WhatsApp Number" aria-describedby="textHelp">
                                             </div>
                                             </div>
                                            

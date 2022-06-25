@@ -101,13 +101,13 @@
 
                             <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="form-label">WhatsApp Number with country code*</label>
+                                        <label for="form-label">WhatsApp Number with country code</label>
                                         <div class="row">
                                          <div class="col-md-3">
-                                         <input type="text" name="phone_code[]" value="{{ old('phone_code.0') }}" maxlength="15" class="form-control user_phone @error('whatsapp_no') border-danger @enderror" {{ $errors->has('phone_code') ? 'autofocus' : '' }} placeholder="Code" aria-describedby="textHelp" required>
+                                         <input type="text" name="phone_code[]" value="{{ old('phone_code.0') }}" maxlength="15" class="form-control user_phone @error('whatsapp_no') border-danger @enderror" {{ $errors->has('phone_code') ? 'autofocus' : '' }} placeholder="Code" aria-describedby="textHelp" >
                                         </div>
                                         <div class="col-md-9">
-                                        <input type="text" name="whatsapp_no[]" value="{{ old('whatsapp_no.0') }}" maxlength="15" class="form-control user_phone @error('whatsapp_no') border-danger @enderror" {{ $errors->has('whatsapp_no') ? 'autofocus' : '' }} placeholder="WhatsApp Number" aria-describedby="textHelp" required>
+                                        <input type="text" name="whatsapp_no[]" value="{{ old('whatsapp_no.0') }}" maxlength="15" class="form-control user_phone @error('whatsapp_no') border-danger @enderror" {{ $errors->has('whatsapp_no') ? 'autofocus' : '' }} placeholder="WhatsApp Number" aria-describedby="textHelp" >
                                         </div>
                                         </div>
                                         @error('whatsapp_no')<div class="text-danger mt-2">{{ $message }}</div>@enderror

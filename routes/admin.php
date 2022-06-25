@@ -274,6 +274,13 @@ Route::group(['middleware' => 'adminchecker'], function() {
      Route::post('/student_delete/{id}', [StudentsController::class,'destroy'])->name('admin.student.destroy');
      Route::post('/student_statuschange/{id}', [StudentsController::class,'status_change'])->name('admin.student.statuschange');
      
+
+     Route::get('/student_password/{id}', [StudentsController::class,'change_password'])->name('admin.student_password');
+     Route::post('/student_pwd_update/{id}', [StudentsController::class,'update_password'])->name('admin.student_pwd_update');
+
+
+
+
      Route::get('/invite_student/{id}', [StudentsController::class,'invite_student'])->name('admin.student.invitestudent');
 
     

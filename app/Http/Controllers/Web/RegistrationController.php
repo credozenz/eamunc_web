@@ -49,8 +49,8 @@ class RegistrationController extends Controller
             'class' => 'required|max:255',
             'committee_choice' => 'required|max:255',
             'country_choice' => 'required|max:255',
-            'phone_code'    => 'required|max:255',
-            'whatsapp_no'    => 'required|max:255',
+            // 'phone_code'    => 'required|max:255',
+            // 'whatsapp_no'    => 'required|max:255',
             'mun_experience' => 'required|max:255',
             "bureaumem_experience"    => "required|max:255",
         ],[
@@ -61,8 +61,8 @@ class RegistrationController extends Controller
             'class.required' => 'The Class field is required',
             'committee_choice.required' => 'The Committee choice field is required',
             'country_choice.required' => 'The Country choice field is required',
-            'whatsapp_no.required' => 'The WhatsApp No field is required',
-            'phone_code.required' => 'The Phone code field is required',
+            // 'whatsapp_no.required' => 'The WhatsApp No field is required',
+            // 'phone_code.required' => 'The Phone code field is required',
             'mun_experience.required' => 'The MUN Experience field is required',
             'bureaumem_experience.required' => 'The Bureaumem Experience field is required',
         ]);
@@ -82,7 +82,7 @@ class RegistrationController extends Controller
 
             $student = new Students;
             $student->type  = 1;
-            $student->school_id  = 1;
+            $student->school_id  = 0;
             $student->name  = $request->name;
             $student->email = $request->email;
             $student->class = $request->class;
@@ -134,14 +134,14 @@ class RegistrationController extends Controller
             'email.*' => 'required|max:255|email',
             "class"    => "required|array",
             "class.*"  => "required|string",
-            'phone_code'    => 'required|max:255',
-            "whatsapp_no"    => "required|array",
-            "whatsapp_no.*"  => "required",
+            // 'phone_code'    => 'required|max:255',
+            // "whatsapp_no"    => "required|array",
+            // "whatsapp_no.*"  => "required",
             "mun_experience"    => "required|array",
             "mun_experience.*"  => "required",
             "bureaumem_experience"    => "required|array",
             "bureaumem_experience.*"  => "required",
-            'school_logo' => ['mimes:jpeg,png,jpg,gif,svg', 'max:2055'],
+            'school_logo' => ['mimes:jpeg,png,jpg', 'max:2055'],
         ],[
             'school_name.required' => 'The School Name field is required',
             'advisor_name.required' => 'The Advisor Name field is required',
@@ -153,11 +153,11 @@ class RegistrationController extends Controller
             'email.email' => 'Please put valid email Number',
             'email.unique' => 'Email id already exists',
             'class.required' => 'The Class field is required',
-            'phone_code.required' => 'The Phone code field is required',
-            'whatsapp_no.required' => 'The WhatsApp No field is required',
+            // 'phone_code.required' => 'The Phone code field is required',
+            // 'whatsapp_no.required' => 'The WhatsApp No field is required',
             'mun_experience.required' => 'The MUN Experience field is required',
             'school_logo.max' => 'Logo  must be smaller than 2 MB',
-            'school_logo.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
+            'school_logo.mimes' => 'Input accept only jpeg,png,jpg',
         ]);
       
         $phone_code = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $request->mob_code);
@@ -276,6 +276,18 @@ class RegistrationController extends Controller
         }
     }
 
+    public function committees_and_country(Request $request)
+    {
+       
+        $committees = Committee::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4); 
+        $countries = Countries::all();
+      
+        if(!empty($committees)){
+              echo json_encode(['status'=>true,'committees'=>$committees,'countries'=>$countries]);exit();
+        }else{
+             echo json_encode(['status'=>false]);exit();
+        }
+    }
 
 
 

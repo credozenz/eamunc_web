@@ -127,7 +127,13 @@
                                              <span class="text text-secondary">Participating School <br>Student</span>
                                             @endif
                                         </td>
-                                        <td class="text-bold-500">{{ $value->school_name }}</td>
+                                        <td class="text-bold-500">
+                                            @if($value->school_id=='0')
+                                            {{ 'ISG' }}
+                                            @else
+                                            {{ $value->school_name }}
+                                            @endif
+                                        </td>
                                         <td class="text-bold-500">
                                         @if($value->role=='2')
                                              <span class="text text-primary">Delegate</span>

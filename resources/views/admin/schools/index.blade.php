@@ -77,28 +77,11 @@
                                     <tbody>
 
                                    
-                                        <tr style="background-color: #d5d1ca;">
-                                            <td class="text-bold-500">1</td>
-                                            <td class="text-bold-500">{{ $myschool->name }}</td>
-                                            <td>
-
-                                            <div class="w-30 h-30 relative image-fit  mb-2 mr-5 ">
-                                            <img alt="{{ $myschool->name }}" class="rounded-full" src="{{ asset('uploads/'.$myschool->logo) }}" width="200" height="80">
-                                             </div>
-        
-                                            </td>
-                                            <td class="text-bold-500">{{ $myschool->mobile }}</td>
-                                            <td class="text-bold-500">{{ $myschool->advisor_name }}</td>
-                                            
-                                            <td>
-                                            <a href="{{ url('admin/school_show',$myschool->id) }}" class="btn btn-sm btn-primary w-24 mr-1 mb-2">View</a>
-                                            </td>
-                                        </tr>
-
+                                      
                                 @if (!empty($data) && $data->count())
                                     @foreach ($data as $key => $value)
                                         <tr>
-                                            <td class="text-bold-500">{{ $key+2 }}</td>
+                                            <td class="text-bold-500">{{ $key+1 }}</td>
                                             <td class="text-bold-500">{{ $value->name }}</td>
                                             <td>
 

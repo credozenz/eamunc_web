@@ -82,6 +82,13 @@ $(document).ready(function() {
     $(document).ready(function() {
         var i=1; 
         $('#add-student').click(function() {
+
+
+
+
+
+
+
             i++;
         // var array_no =i-1;
 
@@ -122,10 +129,10 @@ $(document).ready(function() {
                             '<label for="form-label">WhatsApp Number with country code*</label>'+
                                 '<div class="row">'+
                                    '<div class="col-md-3">'+
-                                         '<input type="text" name="phone_code[]" value="" maxlength="15" class="form-control phone_code"  placeholder="Code" aria-describedby="textHelp" required>'+
+                                         '<input type="text" name="phone_code[]" value="" maxlength="15" class="form-control phone_code"  placeholder="Code" aria-describedby="textHelp">'+
                                     '</div>'+
                                     '<div class="col-md-9">'+
-                                        '<input type="phone[]" name="whatsapp_no[]" value="" maxlength="15" class="form-control user_phone"  placeholder="WhatsApp Number" aria-describedby="textHelp" required>'+
+                                        '<input type="phone[]" name="whatsapp_no[]" value="" maxlength="15" class="form-control user_phone"  placeholder="WhatsApp Number" aria-describedby="textHelp">'+
                                     '</div>'+
                                 '</div>'+
                             '<div class="text-danger mt-2"></div>'+
@@ -338,3 +345,52 @@ $(document).ready(function() {
 
 
 });
+
+
+
+
+
+
+
+
+
+// $.ajaxSetup({
+//     headers: {
+//     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//             }
+//         });
+
+// let _token1   = $('meta[name="csrf-token"]').attr('content');
+
+// $.ajax({
+//     type: "POST",
+//     url: './committees_and_country',
+//     dataType:"json",
+//     data: {
+//     },
+//     _token: _token1,
+//     success: function(responce){
+
+//         if(responce.status==true){
+            
+//         }
+
+
+
+//     }
+
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+

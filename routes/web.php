@@ -55,7 +55,7 @@ Route::post('/school-registration-store', [RegistrationController::class,'school
 Route::get('/isg-registration', [RegistrationController::class,'isg_registration'])->name('isg-registration');
 Route::post('/isg-registration-store', [RegistrationController::class,'isg_store'])->name('isg-registration-store');
 Route::get('/virtual-code', [VirtualCodeController::class,'index'])->name('virtual-code');
-
+Route::post('/committees_and_country', [RegistrationController::class,'committees_and_country'])->name('committees_and_country');
 Route::post('/validate_user_email', [RegistrationController::class,'validate_user_email'])->name('validate_user_email');
 Route::post('/validate_user_phone', [RegistrationController::class,'validate_user_phone'])->name('validate_user_phone');
 

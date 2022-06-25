@@ -93,9 +93,9 @@
                                 <h1>Registration</h1>
                                 Students Registration 
                                 @if(isset($reg_status->name) && ($reg_status->name=='open')) 
-                                 <span class="label" style="color: green;"><b>Opend</b></span>
+                                 <span class="label" style="color: green;"><b>Open</b></span>
                                  @else
-                                <span class="label" style="color: red;"><b>Closed</b></span>
+                                <span class="label" style="color: red;"><b>Close</b></span>
                                 @endif
                                 <br><br>
                   
@@ -105,11 +105,11 @@
                             <input type="checkbox" checked name="reg_status" class="checkbox toggle-checkbox"/>
                             </form>
                             @if(isset($reg_status->name) && ($reg_status->name=='open')) 
-                            <label class="reg-closed"  onclick="if(confirm('Are you sure!, You Want Open Students registration ?')){ $(this).parent().find('#inaciveuser').submit() }">
-                                        <p style="padding: 11px;text-color: white;color: white;"> Closed</p>
+                            <label class="reg-closed"  onclick="if(confirm('Are you sure!, You Want Close Students registration ?')){ $(this).parent().find('#inaciveuser').submit() }">
+                                        <p style="padding: 11px;text-color: white;color: white;"> Close</p>
                             </label>         
                             @else
-                            <label  class="reg-open"  onclick="if(confirm('Are you sure!, You Want Close Students registration ?')){ $(this).parent().find('#inaciveuser').submit() }">
+                            <label  class="reg-open"  onclick="if(confirm('Are you sure!, You Want Open Students registration ?')){ $(this).parent().find('#inaciveuser').submit() }">
                                         <p style="padding: 11px;text-color: white;color: white;"> Open</p>
                             </label>
                             @endif
