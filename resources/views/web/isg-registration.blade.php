@@ -49,7 +49,7 @@
                                         <select name="committee_choice" class="form-control @error('committee_choice') border-danger @enderror" {{ $errors->has('committee_choice') ? 'autofocus' : '' }} placeholder="Committee of Choice" required>
                                             <option value=""> Select Committee of Choice </option>
                                             @foreach ($committees as $key => $value)
-                                            <option value="{{ $value->id ?? '' }}" {{ (old('committee_choice') == $value->id ? "selected":"") }}> {{ $value->name ?? '' }}</option>
+                                            <option value="{{ $value->id ?? '' }}" {{ (old('committee_choice') == $value->id ? "selected":"") }}> {{ $value->title ?? '' }}</option>
                                             @endforeach
                                         </select>
                                         @error('committee_choice')<div class="text-danger mt-2">{{ $message }}</div>@enderror
