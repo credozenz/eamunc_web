@@ -113,27 +113,55 @@
                                         @error('whatsapp_no')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
-                                <!-- <div class="col-md-4">
+
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="form-label">WhatsApp Number with country code*</label>
-                                        <input type="text" name="whatsapp_no[]" value="{{ old('whatsapp_no.0') }}" maxlength="15" class="form-control user_phone @error('whatsapp_no') border-danger @enderror" {{ $errors->has('whatsapp_no') ? 'autofocus' : '' }} placeholder="WhatsApp Number with country code" aria-describedby="textHelp" required>
-                                        @error('whatsapp_no')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                        <label for="">Committee of Choice*</label>
+                                        <select name="committee_choice[]" class="form-control @error('committee_choice') border-danger @enderror" {{ $errors->has('committee_choice') ? 'autofocus' : '' }} placeholder="Committee of Choice" required>
+                                            <option value=""> Select Committee of Choice </option>
+                                            @foreach ($committees as $key => $value)
+                                            <option value="{{ $value->id ?? '' }}" {{ (old('committee_choice') == $value->id ? "selected":"") }}> {{ $value->name ?? '' }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('committee_choice')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
-                                </div> -->
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="form-label">Country of Choice*</label>
+                                        <select name="country_choice[]"  class="form-control @error('country_choice') border-danger @enderror" {{ $errors->has('country_choice') ? 'autofocus' : '' }} placeholder="Country of Choice" required>
+                                            <option value=""> Select Country of Choice </option>
+                                            @foreach ($countries as $key => $value)
+                                            <option value="{{ $value->id }}" {{ (old('country_choice') == $value->id ? "selected":"") }}> {{ $value->name ?? '' }}</option>
+                                            @endforeach
+                                        </select>
+                                       
+                                        @error('country_choice')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                    </div>
+                                </div>
+                             
                            
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="form-label">MUN Experience (if any) *</label>
-                                        <input type="phone" name="mun_experience[]" value="{{ old('mun_experience.0') }}" maxlength="80" class="form-control @error('mun_experience') border-danger @enderror" {{ $errors->has('mun_experience') ? 'autofocus' : '' }} placeholder="MUN Experience (if any)" aria-describedby="textHelp" required>
+                                        <label for="form-label">MUN Experience (if any)</label>
+                                        <input type="phone" name="mun_experience[]" value="{{ old('mun_experience.0') }}" maxlength="80" class="form-control @error('mun_experience') border-danger @enderror" {{ $errors->has('mun_experience') ? 'autofocus' : '' }} placeholder="MUN Experience (if any)" aria-describedby="textHelp">
                                         @error('mun_experience')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="form-label">Bureau Member Experience*</label>
-                                        <input type="text" name="bureaumem_experience[]" value="{{ old('bureaumem_experience.0') }}" maxlength="80" class="form-control @error('bureaumem_experience') border-danger @enderror" {{ $errors->has('bureaumem_experience') ? 'autofocus' : '' }} placeholder="Bureau Member Experience" aria-describedby="textHelp" required>
+                                        <label for="form-label">Bureau Member Experience</label>
+                                        <input type="text" name="bureaumem_experience[]" value="{{ old('bureaumem_experience.0') }}" maxlength="80" class="form-control @error('bureaumem_experience') border-danger @enderror" {{ $errors->has('bureaumem_experience') ? 'autofocus' : '' }} placeholder="Bureau Member Experience" aria-describedby="textHelp">
                                         @error('bureaumem_experience')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="form-label">Awards Received</label>
+                                        <input type="text" name="awards_received[]" value="{{ old('awards_received.0') }}" maxlength="80" class="form-control @error('awards_received') border-danger @enderror" {{ $errors->has('awards_received') ? 'autofocus' : '' }} placeholder="Awards Received" aria-describedby="textHelp">
+                                        @error('awards_received')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
 

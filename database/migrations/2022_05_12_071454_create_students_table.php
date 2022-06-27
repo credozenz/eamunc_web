@@ -25,6 +25,7 @@ class CreateStudentsTable extends Migration
             $table->string('whatsapp_no')->index()->nullable();
             $table->string('mun_experience')->nullable();
             $table->string('bureaumem_experience')->nullable();
+            $table->string('awards_received')->nullable();
             $table->string('committee_choice')->nullable();
             $table->string('country_choice')->nullable();
             $table->string('position')->nullable();

@@ -137,10 +137,10 @@ class RegistrationController extends Controller
             // 'phone_code'    => 'required|max:255',
             // "whatsapp_no"    => "required|array",
             // "whatsapp_no.*"  => "required",
-            "mun_experience"    => "required|array",
-            "mun_experience.*"  => "required",
-            "bureaumem_experience"    => "required|array",
-            "bureaumem_experience.*"  => "required",
+            // "mun_experience"    => "required|array",
+            // "mun_experience.*"  => "required",
+            // "bureaumem_experience"    => "required|array",
+            // "bureaumem_experience.*"  => "required",
             'school_logo' => ['mimes:jpeg,png,jpg', 'max:2055'],
         ],[
             'school_name.required' => 'The School Name field is required',
@@ -155,7 +155,7 @@ class RegistrationController extends Controller
             'class.required' => 'The Class field is required',
             // 'phone_code.required' => 'The Phone code field is required',
             // 'whatsapp_no.required' => 'The WhatsApp No field is required',
-            'mun_experience.required' => 'The MUN Experience field is required',
+            // 'mun_experience.required' => 'The MUN Experience field is required',
             'school_logo.max' => 'Logo  must be smaller than 2 MB',
             'school_logo.mimes' => 'Input accept only jpeg,png,jpg',
         ]);
@@ -201,7 +201,9 @@ class RegistrationController extends Controller
         $whatsapp_no = $request->input('whatsapp_no');
         $mun_experience = $request->input('mun_experience');
         $bureaumem_experience = $request->input('bureaumem_experience');
-
+        $committee_choice = $request->input('committee_choice');
+        $country_choice = $request->input('country_choice');
+        $awards_received = $request->input('awards_received');
         
 
         for($count = 0; $count < count($name); $count++)
@@ -229,6 +231,9 @@ class RegistrationController extends Controller
              $student->whatsapp_no = $whatsapp_no[$count];
              $student->mun_experience = $mun_experience[$count];
              $student->bureaumem_experience = $bureaumem_experience[$count];
+             $student->committee_choice = $committee_choice[$count];
+             $student->country_choice = $country_choice[$count];
+             $student->awards_received = $awards_received[$count];
              $student->save();
             }
 

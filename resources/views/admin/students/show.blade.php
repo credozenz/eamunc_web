@@ -153,6 +153,13 @@
 
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
+                                            <label for="text-danger">Awards Received</label>
+                                            <input type="text" name="awards_received" value="{{ $data->awards_received }}" class="form-control" disabled placeholder="Awards Received">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
                                             <label for="">Committee of Choice</label>
                                             <select name="committee_choice" disabled class="form-control @error('committee_choice') border-danger @enderror" {{ $errors->has('committee_choice') ? 'autofocus' : '' }} placeholder="Committee of Choice" required>
                                                 <option value=""> Select Committee of Choice </option>

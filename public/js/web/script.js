@@ -80,13 +80,39 @@ $(document).ready(function() {
 
 
     $(document).ready(function() {
+
+
         var i=1; 
+
+        var committees = ''; 
+        var countries  = '';   
+
+       
         $('#add-student').click(function() {
 
 
-
-
-
+            $.ajaxSetup({
+                headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+            
+            let _token1   = $('meta[name="csrf-token"]').attr('content');
+            
+            $.ajax({
+                type: "POST",
+                url: './committees_and_country',
+                dataType:"json",
+                data: {
+                },
+                _token: _token1,
+                success: function(responce){
+            
+                    if(responce.status==true){
+                      
+                      var committees = responce.committees.data; 
+                      var countries = responce.countries;   
+                      
 
 
             i++;
@@ -137,26 +163,85 @@ $(document).ready(function() {
                                 '</div>'+
                             '<div class="text-danger mt-2"></div>'+
                         '</div>'+
-                    '</div>'+     
+                    '</div>'+    
+
+
                     '<div class="col-md-4">'+
                         '<div class="form-group">'+
-                            '<label for="form-label">MUN Experience (if any) *</label>'+
-                            '<input type="text" name="mun_experience[]" value="" maxlength="80" class="form-control"  placeholder="MUN Experience (if any)" aria-describedby="textHelp" required>'+
+                            '<label for="">Committee of Choice*</label>'+
+                                '<select name="committee_choice[]" class="form-control placeholder="Committee of Choice" required>'+
+                                     '<option value=""> Select Committee of Choice </option>';
+                                            if(committees.length){
+                                                for (var j = 0; j < committees.length; j++){
+                                                    html+='<option value="'+committees[j].id+'">'+committees[j].title+'</option>';
+                                                }
+                                            }else{
+                                                    html+='<option value="">empty committees !</option>';
+                                            }
+                        html+='</select>'+
+                        '</div>'+
+                    '</div>'+
+
+                    '<div class="col-md-4">'+
+                        '<div class="form-group">'+
+                            '<label for="form-label">Country of Choice*</label>'+
+                                '<select name="country_choice[]"  class="form-control" placeholder="Country of Choice" required>'+
+                                     '<option value=""> Select Country of Choice </option>';
+                                        if(countries.length){
+                                            for (var j = 0; j < countries.length; j++){
+                                                html+='<option value="'+countries[j].id+'">'+countries[j].name+'</option>';
+                                            }
+                                        }else{
+                                                html+='<option value="">empty countries !</option>';
+                                        }
+                           html+='</select>'+
+                        '</div>'+
+                    '</div>'+
+                    
+                    
+                    '<div class="col-md-4">'+
+                        '<div class="form-group">'+
+                            '<label for="form-label">MUN Experience (if any)</label>'+
+                            '<input type="text" name="mun_experience[]" value="" maxlength="80" class="form-control"  placeholder="MUN Experience (if any)" aria-describedby="textHelp">'+
                             '<div class="text-danger mt-2"></div>'+
                         '</div>'+
                    '</div>'+
                     '<div class="col-md-4">'+
                         '<div class="form-group">'+
-                            '<label for="form-label">Bureau Member Experience*</label>'+
-                            '<input type="text" name="bureaumem_experience[]" value="" maxlength="80" class="form-control" placeholder="Bureau Member Experience" aria-describedby="textHelp" required>'+
+                            '<label for="form-label">Bureau Member Experience</label>'+
+                            '<input type="text" name="bureaumem_experience[]" value="" maxlength="80" class="form-control" placeholder="Bureau Member Experience" aria-describedby="textHelp">'+
                             '<div class="text-danger mt-2"></div>'+
                         '</div>'+
+                    '</div>'+
+                    '<div class="col-md-4">'+
+                    '<div class="form-group">'+
+                        '<label for="form-label">Awards Received</label>'+
+                        '<input type="text" name="awards_received[]" value="" maxlength="80" class="form-control" placeholder="Awards Received" aria-describedby="textHelp">'+
+                         '</div>'+
                     '</div>'+
                 '</div>'+
               '</div>';
 
 
-            $('#dynamic_field').append(html)
+            $('#dynamic_field').append(html);
+
+
+
+
+        }
+            
+            
+    }
+
+});
+
+
+
+
+
+
+
+
     
         });
 
@@ -354,32 +439,7 @@ $(document).ready(function() {
 
 
 
-// $.ajaxSetup({
-//     headers: {
-//     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//             }
-//         });
 
-// let _token1   = $('meta[name="csrf-token"]').attr('content');
-
-// $.ajax({
-//     type: "POST",
-//     url: './committees_and_country',
-//     dataType:"json",
-//     data: {
-//     },
-//     _token: _token1,
-//     success: function(responce){
-
-//         if(responce.status==true){
-            
-//         }
-
-
-
-//     }
-
-// });
 
 
 

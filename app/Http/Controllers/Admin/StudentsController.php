@@ -162,9 +162,10 @@ class StudentsController extends Controller
             $student->class = $request->class;
             $student->committee_choice = $request->committee_choice;
             $student->country_choice   = $request->country_choice;
-            $student->phone_code    = $phone_code;
-            $student->whatsapp_no    = $request->whatsapp_no;
-            $student->mun_experience = $request->mun_experience;
+            $student->phone_code      = $phone_code;
+            $student->whatsapp_no     = $request->whatsapp_no;
+            $student->mun_experience  = $request->mun_experience;
+            $student->awards_received = $request->awards_received;
             $student->user_id  = $user->id;
             $student->position = $position;
             if($request->status != null){

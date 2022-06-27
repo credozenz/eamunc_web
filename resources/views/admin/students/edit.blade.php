@@ -100,6 +100,15 @@
                                             @error('bureaumem_experience')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
+
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="text-danger">Awards Received</label>
+                                            
+                                            <input type="text" name="awards_received" value="{{ $data->awards_received }}" class="form-control @error('awards_received') border-danger @enderror" {{ $errors->has('awards_received') ? 'autofocus' : '' }} placeholder="" required>
+                                            @error('awards_received')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                        </div>
+                                    </div>
                                   
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
