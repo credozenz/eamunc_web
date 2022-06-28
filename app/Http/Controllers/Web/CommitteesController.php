@@ -38,7 +38,7 @@ class CommitteesController extends Controller
 
         $members = user::where('users.deleted_at', null)
         ->join('students', 'users.id', '=', 'students.user_id')
-        ->join('schools', 'students.school_id', '=', 'schools.id')
+        ->leftjoin('schools', 'students.school_id', '=', 'schools.id')
         ->select('students.*', 'schools.name as school_name', 'users.role')
         ->where('users.role', '=' , 3)
         ->whereIn('students.status', [3])
