@@ -16,7 +16,9 @@
       <div class="row justify-content-center">
           <div class="col-md-8">
               <div class="card">
-                  <div class="card-header">Set Password</div>
+                  <div class="card-header" style="text-align: center;">
+                   <h2>Set Password</h2>
+                 </div>
                   <div class="card-body">
                   @if (Session::has('message'))
                          <div class="alert alert-success" role="alert">
@@ -30,7 +32,7 @@
                           <div class="form-group row">
                               <label for="email_address" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
                               <div class="col-md-6">
-                                  <input type="text" id="email_address" class="form-control" name="email" required autofocus>
+                                  <input type="text" id="email_address" readonly class="form-control" value="{{ $email ?? ''}}" name="email" required autofocus>
                                   @if ($errors->has('email'))
                                       <span class="text-danger">{{ $errors->first('email') }}</span>
                                   @endif
