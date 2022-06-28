@@ -82,7 +82,11 @@
                                              <span class="text text-secondary">Participating School <br>Student</span>
                                             @endif
                                         </td>
-                                        <td class="text-bold-500">{{ $value->school_name }}</td>
+                                        <td class="text-bold-500"> @if($value->school_id=='0')
+                                            {{ 'ISG' }}
+                                            @else
+                                            {{ $value->school_name }}
+                                            @endif</td>
                                         <td>
                                         <a href="{{ url('admin/student_show',$value->id) }}" class="btn btn-sm btn-primary w-24 mr-1 mb-2">View</a>
                                         

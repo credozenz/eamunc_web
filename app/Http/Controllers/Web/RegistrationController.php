@@ -51,8 +51,8 @@ class RegistrationController extends Controller
             'country_choice' => 'required|max:255',
             // 'phone_code'    => 'required|max:255',
             // 'whatsapp_no'    => 'required|max:255',
-            'mun_experience' => 'required|max:255',
-            "bureaumem_experience"    => "required|max:255",
+            // 'mun_experience' => 'required|max:255',
+            // "bureaumem_experience"    => "required|max:255",
         ],[
             'name.required' => 'The Name field is required',
             'email.required' => 'The Email field is required',
@@ -63,8 +63,8 @@ class RegistrationController extends Controller
             'country_choice.required' => 'The Country choice field is required',
             // 'whatsapp_no.required' => 'The WhatsApp No field is required',
             // 'phone_code.required' => 'The Phone code field is required',
-            'mun_experience.required' => 'The MUN Experience field is required',
-            'bureaumem_experience.required' => 'The Bureaumem Experience field is required',
+            // 'mun_experience.required' => 'The MUN Experience field is required',
+            // 'bureaumem_experience.required' => 'The Bureaumem Experience field is required',
         ]);
 
 

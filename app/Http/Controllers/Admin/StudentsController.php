@@ -118,7 +118,7 @@ class StudentsController extends Controller
             'country_choice' => 'required|max:255',
             // 'phone_code'    => 'required|max:255',
             // 'whatsapp_no'    => 'required|max:255',
-            'mun_experience' => 'required|max:255',
+            //'mun_experience' => 'required|max:255',
         ],[
             'name.required' => 'The Name field is required',
             'email.required' => 'The Email field is required',
@@ -129,24 +129,24 @@ class StudentsController extends Controller
             'country_choice.required' => 'The Country choice field is required',
             // 'phone_code.required' => 'The Phone code field is required',
             // 'whatsapp_no.required' => 'The WhatsApp No field is required',
-            'mun_experience.required' => 'The MUN Experience field is required',
+            //'mun_experience.required' => 'The MUN Experience field is required',
         ]);
 
 
         $phone_code = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $request->phone_code);
         $position = NULL;
 
-        if($request->role == '3'){
+        // if($request->role == '3'){
 
-            $validatedData = $request->validate([
-                'position' => 'required|max:255',
-            ],[
-                'position.required' => 'The position field is required',
-            ]);
+        //     $validatedData = $request->validate([
+        //         'position' => 'required|max:255',
+        //     ],[
+        //         'position.required' => 'The position field is required',
+        //     ]);
 
-            $position = $request->position;
+        //     $position = $request->position;
 
-        }
+        // }
         
             $user = User::where('id', $student->user_id)->first();
             $user->name  = $request->name;
@@ -174,6 +174,7 @@ class StudentsController extends Controller
 
                     $check_student = students::where('committee_choice', $request->committee_choice)
                     ->where('country_choice', $request->country_choice)
+                    ->where('id', '!=' , $id)
                     ->first(); 
 
                     if(!empty($check_student)){
