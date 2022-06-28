@@ -122,7 +122,7 @@
                                         <td class="text-bold-500">{{ $value->class }}</td>
                                         <td class="text-bold-500">
                                             @if($value->type=='1')
-                                             <span class="text text-primary">ISG Student</span>
+                                             <span class="text text-secondary">ISG Student</span>
                                               @elseif($value->type=='2')
                                              <span class="text text-secondary">Participating School <br>Student</span>
                                             @endif
