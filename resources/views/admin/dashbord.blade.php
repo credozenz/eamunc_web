@@ -2,11 +2,11 @@
 @section('content')
             
 
-            <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
-                    <i class="bi bi-justify fs-3"></i>
-                </a>
-            </header>
+<header class="mb-3">
+    <a href="#" class="burger-btn d-block d-xl-none">
+        <i class="bi bi-justify fs-3"></i>
+    </a>
+</header>
             
 <div class="page-heading">
     <h3>Dashboard</h3>
@@ -148,7 +148,7 @@
                                         <td class="text-bold-500">{{ $value->email }}</td>
                                         <td class="text-bold-500">{{ $value->phone_code }}-{{ $value->whatsapp_no }}</td>
                                         <td class="text-bold-500">{{ $value->class }}</td>
-                                        <td class="text-bold-500">{{ $value->country_choice }}</td>
+                                        <td class="text-bold-500">{{ $value->country_name ?? '' }}</td>
 
                                         <td>
                                         <a href="{{ url('admin/student_show',$value->id) }}" class="btn btn-sm btn-primary w-24 mr-1 mb-2">View</a>
