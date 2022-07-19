@@ -205,47 +205,60 @@ class RegistrationController extends Controller
         $country_choice = $request->input('country_choice');
         $awards_received = $request->input('awards_received');
         
-
-        for($count = 0; $count < count($name); $count++)
-        {
-            $user = User::where('email', $email[$count]); 
-      
-          if(empty($user->count())){
-
-            $user = new User;
-            $user->name  = $name[$count];
-            $user->email = $email[$count];
-            $user->phone = $whatsapp_no[$count];
-            $user->role = 2;
-            $user->type = 2;
-            $user->save();
+        $array_key = array_keys($name);
         
-             $student = new Students;
-             $student->type  = 2;
-             $student->name  = $name[$count];
-             $student->email  = $email[$count];
-             $student->user_id    = $user->id;
-             $student->school_id  = $school->id;
-             $student->class  = $class[$count];
-             $student->phone_code     = $phone_code[$count];
-             $student->whatsapp_no = $whatsapp_no[$count];
-             $student->mun_experience = $mun_experience[$count];
-             $student->bureaumem_experience = $bureaumem_experience[$count];
-             $student->committee_choice = $committee_choice[$count];
-             $student->country_choice = $country_choice[$count];
-             $student->awards_received = $awards_received[$count];
-             $student->save();
-            }
+        if(!empty($array_key)){
 
-          }
-          
-            if($student->id){
+            foreach ($array_key as $key => $count) {
+
+           
+                
+                $user = User::where('email', $email[$count]); 
+               
+                if(empty($user->count())){
+                    
+                    $user = new User;
+                    $user->name  = $name[$count];
+                    $user->email = $email[$count];
+                    $user->phone = !empty($whatsapp_no[$count])? $whatsapp_no[$count]:NULL;
+                    $user->role = 2;
+                    $user->type = 2;
+                    $user->save();
+                
+                    $student = new Students;
+                    $student->type  = 2;
+                    $student->name  = $name[$count];
+                    $student->email  = $email[$count];
+                    $student->user_id    = $user->id;
+                    $student->school_id  = $school->id;
+                    $student->class  = $class[$count];
+                    $student->phone_code  = !empty($phone_code[$count])? $phone_code[$count]:NULL;
+                    $student->whatsapp_no = !empty($whatsapp_no[$count])? $whatsapp_no[$count]:NULL;
+                    $student->mun_experience = !empty($mun_experience[$count])? $mun_experience[$count]:NULL;
+                    $student->bureaumem_experience = !empty($bureaumem_experience[$count])? $bureaumem_experience[$count]:NULL;
+                    $student->committee_choice = $committee_choice[$count];
+                    $student->country_choice = $country_choice[$count];
+                    $student->awards_received = !empty($awards_received[$count])? $awards_received[$count]:NULL;
+                    $student->save();
+
+                }
+
+            }
+         
+            if(isset($student->id)){
                 Session::flash('success', 'Registration successfully Completed!');
                 return redirect('school-registration');
             }else{
                 Session::flash('error', 'Something went wrong!!');
                 return  redirect()->back();
             }
+
+        }else{
+            Session::flash('error', 'Something went wrong!!');
+            return  redirect()->back();
+        }
+
+
         }else{
             Session::flash('error', 'Something went wrong!!');
             return  redirect()->back();

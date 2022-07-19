@@ -43,7 +43,7 @@
                   
               <div class="file-upload text-center">   
                 <div class="image-upload-wrap">
-                  <input type="file" class="file-upload-input" name="form" id="paper_submission" onchange="readURL(this);" accept="pdf*/doc*">
+                  <input type="file" class="file-upload-input" name="form" accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" id="paper_submission" onchange="readURL(this);" accept="pdf*/doc*">
                 
                   <div class="drag-text">
                     <i class="fa fa-cloud-upload mb-2" style="font-size: 18px;" aria-hidden="true"></i>

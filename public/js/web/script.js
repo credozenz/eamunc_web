@@ -1,27 +1,26 @@
 $(document).ready(function() {
 
-
-    $('.owl-carousel').owlCarousel({
-        loop:true,
-        margin:15,
-        dots: true,
-        responsiveClass:true,
-        responsive:{
-            0:{
-                items:1,
-                nav:true
-            },
-            600:{
-                items:3,
-                nav:false
-            },
-            1000:{
-                items:3,
-                nav:true,
-                loop:false
-            }
-        }
-    })
+            $('.owl-carousel').owlCarousel({
+                loop:true,
+                margin:15,
+                dots: true,
+                responsiveClass:true,
+                responsive:{
+                    0:{
+                        items:1,
+                        nav:true
+                    },
+                    600:{
+                        items:3,
+                        nav:false
+                    },
+                    1000:{
+                        items:3,
+                        nav:true,
+                        loop:false
+                    }
+                }
+            })
      
    
         $('#side_opener').click(function() {
@@ -115,135 +114,131 @@ $(document).ready(function() {
                       
 
 
-            i++;
-        // var array_no =i-1;
+                        i++;
+                    // var array_no =i-1;
 
-        var html='<div class="form-section mb-5 student'+i+'">'+
-                    '<h4 class="color-darkblue mb-5">Student '+i+'</h4>'+
-                  '<div class="col-sm-12 col-12 d-flex justify-content-center justify-content-sm-end">'+
-                    '<div class="form-group">'+
-                       '<button type="button" class="btn btn-danger me-1 mb-1 mt-1 btn_remove" name="remove" id="'+ i +'">X</button>'+
-                    '</div>'+
-                  '</div>'+
+                    var html='<div class="form-section mb-5 student'+i+'">'+
+                                '<h4 class="color-darkblue mb-5">Student '+i+'</h4>'+
+                            '<div class="col-sm-12 col-12 d-flex justify-content-center justify-content-sm-end">'+
+                                '<div class="form-group">'+
+                                '<button type="button" class="btn btn-danger me-1 mb-1 mt-1 btn_remove" name="remove" id="'+ i +'">X</button>'+
+                                '</div>'+
+                            '</div>'+
 
-                '<div class="row">'+
-                   '<div class="col-md-4">'+
-                        '<div class="form-group">'+
-                            '<label for="form-label">Delegate Name*</label>'+
-                            '<input type="text" name="name[]" value="" maxlength="80" class="form-control" placeholder="Delegate Name" aria-describedby="textHelp" required>'+
-                            '<div class="text-danger mt-2"></div>'+
-                        '</div>'+
-                    '</div>'+
-                    '<div class="col-md-4">'+
-                        '<div class="form-group">'+
-                            '<label for="form-label">Email*</label>'+
-                            '<input type="email" name="email[]" value="" maxlength="80" class="form-control user_email" placeholder="Email" aria-describedby="textHelp" required>'+
-                            '<div class="text-danger mt-2"></div>'+
-                        '</div>'+
-                    '</div>'+     
-                    '<div class="col-md-4">'+
-                        '<div class="form-group">'+
-                            '<label for="form-label">Class & Section*</label>'+
-                            '<input type="text" name="class[]" value="" maxlength="80" class="form-control" placeholder="Class & Section" aria-describedby="textHelp" required>'+
-                            '<div class="text-danger mt-2"></div>'+
-                        '</div>'+
-                    '</div>'+
-                '</div>'+
-                '<div class="row">'+
-                    '<div class="col-md-4">'+
-                        '<div class="form-group">'+
-                            '<label for="form-label">WhatsApp Number with country code*</label>'+
-                                '<div class="row">'+
-                                   '<div class="col-md-3">'+
-                                         '<input type="text" name="phone_code[]" value="" maxlength="15" class="form-control phone_code"  placeholder="Code" aria-describedby="textHelp">'+
-                                    '</div>'+
-                                    '<div class="col-md-9">'+
-                                        '<input type="phone[]" name="whatsapp_no[]" value="" maxlength="15" class="form-control user_phone"  placeholder="WhatsApp Number" aria-describedby="textHelp">'+
+                            '<div class="row">'+
+                            '<div class="col-md-4">'+
+                                    '<div class="form-group">'+
+                                        '<label for="form-label">Delegate Name*</label>'+
+                                        '<input type="text" name="name['+i+']" value="" maxlength="80" class="form-control" placeholder="Delegate Name" aria-describedby="textHelp" required>'+
+                                        '<div class="text-danger mt-2"></div>'+
                                     '</div>'+
                                 '</div>'+
-                            '<div class="text-danger mt-2"></div>'+
-                        '</div>'+
-                    '</div>'+    
+                                '<div class="col-md-4">'+
+                                    '<div class="form-group">'+
+                                        '<label for="form-label">Email*</label>'+
+                                        '<input type="email" name="email['+i+']" value="" maxlength="80" class="form-control user_email" placeholder="Email" aria-describedby="textHelp" required>'+
+                                        '<div class="text-danger mt-2"></div>'+
+                                    '</div>'+
+                                '</div>'+     
+                                '<div class="col-md-4">'+
+                                    '<div class="form-group">'+
+                                        '<label for="form-label">Class & Section*</label>'+
+                                        '<input type="text" name="class['+i+']" value="" maxlength="80" class="form-control" placeholder="Class & Section" aria-describedby="textHelp" required>'+
+                                        '<div class="text-danger mt-2"></div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                            '<div class="row">'+
+                                '<div class="col-md-4">'+
+                                    '<div class="form-group">'+
+                                        '<label for="form-label">WhatsApp Number with country code*</label>'+
+                                            '<div class="row">'+
+                                            '<div class="col-md-3">'+
+                                                    '<input type="text" name="phone_code[]" value="" maxlength="15" class="form-control phone_code"  placeholder="Code" aria-describedby="textHelp">'+
+                                                '</div>'+
+                                                '<div class="col-md-9">'+
+                                                    '<input type="phone['+i+']" name="whatsapp_no[]" value="" maxlength="15" class="form-control user_phone"  placeholder="WhatsApp Number" aria-describedby="textHelp">'+
+                                                '</div>'+
+                                            '</div>'+
+                                        '<div class="text-danger mt-2"></div>'+
+                                    '</div>'+
+                                '</div>'+    
 
 
-                    '<div class="col-md-4">'+
-                        '<div class="form-group">'+
-                            '<label for="">Committee of Choice*</label>'+
-                                '<select name="committee_choice[]" class="form-control placeholder="Committee of Choice" required>'+
-                                     '<option value=""> Select Committee of Choice </option>';
-                                            if(committees.length){
-                                                for (var j = 0; j < committees.length; j++){
-                                                    html+='<option value="'+committees[j].id+'">'+committees[j].title+'</option>';
-                                                }
-                                            }else{
-                                                    html+='<option value="">empty committees !</option>';
-                                            }
-                        html+='</select>'+
-                        '</div>'+
-                    '</div>'+
+                                '<div class="col-md-4">'+
+                                    '<div class="form-group">'+
+                                        '<label for="">Committee of Choice*</label>'+
+                                            '<select name="committee_choice['+i+']" class="form-control placeholder="Committee of Choice" required>'+
+                                                '<option value=""> Select Committee of Choice </option>';
+                                                        if(committees.length){
+                                                            for (var j = 0; j < committees.length; j++){
+                                                                html+='<option value="'+committees[j].id+'">'+committees[j].title+'</option>';
+                                                            }
+                                                        }else{
+                                                                html+='<option value="">empty committees !</option>';
+                                                        }
+                                    html+='</select>'+
+                                    '</div>'+
+                                '</div>'+
 
-                    '<div class="col-md-4">'+
-                        '<div class="form-group">'+
-                            '<label for="form-label">Country of Choice*</label>'+
-                                '<select name="country_choice[]"  class="form-control" placeholder="Country of Choice" required>'+
-                                     '<option value=""> Select Country of Choice </option>';
-                                        if(countries.length){
-                                            for (var j = 0; j < countries.length; j++){
-                                                html+='<option value="'+countries[j].id+'">'+countries[j].name+'</option>';
-                                            }
-                                        }else{
-                                                html+='<option value="">empty countries !</option>';
-                                        }
-                           html+='</select>'+
-                        '</div>'+
-                    '</div>'+
-                    
-                    
-                    '<div class="col-md-4">'+
-                        '<div class="form-group">'+
-                            '<label for="form-label">MUN Experience (if any)</label>'+
-                            '<input type="text" name="mun_experience[]" value="" maxlength="80" class="form-control"  placeholder="MUN Experience (if any)" aria-describedby="textHelp">'+
-                            '<div class="text-danger mt-2"></div>'+
-                        '</div>'+
-                   '</div>'+
-                    '<div class="col-md-4">'+
-                        '<div class="form-group">'+
-                            '<label for="form-label">Bureau Member Experience</label>'+
-                            '<input type="text" name="bureaumem_experience[]" value="" maxlength="80" class="form-control" placeholder="Bureau Member Experience" aria-describedby="textHelp">'+
-                            '<div class="text-danger mt-2"></div>'+
-                        '</div>'+
-                    '</div>'+
-                    '<div class="col-md-4">'+
-                    '<div class="form-group">'+
-                        '<label for="form-label">Awards Received</label>'+
-                        '<input type="text" name="awards_received[]" value="" maxlength="80" class="form-control" placeholder="Awards Received" aria-describedby="textHelp">'+
-                         '</div>'+
-                    '</div>'+
-                '</div>'+
-              '</div>';
-
-
-            $('#dynamic_field').append(html);
+                                '<div class="col-md-4">'+
+                                    '<div class="form-group">'+
+                                        '<label for="form-label">Country of Choice*</label>'+
+                                            '<select name="country_choice['+i+']"  class="form-control" placeholder="Country of Choice" required>'+
+                                                '<option value=""> Select Country of Choice </option>';
+                                                    if(countries.length){
+                                                        for (var j = 0; j < countries.length; j++){
+                                                            html+='<option value="'+countries[j].id+'">'+countries[j].name+'</option>';
+                                                        }
+                                                    }else{
+                                                            html+='<option value="">empty countries !</option>';
+                                                    }
+                                    html+='</select>'+
+                                    '</div>'+
+                                '</div>'+
+                                
+                                
+                                '<div class="col-md-4">'+
+                                    '<div class="form-group">'+
+                                        '<label for="form-label">MUN Experience (if any)</label>'+
+                                        '<input type="text" name="mun_experience['+i+']" value="" maxlength="80" class="form-control"  placeholder="MUN Experience (if any)" aria-describedby="textHelp">'+
+                                        '<div class="text-danger mt-2"></div>'+
+                                    '</div>'+
+                            '</div>'+
+                                '<div class="col-md-4">'+
+                                    '<div class="form-group">'+
+                                        '<label for="form-label">Bureau Member Experience</label>'+
+                                        '<input type="text" name="bureaumem_experience['+i+']" value="" maxlength="80" class="form-control" placeholder="Bureau Member Experience" aria-describedby="textHelp">'+
+                                        '<div class="text-danger mt-2"></div>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="col-md-4">'+
+                                '<div class="form-group">'+
+                                    '<label for="form-label">Awards Received</label>'+
+                                    '<input type="text" name="awards_received['+i+']" value="" maxlength="80" class="form-control" placeholder="Awards Received" aria-describedby="textHelp">'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>';
 
 
+                        $('#dynamic_field').append(html);
 
 
-        }
+
+
+                       }
             
             
-    }
+                   }
 
+         });
+
+    
 });
 
 
 
-
-
-
-
-
-    
-        });
 
         $(document).on('click', '.btn_remove', function() {
             var button_id = $(this).attr("id");
@@ -422,12 +417,69 @@ $(document).ready(function() {
     
    
     
-    
+    jQuery("#isg-regForm").validate({
+        rules: {
+            'name': {
+                required: true
+            },
+            'email': {
+                required: true
+            },
+            'class': {
+                required: true
+            },
+            'committee_choice': {
+                required: true
+            },
+            'country_choice': {
+                required: true
+            }
+        },
+    });
+
+
+    jQuery("#school-regForm").validate({
+        rules: {
+            'school_name': {
+                required: true
+            },
+            'school_logo': {
+                required: true
+            },
+            'advisor_name': {
+                required: true
+            },
+            'advisor_email': {
+                required: true
+            },
+            'mob_code': {
+                required: true
+            },
+            'name[]': {
+                required: true
+            },
+            'email[]': {
+                required: true
+            },
+            'class[]': {
+                required: true
+            },
+            'committee_choice[]': {
+                required: true
+            },
+            'country_choice[]': {
+                required: true
+            }
+        },
+        
+    });
+
+ 
 
 
 
 
-
+   
 
 });
 

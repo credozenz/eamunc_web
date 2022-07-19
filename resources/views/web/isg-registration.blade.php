@@ -17,7 +17,7 @@
                     <span class="spacer"></span>
                     @if(isset($reg_status->name) && ($reg_status->name=='open')) 
                     <div class="form-container">
-                    <form method="post" action="{{ url('isg-registration-store') }}"  enctype="multipart/form-data">
+                    <form method="post" id="isg-regForm" action="{{ url('isg-registration-store') }}"  enctype="multipart/form-data">
                           @csrf
                             <div class="row">
                                 <div class="col-md-4">

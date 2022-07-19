@@ -40,8 +40,8 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label class="form-label text-danger">New Password</label>
-                                    <input type="text" name="new_password" value="" class="form-control @error('new_password') border-danger @enderror" placeholder="New Password">
-                                    @error('new_password')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                    <input type="password" name="password" value="" class="form-control @error('password') border-danger @enderror" placeholder="New Password">
+                                    @error('password')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
                                 </div>   
@@ -50,8 +50,8 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                     <label class="form-label text-danger">Confirm Password</label>
-                                    <input type="text" name="confirm_password" value="" class="form-control @error('confirm_password') border-danger @enderror" placeholder="Confirm Password">
-                                    @error('confirm_password')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                    <input type="password" name="password_confirm" value="" class="form-control @error('password_confirm') border-danger @enderror" placeholder="Confirm Password">
+                                    @error('password_confirm')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
                                 </div>   

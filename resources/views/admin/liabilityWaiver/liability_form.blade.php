@@ -47,7 +47,7 @@
                                     </div>
                                     @endif
                                     <div class="input-group">
-                                      <input type="file" name="form"  class="form-control  @error('form') border-danger @enderror"  aria-label="Upload">
+                                      <input type="file" name="form"  class="form-control  @error('form') border-danger @enderror"  accept=".doc,.docx,.pdf"  aria-label="Upload">
                                             <button type="submit" class="btn btn-primary">Update</button>
                                             </div>
                                       @error('form')<div class="text-danger mt-2">{{ $message }}</div>@enderror

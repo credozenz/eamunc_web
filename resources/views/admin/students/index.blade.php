@@ -117,7 +117,7 @@
                             @if(!empty($data) && $data->count())
                                 @foreach ($data as $key => $value)
                                     <tr>
-                                        <td class="text-bold-500">{{ $key+1 }}</td>
+                                        <td class="text-bold-500">{{ $value->id }}</td>
                                         <td class="text-bold-500">{{ $value->name }}</td>
                                         <td class="text-bold-500">{{ $value->class }}</td>
                                         <td class="text-bold-500">

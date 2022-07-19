@@ -14,6 +14,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="{{asset('js/admin/bootstrap.bundle.min.js')}}"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
 <script src="{{asset('js/admin/sidebar.js')}}"></script>
 <script src="{{asset('js/admin/admin.js')}}"></script>
 <script src="{{asset('assets//admin/vendor/ckeditor.js')}}"></script>

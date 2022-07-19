@@ -326,32 +326,37 @@ class StudentsController extends Controller
 
     public function update_password(Request $request,$id)
     {
-        
-        
-        $validatedData = $request->validate([
-            'new_password' => 'required|max:255',
-            'confirm_password' => 'required|max:255|same:new_password',
+
+        $request->validate([
+            'password' => 'required|string|min:8',
+            'password_confirm' => 'required|same:password'
         ],[
-            
-            'new_password.required' => 'The New password field is required',
-            'confirm_password.required' => 'The Confirm password field is required',
-            'confirm_password.same' => 'Confirm password not match!',
+            'password.min' => 'The Password min 8 required',
+            'password.string' => 'The Password include string',
+            'password.required' => 'The Password field is required',
+            'password_confirm.required' => 'The Password confirmation field is required',
+            'password_confirm.same' => 'Password and Confirm Password must match',
         ]);
 
-       
-        $user = User::where('id', $id)->first(); 
-        $user->password = Hash::make($request->new_password);
+    
+
+        $student = students::where('id', $id)->first();
+        $user = User::where('id', $student->user_id)->first(); 
+
+        $user->password = Hash::make($request->password);
         $user->save();
            
            
            if($user->id){
             Session::flash('success', 'Password updated successfully!');
-            return redirect('/admin/student_show/'.$id);
+            return redirect()->back();
           }else{
             Session::flash('error', 'Something went wrong!!');
             return  redirect()->back();
           }
 
+        
+       
       
    
        

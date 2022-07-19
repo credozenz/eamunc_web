@@ -40,7 +40,7 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label class="form-label text-danger">Title</label>
-                        <input type="text" name="title" value="{{ old('title') }}" class="form-control @error('title') border-danger @enderror" placeholder="Title">
+                        <input type="text" name="title" value="{{ old('title') }}" class="form-control @error('title') border-danger @enderror" placeholder="Title" required>
                         @error('title')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
@@ -50,7 +50,7 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label class="form-label text-danger">Image</label>
-                        <input type="file" name="image" class="form-control  @error('image') border-danger @enderror">
+                        <input type="file" name="image" class="form-control  @error('image') border-danger @enderror" accept=".png, .jpg, .jpeg" required>
                         <small>Image Dimension:532x300, Size below 3MB</small>
                         @error('image')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
@@ -58,14 +58,14 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label class="form-label text-danger">News File</label>
-                        <input type="file" name="file" class="form-control @error('file') border-danger @enderror">
+                        <input type="file" name="file" class="form-control @error('file') border-danger @enderror" accept=".doc,.docx,.pdf" required>
                        @error('file')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
                                             <label class="form-label text-danger">Description</label>
-                        <textarea id="input-filter-5" type="text" name="description" class="form-control @error('description') border-danger @enderror" placeholder="Description" style="height: 250px;">{{ old('description') }}</textarea>
+                        <textarea id="input-filter-5" type="text" name="description" class="form-control @error('description') border-danger @enderror" required placeholder="Description" style="height: 250px;">{{ old('description') }}</textarea>
                         @error('description')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>

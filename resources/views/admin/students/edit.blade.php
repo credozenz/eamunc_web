@@ -139,7 +139,7 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                            <label for="form-label">Status</label>
-                                            <select name="status" class="form-control " placeholder="Committee of Choice" required="">
+                                            <select name="status" class="form-control " placeholder="Committee of Choice">
                                                 <option value="0" {{ ($data->status == 0 ? "selected":"") }}> Pending</option>
                                                 <option value="1" {{ ($data->status == 1 ? "selected":"") }}> Approve</option>
                                                 <option value="2" {{ ($data->status == 2 ? "selected":"") }} disabled> Invite</option>

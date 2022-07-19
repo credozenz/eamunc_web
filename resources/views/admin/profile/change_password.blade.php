@@ -39,7 +39,7 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label class="form-label text-danger">Current Password</label>
-                                    <input type="text" name="password" value="" class="form-control @error('title') border-danger @enderror" placeholder="Old Password">
+                                    <input type="text" name="password" value="" class="form-control @error('password') border-danger @enderror" placeholder="Old Password">
                                     @error('password')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>

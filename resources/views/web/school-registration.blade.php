@@ -17,7 +17,7 @@
                     <span class="spacer"></span>
                     @if(isset($reg_status->name) && $reg_status->name=='open')
                     <div class="form-container">
-                    <form method="post" action="{{ url('school-registration-store') }}"  enctype="multipart/form-data">
+                    <form method="post" action="{{ url('school-registration-store') }}" id="school-regForm"  enctype="multipart/form-data">
                           @csrf
                             <div class="form-section mb-5">
                                 <h4 class="color-darkblue mb-5">School Details</h4>
@@ -32,7 +32,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="">School Logo</label>
-                                            <input type="file" name="school_logo" value="{{ old('school_logo') }}"  class="form-control img_valid @error('school_logo') border-danger @enderror" {{ $errors->has('school_logo') ? 'autofocus' : '' }} aria-describedby="textHelp" placeholder="School Logo">
+                                            <input type="file" name="school_logo" value="{{ old('school_logo') }}" accept=".png, .jpg, .jpeg"  class="form-control img_valid @error('school_logo') border-danger @enderror" {{ $errors->has('school_logo') ? 'autofocus' : '' }} aria-describedby="textHelp" placeholder="School Logo">
                                             @error('school_logo')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>

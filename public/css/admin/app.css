@@ -62,3 +62,5 @@ background-color: green;
 border-radius: 30px;
 border: 2px solid gray;
 }
+
+.error{color: #ff0000 !important;padding-left: 10px;font-size: smaller;}

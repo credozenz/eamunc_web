@@ -40,7 +40,7 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label class="form-label text-danger">Title</label>
-                        <input type="text" name="title" value="{{ ($data->title) ?? '' }}" class="form-control" placeholder="Title">
+                        <input type="text" name="title" value="{{ ($data->title) ?? '' }}" class="form-control" placeholder="Title" required>
                         @error('title')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
@@ -56,14 +56,14 @@
                             </a>
                             </div>
                         @endif
-                        <input type="file" name="doc_file" class="form-control">
+                        <input type="file" name="doc_file" class="form-control"  accept=".doc,.docx,.pdf"  >
                        @error('doc_file')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
                                             <label class="form-label text-danger">Description</label>
-                        <textarea id="ckeditor" type="text" name="description" class="form-control @error('description') border-danger @enderror" placeholder="Description" style="height: 250px;">{{ $data->description ?? '' }}</textarea>
+                        <textarea id="ckeditor" type="text" name="description" class="form-control @error('description') border-danger @enderror" placeholder="Description" style="height: 250px;" required>{{ $data->description ?? '' }}</textarea>
                         @error('description')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>

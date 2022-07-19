@@ -23,7 +23,7 @@
      
     
       <div class="image-upload-wrap">
-        <input class="file-upload-input" type="file" onchange="readURL(this);" accept="image/*">
+        <input class="file-upload-input" type="file" onchange="readURL(this);" accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
         <div class="drag-text">
           <i class="fa fa-cloud-upload mb-2" style="font-size: 18px;" aria-hidden="true"></i>
           <h3>Drag and Drop here <br> Or</h3>

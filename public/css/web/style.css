@@ -667,3 +667,4 @@ footer {
 .overlay-thumbnail {position: absolute;bottom: 0;left: 0;right: 0;height: 100%;width: 100%;opacity: 0;transition: .5s ease;background-color: rgba(0,0,0,0.7);text-align:center;}
 .top-img:hover .overlay-thumbnail ,.btm-img:hover .overlay-thumbnail {opacity: 1;}
 .overlay-thumbnail i{color:#fff;top: 42%;transform: translate(-50%,0);position: absolute;font-size:50px;}
+.error{color: #ff0000;padding: 10px;}

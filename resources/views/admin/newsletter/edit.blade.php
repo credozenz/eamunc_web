@@ -42,7 +42,7 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label class="form-label text-danger">Title</label>
-                        <input type="text" name="title" value="{{ $data->title }}" class="form-control @error('title') border-danger @enderror" placeholder="Title">
+                        <input type="text" name="title" value="{{ $data->title }}" class="form-control @error('title') border-danger @enderror" placeholder="Title" required>
                         @error('title')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
@@ -55,7 +55,7 @@
                             <div class="w-30 h-30 relative image-fit  mb-2 mr-5 ">
                                  <img class="rounded-md img-preview" src="{{ asset('uploads/'.$data->image) }}" style="width: 103px;">
                             </div>
-                        <input type="file" name="image" class="form-control  @error('image') border-danger @enderror">
+                        <input type="file" name="image" class="form-control  @error('image') border-danger @enderror" accept=".png, .jpg, .jpeg">
                         <small>Image Dimension:659x300, Size below 3MB</small>
                         @error('image')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
@@ -68,14 +68,14 @@
                                 <img class="rounded-md img-preview" src="{{asset('assets/admin/img/file_demo.png')}}" style="width: 47px;"> 
                             </a>
                             </div>
-                        <input type="file" name="file" class="form-control">
+                        <input type="file" name="file" class="form-control" accept=".doc,.docx,.pdf">
                        @error('file')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
                                             <label class="form-label text-danger">Description</label>
-                        <textarea id="input-filter-5" type="text" name="description" class="form-control @error('description') border-danger @enderror" placeholder="Description" style="height: 250px;">{{ $data->description }}</textarea>
+                        <textarea id="input-filter-5" type="text" name="description" class="form-control @error('description') border-danger @enderror" placeholder="Description" style="height: 250px;" required>{{ $data->description }}</textarea>
                         @error('description')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>

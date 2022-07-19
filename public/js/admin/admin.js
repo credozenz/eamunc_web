@@ -292,7 +292,7 @@ $(document).on('click', '.roleButton', function (e) {
 
 
 
-
+    jQuery(function($) { $('form').each(function() {  $(this).validate({}); }); });
 
 
 

@@ -40,7 +40,7 @@
                             <div class="col-md-6 col-12">
                                 <div class="form-group">
                                         <label class="form-label text-danger">Short Name</label>
-                                        <input type="text" name="name" value="{{ $data->name }}" class="form-control @error('name') border-danger @enderror" placeholder="Name">
+                                        <input type="text" name="name" value="{{ $data->name }}" class="form-control @error('name') border-danger @enderror" placeholder="Name" required>
                                         @error('name')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
@@ -50,10 +50,10 @@
                                         <label class="form-label text-danger">Image</label>
                                     @if(!empty($data->image))
                                         <div class="w-30 h-30 relative image-fit  mb-2 mr-5 ">
-                                 <img class="rounded-md img-preview" src="{{ asset('uploads/'.$data->image) }}" style="width: 103px;">
+                                 <img class="rounded-md img-preview" src="{{ asset('uploads/'.$data->image) }}" style="width: 103px;" >
                                        </div>
                                     @endif
-                                        <input type="file" name="image" class="form-control  @error('image') border-danger @enderror">
+                                        <input type="file" name="image" class="form-control  @error('image') border-danger @enderror"  accept=".png, .jpg, .jpeg" >
                                         <small>Image Dimension:443x161, Size below 3MB</small>
                                         @error('image')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
@@ -62,28 +62,28 @@
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label class="form-label text-danger">Full Name</label>
-                                        <input type="text" name="title" value="{{ $data->title }}" class="form-control @error('title') border-danger @enderror" placeholder="Title">
+                                        <input type="text" name="title" value="{{ $data->title }}" class="form-control @error('title') border-danger @enderror" placeholder="Title" required>
                                         @error('title')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label class="form-label text-danger">Agenda</label>
-                                        <input type="text" name="agenda" value="{{ $data->agenda }}" class="form-control @error('agenda') border-danger @enderror" placeholder="Agenda">
+                                        <input type="text" name="agenda" value="{{ $data->agenda }}" class="form-control @error('agenda') border-danger @enderror" placeholder="Agenda" required>
                                         @error('agenda')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label class="form-label text-danger">Title</label>
-                                        <input type="text" name="sub_title" value="{{ $data->sub_title }}" class="form-control @error('sub_title') border-danger @enderror" placeholder="Sub Title">
+                                        <input type="text" name="sub_title" value="{{ $data->sub_title }}" class="form-control @error('sub_title') border-danger @enderror" placeholder="Sub Title" required>
                                         @error('sub_title')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-12">
                                     <div class="form-group">
                                         <label class="form-label text-danger">Description</label>
-                                        <textarea type="text" name="description" class="form-control @error('description') border-danger @enderror" placeholder="Description" style="height: 250px;">{{ $data->description }}</textarea>
+                                        <textarea type="text" name="description" class="form-control @error('description') border-danger @enderror" placeholder="Description" style="height: 250px;" required>{{ $data->description }}</textarea>
                                         @error('description')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
@@ -102,7 +102,7 @@
                                         </div>
                                         @endforeach
                                         @endif
-                                        <input type="file" name="file[]" multiple="multiple" class="form-control  @error('file') border-danger @enderror">
+                                        <input type="file" name="file[]" multiple="multiple"  accept=".doc,.docx,.pdf"  class="form-control  @error('file') border-danger @enderror" >
                                         <small>Input file type pdf only</small>
                                         @error('file')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
@@ -111,7 +111,7 @@
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label class="form-label text-danger">Video</label>
-                                        <input type="text" name="video" class="form-control  @error('video') border-danger @enderror" value="https://www.youtube.com/watch?v={{ $data->video }}">
+                                        <input type="text" name="video" class="form-control  @error('video') border-danger @enderror" value="https://www.youtube.com/watch?v={{ $data->video }}" required>
                                         @error('video')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
