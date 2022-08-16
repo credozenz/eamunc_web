@@ -16,7 +16,13 @@
     <div class="col-lg-5 col-12">
         <div id="auth-left">
             <div class="auth-logo">
-                <img src="{{ asset('assets/admin/img/logo.png') }}" alt="E.A.MUNC" style="width: 5rem;height: 5rem;"><h2 class="title">E.A.MUNC.COM</h2>
+            <div class="sidebar-header">
+              <div class="d-flex justify-content-between">
+                 <div class="logo" style="font-size: 1.5rem;padding:5px 5px 5px;">
+                     <img src="http://eamunc.credozen.com/assets/admin/img/logo.png" style="width: 4rem;height: 4rem;" alt="E.A.MUNC" srcset="">&nbsp;&nbsp;E.A.MUNC
+                </div>
+              </div>
+            </div>
             </div>
             <h1 class="auth-title">Log in.</h1>
             @if(Session::has('success'))
