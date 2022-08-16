@@ -4,7 +4,7 @@
     <div class="sidebar-header">
         <div class="d-flex justify-content-between">
             <div class="logo" style="font-size: 1.5rem;padding:5px 5px 5px;">
-                <a href="{{ url('admin/dashbord') }}"><img src="{{ asset('assets/admin/img/logo.png') }}" style="border: inset;width: 40px;height: 35px;" alt="E.A.MUNC" srcset="">&nbsp&nbspE.A.MUNC</a>
+                <a href="{{ url('admin/dashbord') }}"><img src="{{ asset('assets/admin/img/logo.png') }}" style="width: 4rem;height: 4rem;" alt="E.A.MUNC" srcset="">&nbsp&nbspE.A.MUNC</a>
             </div>
             <div class="toggler">
                 <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>

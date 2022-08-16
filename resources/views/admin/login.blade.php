@@ -16,7 +16,7 @@
     <div class="col-lg-5 col-12">
         <div id="auth-left">
             <div class="auth-logo">
-                <img src="{{ asset('assets/admin/img/logo.png') }}" alt="E.A.MUNC" style="border: inset;"><h2 class="title">E.A.MUNC.COM</h2>
+                <img src="{{ asset('assets/admin/img/logo.png') }}" alt="E.A.MUNC" style="width: 11rem;height: 8rem;"><h2 class="title">E.A.MUNC.COM</h2>
             </div>
             <h1 class="auth-title">Log in.</h1>
             @if(Session::has('success'))
