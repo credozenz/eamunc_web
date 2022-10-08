@@ -114,6 +114,25 @@
               </div>
           </div>
 
+
+
+          <div class="row">
+
+          <div class="col-md-10">
+           
+          </div>
+
+          <div class="col-md-2">
+            <div class="d-flex flex-row  mb-3">
+              <a href="{{ url('app/delegate_log_out') }}" class="text-danger fs-11 mt-2"><i class="fa fa-power-off" aria-hidden="true"></i>
+              <span class="text-primary mb-3 d-inline-block ps-2 " style="line-height: 37px;"> Sign Out </span></a>
+            </div>
+          </div>  
+
+        </div>
+
+
+
         </div>
 
       </div>

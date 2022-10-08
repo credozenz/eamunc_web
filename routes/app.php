@@ -98,6 +98,8 @@ Route::group(['middleware' => 'bureauchecker'], function() {
     Route::post('/program_schedule_store', [BureauScheduleProgramController::class,'store'])->name('app.program_schedule.store');
     Route::post('/program_schedule_delete/{id}', [BureauScheduleProgramController::class,'destroy'])->name('app.program_schedule.destroy');
 
+    Route::get('/bureau_log_out', [BureauProfileController::class,'log_out'])->name('app.log_out');
+
 
 });
 
@@ -124,5 +126,6 @@ Route::group(['middleware' => 'delegatechecker'], function() {
     
     Route::get('/liability_waiver_form', [DelegateLiabilityWaiverController::class,'index'])->name('app.liability_waiver_form');
     Route::post('/liability_waiver_form_submit', [DelegateLiabilityWaiverController::class,'store'])->name('app.liability_waiver_form.liability_form_submit');
-
+    
+    Route::get('/delegate_log_out', [DelegateProfileController::class,'log_out'])->name('app.log_out');
 });

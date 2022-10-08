@@ -32,7 +32,7 @@ use App\Http\Controllers\Admin\TimerController;
 use App\Http\Controllers\Admin\FooterController;
 use App\Http\Controllers\Admin\FaqSchoolController;
 use App\Http\Controllers\Admin\FeedbackController;
-
+use App\Http\Controllers\Admin\BlocFormationController;
 use App\Http\Controllers\Admin\ForgotPasswordController;
 use App\Http\Controllers\Admin\StudentsController;
 use App\Http\Controllers\Admin\SchoolsController;
@@ -197,6 +197,13 @@ Route::group(['middleware' => 'adminchecker'], function() {
      Route::post('/committee_delete/{id}', [CommitteeController::class,'destroy'])->name('admin.committee.destroy');
      Route::post('/committee_file_delete/{id}', [CommitteeController::class,'file_destroy'])->name('admin.committee.file_destroy');
     
+     Route::get('/blocformation/{id}', [BlocFormationController::class,'index'])->name('admin.blocformation');
+     Route::get('/blocformation_create/{id}', [BlocFormationController::class,'create'])->name('admin.blocformation.create');
+     Route::post('/blocformation_store', [BlocFormationController::class,'store'])->name('admin.blocformation_store');
+     Route::get('/blocformation_show/{id}', [BlocFormationController::class,'show'])->name('admin.blocformation_show');
+     Route::get('/blocformation_edit/{id}', [BlocFormationController::class,'edit'])->name('admin.blocformation_edit');
+     Route::post('/blocformation_update/{id}', [BlocFormationController::class,'update'])->name('admin.blocformation_update');
+     Route::post('/blocformation_delete/{id}', [BlocFormationController::class,'delete'])->name('admin.blocformation_delete');
      
      Route::get('/pastconference', [PastConferenceController::class,'index'])->name('admin.pastconference');
      Route::get('/pastconference_create', [PastConferenceController::class,'create'])->name('admin.pastconference.create');

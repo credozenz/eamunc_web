@@ -128,4 +128,12 @@ class BureauProfileController extends Controller
 
         
     }
+
+
+
+    public function log_out()
+    {
+        Session::flush();
+       return redirect('/app');
+    }
 }

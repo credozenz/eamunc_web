@@ -13,7 +13,7 @@
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('admin/students') }}">Student</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Edit </li>
+                        <li class="breadcrumb-item active" aria-current="page">Forming </li>
                     </ol>
                 </nav>
             </div>
@@ -34,7 +34,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Edit</h4>
+                        <h4 class="card-title">Forming</h4>
                     </div>
 
                     <div class="card-content">

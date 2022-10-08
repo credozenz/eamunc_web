@@ -37,7 +37,7 @@
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="{{ url('admin/student_edit',$data->id) }}" class="btn-sm btn-primary shadow-md mr-2">Edit</a>
+                                    <a href="{{ url('admin/student_edit',$data->id) }}" class="btn-sm btn-primary shadow-md mr-2">Forming</a>
                                     <a class="btn-sm btn-danger shadow-md mr-2 dltButton"  data-url="{{ url('admin/student_delete',$data->id) }}" data-replaceurl="{{ url('admin/students') }}" title="Delete Project">Delete</a>
                                     <a href="{{ url('admin/student_password',$data->id) }}" class="btn-sm btn-secondary shadow-md mr-2">Change Password</a>
                                        

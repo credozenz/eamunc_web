@@ -22,17 +22,16 @@
         <p style="color:#4D4D4D; font-size: 15px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>    
       </div>
 
-      <div class="col-md-8"> </div>
-      <div class="col-md-4">
+      <div class="col-md-10"> </div>
+      <div class="col-md-2 mb-3">
         <button type="button" class="btn btn-primary mt-3" id="mdlbtn"><i class="fa fa-plus" aria-hidden="true"></i>  Create Bloc</button>
       </div>
-   
-      <div class="row mt-6">
-
+      
+      <div class="row mt-6 mb-3">
 
         @if($committee_bloc)
           @foreach($committee_bloc as $value)
-          <div class="col-md-3">
+          <div class="col-md-3 mb-3">
             <div class="bloc-box text-center">
                 <h6>{{ ucfirst($value->name) ?? '' }}</h6>
                 <a href="{{ url('app/bureau_bloc_show',$value->id) }}">View</a>
