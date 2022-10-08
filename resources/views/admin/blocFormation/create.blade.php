@@ -67,7 +67,7 @@
                     </div>
 
                     <div class="modal-footer">
-                    <a href="{{ url('admin/blocformation',$bloc->committe_id) }}" class="btn btn-light-secondary me-1 mb-1">Back</a>
+                    <a href="{{ url('admin/blocformation',$committee->id) }}" class="btn btn-light-secondary me-1 mb-1">Back</a>
                       <button type="submit" class="btn btn-primary">Create</button>
                     </div>
                   </form>

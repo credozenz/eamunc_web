@@ -45,7 +45,7 @@ class BlocFormationController extends Controller
     }
 
 
-    public function create($committe_id)
+    public function create(Request $request,$committe_id)
     {
         
         $committee = Committee::where('id',$committe_id)->first();

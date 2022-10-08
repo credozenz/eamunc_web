@@ -48,7 +48,7 @@
                           </div>
                           <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Committee:</label>
-                            <input type="text" class="form-control" name="name" value="{{ $committee->title ?? ''}}" maxlength="55" disabled>
+                            <input type="text" class="form-control" name="name" value="{{ $committee->name ?? ''}}" maxlength="55" disabled>
                           </div>
 
                 <div class="row p-5">
