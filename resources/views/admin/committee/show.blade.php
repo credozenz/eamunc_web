@@ -94,10 +94,11 @@
                                        
                                     </div>
                                 </div>
+                                @if(sizeof($files))
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label class="form-label text-danger">File</label>
-                                        @if($files)
+                                        
                                         @foreach ($files as $key => $file)
                                         <div class="w-30 h-30 relative image-fit  mb-2 mr-5 ">
                                         <a class="btn-sm btn-danger shadow-md mr-2 dltButton"  data-url="{{ url('admin/committee_file_delete',$file->id) }}" data-replaceurl="{{ url('admin/committee_show',$data->id) }}" title="Delete Project">x</a>
@@ -108,15 +109,16 @@
                                          
                                         </div>
                                         @endforeach
-                                        @endif
+                                       
                                         
                                     </div>
                                 </div>
-                                
+                                @endif
+                                @if(!empty($data->video))
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label class="form-label text-danger">Video</label>
-                                        @if(!empty($data->video))
+                                       
                                             <div class="col-md-12 col-12">
                                                 <div class="form-group">
                                                 
@@ -124,10 +126,10 @@
 
                                                 </div>
                                             </div>
-                                            @endif
+                                           
                                     </div>
                                 </div>
-                                
+                                @endif
                                 
                             </div>
                         </form>

@@ -56,8 +56,8 @@ class CommitteeController extends Controller
             'video' =>'required|max:255',
             'description' =>'required',
             'image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:2055'],
-            'file' => 'required|array|mimes:pdf|max:2055',
-            'file.*'  => ['required','mimes:pdf', 'max:2055'],
+            // 'file' => 'required|array|mimes:pdf|max:2055',
+            // 'file.*'  => ['required','mimes:pdf', 'max:2055'],
         ],[
             'name.required' => 'The Name field is required',
             'title.required' => 'The Title field is required',
@@ -70,8 +70,8 @@ class CommitteeController extends Controller
             'image.max' => 'Image  must be smaller than 2 MB',
             'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
             'file.required' => 'The file field is required',
-            'file.max' => 'file  must be smaller than 2 MB',
-            'file.mimes' => 'Input accept only pdf',
+            // 'file.max' => 'file  must be smaller than 2 MB',
+            // 'file.mimes' => 'Input accept only pdf',
         ]);
 
         $committee = new Committee;
@@ -240,14 +240,14 @@ class CommitteeController extends Controller
        
             if ($request->hasFile('file')) {
 
-                $validatedData = $request->validate([
-                    'file' => 'required|array|mimes:pdf|max:2055',
-                    'file.*'  => ['required','mimes:pdf', 'max:2055'],
-                ],[
-                    'file.required' => 'The file field is required',
-                    'file.max' => 'file  must be smaller than 2 MB',
-                    'file.mimes' => 'Input accept only pdf',
-                ]);
+                // $validatedData = $request->validate([
+                //     'file' => 'required|array|mimes:pdf|max:2055',
+                //     'file.*'  => ['required','mimes:pdf', 'max:2055'],
+                // ],[
+                //     'file.required' => 'The file field is required',
+                //     'file.max' => 'file  must be smaller than 2 MB',
+                //     'file.mimes' => 'Input accept only pdf',
+                // ]);
     
 
                 $doc = $request->file('file');
