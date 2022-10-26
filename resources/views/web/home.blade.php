@@ -2,25 +2,24 @@
 @section('content')
 
     @if (!empty($banner) && $banner->count())  
-    <section id="hero" class="w3-content w3-display-container mh-110" style="max-width:100%">
-
-    @foreach ($banner as $key => $value)
-    <img class="mySlides" src="{{ asset('uploads/'.$value->image) }}">
-    @endforeach
-
-    <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%;top: 0;margin: auto;height: 2rem;">
-    @foreach ($banner as $key => $value)
-    <span class="demo "></span>
-    @endforeach
         
-        <div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
-        <div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
+        @foreach ($banner as $key => $value)
+        <section id="hero" class="mh-65 mySlides" style="background-image: url({{ asset('uploads/'.$value->image) }});">
+        </section>
+        @endforeach
 
-    </div>
-    </section>
+        <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%;top: 0;margin: auto;height: 2rem;">
+        @foreach ($banner as $key => $value)
+        <span class="demo "></span>
+        @endforeach
+            
+            <div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
+            <div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
+
+        </div>
+
     @endif
 
-    
 
     @if (!empty($timer) && $timer->count())
         <section id="counter" class="section-padding">

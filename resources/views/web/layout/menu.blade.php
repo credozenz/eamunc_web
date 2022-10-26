@@ -1,11 +1,11 @@
-<header id="header" class="border header-padding">
+    <header id="header" class="border header-padding">
         <nav class="navbar">
             <div class="container">
                 <div class="navbar-header">
 
                     <a class="navbar-brand" href="{{ route('home') }}">
                         <img src="{{ asset('assets/web/img/logo.png') }}" class="logo" alt="E.Ahamed Model United Nations
-                                Conference" style="width: 4rem;height: 4rem;">
+                                Conference">
                     </a>
 
                     <div class="menu font-normal">
@@ -83,3 +83,5 @@
             </div>
         </nav>
     </header>
+
+    
