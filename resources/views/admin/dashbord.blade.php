@@ -98,20 +98,24 @@
                                 <span class="label" style="color: red;"><b>Close</b></span>
                                 @endif
                                 <br><br>
-                  
+                               
                             <form method="post" id="inaciveuser" style="display: none;" action="{{ url('admin/reg_status') }}">
                                 @csrf
-                                
+                              
                             <input type="checkbox" checked name="reg_status" class="checkbox toggle-checkbox"/>
                             </form>
-                            @if(isset($reg_status->name) && ($reg_status->name=='open')) 
-                            <label class="reg-closed"  onclick="if(confirm('Are you sure!, You Want Close Students registration ?')){ $(this).parent().find('#inaciveuser').submit() }">
-                                        <p style="padding: 11px;text-color: white;color: white;"> Close</p>
-                            </label>         
+                            @if(isset($reg_status->name) && ($reg_status->name=='open'))
+                            
+                                <label class="toggleswitch" onclick="if(confirm('Are you sure!, You Want Close Students registration ?')){ $(this).parent().find('#inaciveuser').submit() }">    
+                                  <span class="toggle1 togchecked" title="Student Registration want to Close ?"></span>
+                                </label><br><br>
+                                
                             @else
-                            <label  class="reg-open"  onclick="if(confirm('Are you sure!, You Want Open Students registration ?')){ $(this).parent().find('#inaciveuser').submit() }">
-                                        <p style="padding: 11px;text-color: white;color: white;"> Open</p>
-                            </label>
+
+                                <label class="toggleswitch" onclick="if(confirm('Are you sure!, You Want Open Students registration ?')){ $(this).parent().find('#inaciveuser').submit() }">
+                                  <span class="toggle1" title="Student Registration want to Open ?"></span>
+                                </label><br><br>
+
                             @endif
                         </center>
                         </div>
