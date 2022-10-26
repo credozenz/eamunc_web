@@ -670,3 +670,4 @@ footer {
 .top-img:hover .overlay-thumbnail ,.btm-img:hover .overlay-thumbnail {opacity: 1;}	
 .overlay-thumbnail i{color:#fff;top: 42%;transform: translate(-50%,0);position: absolute;font-size:50px;}	
 .error{color: #ff0000;padding: 10px;}
+.w3-display-bottommiddle{width:100%;top: 0;margin: auto;height: 2rem;}

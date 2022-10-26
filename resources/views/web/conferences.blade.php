@@ -61,7 +61,7 @@
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
                 <h3 class="color-darkblue mb-md-4 mb-5">Important Dates</h3>
-                <a href="#" class="button register-btn">Register Now</a>
+                <a href="{{ route('registration') }}" class="button register-btn">Register Now</a>
             </div>
 
             <div class="row dates-container">

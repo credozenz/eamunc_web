@@ -67,7 +67,7 @@
                             <p class="color-darkblue h5 mb-3 mb-md-0 text-center text-md-start">Be a part of the E.A.MUNC Alumni Network</p>
                         </div>
                         <div class="col-md-6 text-center text-md-end">
-                        <a href="#">
+                        <a href="{{ route('registration') }}">
                             <button class="download-btn">Register Now</button>
                         </a>
                         </div>
