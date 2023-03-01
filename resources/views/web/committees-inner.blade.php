@@ -106,11 +106,12 @@
                         @php
                         $file_without_ext = substr($value->name, 0, strrpos($value->name,"."));
                         $filename = preg_replace('/[^A-Za-z0-9\-]/', ' ', $file_without_ext);
-                        $filename = (strlen($filename) > 20) ? substr($filename,0,20).'...' : $filename;
+                       
                         @endphp
-                        <a href="{{ asset('uploads/'.$committees->file) }}" >
-                           <img class="rounded-md img-preview" src="{{asset('assets/admin/img/file_demo.png')}}"  style="width: 47px;"> <small class="mt-3" style="font-size: x-small;">{{ $filename ?? ''}}</small>
+                        <a href="{{ asset('uploads/'.$committees->file) }}" class="mt-5" data-title="{{ $filename ?? ''}}">
+                           <img class="rounded-md img-preview" src="{{asset('assets/admin/img/file_demo.png')}}"  style="width: 47px;"> 
                          </a>
+                      
                          </div>
                         @endforeach
                         
