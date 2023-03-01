@@ -45,3 +45,12 @@ jQuery(document).ready(function ($) {
   });
 
 });
+
+
+
+function videoPopup(id) {
+    document.getElementById("modal"+id).style.display='none';
+    $("#iframe"+id).attr('src','');
+    location.reload();
+    
+  }
