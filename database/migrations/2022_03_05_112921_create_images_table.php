@@ -18,7 +18,8 @@ class CreateImagesTable extends Migration
             $table->string('connect_id');
             $table->string('type');
             $table->string('name')->nullable();
-            $table->string('image');
+            $table->string('image')->nullable();
+            $table->string('video')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

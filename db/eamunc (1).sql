@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 01, 2023 at 07:00 AM
+-- Generation Time: Mar 01, 2023 at 09:41 AM
 -- Server version: 8.0.30
 -- PHP Version: 7.4.30
 
@@ -643,7 +643,8 @@ CREATE TABLE `images` (
   `connect_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `video` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -653,37 +654,37 @@ CREATE TABLE `images` (
 -- Dumping data for table `images`
 --
 
-INSERT INTO `images` (`id`, `connect_id`, `type`, `name`, `image`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, '1', 'gallery', NULL, 'gallery/1646980657_slIjw_9822.jpg', '2022-03-11 01:07:37', '2022-03-11 01:07:37', NULL),
-(2, '1', 'gallery', NULL, 'gallery/1646980661_1rQnT_9006.jpg', '2022-03-11 01:07:41', '2022-03-11 01:07:41', NULL),
-(3, '1', 'gallery', NULL, 'gallery/1646980666_rbFuQ_2639.jpg', '2022-03-11 01:07:46', '2022-03-11 01:07:46', NULL),
-(4, '1', 'gallery', NULL, 'gallery/1646980670_xtL2a_2711.jpg', '2022-03-11 01:07:50', '2022-03-11 01:07:50', NULL),
-(5, '1', 'gallery', NULL, 'gallery/1646980675_pzfqY_4658.jpg', '2022-03-11 01:07:55', '2022-03-11 01:07:55', NULL),
-(6, '37', 'past_conference', NULL, 'conference/1646983346_ZiQnK_1256.jpg', '2022-03-11 01:52:26', '2022-03-11 01:52:34', '2022-03-11 01:52:34'),
-(7, '37', 'past_conference', NULL, 'conference/1646983429_gEfj6_8653.jpg', '2022-03-11 01:53:49', '2022-03-11 01:53:49', NULL),
-(8, '37', 'past_conference', NULL, 'conference/1646983485_E5HVR_7963.jpg', '2022-03-11 01:54:45', '2022-03-11 01:54:45', NULL),
-(9, '37', 'past_conference', NULL, 'conference/1646983489_qBKwX_8645.jpg', '2022-03-11 01:54:49', '2022-03-11 01:54:49', NULL),
-(10, '2', 'gallery', NULL, 'gallery/1665297366_MhQ7C_6524.jpg', '2022-10-09 06:36:06', '2022-10-09 06:36:06', NULL),
-(11, '2', 'gallery', NULL, 'gallery/1665297374_CocZv_1387.jpg', '2022-10-09 06:36:14', '2022-10-09 06:36:14', NULL),
-(12, '2', 'gallery', NULL, 'gallery/1665297384_pfN1f_8355.jpg', '2022-10-09 06:36:24', '2022-10-09 06:36:24', NULL),
-(13, '2', 'gallery', NULL, 'gallery/1665297476_lI40z_1302.jpg', '2022-10-09 06:37:56', '2022-10-09 06:37:56', NULL),
-(14, '2', 'gallery', NULL, 'gallery/1665297485_pnlS3_9705.jpg', '2022-10-09 06:38:06', '2022-10-09 06:38:06', NULL),
-(15, '2', 'gallery', NULL, 'gallery/1665297492_nvk2G_7796.jpg', '2022-10-09 06:38:12', '2022-10-09 06:38:12', NULL),
-(16, '2', 'gallery', NULL, 'gallery/1665297498_GcAHL_4312.jpg', '2022-10-09 06:38:18', '2022-10-09 06:38:18', NULL),
-(17, '2', 'gallery', NULL, 'gallery/1665297510_u04ea_3644.jpg', '2022-10-09 06:38:30', '2022-10-09 06:38:30', NULL),
-(18, '2', 'gallery', NULL, 'gallery/1665297518_QQYNG_7577.jpg', '2022-10-09 06:38:38', '2022-10-09 06:38:38', NULL),
-(19, '2', 'gallery', NULL, 'gallery/1665297524_m4PtJ_4366.jpg', '2022-10-09 06:38:44', '2022-10-09 06:38:44', NULL),
-(20, '2', 'gallery', NULL, 'gallery/1665297530_N2l7R_9120.jpg', '2022-10-09 06:38:50', '2022-10-09 06:38:50', NULL),
-(21, '2', 'gallery', NULL, 'gallery/1665297535_H1utc_4921.jpg', '2022-10-09 06:38:55', '2022-10-09 06:38:55', NULL),
-(22, '2', 'gallery', NULL, 'gallery/1665297548_CX4Yp_5455.jpg', '2022-10-09 06:39:08', '2022-10-09 06:39:08', NULL),
-(23, '2', 'gallery', NULL, 'gallery/1665297554_7kdxG_5584.jpg', '2022-10-09 06:39:14', '2022-10-09 06:39:14', NULL),
-(24, '2', 'gallery', NULL, 'gallery/1665297559_S8UVX_5003.jpg', '2022-10-09 06:39:19', '2022-10-09 06:39:19', NULL),
-(25, '65', 'past_conference', NULL, 'conference/1677353029_Ihbeb_8147.jpeg', '2023-02-25 19:23:49', '2023-02-25 19:23:49', NULL),
-(26, '65', 'past_conference', NULL, 'conference/1677353038_Cxovp_7041.jpeg', '2023-02-25 19:23:58', '2023-02-25 19:23:58', NULL),
-(27, '65', 'past_conference', NULL, 'conference/1677353047_AJyU0_5703.jpeg', '2023-02-25 19:24:07', '2023-02-25 19:24:07', NULL),
-(28, '65', 'past_conference', NULL, 'conference/1677353218_mxvOg_6974.jpeg', '2023-02-25 19:26:58', '2023-02-25 19:26:58', NULL),
-(29, '65', 'past_conference', NULL, 'conference/1677353234_FYhfP_9743.jpeg', '2023-02-25 19:27:14', '2023-02-25 19:27:14', NULL),
-(30, '65', 'past_conference', NULL, 'conference/1677353244_qNZYp_4754.jpeg', '2023-02-25 19:27:24', '2023-02-25 19:27:24', NULL);
+INSERT INTO `images` (`id`, `connect_id`, `type`, `name`, `video`, `image`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, '1', 'gallery', NULL, NULL, 'gallery/1646980657_slIjw_9822.jpg', '2022-03-11 01:07:37', '2022-03-11 01:07:37', NULL),
+(2, '1', 'gallery', NULL, NULL, 'gallery/1646980661_1rQnT_9006.jpg', '2022-03-11 01:07:41', '2022-03-11 01:07:41', NULL),
+(3, '1', 'gallery', NULL, NULL, 'gallery/1646980666_rbFuQ_2639.jpg', '2022-03-11 01:07:46', '2022-03-11 01:07:46', NULL),
+(4, '1', 'gallery', NULL, NULL, 'gallery/1646980670_xtL2a_2711.jpg', '2022-03-11 01:07:50', '2022-03-11 01:07:50', NULL),
+(5, '1', 'gallery', NULL, NULL, 'gallery/1646980675_pzfqY_4658.jpg', '2022-03-11 01:07:55', '2022-03-11 01:07:55', NULL),
+(6, '37', 'past_conference', NULL, NULL, 'conference/1646983346_ZiQnK_1256.jpg', '2022-03-11 01:52:26', '2022-03-11 01:52:34', '2022-03-11 01:52:34'),
+(7, '37', 'past_conference', NULL, NULL, 'conference/1646983429_gEfj6_8653.jpg', '2022-03-11 01:53:49', '2022-03-11 01:53:49', NULL),
+(8, '37', 'past_conference', NULL, NULL, 'conference/1646983485_E5HVR_7963.jpg', '2022-03-11 01:54:45', '2022-03-11 01:54:45', NULL),
+(9, '37', 'past_conference', NULL, NULL, 'conference/1646983489_qBKwX_8645.jpg', '2022-03-11 01:54:49', '2022-03-11 01:54:49', NULL),
+(10, '2', 'gallery', NULL, NULL, 'gallery/1665297366_MhQ7C_6524.jpg', '2022-10-09 06:36:06', '2022-10-09 06:36:06', NULL),
+(11, '2', 'gallery', NULL, NULL, 'gallery/1665297374_CocZv_1387.jpg', '2022-10-09 06:36:14', '2022-10-09 06:36:14', NULL),
+(12, '2', 'gallery', NULL, NULL, 'gallery/1665297384_pfN1f_8355.jpg', '2022-10-09 06:36:24', '2022-10-09 06:36:24', NULL),
+(13, '2', 'gallery', NULL, NULL, 'gallery/1665297476_lI40z_1302.jpg', '2022-10-09 06:37:56', '2022-10-09 06:37:56', NULL),
+(14, '2', 'gallery', NULL, NULL, 'gallery/1665297485_pnlS3_9705.jpg', '2022-10-09 06:38:06', '2022-10-09 06:38:06', NULL),
+(15, '2', 'gallery', NULL, NULL, 'gallery/1665297492_nvk2G_7796.jpg', '2022-10-09 06:38:12', '2022-10-09 06:38:12', NULL),
+(16, '2', 'gallery', NULL, NULL, 'gallery/1665297498_GcAHL_4312.jpg', '2022-10-09 06:38:18', '2022-10-09 06:38:18', NULL),
+(17, '2', 'gallery', NULL, NULL, 'gallery/1665297510_u04ea_3644.jpg', '2022-10-09 06:38:30', '2022-10-09 06:38:30', NULL),
+(18, '2', 'gallery', NULL, NULL, 'gallery/1665297518_QQYNG_7577.jpg', '2022-10-09 06:38:38', '2022-10-09 06:38:38', NULL),
+(19, '2', 'gallery', NULL, NULL, 'gallery/1665297524_m4PtJ_4366.jpg', '2022-10-09 06:38:44', '2022-10-09 06:38:44', NULL),
+(20, '2', 'gallery', NULL, NULL, 'gallery/1665297530_N2l7R_9120.jpg', '2022-10-09 06:38:50', '2022-10-09 06:38:50', NULL),
+(21, '2', 'gallery', NULL, NULL, 'gallery/1665297535_H1utc_4921.jpg', '2022-10-09 06:38:55', '2022-10-09 06:38:55', NULL),
+(22, '2', 'gallery', NULL, NULL, 'gallery/1665297548_CX4Yp_5455.jpg', '2022-10-09 06:39:08', '2022-10-09 06:39:08', NULL),
+(23, '2', 'gallery', NULL, NULL, 'gallery/1665297554_7kdxG_5584.jpg', '2022-10-09 06:39:14', '2022-10-09 06:39:14', NULL),
+(24, '2', 'gallery', NULL, NULL, 'gallery/1665297559_S8UVX_5003.jpg', '2022-10-09 06:39:19', '2022-10-09 06:39:19', NULL),
+(25, '65', 'past_conference', NULL, NULL, 'conference/1677353029_Ihbeb_8147.jpeg', '2023-02-25 19:23:49', '2023-02-25 19:23:49', NULL),
+(26, '65', 'past_conference', NULL, NULL, 'conference/1677353038_Cxovp_7041.jpeg', '2023-02-25 19:23:58', '2023-02-25 19:23:58', NULL),
+(27, '65', 'past_conference', NULL, NULL, 'conference/1677353047_AJyU0_5703.jpeg', '2023-02-25 19:24:07', '2023-02-25 19:24:07', NULL),
+(28, '65', 'past_conference', NULL, NULL, 'conference/1677353218_mxvOg_6974.jpeg', '2023-02-25 19:26:58', '2023-02-25 19:26:58', NULL),
+(29, '65', 'past_conference', NULL, NULL, 'conference/1677353234_FYhfP_9743.jpeg', '2023-02-25 19:27:14', '2023-02-25 19:27:14', NULL),
+(30, '65', 'past_conference', NULL, NULL, 'conference/1677353244_qNZYp_4754.jpeg', '2023-02-25 19:27:24', '2023-02-25 19:27:24', NULL);
 
 -- --------------------------------------------------------
 
