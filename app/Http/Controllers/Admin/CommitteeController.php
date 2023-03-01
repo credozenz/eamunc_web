@@ -33,7 +33,7 @@ class CommitteeController extends Controller
             $query->where('name','LIKE', $request->q)
             ->orwhere('title','LIKE', $request->q);
         }
-        $data=$query->orderBy('id', 'DESC')
+        $data=$query->orderBy('position', 'ASC')
                     ->paginate(10); 
         return view('admin/committee/index', compact('data','request'));
     }
@@ -56,8 +56,9 @@ class CommitteeController extends Controller
             'video' =>'required|max:255',
             'description' =>'required',
             'image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:2055'],
-            // 'file' => 'required|array|mimes:pdf|max:2055',
-            // 'file.*'  => ['required','mimes:pdf', 'max:2055'],
+             'guide' => 'required|mimes:pdf|max:2055',
+             'guide.*'  => ['required','mimes:pdf', 'max:2055'],
+             'position' =>'required|max:255',
         ],[
             'name.required' => 'The Name field is required',
             'title.required' => 'The Title field is required',
@@ -70,8 +71,10 @@ class CommitteeController extends Controller
             'image.max' => 'Image  must be smaller than 2 MB',
             'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
             'file.required' => 'The file field is required',
-            // 'file.max' => 'file  must be smaller than 2 MB',
-            // 'file.mimes' => 'Input accept only pdf',
+            'guide.required' => 'The file field is required',
+            'guide.max' => 'file  must be smaller than 2 MB',
+            'guide.mimes' => 'Input accept only pdf',
+            'position.required' => 'The Position field is required',
         ]);
 
         $committee = new Committee;
@@ -81,7 +84,7 @@ class CommitteeController extends Controller
         $committee->sub_title = $request->sub_title;
         $committee->agenda = $request->agenda;
         $committee->description = $request->description;
-        
+        $committee->position = $request->position;
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $fileName   =  time().'_'.str_random(5).'_'.rand(1111,9999). '.' . $image->getClientOriginalExtension();
@@ -102,6 +105,17 @@ class CommitteeController extends Controller
            }
 
            $committee->image = 'committee/'.$fileName; 
+
+
+           if ($request->hasFile('guide')) {
+            $guide = $request->file('guide');
+            $guidefileName   =  time().'_'.str_random(5).'_'.rand(1111,9999). '.' . $guide->getClientOriginalExtension();
+                    $file = $guide->get();
+                    $origin_name = $guide ->getClientOriginalName();
+                    Storage::disk('public')->put('committee/guide/'.$guidefileName,$file,'public');
+           }
+
+           $committee->file = 'committee/guide/'.$guidefileName; 
 
            
 
@@ -178,6 +192,7 @@ class CommitteeController extends Controller
             'agenda' =>'required|max:255',
             'video' =>'required|max:255',
             'description' =>'required',
+            'position' =>'required',
         ],[
             'name.required' => 'The Name field is required',
             'title.required' => 'The Title field is required',
@@ -186,6 +201,7 @@ class CommitteeController extends Controller
             'sub_title.required' => 'The Sub Title field is required',
             'agenda.required' => 'The Agenda field is required',
             'description.required' => 'The Description field is required',
+            'position.required' => 'The Position field is required',
            
         ]);
 
@@ -196,7 +212,7 @@ class CommitteeController extends Controller
         $committee->sub_title = $request->sub_title;
         $committee->agenda = $request->agenda;
         $committee->description = $request->description;
-        
+        $committee->position = $request->position;
         if ($request->hasFile('image')) {
 
             $validatedData = $request->validate([
@@ -227,6 +243,17 @@ class CommitteeController extends Controller
             $committee->image = 'committee/'.$fileName; 
         }
 
+
+        if ($request->hasFile('guide')) {
+            $guide = $request->file('guide');
+            $guidefileName   =  time().'_'.str_random(5).'_'.rand(1111,9999). '.' . $guide->getClientOriginalExtension();
+                    $file = $guide->get();
+                    $origin_name = $guide ->getClientOriginalName();
+                    Storage::disk('public')->put('committee/guide/'.$guidefileName,$file,'public');
+           
+
+           $committee->file = 'committee/guide/'.$guidefileName; 
+        }
 
            $youtubeurl = AdminHelper::getYoutubeIdFromUrl($request->video);
           

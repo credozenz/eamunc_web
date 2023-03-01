@@ -282,7 +282,7 @@ $(document).ready(function() {
                         },
                         _token: _token1,
                         success: function(responce){
-        
+        console.log(responce);
                             if(responce.status==false){
                                 input.val("");
                                 input.after("<div class='text-danger mt-2 email-valid'> This email address is already in use </div>");  

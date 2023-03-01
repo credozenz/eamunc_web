@@ -273,7 +273,7 @@ class RegistrationController extends Controller
     public function validate_user_email(Request $request)
     {
        
-        $user = User::where('email', $request->email); 
+        $user = User::where('email', $request->email)->where('deleted_at', null)->get(); 
       
         if(empty($user->count())){
               echo json_encode(['status'=>true]);exit();
@@ -285,7 +285,7 @@ class RegistrationController extends Controller
     public function validate_user_phone(Request $request)
     {
        
-        $user = User::where('phone', $request->phone); 
+        $user = User::where('phone', $request->phone)->where('deleted_at', null)->get(); 
       
         if(empty($user->count())){
               echo json_encode(['status'=>true]);exit();

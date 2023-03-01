@@ -73,28 +73,66 @@
             </div>
         </div>
     </section>
-    @if (!empty($committees->file))
+
+
+
+
+    @if (!empty($files) || !empty($committees->file))
+  
     <section id="regulations" class="section-padding">
         <div class="wrapper">
             <div class="container p-0">
                 <div class="box border-black">
-                    <div class="row align-items-center">
-                        <div class="col-md-6">
+                    
+                        @if(!empty($committees->file))
+                        <div class="row align-items-center">
+                        <div class="col-md-6 mb-3">
                             <p class="color-darkblue h5 mb-3 mb-md-0 text-center text-md-start">{{ $committees->name ?? '' }} Background Guide</p>
                         </div>
-                        <div class="col-md-6 text-center text-md-end">
-                        <a href="{{ asset('uploads/'.$committees->file) ?? '' }}" target="_blank">
+                        <div class="col-md-6 text-center text-md-end mb-3">
+                        <a href="{{ asset('uploads/'.$committees->file) }}" target="_blank">
                             <button class="download-btn">Download Now</button>
                         </a>
                         </div>
-
-                    </div>
+                        </div>
+                        @endif
+                        @if (!empty($files) && $files->count())
+                        <div class="row align-items-center">
+                        <div class="col-md-4 mb-3">
+                            <p class="color-darkblue h5 mb-3 mb-md-0 text-center text-md-start">Other Documents</p>
+                        </div>
+                        @foreach ($files as $key => $value)
+                        <div class="col-md-1  mb-3">
+                        @php
+                        $file_without_ext = substr($value->name, 0, strrpos($value->name,"."));
+                        $filename = preg_replace('/[^A-Za-z0-9\-]/', ' ', $file_without_ext);
+                        $filename = (strlen($filename) > 20) ? substr($filename,0,20).'...' : $filename;
+                        @endphp
+                        <a href="{{ asset('uploads/'.$committees->file) }}" >
+                           <img class="rounded-md img-preview" src="{{asset('assets/admin/img/file_demo.png')}}"  style="width: 47px;"> <small class="mt-3" style="font-size: x-small;">{{ $filename ?? ''}}</small>
+                         </a>
+                         </div>
+                        @endforeach
+                        
+                        </div>
+                        @endif
+                   
                 </div>
             </div>
 
         </div>
     </section>
     @endif
+
+
+
+
+
+
+
+
+
+
 @endif
 
     @endsection

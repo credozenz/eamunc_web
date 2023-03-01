@@ -44,7 +44,7 @@
       
                 <li class="nav-item" >
                   <a class="nav-link @if($routeGroup =='bureau_resolution') active @endif" href="{{ route('app.bureau_resolution') }}">
-                     <span >Resolution</span>
+                     <span >Resolution Corner</span>
                   </a>
                 </li>
       
@@ -105,7 +105,7 @@
 
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
             <a class="nav-link @if($routeGroup =='bureau_resolution') active @endif" href="{{ route('app.bureau_resolution') }}">
-              <span >Resolution</span>
+              <span >Resolution Corner</span>
             </a>
           </li>
 

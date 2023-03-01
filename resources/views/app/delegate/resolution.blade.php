@@ -20,13 +20,21 @@
       
         <div class="col-md-12 text-center">
     
-          <h5 class="text-primary mt-5 mb-3 fs-2">Resolution</h5>
+          <h5 class="text-primary mt-5 mb-3 fs-2">Resolution Corner</h5>
           <label class="form-label text-dark">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
           </label>
                 <div class="col-md-12 col-12">
                     <div class="form-group">
+                       
+                     @if(!empty($resolution->content))
                         <textarea id="view_editor" > {!! $resolution->content ?? '' !!}</textarea>
+                     @else
+                     <div class="blue-box mt-3">
+                                <h4>Please wait !</h4>
+                         <p class="mt-2 mb-3">This session has not started !</p>
+                     </div>
+                     @endif
                     </div>
                 </div>
                  

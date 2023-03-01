@@ -24,7 +24,7 @@
 
            <table class="table">         
             <tbody>
-            @if($general_assembly)
+            @if(!empty($general_assembly[0]))
               @foreach($general_assembly as $key => $value)
               <tr class="pt-2 pb-2" style="border-bottom: 1px solid rgba(0, 0, 0, 0.2);">
                 <td><span class="number-round ">{{ $key+1 }}</span></td>
@@ -35,6 +35,12 @@
               </tr>
 
               @endforeach
+              @else
+
+              <div class="blue-box mt-3 text-center">
+                                    <h4>Please wait !</h4>
+                            <p class="mt-2 mb-3">This session has not started !</p>
+                        </div>
             @endif
               
               

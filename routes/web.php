@@ -34,6 +34,7 @@ Route::get('/', [HomeController::class,'index'])->name('home');
 Route::get('/about', [AboutUSController::class,'index'])->name('about-us');
 Route::get('/act-impact', [ActImpactController::class,'index'])->name('act-impact');
 Route::get('/alumni', [AlumniController::class,'index'])->name('alumni');
+Route::get('/alumninews-inner/{id}', [AlumniController::class,'alumni_news_inner'])->name('alumni-news-inner');
 Route::get('/committees', [CommitteesController::class,'index'])->name('committees');
 Route::get('/committees-inner/{id}', [CommitteesController::class,'index_inner'])->name('committees-inner');
 Route::get('/conferences', [ConferencesController::class,'index'])->name('conference');

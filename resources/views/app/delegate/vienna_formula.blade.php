@@ -25,7 +25,15 @@
           </label>
                 <div class="col-md-12 col-12">
                     <div class="form-group">
+                    @if(!empty($vienna->content))
                         <textarea id="view_editor" > {!! $vienna->content ?? '' !!}</textarea>
+                     @else
+                     <div class="blue-box mt-3">
+                                <h4>Please wait !</h4>
+                         <p class="mt-2 mb-3">This session has not started !</p>
+                     </div>
+                     @endif
+                        
                     </div>
                 </div>
                  

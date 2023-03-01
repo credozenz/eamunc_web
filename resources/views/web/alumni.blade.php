@@ -45,8 +45,10 @@
                    
                 @foreach ($alumni_news as $key => $value)
                     <div class="col-md-4 image-box fixed-thumb">
+                    <a href="{{ route('alumni-news-inner',$value->id ?? '') }}" class="color-white">
                     <img src="{{ asset('uploads/'.$value->image) ?? '' }}" alt="{{ $value->title ?? '' }}">
-                        <p class="update-description color-white">{{ $value->description ?? '' }}</p>
+                        <p class="update-description color-white">{{ $value->title ?? '' }}</p>
+                      </a>
                     </div>
                 @endforeach
 

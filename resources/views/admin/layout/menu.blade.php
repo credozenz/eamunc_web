@@ -163,7 +163,7 @@
 
             <li class="sidebar-item  @if($routeGroup =='participateschool') active @endif ">
                 <a href="{{ route('admin.participate_schools') }}" class='sidebar-link'>
-                    <span><i class="fa fa-university" aria-hidden="true">&nbsp</i>Participate Schools</span>
+                    <span><i class="fa fa-university" aria-hidden="true">&nbsp</i>Participating Schools</span>
                 </a>
             </li>
 

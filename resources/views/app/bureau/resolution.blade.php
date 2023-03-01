@@ -20,7 +20,7 @@
 
       <div class="col-md-6 text-center offset-md-3">
   
-        <h5 class="text-primary mt-5 mb-3 fs-2">Resolution</h5>
+        <h5 class="text-primary mt-5 mb-3 fs-2">Resolution Corner</h5>
         <p class="fs-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>
         
         @if(empty($vienna))

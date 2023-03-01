@@ -80,6 +80,14 @@
                                         @error('sub_title')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label class="form-label text-danger">Guide File</label>
+                                        <input type="file" name="guide" accept=".doc,.docx,.pdf" class="form-control  @error('guide') border-danger @enderror">
+                                        <small>Input file type pdf only</small>
+                                        @error('guide')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                    </div>
+                                </div>
                                 <div class="col-md-12 col-12">
                                     <div class="form-group">
                                         <label class="form-label text-danger">Description</label>
@@ -113,6 +121,14 @@
                                         <label class="form-label text-danger">Video</label>
                                         <input type="text" name="video" class="form-control  @error('video') border-danger @enderror" value="https://www.youtube.com/watch?v={{ $data->video }}" required>
                                         @error('video')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2 col-12">
+                                    <div class="form-group">
+                                        <label class="form-label text-danger">Position</label>
+                                        <input type="number" name="position" class="form-control  @error('position') border-danger @enderror" value="{{ $data->position }}" required>
+                                        @error('position')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
                                 

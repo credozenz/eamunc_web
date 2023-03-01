@@ -45,7 +45,9 @@ class StudentsController extends Controller
         
         if($request->q){
             $query->where('students.name','LIKE', $request->q)
-            ->orwhere('schools.name','LIKE', $request->q);
+            ->orwhere('schools.name','LIKE', $request->q)
+            ->orwhere('students.email','LIKE', $request->q)
+            ->orwhere('students.whatsapp_no','LIKE', $request->q);
         }
 
         if($request->s != NULL){

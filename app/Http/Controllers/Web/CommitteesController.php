@@ -13,7 +13,7 @@ use App\Models\SiteIndexes;
 use App\Models\Committee;
 use App\Models\User;
 use App\Models\Committee_member;
-
+use App\Models\Committee_files;
 
 
 class CommitteesController extends Controller
@@ -22,7 +22,7 @@ class CommitteesController extends Controller
     {
         
 
-        $committees = Committee::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4); 
+        $committees = Committee::where('deleted_at', null)->orderBy('position', 'ASC')->paginate(4); 
 
         return view('web/committees', compact('committees'));
 
@@ -45,8 +45,11 @@ class CommitteesController extends Controller
         ->where('students.committee_choice', '=' , $id)
         ->orderBy('students.id', 'desc')
         ->paginate(12);
+
+        $files = Committee_files::where('committe_id', $id)->where('deleted_at', null)->get(); 
        
-        return view('web/committees-inner', compact('committees','members'));
+       
+        return view('web/committees-inner', compact('committees','members','files'));
 
 
     }

@@ -87,11 +87,36 @@
                                         
                                     </div>
                                 </div>
+                                @if(!empty($data->file))
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label class="form-label text-danger">Guide File</label>
+                                        
+                                       
+                                        <div class="w-30 h-30 relative image-fit  mb-2 mr-5 ">
+                                         <a href="{{ asset('uploads/'.$data->file) }}" >
+                                            <img class="rounded-md img-preview" src="{{asset('assets/admin/img/file_demo.png')}}" style="width: 47px;"> 
+                                         </a>
+                                        
+                                        </div>
+                                       
+                                       
+                                        
+                                    </div>
+                                </div>
+                                @endif
                                 <div class="col-md-12 col-12">
                                     <div class="form-group">
                                         <label class="form-label text-danger">Description</label>
                                         <textarea type="text" name="description" disabled class="form-control @error('description') border-danger @enderror" placeholder="Description" style="height: 250px;">{{ $data->description }}</textarea>
                                        
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-12">
+                                    <div class="form-group">
+                                        <label class="form-label text-danger">Position</label>
+                                        <input type="number" disabled name="position" class="form-control  @error('position') border-danger @enderror" value="{{ $data->position }}" required>
+                                        @error('position')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
                                 @if(sizeof($files))

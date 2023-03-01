@@ -13,6 +13,17 @@ use App\Models\SiteIndexes;
 
 class AlumniController extends Controller
 {
+
+    public function alumni_news_inner($id)
+    {
+        
+
+         $alumni_news = SiteIndexes::where('id', $id)->where('type', 'alumni_news')->first(); 
+        
+        return view('web/alumni-news', compact('alumni_news'));
+
+
+    }
   
     public function index()
     {

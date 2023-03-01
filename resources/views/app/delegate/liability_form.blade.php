@@ -26,7 +26,7 @@
         <div class="d-flex flex-row  mb-3">
             @if(!empty($data->file))
                 <div class="d-grid">
-                   <a href="{{ asset('uploads/'.$data->file) }}" class="btn btn-primary "><i class="fa fa-file-text-o" aria-hidden="true"></i> Downlode Liability Waiver Form</a>
+                   <a href="{{ asset('uploads/'.$data->file) }}" class="btn btn-primary "><i class="fa fa-file-text-o" aria-hidden="true"></i> Download Liability Waiver Form </a>
                 </div>
             @endif
           </div>

@@ -23,7 +23,15 @@
                 <div class="col-md-12 col-12">
                     <div class="form-group">
                         <label class="form-label">Description</label>
+                       
+                        @if(!empty($general_assembly->content))
                         <textarea id="view_editor" class="is-locked"> {!! $general_assembly->content ?? '' !!}</textarea>
+                        @else
+                        <div class="blue-box mt-3">
+                                    <h4>Please wait !</h4>
+                            <p class="mt-2 mb-3">This session has not started !</p>
+                        </div>
+                        @endif
                     </div>
                 </div>
                  

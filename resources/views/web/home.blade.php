@@ -1,25 +1,27 @@
 @extends('web.layout.main')
 @section('content')
 
-    @if (!empty($banner) && $banner->count())  
+    
+    @if (!empty($banner) && $banner->count())
+        <div id="slider">
+        <p class="control_next"><i class="fa fa-chevron-right" aria-hidden="true"></i></p>
+        <p class="control_prev"><i class="fa fa-chevron-left" aria-hidden="true"></i></p>
+        <ul>
+        @foreach ($banner as $key => $value)
         
-        @foreach ($banner as $key => $value)
-        <section id="hero" class="mh-65 mySlides" style="background-image: url({{ asset('uploads/'.$value->image) }});">
-        </section>
-        @endforeach
-
-        <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle">
-        @foreach ($banner as $key => $value)
-        <span class="demo "></span>
-        @endforeach
+                <li class="slide1">
+                    <div class="slider-title-wrapper">
+                        <!-- <h3 class="slider-title"><span class="slider-title-h3">Slide 1</span>
+                            <span class="slider-subtitle">This is the first slide</span></h3> -->
+                    </div>
+                    <img src="{{ asset('uploads/'.$value->image) }}" alt="">
+                </li>
+                @endforeach
             
-            <div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
-            <div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
 
+            </ul>
         </div>
-
     @endif
-
 
     @if (!empty($timer) && $timer->count())
         <section id="counter" class="section-padding">

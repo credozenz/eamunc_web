@@ -44,7 +44,7 @@
       
                 <li class="nav-item" >
                   <a class="nav-link @if($routeGroup =='delegate_resolution') active @endif" href="{{ route('app.delegate_resolution') }}">
-                   <span >Resolution</span>
+                   <span >Resolution Corner</span>
                   </a>
                 </li>
       
@@ -105,7 +105,7 @@
 
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
             <a class="nav-link @if($routeGroup =='delegate_resolution') active @endif" href="{{ route('app.delegate_resolution') }}">
-              <span >Resolution</span>
+              <span >Resolution Corner</span>
             </a>
           </li>
 

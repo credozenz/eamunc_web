@@ -5,7 +5,7 @@
             <div class="container">
                 <div class="letter-container">
 
-                    <h3 class="color-darkblue mb-4">Participate Schools</h3>
+                    <h3 class="color-darkblue mb-4">Participating Schools</h3>
 
                     @if (!empty($schools) && $schools->count())
                         @foreach ($schools as $key => $value)
@@ -29,7 +29,7 @@
                     @endforeach
                     @else
                     <div class="col-md-6 text-center text-md-end color-darkblue">
-                    Participate schools isn't available right Now !
+                    Participating schools isn't available right Now !
                     </div>
                     @endif
                     
