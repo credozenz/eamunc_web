@@ -685,7 +685,7 @@ footer {
     transition: transform .3s cubic-bezier(.175,.885,.32,1.275),-webkit-transform .3s cubic-bezier(.175,.885,.32,1.275);
 }
 #slider:hover {
-    /* transform: scaleX(1.03) scaleY(1.03); */
+    transform: scaleX(1.03) scaleY(1.03);
 }
 #slider ul {
     position: relative;
@@ -700,7 +700,7 @@ footer {
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 525px;
+    height: 33rem;
     background: #ccc;
     text-align: center;
     line-height: 300px;

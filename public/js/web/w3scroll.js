@@ -14,7 +14,7 @@ jQuery(document).ready(function ($) {
 
   $('#slider').css({ width: slideWidth, height: slideHeight });
 
- // $('#slider ul').css({ width: sliderUlWidth, marginLeft: - slideWidth });
+  $('#slider ul').css({ width: slideWidth, height: slideHeight });
 
   $('#slider ul li:last-child').prependTo('#slider ul');
 
