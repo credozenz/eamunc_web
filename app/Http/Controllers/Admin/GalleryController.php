@@ -161,11 +161,12 @@ class GalleryController extends Controller
             'gallery_id.required' => 'The Title field is required',
             'video.required' => 'The video field is required',
         ]);
+        $youtubeurl = AdminHelper::getYoutubeIdFromUrl($request->video);
 
         $gallery = new Images;
         $gallery->type = 'gallery';
         $gallery->connect_id = $request->gallery_id;
-        $gallery->video = $request->video;
+        $gallery->video = $youtubeurl;
         $gallery->save();
 
            $data = Gallery::where('id', $request->gallery_id)->first(); 
