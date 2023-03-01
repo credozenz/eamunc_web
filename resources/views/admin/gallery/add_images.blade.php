@@ -31,28 +31,58 @@
                     <div class="card-header">
                         <h4 class="card-title">Add Gallery Images</h4>
                     </div>
-                    <div class="card-content">
-                        <div class="card-body">
-                        <form method="post" action="{{ url('admin/gallery_add_images') }}"  enctype="multipart/form-data">
-                          @csrf
-                          <input type="hidden" name="gallery_id" value="{{ $id }}" class="form-control  @error('gallery_id') border-danger @enderror">
-                                <div class="row">
-                                <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label class="form-label text-danger">image</label>
-                                     <fieldset>
-                                        <div class="input-group">
-                                            <input type="file" name="image"  class="form-control  @error('image') border-danger @enderror"  aria-label="Upload">
-                                            <button class="btn btn-primary">Upload</button>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card-content">
+                                <div class="card-body">
+                                <form method="post" action="{{ url('admin/gallery_add_images') }}"  enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" name="gallery_id" value="{{ $id }}" class="form-control  @error('gallery_id') border-danger @enderror">
+                                        <div class="row">
+                                        <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label text-danger">Image</label>
+                                            <fieldset>
+                                                <div class="input-group">
+                                                    <input type="file" name="image"  class="form-control  @error('image') border-danger @enderror"  aria-label="Upload">
+                                                    <button type="submit" class="btn btn-primary">Upload</button>
+                                                </div>
+                                            </fieldset>
+                                            <small>Image Dimension:532x300, Size below 3MB</small>
+                                            @error('image')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                                </div>
+                                            </div>
+                                        
                                         </div>
-                                    </fieldset>
-                                    <small>Image Dimension:532x300, Size below 3MB</small>
-                                    @error('image')<div class="text-danger mt-2">{{ $message }}</div>@enderror
-                                        </div>
-                                    </div>
-                                
+                                    </form>
                                 </div>
-                            </form>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="card-content">
+                                <div class="card-body">
+                                <form method="post" action="{{ url('admin/gallery_add_video') }}"  enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" name="gallery_id" value="{{ $id }}" class="form-control  @error('gallery_id') border-danger @enderror">
+                                        <div class="row">
+                                        <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label text-danger">YouTube Video Url</label>
+                                            <fieldset>
+                                                <div class="input-group">
+                                                    <input type="text" name="video"  class="form-control  @error('video') border-danger @enderror"  aria-label="Upload">
+                                                    <button type="submit" class="btn btn-primary">Upload</button>
+                                                </div>
+                                            </fieldset>
+                                           
+                                            @error('image')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                                </div>
+                                            </div>
+                                        
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -71,10 +101,20 @@
                         <div class="row gallery" data-bs-toggle="modal" data-bs-target="#galleryModal">
                        
                                 @foreach ($data as $key => $value)
-                            <div class="col-6 col-sm-6 col-lg-3 mt-2 mt-md-0 mb-md-0 mb-2">
-                            <a class="btn-sm icon btn-danger rounded-pill dltButton"  data-url="{{ url('admin/gallery_img_delete',$value->id) }}" data-replaceurl="{{ url('admin/gallery_images',$id) }}" title="Delete Project">x</a>
-                                    <img class="w-100 active" src="{{ asset('uploads/'.$value->image) }}" data-bs-slide-to="0">
+                            <div class="col-6 col-sm-6 col-lg-3 mt-4 mb-2">
+                            <a class="btn-sm icon btn-danger rounded-pill dltButton" style="padding: 0.25rem 0.5rem 1.25rem 0.5rem;" data-url="{{ url('admin/gallery_img_delete',$value->id) }}" data-replaceurl="{{ url('admin/gallery_images',$id) }}" title="Delete Project">x</a>
+                                   
+                            @if(!empty($value->image))
+                            <img class="w-100 active" src="{{ asset('uploads/'.$value->image) }}" data-bs-slide-to="0">
+                            @elseif(!empty($value->video))
+                            <div class="col-md-6 col-12">
+                                <div class="form-group">
                                 
+                                    <iframe width="250" height="245" src="https://www.youtube.com/embed/{{ $value->video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                                </div>
+                            </div>
+                            @endif
                             </div>
                             @endforeach
                            

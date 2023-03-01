@@ -150,6 +150,37 @@ class GalleryController extends Controller
           }
        
     }
+
+    public function add_video(Request $request)
+    {
+
+        $validatedData = $request->validate([
+            'gallery_id' => 'required|max:255',
+            'video' => ['required'],
+        ],[
+            'gallery_id.required' => 'The Title field is required',
+            'video.required' => 'The video field is required',
+        ]);
+
+        $gallery = new Images;
+        $gallery->type = 'gallery';
+        $gallery->connect_id = $request->gallery_id;
+        $gallery->video = $request->video;
+        $gallery->save();
+
+           $data = Gallery::where('id', $request->gallery_id)->first(); 
+           $data->status = 1;
+           $data->save();
+
+        if($gallery->id){
+            Session::flash('success', 'Video added successfully!');
+            return  redirect()->back();
+          }else{
+            Session::flash('error', 'Something went wrong!!');
+            return  redirect()->back();
+          }
+       
+    }
     public function show($id)
     {
         $gallery = Gallery::find($id); 

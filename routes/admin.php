@@ -130,6 +130,7 @@ Route::group(['middleware' => 'adminchecker'], function() {
      Route::get('/gallery_show/{id}', [GalleryController::class,'show'])->name('admin.gallery.show');
      Route::get('/gallery_images/{id}', [GalleryController::class,'gallery_images'])->name('admin.gallery.images');
      Route::post('/gallery_add_images', [GalleryController::class,'add_images'])->name('admin.gallery.add_images');
+     Route::post('/gallery_add_video', [GalleryController::class,'add_video'])->name('admin.gallery.add_video');
      Route::post('/gallery_update/{id}', [GalleryController::class,'update'])->name('admin.gallery.update');
      Route::post('/gallery_delete/{id}', [GalleryController::class,'destroy'])->name('admin.gallery.destroy');
      Route::post('/gallery_img_delete/{id}', [GalleryController::class,'gallery_img_delete'])->name('admin.gallery.dlt_images');
