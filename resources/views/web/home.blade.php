@@ -11,8 +11,6 @@
         
                 <li class="slide1">
                     <div class="slider-title-wrapper">
-                        <!-- <h3 class="slider-title"><span class="slider-title-h3">Slide 1</span>
-                            <span class="slider-subtitle">This is the first slide</span></h3> -->
                     </div>
                     <img src="{{ asset('uploads/'.$value->image) }}" alt="">
                 </li>

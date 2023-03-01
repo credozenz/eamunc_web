@@ -43,16 +43,16 @@
 
 
                     <ul class="nav navbar-nav">
-                        <li class="nav-item"><a href="{{ route('about-us') }}" class="color-white font-normal">About E.A.MUNC</a></li>
-                        <li class="nav-item"><a href="{{ route('conference') }}" class="color-white font-normal">Conferences</a></li>
-                        <li class="nav-item"><a href="{{ route('committees') }}" class="color-white font-normal">Committees</a></li>
-                        <li class="nav-item"><a href="{{ route('live') }}" class="color-white font-normal">Live</a></li>
-                        <li class="nav-item"><a href="{{ route('gallery') }}" class="color-white font-normal">Gallery</a></li>
-                        <li class="nav-item"><a href="{{ route('alumni') }}" class="color-white font-normal">Alumni</a></li>
-                        <li class="nav-item"><a href="{{ route('newsletter') }}" class="color-white font-normal">Newsletter</a></li>
+                        <li class="nav-item"><a href="{{ route('about-us') }}" class="color-white font-large">About E.A.MUNC</a></li>
+                        <li class="nav-item"><a href="{{ route('conference') }}" class="color-white font-large">Conferences</a></li>
+                        <li class="nav-item"><a href="{{ route('committees') }}" class="color-white font-large">Committees</a></li>
+                        <li class="nav-item"><a href="{{ route('live') }}" class="color-white font-large">Live</a></li>
+                        <li class="nav-item"><a href="{{ route('gallery') }}" class="color-white font-large">Gallery</a></li>
+                        <li class="nav-item"><a href="{{ route('alumni') }}" class="color-white font-large">Alumni</a></li>
+                        <li class="nav-item"><a href="{{ route('newsletter') }}" class="color-white font-large">Newsletter</a></li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle color-white font-normal" href="#" id="navbarDropdown"
+                            <a class="nav-link dropdown-toggle color-white font-large" href="#" id="navbarDropdown"
                                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 More Information
                             </a>

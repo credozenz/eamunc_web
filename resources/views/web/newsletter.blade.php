@@ -41,7 +41,7 @@
         </div>
     </section>
     
-    <section id="regulations" class="section-padding pt-0">
+    <!-- <section id="regulations" class="section-padding pt-0">
         <div class="wrapper">
             <div class="container p-0">
                 <div class="box border-black">
@@ -62,5 +62,5 @@
             <span class="spacer"></span>
 
         </div>
-    </section>
+    </section> -->
     @endsection

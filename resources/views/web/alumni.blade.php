@@ -59,7 +59,7 @@
     </section>
     @endif
     
-    <section id="regulations" class="section-padding">
+    <!-- <section id="regulations" class="section-padding">
    
         <div class="wrapper">
             <div class="container p-0">
@@ -73,14 +73,12 @@
                             <button class="download-btn">Register Now</button>
                         </a>
                         </div>
-
-
                     </div>
                 </div>
 
             </div>
         </div>
        
-    </section>
+    </section> -->
    
     @endsection

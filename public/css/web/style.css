@@ -174,7 +174,9 @@
 }
 
 #header .sidemenu .nav li a {}
-
+.font-large {
+    font-size: large !important;
+}
 .nav-item.dropdown>.nav-link {
     padding: 0;
 }
