@@ -30,7 +30,7 @@ class CommitteeController extends Controller
     {   
         $query = Committee::where('deleted_at', null);
         if($request->q){
-            $query->where('name','LIKE', $request->q)
+            $query->orwhere('name','LIKE', $request->q)
             ->orwhere('title','LIKE', $request->q);
         }
         $data=$query->orderBy('position', 'ASC')
