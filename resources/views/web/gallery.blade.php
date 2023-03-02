@@ -32,7 +32,7 @@
 
                     </div>
                 </div>
-
+                @include('web.layout.pagination', ['paginator' => $gallery])
                 <span class="spacer"></span>
             </div>
 

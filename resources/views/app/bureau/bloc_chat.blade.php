@@ -34,7 +34,7 @@
           
               <div class="panel-body">
              
-                <div class="chats disable-scrollbars" style="max-height: 500px;">
+                <div class="chats disable-scrollbars chatscreen" style="max-height: 500px;">
 
                   @if(!empty($blocs_chats))
                     @foreach($blocs_chats as $key => $chat)

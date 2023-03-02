@@ -52,7 +52,9 @@
             @endforeach  
                
             </div>
+            @include('web.layout.pagination', ['paginator' => $work_members])
         </div>
+       
     </section>
 @endif
 

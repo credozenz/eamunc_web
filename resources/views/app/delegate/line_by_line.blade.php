@@ -25,8 +25,8 @@
           </label>
                 <div class="col-md-12 col-12">
                     <div class="form-group">
-                    @if(!empty($vienna->content))
-                        <textarea id="view_editor" > {!! $vienna->content ?? '' !!}</textarea>
+                    @if(!empty($line->content))
+                        <textarea id="view_editor" > {!! $line->content ?? '' !!}</textarea>
                      @else
                      <div class="blue-box mt-3">
                                 <h4>Please wait !</h4>

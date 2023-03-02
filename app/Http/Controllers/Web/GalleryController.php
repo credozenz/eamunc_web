@@ -19,7 +19,7 @@ class GalleryController extends Controller
     {
         
 
-        $gallery = Gallery::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4); 
+        $gallery = Gallery::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(8); 
 
         return view('web/gallery', compact('gallery'));
 
@@ -29,7 +29,7 @@ class GalleryController extends Controller
     public function index_inner($id)
     {
         $gallery = Gallery::find($id);
-        $images = Images::where('connect_id', $id)->where('type', 'gallery')->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(20);
+        $images = Images::where('connect_id', $id)->where('type', 'gallery')->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(9);
 
         return view('web/gallery-inner', compact('gallery','images'));
 

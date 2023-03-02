@@ -75,7 +75,7 @@
 
 
                 </div>
-
+                @include('web.layout.pagination', ['paginator' => $images])
                 <span class="spacer"></span>
             </div>
 

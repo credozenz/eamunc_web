@@ -16,14 +16,14 @@ class PastConferenceController extends Controller
 {
     public function index()
     {
-        $past_conferences = SiteIndexes::where('deleted_at', null)->where('type', 'past_conference')->orderBy('id', 'DESC')->paginate(4);
+        $past_conferences = SiteIndexes::where('deleted_at', null)->where('type', 'past_conference')->orderBy('id', 'DESC')->paginate(6);
         return view('web/past-conferences', compact('past_conferences'));
     }
 
     public function index_inner($id)
     {
         $past_conferences = SiteIndexes::find($id); 
-        $images = Images::where('connect_id', $id)->where('type', 'past_conference')->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4);
+        $images = Images::where('connect_id', $id)->where('type', 'past_conference')->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(9);
         return view('web/past-conference-inner', compact('past_conferences','images'));
     }
 }

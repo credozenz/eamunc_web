@@ -364,4 +364,10 @@ $(document).ready(function() {
 
 
 
-
+$(function() {
+    var wtf    = $('.chatscreen');
+    if (wtf.length !== 0) {
+    var height = wtf[0].scrollHeight;
+    wtf.scrollTop(height);
+    }
+  });

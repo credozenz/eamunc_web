@@ -36,9 +36,9 @@ class DelegatePaperSubmissionController extends Controller
 
         $guideline = SiteIndexes::where('deleted_at', null)->where('type','guideline')->first();
 
-        $committee = Committee::where('id',$member->committee_choice)->first();
+        $committee = Committee::where('deleted_at', null)->where('id',$member->committee_choice)->first();
 
-        $paper = Paper_submission::where('user_id',$member->user_id)->first();
+        $paper = Paper_submission::where('deleted_at', null)->where('user_id',$member->user_id)->first();
 
         return view('app/delegate/paper_submission', compact('guideline','committee','paper'));
     }

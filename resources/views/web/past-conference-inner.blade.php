@@ -54,6 +54,7 @@
                
 
             </div>
+            @include('web.layout.pagination', ['paginator' => $images])
         </div>
 
     </section>

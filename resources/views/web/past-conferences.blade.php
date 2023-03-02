@@ -34,7 +34,7 @@
 
                 </div>
             </div>
-
+            @include('web.layout.pagination', ['paginator' => $past_conferences])
         </div>
     </section>
     @endsection

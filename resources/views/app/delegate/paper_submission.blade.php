@@ -50,6 +50,7 @@
                 <div class="drag-text">
                 <i class="fa fa-file" style="font-size: 18px;" aria-hidden="true"></i>
                   <h3> {{ $paper->paper_name ?? '' }} </h3>
+                  <p class="sub-head">Paper submission successfully completed !</p>
                 </div>
 
               </div>

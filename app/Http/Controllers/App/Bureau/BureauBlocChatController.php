@@ -50,8 +50,8 @@ class BureauBlocChatController extends Controller
                             ->where('u.deleted_at', null)
                             ->where('b.deleted_at', null)
                             ->where('b.bloc_id', '=', $id)
-                            ->orderBy('b.id', 'DESC')
-                            ->paginate(50);
+                            ->orderBy('b.id', 'ASC')
+                            ->paginate(2000);
 
         return view('app/bureau/bloc_chat', compact('id','member','committee','committee_bloc','blocs_members','blocs_chats'));
     }
