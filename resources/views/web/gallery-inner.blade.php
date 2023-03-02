@@ -8,8 +8,9 @@
                         <h3 class="color-darkblue">Conference</h3>
                     </div>
 
-                    <div class="row mt-5">
+                @if (!empty($images) && $images->count())
 
+                    <div class="row mt-5">
                     @if (!empty($images) && $images->count())
                         @foreach ($images as $key => $value)
 
@@ -27,18 +28,12 @@
                        
 
                         @endforeach
-                    @else
-                    <div class="col-md-6 text-center text-md-end color-darkblue">
-                       Gallery Images isn't available right Now !
-                    </div>
-                    @endif
-                       
-
+                  
+                    @endif   
                     </div>
 
 
                     <div class="row mt-5">
-
                         @if (!empty($images) && $images->count())
                             @foreach ($images as $key => $value)
 
@@ -55,19 +50,17 @@
                             @endif
                         
                             @endforeach
-                        @else
-                        <div class="col-md-6 text-center text-md-end color-darkblue">
-                        Gallery Images isn't available right Now !
-                        </div>
+                       
                         @endif
-                        
-
-                        </div>
+                    </div>
 
 
 
-
-
+                @else
+                <div class="col-md-6 text-center text-md-end color-darkblue">
+                    Gallery Images isn't available right Now !
+                </div>
+                @endif
 
 
 
