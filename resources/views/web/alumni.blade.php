@@ -59,11 +59,11 @@
     </section>
     @endif
     
-    <!-- <section id="regulations" class="section-padding">
+    <section id="regulations" class="section-padding">
    
         <div class="wrapper">
             <div class="container p-0">
-                <div class="box border-black">
+                <!-- <div class="box border-black">
                     <div class="row align-items-center">
                         <div class="col-md-6">
                             <p class="color-darkblue h5 mb-3 mb-md-0 text-center text-md-start">Be a part of the E.A.MUNC Alumni Network</p>
@@ -73,12 +73,12 @@
                             <button class="download-btn">Register Now</button>
                         </a>
                         </div>
-                    </div>
-                </div>
+                    </div> 
+                </div>-->
 
             </div>
         </div>
        
-    </section> -->
+    </section>
    
     @endsection
