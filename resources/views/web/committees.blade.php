@@ -27,6 +27,7 @@
                 @endforeach
             
                 </div>
+                @include('web.layout.pagination', ['paginator' => $committees])
                 <span class="spacer"></span>
             </div>
         </div>
