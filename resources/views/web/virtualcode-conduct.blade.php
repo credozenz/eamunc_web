@@ -4,7 +4,7 @@
         <div class="wrapper">
             <div class="container">
                 <div class="letter-container">
-                    <h3 class="color-darkblue mb-4">Virtual Code Of Conduct</h3>
+                    <h3 class="color-darkblue mb-4">Code Of Conduct</h3>
 
                     <div class="row mt-5">
                         <img src="{{ asset('uploads/'.$virtualcode->image) ?? '' }}" alt="{{ $virtualcode->title ?? '' }}">
@@ -23,7 +23,7 @@
                         </div>
                     @else
                     <div class="col-md-6 text-center text-md-end color-darkblue">
-                        Virtual Code Of Conduct isn't available right Now !
+                        Code Of Conduct isn't available right Now !
                     </div>
                     @endif
 
@@ -41,7 +41,7 @@
                 <div class="box border-black">
                     <div class="row align-items-center">
                         <div class="col-md-6">
-                            <p class="color-darkblue h5 mb-3 mb-md-0 text-center text-md-start">Virtual Code Of Conduct</p>
+                            <p class="color-darkblue h5 mb-3 mb-md-0 text-center text-md-start">Code Of Conduct</p>
                         </div>
                         <div class="col-md-6 text-center text-md-end">
                         <a href="{{ asset('uploads/'.$virtualcode->file) ?? '' }}" target="_blank">

@@ -151,13 +151,13 @@
 
             <li class="sidebar-item  @if($routeGroup =='newsletter') active @endif ">
                 <a href="{{ route('admin.newsletter') }}" class='sidebar-link'>
-                    <span><i class="fa fa-newspaper-o" aria-hidden="true">&nbsp</i>News Letter</span>
+                    <span><i class="fa fa-newspaper-o" aria-hidden="true">&nbsp</i>Consensus Chronicles</span>
                 </a>
             </li>
 
             <li class="sidebar-item  @if($routeGroup =='hostschool') active @endif ">
                 <a href="{{ route('admin.host_schools') }}" class='sidebar-link'>
-                    <span><i class="fa fa-university" aria-hidden="true">&nbsp</i>Host Schools</span>
+                    <span><i class="fa fa-university" aria-hidden="true">&nbsp</i>Host Educational Institiutions</span>
                 </a>
             </li>
 
@@ -181,7 +181,7 @@
 
             <li class="sidebar-item  @if($routeGroup =='vc_condunt') active @endif ">
                 <a href="{{ route('admin.vc_condunt') }}" class='sidebar-link'>
-                    <span><i class="fa fa-sort" aria-hidden="true">&nbsp</i>Virtual Code Of Conduct</span>
+                    <span><i class="fa fa-sort" aria-hidden="true">&nbsp</i>Code Of Conduct</span>
                 </a>
             </li>
 

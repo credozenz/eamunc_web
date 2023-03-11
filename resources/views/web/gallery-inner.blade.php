@@ -20,7 +20,7 @@
                         @if(!empty($value->image))
                         
                         <div class="col-md-4 image-box mb-5">
-                        <img width="40%" height="100%" src="{{ asset('uploads/'.$value->image) ?? '' }}" alt="{{ $value->name ?? '' }}">
+                        <img width="40%" height="100%" src="{{ asset('uploads/'.$value->image) ?? '' }}" class="open-img" alt="{{ $value->name ?? '' }}">
                         </div> 
                         
                         @endif

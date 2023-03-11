@@ -136,7 +136,7 @@ class StudentsController extends Controller
 
 
         $phone_code = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $request->phone_code);
-        $position = NULL;
+        $position = $request->position;
 
         // if($request->role == '3'){
 
@@ -186,6 +186,47 @@ class StudentsController extends Controller
                     }
 
                 }
+
+
+
+                if($request->status=='2'){
+
+                      
+                    $committee = Committee::where('id', $student->committee_choice)->first();  
+                    $country = Countries::where('id', $student->country_choice)->first(); 
+
+                    $data['name']       = $student->name;
+                    $data['committee']  = $committee->title;
+                    $data['country']    = $country->name;
+
+                        $token = Str::random(64);
+    
+                        $settoken = DB::table('password_resets')->insert([
+                                        'email' => $student->email,
+                                        'token' => $token,
+                                        'created_at' => Carbon::now()
+                                    ]);
+                                
+                            if($settoken) {
+                                Mail::send('admin.auth.invite-email', ['token' => $token,'data' => $data], function($message) use($student){
+                                    $message->to(trim($student->email));
+                                    $message->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'));
+                                    $message->subject('Set Password');
+                                });
+    
+    
+                               
+                                
+                            } 
+                  
+
+
+                }
+
+
+
+
+
 
             $student->status   = $request->status;
             }

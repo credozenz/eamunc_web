@@ -29,7 +29,7 @@
                               @endif
                        
                             <p class="mentor-name text-center">{{ $value->name ?? '' }}</p>
-                            <p class="mentor-designation text-center color-blue">{{ $value->post ?? '' }}</p>
+                            <p class="mentor-designation text-center color-blue">{{ $value->position ?? '' }}</p>
                         </div>
 
                         @endforeach

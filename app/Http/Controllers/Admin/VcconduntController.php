@@ -106,7 +106,7 @@ class VcconduntController extends Controller
            $condunt->save();
            
            if($condunt->id){
-            Session::flash('success', 'Virtual Code Of Conduct messages updated successfully!');
+            Session::flash('success', 'Code Of Conduct messages updated successfully!');
             return redirect('/admin/vc_condunt');
           }else{
             Session::flash('error', 'Something went wrong!!');

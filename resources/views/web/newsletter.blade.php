@@ -6,7 +6,7 @@
             <div class="container">
                 <div class="letter-container">
 
-                    <h3 class="color-darkblue mb-4">Newsletter</h3>
+                    <h3 class="color-darkblue mb-4">Consensus Chronicles</h3>
 
 
                     @if (!empty($newsletter) && $newsletter->count())
@@ -29,7 +29,7 @@
                     @endforeach
                                 @else
                                 <div class="col-md-6 text-center text-md-end color-darkblue">
-                                 News letter isn't available right Now !
+                                Consensus Chronicles isn't available right Now !
                                 </div>
                                 @endif
                   

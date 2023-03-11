@@ -15,7 +15,7 @@
                             <li><a href="{{ route('live') }}" class="color-white">Live</a></li>
                             <li><a href="{{ route('gallery') }}" class="color-white">Gallery</a></li>
                             <li><a href="{{ route('alumni') }}" class="color-white">Alumni</a></li>
-                            <li><a href="{{ route('newsletter') }}" class="color-white">Newsletter</a></li>
+                            <li><a href="{{ route('newsletter') }}" class="color-white">Consensus Chronicles</a></li>
                         </ul>
                     </div>
                     <div class="col-md-4">

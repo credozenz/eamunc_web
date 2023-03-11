@@ -49,7 +49,7 @@
                         <li class="nav-item"><a href="{{ route('live') }}" class="color-white font-large">Live</a></li>
                         <li class="nav-item"><a href="{{ route('gallery') }}" class="color-white font-large">Gallery</a></li>
                         <li class="nav-item"><a href="{{ route('alumni') }}" class="color-white font-large">Alumni</a></li>
-                        <li class="nav-item"><a href="{{ route('newsletter') }}" class="color-white font-large">Newsletter</a></li>
+                        <li class="nav-item"><a href="{{ route('newsletter') }}" class="color-white font-large">Consensus Chronicles</a></li>
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle color-white font-large" href="#" id="navbarDropdown"
@@ -57,10 +57,10 @@
                                 More Information
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item font-normal" href="{{ route('host-school') }}">Host Schools</a></li>
+                                <li><a class="dropdown-item font-normal" href="{{ route('host-school') }}">Host Educational Institiutions</a></li>
                                 <li><a class="dropdown-item font-normal" href="{{ route('participate-school') }}">Participating Schools</a></li>
                                 <li><a class="dropdown-item font-normal" href="{{ route('act-impact') }}">Act Impact</a></li>
-                                <li><a class="dropdown-item font-normal" href="{{ route('virtual-code') }}">Virtual Code Of Conduct</a></li>
+                                <li><a class="dropdown-item font-normal" href="{{ route('virtual-code') }}">Code Of Conduct</a></li>
                                 <li><a class="dropdown-item font-normal" href="{{ route('past-conference') }}">Past Conference</a></li>
                             </ul>
                         </li>
@@ -83,5 +83,18 @@
             </div>
         </nav>
     </header>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+<!-- The Close Button -->
+<span class="close">&times;</span>
+
+<!-- Modal Content (The Image) -->
+<img class="modal-content" id="img01">
+
+<!-- Modal Caption (Image Text) -->
+<div id="caption"></div>
+</div>
 
     
