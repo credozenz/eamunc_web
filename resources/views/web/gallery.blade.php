@@ -17,9 +17,9 @@
                         <div class="col-lg-3 col-md-4 col-6 image-box mb-4 mb-5">
                             <a href="{{ route('gallery-inner',$value->id ?? '') }}" class="color-white">
                             <img src="{{ asset('uploads/'.$value->cover_image) ?? '' }}" alt="{{ $value->name ?? '' }}">
-                            <p class="mentor-name text-start">{{ $value->name ?? '' }}</p>
                             </a>
-                        </div>
+                            <a href="{{ route('gallery-inner',$value->id ?? '') }}" ><p class="mentor-name text-start">{{ $value->name ?? '' }}</p></a>
+                        </div> 
                         
                         @endforeach
                     @else

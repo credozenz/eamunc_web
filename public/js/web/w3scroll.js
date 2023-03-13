@@ -3,8 +3,9 @@ jQuery(document).ready(function ($) {
   
   // This is for the auto sliding
   setInterval(function () {
-      moveRight();
-  }, 3000);
+   
+      changeSlider();
+  }, 6000);
   
   //variables
   var slideCount = $('#slider ul li').length;
@@ -18,21 +19,38 @@ jQuery(document).ready(function ($) {
 
   $('#slider ul li:last-child').prependTo('#slider ul');
 
+
+
+
+
+  function changeSlider() {
+    $('#slider ul').animate({
+        opacity: 0.1
+    }, 1000, function () {
+        $('#slider ul li:last-child').prependTo('#slider ul');
+        $('#slider ul').css('left', '');
+        $('#slider ul').css('opacity', 1);
+    });
+};
+  
+
   function moveLeft() {
       $('#slider ul').animate({
-          left: + slideWidth
-      }, 600, function () {
+        left: '-=100%',
+      }, 200, function () {
           $('#slider ul li:last-child').prependTo('#slider ul');
           $('#slider ul').css('left', '');
+          $('#slider ul').css('opacity', 1);
       });
   };
 
   function moveRight() {
       $('#slider ul').animate({
-          left: - slideWidth
-      }, 600, function () {
+        left: '+=100%',
+      },200, function () {
           $('#slider ul li:first-child').appendTo('#slider ul');
           $('#slider ul').css('left', '');
+          $('#slider ul').css('opacity', 1);
       });
   };
 

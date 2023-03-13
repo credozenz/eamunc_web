@@ -4,19 +4,16 @@
     
     @if (!empty($banner) && $banner->count())
         <div id="slider">
-        <p class="control_next"><i class="fa fa-chevron-right" aria-hidden="true"></i></p>
-        <p class="control_prev"><i class="fa fa-chevron-left" aria-hidden="true"></i></p>
-        <ul>
-        @foreach ($banner as $key => $value)
-        
+          <p class="control_next"><i class="fa fa-chevron-right" aria-hidden="true"></i></p>
+          <p class="control_prev"><i class="fa fa-chevron-left"  aria-hidden="true"></i></p>
+            <ul>
+                @foreach ($banner as $key => $value)
                 <li class="slide1">
                     <div class="slider-title-wrapper">
                     </div>
                     <img src="{{ asset('uploads/'.$value->image) }}" alt="">
                 </li>
                 @endforeach
-            
-
             </ul>
         </div>
     @endif
