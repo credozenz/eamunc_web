@@ -30,7 +30,17 @@ $(document).ready(function() {
             $("#navbar-menu").fadeOut(500)
         });
     
+         $('body section').on('click', function(){ 
 
+            $("#navbar-menu").fadeOut(500); 
+           
+         });
+
+         $('body #slider').on('click', function(){ 
+
+            $("#navbar-menu").fadeOut(500); 
+        
+         });
 
 
 
