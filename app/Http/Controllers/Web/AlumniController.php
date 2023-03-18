@@ -31,7 +31,7 @@ class AlumniController extends Controller
     public function index()
     {
         
-        $webinar = '';//SiteIndexes::where('deleted_at', null)->where('type', 'alumni_webinar')->orderBy('id', 'DESC')->paginate(9); 
+        $webinar = SiteIndexes::where('deleted_at', null)->where('type', 'alumni_webinar')->orderBy('id', 'DESC')->paginate(9); 
       
         $alumni = SiteIndexes::where('deleted_at', null)->where('type','alumni')->first(); 
         $alumni_news = SiteIndexes::where('deleted_at', null)->where('type', 'alumni_news')->where('status', '1')->orderBy('id', 'DESC')->paginate(4); 
