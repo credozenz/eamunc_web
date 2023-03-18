@@ -25,6 +25,7 @@ use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\RulesController;
 use App\Http\Controllers\Admin\AlumniController;
 use App\Http\Controllers\Admin\AlumniNewsController;
+use App\Http\Controllers\Admin\AlumniWebinarController;
 use App\Http\Controllers\Admin\ImportantDateController;
 use App\Http\Controllers\Admin\CommitteeController;
 use App\Http\Controllers\Admin\PastConferenceController;
@@ -38,7 +39,7 @@ use App\Http\Controllers\Admin\StudentsController;
 use App\Http\Controllers\Admin\SchoolsController;
 use App\Http\Controllers\Admin\GuidelineController;
 use App\Http\Controllers\Admin\LiabilityWaiverController;
-
+use App\Http\Controllers\Admin\AlumniRegController;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,6 +91,22 @@ Route::group(['middleware' => 'adminchecker'], function() {
      Route::get('/alumninews_show/{id}', [AlumniNewsController::class,'show'])->name('admin.alumninews.show');
      Route::post('/alumninews_update/{id}', [AlumniNewsController::class,'update'])->name('admin.alumninews.update');
      Route::post('/alumninews_delete/{id}', [AlumniNewsController::class,'destroy'])->name('admin.alumninews.destroy');
+     Route::post('/alumninews_archive/{id}', [AlumniNewsController::class,'archive'])->name('admin.alumninews.archive');
+
+
+     Route::get('/alumniwebinar', [AlumniWebinarController::class,'index'])->name('admin.alumniwebinar');
+     Route::get('/alumniwebinar_create', [AlumniWebinarController::class,'create'])->name('admin.alumniwebinar.create');
+     Route::post('/alumniwebinar_store', [AlumniWebinarController::class,'store'])->name('admin.alumniwebinar.store');
+     Route::get('/alumniwebinar_edit/{id}', [AlumniWebinarController::class,'edit'])->name('admin.alumniwebinar.edit');
+     Route::get('/alumniwebinar_show/{id}', [AlumniWebinarController::class,'show'])->name('admin.alumniwebinar.show');
+     Route::post('/alumniwebinar_update/{id}', [AlumniWebinarController::class,'update'])->name('admin.alumniwebinar.update');
+     Route::post('/alumniwebinar_delete/{id}', [AlumniWebinarController::class,'destroy'])->name('admin.alumniwebinar.destroy');
+     Route::post('/alumniwebinar_archive/{id}', [AlumniWebinarController::class,'archive'])->name('admin.alumniwebinar.archive');
+
+
+
+
+
 
      Route::get('/importantdate', [ImportantDateController::class,'index'])->name('admin.importantdate');
      Route::get('/importantdate_create', [ImportantDateController::class,'create'])->name('admin.importantdate.create');
@@ -271,7 +288,7 @@ Route::group(['middleware' => 'adminchecker'], function() {
 
 
 
-    
+     Route::get('/alumni_registration', [AlumniRegController::class,'index'])->name('admin.alumni_registration');
 
 
 

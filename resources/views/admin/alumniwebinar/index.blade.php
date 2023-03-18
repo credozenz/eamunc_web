@@ -5,13 +5,13 @@
 <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Alumni News</h3>
+                <h3>Alumni Webinar</h3>
                 <p class="text-subtitle text-muted"></p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ url('admin/alumninews') }}">Alumni News</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('admin/alumniwebinar') }}">Alumni Webinar</a></li>
                         <li class="breadcrumb-item active" aria-current="page"> Index</li>
                     </ol>
                 </nav>
@@ -33,7 +33,7 @@
                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="{{ url('admin/alumninews_create') }}" class="btn btn-primary shadow-md mr-2">Add</a>
+                            <a href="{{ url('admin/alumniwebinar_create') }}" class="btn btn-primary shadow-md mr-2">Add</a>
                         </li>
                     </ol>
                     </nav>
@@ -44,7 +44,6 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Title</th>
-                                        <th>Image</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -57,24 +56,18 @@
                                         <td class="text-bold-500">{{ $key+1 }}</td>
                                         <td class="text-bold-500">{{ $value->title }}</td>
                                        
-                                        <td>
-
-                                        <div class="w-30 h-30 relative image-fit  mb-2 mr-5 ">
-                                            <img alt="{{ $value->title }}" class="rounded-full" src="{{ asset('uploads/'.$value->image) }}" width="150" height="80">
-                                        </div>
-    
-                                        </td>
+                                       
                                         <td class="text-bold-500">
                                             
                                             @if($value->status=='1')
-                                            <a class="btn-sm text-success shadow-md mr-2 archButton"  data-url="{{ url('admin/alumninews_archive',$value->id) }}" data-status="0" data-replaceurl="{{ url('admin/alumninews') }}" title="Archive News">Active</a>
+                                            <a class="btn-sm text-success shadow-md mr-2 archButton"  data-url="{{ url('admin/alumniwebinar_archive',$value->id) }}" data-status="0" data-replaceurl="{{ url('admin/alumniwebinar') }}" title="Archive webinar">Active</a>
                                             @else
-                                            <a class="btn-sm text-warning shadow-md mr-2 archButton"  data-url="{{ url('admin/alumninews_archive',$value->id) }}" data-status="1" data-replaceurl="{{ url('admin/alumninews') }}" title="Archive News">Archive</a>
+                                            <a class="btn-sm text-warning shadow-md mr-2 archButton"  data-url="{{ url('admin/alumniwebinar_archive',$value->id) }}" data-status="1" data-replaceurl="{{ url('admin/alumniwebinar') }}" title="Archive webinar">Archive</a>
                                             @endif   
                                         
                                             </td>
                                         <td>
-                                        <a href="{{ url('admin/alumninews_show',$value->id) }}" class="btn btn-sm btn-primary w-24 mr-1 mb-2">View</a>
+                                        <a href="{{ url('admin/alumniwebinar_show',$value->id) }}" class="btn btn-sm btn-primary w-24 mr-1 mb-2">View</a>
                                         </td>
                                     </tr>
                                 @endforeach

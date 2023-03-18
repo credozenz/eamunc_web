@@ -8,13 +8,13 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Alumni News</h3>
+                <h3>Alumni Webinar</h3>
                 <p class="text-subtitle text-muted"></p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ url('admin/alumninews') }}">Alumni News</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('admin/alumniwebinar') }}">Alumni Webinar</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Show </li>
                     </ol>
                 </nav>
@@ -38,14 +38,14 @@
                         <li class="breadcrumb-item">
 
                         @if($data->status=='1')
-                           <a class="btn-sm btn-warning shadow-md mr-2 archButton"  data-url="{{ url('admin/alumninews_archive',$data->id) }}" data-status="0" data-replaceurl="{{ url('admin/alumninews') }}" title="Archive News">Archive</a>
+                           <a class="btn-sm btn-warning shadow-md mr-2 archButton"  data-url="{{ url('admin/alumniwebinar_archive',$data->id) }}" data-status="0" data-replaceurl="{{ url('admin/alumniwebinar') }}" title="Archive webinar">Archive</a>
                         @else
-                           <a class="btn-sm btn-warning shadow-md mr-2 archButton"  data-url="{{ url('admin/alumninews_archive',$data->id) }}" data-status="1" data-replaceurl="{{ url('admin/alumninews') }}" title="Archive News">Unarchive</a>
+                           <a class="btn-sm btn-warning shadow-md mr-2 archButton"  data-url="{{ url('admin/alumniwebinar_archive',$data->id) }}" data-status="1" data-replaceurl="{{ url('admin/alumniwebinar') }}" title="Archive webinar">Unarchive</a>
                         @endif   
                            
                            
-                           <a href="{{ url('admin/alumninews_edit',$data->id) }}" class="btn-sm btn-primary shadow-md mr-2">Edit</a>
-                            <a class="btn-sm btn-danger shadow-md mr-2 dltButton"  data-url="{{ url('admin/alumninews_delete',$data->id) }}" data-replaceurl="{{ url('admin/alumninews') }}" title="Delete News">Delete</a>
+                           <a href="{{ url('admin/alumniwebinar_edit',$data->id) }}" class="btn-sm btn-primary shadow-md mr-2">Edit</a>
+                            <a class="btn-sm btn-danger shadow-md mr-2 dltButton"  data-url="{{ url('admin/alumniwebinar_delete',$data->id) }}" data-replaceurl="{{ url('admin/alumniwebinar') }}" title="Delete webinar">Delete</a>
                         </li>
                     </ol>
                     </nav>
@@ -61,6 +61,7 @@
                       
                                         </div>
                                     </div>
+
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="text-danger">Image</label>
@@ -70,16 +71,19 @@
                         
                                         </div>
                                     </div>
+                                    
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="text-danger">Description</label>
-                        <textarea id="input-filter-5" type="text" name="description" class="form-control" placeholder="Description" disabled style="height: 250px;">{{ $data->description }}</textarea>
-                        @error('description')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                            <label for="text-danger">Video</label>
+                                            <iframe width="100%" height="445" src="https://www.youtube.com/embed/{{ $data->video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                        
                                         </div>
                                     </div>
+                                   
                                   
                                     <div class="col-12 d-flex justify-content-end">
-                                    <a href="{{ url('admin/alumninews') }}" class="btn btn-light-secondary me-1 mb-1">Back</a>
+                                    <a href="{{ url('admin/alumniwebinar') }}" class="btn btn-light-secondary me-1 mb-1">Back</a>
                                     
                                     </div>
                                 </div>

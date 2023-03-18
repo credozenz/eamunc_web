@@ -218,55 +218,63 @@ class PastConferenceController extends Controller
 
     public function pastconference_images($id)
     {
-        $data = Images::where('connect_id', $id)->where('type', 'past_conference')->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4);
+        $data = Images::where('connect_id', $id)->where('type', 'past_conference')->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(50);
         return view('admin/pastConference/add_images', compact('data','id'));
     }
 
     public function add_images(Request $request)
     {
-       
+
         $validatedData = $request->validate([
             'conference_id' => 'required|max:255',
-            'image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:2055'],
-        ],[
+            'image.*' => [
+                'required',
+                'mimes:jpeg,png,jpg,gif,svg',
+                'max:2055',
+                function ($attribute, $value, $fail) {
+                    if (!$value->isValid()) {
+                        $fail($value->getErrorMessage());
+                    }
+                }
+            ]
+        ], [
             'conference_id.required' => 'The Title field is required',
-            'image.required' => 'The Image field is required',
-            'image.max' => 'Image  must be smaller than 2 MB',
-            'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
+            'image.*.required' => 'All image fields are required.',
+            'image.*.max' => 'All images must be smaller than 2 MB.',
+            'image.*.mimes' => 'Only JPEG, PNG, JPG, GIF, and SVG file types are allowed.',
         ]);
+    
        
-        $conference = new Images;
-        $conference->type = 'past_conference';
-        $conference->connect_id = $request->conference_id;
+        $images = $request->file('image');
+
         
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $fileName   =  time().'_'.str_random(5).'_'.rand(1111,9999). '.' . $image->getClientOriginalExtension();
-          
-            $extension=$image->getClientOriginalExtension();
-           
-            if($extension=='svg'){
-               $img = $image->get();
-            }else{
-                $img = Image::make($image->getRealPath());
-                $img->resize(340, 320, function ($constraint) {
-                   $constraint->aspectRatio();                 
-                });
-                $img->stream('png', 100);
-            }
-            
-            Storage::disk('public')->put('conference/'.$fileName,$img,'public');
-           }
+    foreach ($images as $image) {
+       
+        $fileName = time().'_'.str_random(5).'_'.rand(1111,9999). '.' . $image->getClientOriginalExtension();
+        $extension=$image->getClientOriginalExtension();
 
-           $conference->image = 'conference/'.$fileName; 
+        if($extension=='svg'){
+            $img = $image->get();
+        }else{
+            $img = Image::make($image->getRealPath());
+            $img->resize(340, 320, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            $img->stream('png', 100);
+        }
+        Storage::disk('public')->put('conference/'.$fileName,$img,'public');
 
-           $conference->save();
-          
-          
-        if($conference->id){
+        $conference_item = new Images;
+        $conference_item->type = 'past_conference';
+        $conference_item->connect_id = $request->conference_id;
+        $conference_item->image = 'conference/'.$fileName; 
+        $conference_item->save();
+    }
+        
+          if($request->conference_id){
             Session::flash('success', 'Image added successfully!');
             return  redirect()->back();
-          }else{
+            }else{
             Session::flash('error', 'Something went wrong!!');
             return  redirect()->back();
           }

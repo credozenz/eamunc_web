@@ -47,6 +47,12 @@
                 </a>
             </li>
 
+            <li class="sidebar-item @if($routeGroup=='alumni_reg') active @endif">
+                <a href="{{ route('admin.alumni_registration') }}" class='sidebar-link'>
+                    <span><i class="fa fa-graduation-cap" aria-hidden="true">&nbsp</i>Alumini</span>
+                </a>
+            </li>
+
             <li class="sidebar-item  @if($routeGroup =='liability_form') active @endif ">
                 <a href="{{ route('admin.liability_waiver_form') }}" class='sidebar-link'>
                     <span><i class="fa fa-file-o" aria-hidden="true">&nbsp</i>Liability Waiver Form</span>
@@ -144,6 +150,9 @@
                     </li>
                     <li class="submenu-item ">
                         <a href="{{ route('admin.alumninews') }}">Alumni News</a>
+                    </li>
+                    <li class="submenu-item ">
+                        <a href="{{ route('admin.alumniwebinar') }}">Alumni Webinar</a>
                     </li>
                 </ul>
             </li>

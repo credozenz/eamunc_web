@@ -24,6 +24,7 @@ class CreateSiteIndexesTable extends Migration
             $table->string('video')->nullable();
             $table->text('description')->nullable();
             $table->date('date')->nullable();
+            $table->integer('status')->comment('0=>archive,1=>active')->default(1);
             $table->timestamps();
             $table->softDeletes();
         });

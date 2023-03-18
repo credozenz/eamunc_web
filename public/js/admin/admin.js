@@ -70,6 +70,78 @@ $(function(){
 
 
 
+
+$(document).on('click', '.archButton', function (e) {
+    e.preventDefault();
+    
+    var url = $(this).data('url');
+    var status = $(this).data('status');
+    var replace_url = $(this).data('replaceurl');
+
+    $.ajaxSetup({
+        headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+    let _token1   = $('meta[name="csrf-token"]').attr('content');
+
+    swal({
+        title: "Are you sure?",
+        text: "Once Archive, you will not be able to see on the web!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+    .then((willDelete) => {
+        if (willDelete) {
+
+
+            $.ajax({
+                type: "POST",
+                url: url, 
+                dataType:"json",
+                data: {status:status},
+                _token: _token1,
+                success: function(responce){
+        
+                    if(responce.status){
+
+                        swal("Poof! Your file has been Archived!", {
+                            icon: "success",
+                        });
+                        window.location.replace(replace_url);
+                    }else{
+                        swal("something went wrong please try again !");
+                        setTimeout(function(){
+                            window.location.reload(1);
+                         }, 2500);
+                    }
+
+                },
+
+
+                error: function(xhr, status, error) {
+                    swal(error);
+                    setTimeout(function(){
+                        window.location.reload(1);
+                     }, 2500);
+                }
+        
+            });
+        
+        } else {
+        swal("Your imaginary file is safe!");
+        setTimeout(function(){
+            window.location.reload(1);
+         }, 2500);
+        }
+    });
+
+});
+
+
+
 $(document).ready(function(){
     $('.idx-school').change(function(){
       

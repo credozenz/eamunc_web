@@ -42,7 +42,7 @@
                                             <label class="form-label text-danger">image</label>
                                      <fieldset>
                                         <div class="input-group">
-                                            <input type="file" name="image" class="form-control  @error('image') border-danger @enderror"  aria-label="Upload">
+                                            <input type="file" name="image[]" class="form-control  @error('image') border-danger @enderror"  multiple required accept="image/*"  aria-label="Upload">
                                             <button class="btn btn-primary">Upload</button>
                                         </div>
                                     </fieldset>

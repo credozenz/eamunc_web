@@ -97,59 +97,72 @@ class GalleryController extends Controller
         return view('admin/gallery/add_images', compact('data','id'));
     }
 
-    public function add_images(Request $request)
-    {
 
-        $validatedData = $request->validate([
-            'gallery_id' => 'required|max:255',
-            'image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:2055'],
-        ],[
-            'gallery_id.required' => 'The Title field is required',
-            'image.required' => 'The Image field is required',
-            'image.max' => 'Image  must be smaller than 2 MB',
-            'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
-        ]);
+public function add_images(Request $request)
+{
 
-        $gallery = new Images;
-        $gallery->type = 'gallery';
-        $gallery->connect_id = $request->gallery_id;
-
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $fileName   =  time().'_'.str_random(5).'_'.rand(1111,9999). '.' . $image->getClientOriginalExtension();
-          
-            $extension=$image->getClientOriginalExtension();
-           
-            if($extension=='svg'){
-               $img = $image->get();
-            }else{
-                $img = Image::make($image->getRealPath());
-                $img->resize(532,300, function ($constraint) {
-                   $constraint->aspectRatio();                 
-                });
-                $img->stream('png', 100);
+    
+    $validatedData = $request->validate([
+        'gallery_id' => 'required|max:255',
+        'image.*' => [
+            'required',
+            'mimes:jpeg,png,jpg,gif,svg',
+            'max:2055',
+            function ($attribute, $value, $fail) {
+                if (!$value->isValid()) {
+                    $fail($value->getErrorMessage());
+                }
             }
-            
-            Storage::disk('public')->put('gallery/'.$fileName,$img,'public');
-           }
+        ]
+    ], [
+        'gallery_id.required' => 'The Title field is required',
+        'image.*.required' => 'All image fields are required.',
+        'image.*.max' => 'All images must be smaller than 2 MB.',
+        'image.*.mimes' => 'Only JPEG, PNG, JPG, GIF, and SVG file types are allowed.',
+    ]);
 
-           $gallery->image = 'gallery/'.$fileName; 
+  
 
-           $gallery->save();
-
-           $data = Gallery::where('id', $request->gallery_id)->first(); 
-           $data->status = 1;
-           $data->save();
-
-        if($gallery->id){
-            Session::flash('success', 'Image added successfully!');
-            return  redirect()->back();
-          }else{
-            Session::flash('error', 'Something went wrong!!');
-            return  redirect()->back();
-          }
+    $images = $request->file('image');
+   
+    foreach ($images as $image) {
        
+        $fileName = time().'_'.str_random(5).'_'.rand(1111,9999). '.' . $image->getClientOriginalExtension();
+        $extension=$image->getClientOriginalExtension();
+
+        if($extension=='svg'){
+            $img = $image->get();
+        }else{
+            $img = Image::make($image->getRealPath());
+            $img->resize(532,300, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            $img->stream('png', 100);
+        }
+        Storage::disk('public')->put('gallery/'.$fileName,$img,'public');
+
+        $gallery_item = new Images;
+        $gallery_item->type = 'gallery';
+        $gallery_item->connect_id = $request->gallery_id;
+        $gallery_item->image = 'gallery/'.$fileName; 
+        $gallery_item->save();
     }
+
+    $data = Gallery::where('id', $request->gallery_id)->first(); 
+    $data->status = 1;
+    $data->save();
+
+    if($data){
+        Session::flash('success', 'Image added successfully!');
+        return  redirect()->back();
+      }else{
+        Session::flash('error', 'Something went wrong!!');
+        return  redirect()->back();
+      }
+}
+
+
+    
 
     public function add_video(Request $request)
     {

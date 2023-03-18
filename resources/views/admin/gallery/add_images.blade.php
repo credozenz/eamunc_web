@@ -44,7 +44,7 @@
                                                     <label class="form-label text-danger">Image</label>
                                             <fieldset>
                                                 <div class="input-group">
-                                                    <input type="file" name="image"  class="form-control  @error('image') border-danger @enderror"  aria-label="Upload">
+                                                    <input type="file" name="image[]"  class="form-control  @error('image') border-danger @enderror" multiple required accept="image/*"  aria-label="Upload">
                                                     <button type="submit" class="btn btn-primary">Upload</button>
                                                 </div>
                                             </fieldset>
@@ -75,7 +75,7 @@
                                                 </div>
                                             </fieldset>
                                            
-                                            @error('image')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                            @error('video')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                                 </div>
                                             </div>
                                         

@@ -15,7 +15,7 @@ use Image;
 use Storage;
 use League\Flysystem\File;
 
-class AlumniNewsController extends Controller
+class AlumniWebinarController extends Controller
 {
     public function __construct()
     {
@@ -24,14 +24,14 @@ class AlumniNewsController extends Controller
   
     public function index(Request $request)
     {   
-        $data = SiteIndexes::where('deleted_at', null)->where('type', 'alumni_news')->orderBy('id', 'DESC')->paginate(4); 
-        return view('admin/alumninews/index', compact('data'));
+        $data = SiteIndexes::where('deleted_at', null)->where('type', 'alumni_webinar')->orderBy('id', 'DESC')->paginate(4); 
+        return view('admin/alumniwebinar/index', compact('data'));
     }
 
     
     public function create()
     {
-        return view('admin/alumninews/create');
+        return view('admin/alumniwebinar/create');
     }
 
     
@@ -40,21 +40,20 @@ class AlumniNewsController extends Controller
 
         $validatedData = $request->validate([
             'title' => 'required|max:255',
-            'description' => 'required',
+            'video' => 'required',
             'image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:2055'],
         ],[
             'title.required' => 'The Title field is required',
-            'description.required' => 'The Description field is required',
+            'video.required' => 'The Video URL field is required',
             'image.required' => 'The Image field is required',
             'image.max' => 'Image  must be smaller than 2 MB',
             'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
         ]);
 
-        $alumni_news = new SiteIndexes;
-        $alumni_news->title = $request->title;
-        $alumni_news->description = $request->description;
-        $alumni_news->type = 'alumni_news';
-        
+        $alumni_webinar = new SiteIndexes;
+        $alumni_webinar->title = $request->title;
+        $alumni_webinar->type = 'alumni_webinar';
+
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $fileName   =  time().'_'.str_random(5).'_'.rand(1111,9999). '.' . $image->getClientOriginalExtension();
@@ -71,17 +70,22 @@ class AlumniNewsController extends Controller
                 $img->stream('png', 100);
             }
             
-            Storage::disk('public')->put('alumninews/'.$fileName,$img,'public');
+            Storage::disk('public')->put('alumniwebinar/'.$fileName,$img,'public');
            }
 
-           $alumni_news->image = 'alumninews/'.$fileName; 
+           $alumni_webinar->image = 'alumniwebinar/'.$fileName; 
+        
+        $youtubeurl = AdminHelper::getYoutubeIdFromUrl($request->video);
 
-           $alumni_news->save();
+
+           $alumni_webinar->video = $youtubeurl; 
+
+           $alumni_webinar->save();
 
 
-        if($alumni_news->id){
-            Session::flash('success', 'Alumni news added successfully!');
-            return redirect('/admin/alumninews');
+        if($alumni_webinar->id){
+            Session::flash('success', 'Alumni webinar added successfully!');
+            return redirect('/admin/alumniwebinar');
           }else{
             Session::flash('error', 'Something went wrong!!');
             return  redirect()->back();
@@ -96,7 +100,7 @@ class AlumniNewsController extends Controller
     {
         $data = SiteIndexes::find($id); 
         
-        return view('admin/alumninews/show', compact('data'));
+        return view('admin/alumniwebinar/show', compact('data'));
     }
 
    
@@ -104,7 +108,7 @@ class AlumniNewsController extends Controller
     {
         $data = SiteIndexes::find($id); 
         
-        return view('admin/alumninews/edit', compact('data'));
+        return view('admin/alumniwebinar/edit', compact('data'));
     }
 
     
@@ -113,17 +117,16 @@ class AlumniNewsController extends Controller
         
         $validatedData = $request->validate([
             'title' => 'required|max:255',
-            'description' => 'required',
+            'video' => 'required',
         ],[
             'title.required' => 'The Title field is required',
-            'description.required' => 'The Description field is required',
+            'video.required' => 'The Video URL field is required',
         ]);
-
     
-        $alumni_news = SiteIndexes::where('id', $id)->first(); 
-        $alumni_news->title = $request->title;
-        $alumni_news->description = $request->description;
-        
+        $alumni_webinar = SiteIndexes::where('id', $id)->first(); 
+        $alumni_webinar->title = $request->title;
+        $youtubeurl = AdminHelper::getYoutubeIdFromUrl($request->video);
+        $alumni_webinar->video = $youtubeurl; 
         if ($request->hasFile('image')) {
 
             $validatedData = $request->validate([
@@ -151,17 +154,15 @@ class AlumniNewsController extends Controller
                 $img->stream('png', 100);
             }
             
-            Storage::disk('public')->put('alumninews/'.$fileName,$img,'public');
+            Storage::disk('public')->put('alumniwebinar/'.$fileName,$img,'public');
 
-            $alumni_news->image = 'alumninews/'.$fileName; 
+            $alumni_webinar->image = 'alumniwebinar/'.$fileName; 
            }
-
-         
-           $alumni_news->save();
+        $alumni_webinar->save();
         
-          if($alumni_news->id){
-            Session::flash('success', 'Alumni news updated successfully!');
-            return redirect('/admin/alumninews');
+          if($alumni_webinar->id){
+            Session::flash('success', 'Alumni webinar updated successfully!');
+            return redirect('/admin/alumniwebinar');
           }else{
             Session::flash('error', 'Something went wrong!!');
             return  redirect()->back();
@@ -172,25 +173,25 @@ class AlumniNewsController extends Controller
     public function archive(Request $request,$id)
     {
 
-        $news = SiteIndexes::where('id', $id)->first(); 
+        $webinar = SiteIndexes::where('id', $id)->first(); 
         $mytime = Carbon::now();
         $status = $request->input('status');
-        $news->status = $status;
-        $news->save();
+        $webinar->status = $status;
+        $webinar->save();
 
-        echo json_encode(['status'=>true,'message'=>'Newsletter Archive Successfully !']);exit();
+        echo json_encode(['status'=>true,'message'=>'webinarletter Archive Successfully !']);exit();
     }
 
     
     public function destroy(Request $request,$id)
     {
 
-        $news = SiteIndexes::where('id', $id)->first(); 
+        $webinar = SiteIndexes::where('id', $id)->first(); 
         $mytime = Carbon::now();
         $timestamp=$mytime->toDateTimeString();
-        $news->deleted_at = $timestamp;
-        $news->save();
+        $webinar->deleted_at = $timestamp;
+        $webinar->save();
 
-        echo json_encode(['status'=>true,'message'=>'Alumni news Deleted Successfully !']);exit();
+        echo json_encode(['status'=>true,'message'=>'Alumni webinar Deleted Successfully !']);exit();
     }
 }
