@@ -30,8 +30,13 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Show</h4>
+                    <form method="POST" action="{{ url('admin/committee_excelexport',$data->id) }}">
+                            @csrf
+                            <input type="submit" value="Excel Export">
+                        </form>
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
+                       
                         <li class="breadcrumb-item">
                        
                         <a href="{{ url('admin/committee_bureau',$data->id) }}" class="btn-sm btn-success shadow-md mr-2">Bureau Members</a>

@@ -14,15 +14,29 @@ class WebAppHelper
 
 
     function getLogMember() {
-
+        $log_role = Session::get('Log_ROLE');
         $log_member = Session::get('Log_ID');
+        
+        if($log_role == 4){
 
-        $member = User::where('users.deleted_at', null)
-        ->join('students', 'users.id', '=', 'students.user_id')
-        ->leftjoin('schools', 'students.school_id', '=', 'schools.id')
-        ->select('students.*', 'schools.name as school_name', 'users.role','users.avatar')
-        ->where('users.id', '=' , $log_member)
-        ->first();
+            $member = User::where('users.deleted_at', null)
+            ->select('users.*')
+            ->where('users.id', '=' , $log_member)
+            ->first();
+
+            $member->committee_choice ='1';
+
+        }else{
+
+            $member = User::where('users.deleted_at', null)
+            ->join('students', 'users.id', '=', 'students.user_id')
+            ->leftjoin('schools', 'students.school_id', '=', 'schools.id')
+            ->select('students.*', 'schools.name as school_name', 'users.role','users.avatar')
+            ->where('users.id', '=' , $log_member)
+            ->first();
+
+        }
+       
 
     if(isset($member)){
        

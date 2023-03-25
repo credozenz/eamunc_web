@@ -24,6 +24,9 @@ class AdminRoleChecker
             if(Session::get('ROLE') == '1')
             {
                 return $next($request); 
+            }else if(Session::get('ROLE') == '4')
+            {
+                return $next($request); 
             }
             
         }

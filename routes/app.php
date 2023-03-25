@@ -31,6 +31,25 @@ use App\Http\Controllers\App\Delegate\DelegateBlocChatController;
 use App\Http\Controllers\App\Delegate\DelegateGeneralPapersController;
 use App\Http\Controllers\App\Delegate\DelegateScheduleProgramController;
 use App\Http\Controllers\App\Delegate\DelegateLiabilityWaiverController;
+
+
+
+use App\Http\Controllers\App\VIPUser\VIPDashbordController;
+use App\Http\Controllers\App\VIPUser\VIPPaperSubmissionController;
+use App\Http\Controllers\App\VIPUser\VIPBlocFormationController;
+use App\Http\Controllers\App\VIPUser\VIPViennaFormulaController;
+use App\Http\Controllers\App\VIPUser\VIPLineByLineController;
+use App\Http\Controllers\App\VIPUser\VIPResolutionController;
+use App\Http\Controllers\App\VIPUser\VIPGeneralAssemblyController;
+use App\Http\Controllers\App\VIPUser\VIPProfileController;
+use App\Http\Controllers\App\VIPUser\VIPSpeakersController;
+use App\Http\Controllers\App\VIPUser\VIPBlocChatController;
+use App\Http\Controllers\App\VIPUser\VIPGeneralPapersController;
+use App\Http\Controllers\App\VIPUser\VIPScheduleProgramController;
+
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -128,4 +147,41 @@ Route::group(['middleware' => 'delegatechecker'], function() {
     Route::post('/liability_waiver_form_submit', [DelegateLiabilityWaiverController::class,'store'])->name('app.liability_waiver_form.liability_form_submit');
     
     Route::get('/delegate_log_out', [DelegateProfileController::class,'log_out'])->name('app.log_out');
+});
+
+
+Route::group(['middleware' => 'vipuserchecker'], function() {
+   
+    Route::get('/vipuser_dashbord', [VIPDashbordController::class,'index'])->name('app.vipuser_dashbord');
+    Route::get('/vipuser_paper_submission', [VIPPaperSubmissionController::class,'index'])->name('app.vipuser_paper_submission');
+    Route::get('/vipuser_bloc_formation', [VIPBlocFormationController::class,'index'])->name('app.vipuser_bloc_formation');
+    Route::get('/vipuser_bloc_show/{id}', [VIPBlocFormationController::class,'show'])->name('app.vipuser_bloc_show');
+    
+    Route::get('/vipuser_general_papers', [VIPGeneralPapersController::class,'index'])->name('app.vipuser_general_papers');
+   
+    Route::get('/vipuser_bloc_chat/{id}', [VIPBlocChatController::class,'index'])->name('app.vipuser_bloc_chat');
+    
+    Route::get('/vipuser_vienna_formula', [VIPViennaFormulaController::class,'index'])->name('app.vipuser_vienna_formula');
+    Route::get('/vipuser_vienna_formula_editor', [VIPViennaFormulaController::class,'show'])->name('app.vipuser_vienna_formula_editor');
+   
+    Route::get('/vipuser_line_by_line', [VIPLineByLineController::class,'index'])->name('app.vipuser_line_by_line');
+    Route::get('/vipuser_line_by_line_editor', [VIPLineByLineController::class,'show'])->name('app.vipuser_line_by_line_editor');
+    
+    Route::get('/vipuser_resolution', [VIPResolutionController::class,'index'])->name('app.vipuser_resolution');
+    Route::get('/vipuser_resolution_editor', [VIPResolutionController::class,'show'])->name('app.vipuser_resolution_editor');
+   
+
+    Route::get('/vipuser_general_assembly', [VIPGeneralAssemblyController::class,'index'])->name('app.vipuser_general_assembly');
+    Route::get('/vipuser_assembly_show/{id}', [VIPGeneralAssemblyController::class,'show'])->name('app.vipuser_assembly_show');
+   
+   
+    
+    Route::get('/vipuser_speaker', [VIPSpeakersController::class,'index'])->name('app.vipuser_speaker');
+    Route::post('/vipuser_speaker_country', [VIPSpeakersController::class,'vipuser_speaker_country'])->name('app.speakers_country');
+    
+    Route::get('/vipuser_program_schedule', [VIPScheduleProgramController::class,'index'])->name('app.vipuser_program_schedule');
+   
+    Route::get('/vipuser_log_out', [VIPProfileController::class,'log_out'])->name('app.log_out');
+
+
 });

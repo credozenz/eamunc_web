@@ -40,7 +40,8 @@ use App\Http\Controllers\Admin\SchoolsController;
 use App\Http\Controllers\Admin\GuidelineController;
 use App\Http\Controllers\Admin\LiabilityWaiverController;
 use App\Http\Controllers\Admin\AlumniRegController;
-
+use App\Http\Controllers\Admin\ExportExcelController;
+use App\Http\Controllers\Admin\UsersController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -215,6 +216,18 @@ Route::group(['middleware' => 'adminchecker'], function() {
      Route::post('/committee_delete/{id}', [CommitteeController::class,'destroy'])->name('admin.committee.destroy');
      Route::post('/committee_file_delete/{id}', [CommitteeController::class,'file_destroy'])->name('admin.committee.file_destroy');
     
+
+     Route::get('/users', [UsersController::class,'index'])->name('admin.users');
+     Route::get('/users_create', [UsersController::class,'create'])->name('admin.users.create');
+     Route::post('/users_store', [UsersController::class,'store'])->name('admin.users.store');
+     Route::get('/users_edit/{id}', [UsersController::class,'edit'])->name('admin.users.edit');
+     Route::get('/users_show/{id}', [UsersController::class,'show'])->name('admin.users.show');
+     Route::post('/users_update/{id}', [UsersController::class,'update'])->name('admin.users.update');
+     Route::post('/users_delete/{id}', [UsersController::class,'destroy'])->name('admin.users.destroy');
+     Route::post('/users_file_delete/{id}', [UsersController::class,'file_destroy'])->name('admin.users.file_destroy');
+
+
+
      Route::get('/blocformation/{id}', [BlocFormationController::class,'index'])->name('admin.blocformation');
      Route::get('/blocformation_create/{id}', [BlocFormationController::class,'create'])->name('admin.blocformation.create');
      Route::post('/blocformation_store', [BlocFormationController::class,'store'])->name('admin.blocformation_store');
@@ -282,10 +295,9 @@ Route::group(['middleware' => 'adminchecker'], function() {
 
 
 
-    
+     Route::post('/committee_excelexport/{id}', [ExportExcelController::class,'committee_excelexport'])->name('admin.committee_excelexport');
 
-
-
+     
 
 
      Route::get('/alumni_registration', [AlumniRegController::class,'index'])->name('admin.alumni_registration');

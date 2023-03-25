@@ -30,14 +30,15 @@ class AuthController extends Controller
       
         if($request->email != '' && $request->password != '')
         {
-            $users = DB::table('users')
+            $user = DB::table('users')
                         ->where('email', $request->email)
-                        ->whereIn('role', [2,3]);
-                      
-            if($users->count() > 0)
+                        ->whereIn('role', [2,3,4])
+                        ->first();
+                        
+            if(!empty($user->id))
             {
                 
-                $user = $users->first();
+               
                
                 if(Hash::check($request->password,$user->password))
                 {
@@ -54,8 +55,9 @@ class AuthController extends Controller
                         return redirect('/app/delegate_dashbord');
                     }elseif($user->role=='3'){
                         return redirect('/app/bureau_dashbord');
+                    }elseif($user->role=='4'){
+                        return redirect('/app/vipuser_dashbord');
                     }
-                    
   
                 }
                 else

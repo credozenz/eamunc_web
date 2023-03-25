@@ -30,11 +30,11 @@ class AuthController extends Controller
         {
             $admin = DB::table('users')
                         ->where('email', $request->email)
-                        ->where('role', 1);
-                  
-            if($admin->count() > 0)
+                        ->whereIn('role', [1, 4])
+                        ->first();
+                
+            if(!empty($admin->id))
             {
-                $admin = $admin->first();
                 
                 if(Hash::check($request->password,$admin->password))
                 {

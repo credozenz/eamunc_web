@@ -41,6 +41,12 @@
                 </a>
             </li>
 
+            <li class="sidebar-item @if($routeGroup=='users') active @endif ">
+                <a href="{{ route('admin.users') }}" class='sidebar-link'>
+                    <span><i class="fa fa-users" aria-hidden="true">&nbsp</i>VIP Users</span>
+                </a>
+            </li>
+
             <li class="sidebar-item  @if($routeGroup =='guideline') active @endif ">
                 <a href="{{ route('admin.guideline') }}" class='sidebar-link'>
                     <span><i class="fa fa-map-signs" aria-hidden="true">&nbsp</i>Guideline</span>

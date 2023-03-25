@@ -29,7 +29,9 @@ class ProfileController extends Controller
     
     public function profile()
     {
-        $data = User::where('role','1')->first();  
+        $id = Session::get('ID');
+       
+        $data = User::where('id',$id)->first();  
         
         return view('admin/profile/profile_edit', compact('data'));
   
@@ -49,8 +51,8 @@ class ProfileController extends Controller
             'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
         ]);
 
-    
-        $profile = User::where('id', 1)->first(); 
+        $id = Session::get('ID');
+        $profile = User::where('id', $id)->first(); 
         $profile->name = $request->name;
         $profile->email = $request->email;
         
@@ -93,8 +95,8 @@ class ProfileController extends Controller
    
     public function change_password()
     {
-
-        $data = User::find(1); 
+        $id = Session::get('ID');
+        $data = User::find($id); 
         
         return view('admin/profile/change_password', compact('data'));
   
@@ -116,8 +118,8 @@ class ProfileController extends Controller
             'confirm_password.same' => 'Confirm password not match!',
         ]);
 
-    
-        $user = User::where('id', 1)->first(); 
+        $id = Session::get('ID');
+        $user = User::where('id',$id)->first(); 
 
         if(Hash::check($request->password,$user->password)){
 
