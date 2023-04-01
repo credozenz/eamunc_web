@@ -24,7 +24,7 @@ class UsersController extends Controller
 {
     public function __construct()
     {
-        View::share('routeGroup','committee');
+        View::share('routeGroup','users');
     }
   
     public function index(Request $request)

@@ -12,6 +12,7 @@ use App\Models\SiteIndexes;
 use App\Models\Committee;
 use App\Models\Committee_member;
 use App\Models\User;
+use App\Models\School;
 use Carbon\Carbon;
 use Str;
 use Image;
@@ -185,7 +186,83 @@ class ExportExcelController extends Controller
     }
 
    
-   
+    public function faculty_advisorsexport(Request $request)
+    {
+
+        $styleArray = array(
+            'font'  => array(
+                'bold'  => true,
+                'color' => array('rgb' => '000000'),
+                'background-color' => array('rgb' => '800000'),
+                'size'  => 12,
+                'name'  => 'Verdana'
+            ),
+            'alignment' => array(
+                    'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+            )
+            );
+
+            $styleDataArray = array(
+                'alignment' => [
+                    'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT,
+                ],
+                'numberFormat' => [
+                    'formatCode' => '000000000',
+                ],
+                );
+
+        $myschool = School::where('id', 1)->first();
+        $query = School::where('deleted_at', null)
+                ->where('id','!=', 1)
+                ->orderBy('id', 'DESC');
+                if($request->q){
+                    $query->where('name','LIKE', $request->q);
+                }
+                
+                $data=$query->paginate(10); 
+
+
+
+
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->getColumnDimension('A')->setWidth(35);
+        $sheet->getColumnDimension('B')->setWidth(35);
+        $sheet->getColumnDimension('C')->setWidth(35);
+        $sheet->getColumnDimension('D')->setWidth(35);
+                    $sheet->getColumnDimension('A')->setWidth(35);
+                    $sheet->mergeCells('A1:D1');
+                    $sheet->getStyle('A1')->applyFromArray($styleArray);
+                   
+                    $sheet->setCellValue('A1', 'E.A.MUNC FACULTY ADVISOR');
+
+                    $sheet->setCellValue('A2', 'Name');
+                    $sheet->setCellValue('B2', 'Phone');
+                    $sheet->setCellValue('C2', 'Email');
+                    $sheet->setCellValue('D2', 'School Name');
+
+                
+                    $rows=2;
+
+                    foreach ($data as $key => $each) {
+                    $rows = $rows+1;
+                    $sheet->getStyle('B' . $rows)->applyFromArray($styleDataArray);
+                    $sheet->setCellValue('A' . $rows, $each->advisor_name);
+                    $sheet->setCellValue('B' . $rows, $each->mobile);
+                    $sheet->setCellValue('C' . $rows, $each->email);
+                    $sheet->setCellValue('D' . $rows, $each->name);
+                    }
+
+                
+        $writer = new Xlsx($spreadsheet);
+        $fileName = "faculty advisors.".time().".xlsx";
+        $filePath = "./excel/committe/".$fileName;
+        $writer->save($filePath);
+
+        return response()->download($filePath);
+       
+    }
     
    
 }

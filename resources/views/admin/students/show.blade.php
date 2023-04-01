@@ -40,11 +40,15 @@
                                     <a href="{{ url('admin/student_edit',$data->id) }}" class="btn-sm btn-primary shadow-md mr-2">Edit</a>
                                     <a class="btn-sm btn-danger shadow-md mr-2 dltButton"  data-url="{{ url('admin/student_delete',$data->id) }}" data-replaceurl="{{ url('admin/students') }}" title="Delete Project">Delete</a>
                                     <a href="{{ url('admin/student_password',$data->id) }}" class="btn-sm btn-secondary shadow-md mr-2">Change Password</a>
-                                       
+                               
+                                  <a class="btn-sm btn-primary shadow-md mr-2" onclick="openForm()">Generate Certificate</a>
                                 </li>
+                               
                             </ol>
                         </nav>
                     </div>
+
+                    
 
                     <div class="card-content">
                     @if($data->school_id != '0')
@@ -223,8 +227,164 @@
 
                 </div>
             </div>
+          
         </div>
     </section>
 </div>
      @endsection
 
+
+
+
+
+
+
+
+<style>
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  width: 800px;
+  top: 10;
+  right: 20%;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+  background-color: white;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 800px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password],.form-container input[type=date],.form-container select {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus,.form-container input[type=date]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+
+.blur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 8;
+  backdrop-filter: blur(5px);
+}
+</style>
+
+
+    <div class="form-popup" id="myForm">
+        <div class="d-flex justify-content-end">
+           <button type="button" class="btn cancel btn-sm btn-danger shadow-md mr-2" onclick="closeForm()">X</button>
+        </div>
+           
+            <form method="post" action="{{ url('admin/student_certificate',$data->id) }}"  enctype="multipart/form-data" class="form-container">
+                @csrf
+                <h4>Generate Certificate</h4>
+                <div class="row">
+                <div class="col-md-6 col-12">
+                    <div class="form-group">
+                        <label for="name"><b>Full Name</b></label>
+                        <input type="text" placeholder="Enter Full Name" name="name" value="{{ $data->name }}" required>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="form-group">
+                        <label for="name"><b>Committee Name</b></label>
+                        <select name="committee_choice" class="form-control @error('committee_choice') border-danger @enderror" {{ $errors->has('committee_choice') ? 'autofocus' : '' }} placeholder="Committee of Choice" required>
+                            <option value=""> Select Committee of Choice </option>
+                            @foreach ($committees as $key => $value)
+                            <option value="{{ $value->name ?? '' }}" {{ ($data->committee_choice == $value->id ? "selected":"") }}> {{ $value->name ?? '' }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <div class="form-group">
+                            <label for="email"><b>Date</b></label>
+                            <input type="text" placeholder="Date" class="form-control" name="date" value="<?php echo date('d - m F Y', strtotime('now')); ?>" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="form-group">
+                            <label for="email"><b>ISG Principal</b></label>
+                            <input type="text" placeholder="Enter ISG Principal Name" name="principal" value="Papri Ghosh" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    
+                    <div class="col-md-6 col-12">
+                        <div class="form-group">
+                            <label for="email"><b>Chairman, E.A.MUNC</b></label>
+                            <input type="text" placeholder="Enter Chairman, E.A.MUNC Name" name="chairman" value="Ahmed Rayees" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="form-group">
+                            <label for="email"><b>Secretary General</b></label>
+                            <input type="text" placeholder="Enter Secretary General Name" name="secretary" value="Yet to Confirm" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    
+                </div>
+
+                <button type="submit" class="btn-sm btn-Primary shadow-md mr-2">Generate</button>
+                
+            </form>
+    </div>
+
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+  var blur = document.createElement("div");
+  blur.classList.add("blur");
+  document.body.appendChild(blur);
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+  var blur = document.querySelector(".blur");
+  blur.parentNode.removeChild(blur);
+}
+</script>

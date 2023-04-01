@@ -30,18 +30,16 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Show</h4>
-                    <form method="POST" action="{{ url('admin/committee_excelexport',$data->id) }}">
+                        <form method="POST" action="{{ url('admin/committee_excelexport',$data->id) }}">
                             @csrf
                             <input type="submit" value="Excel Export">
                         </form>
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                       
                         <li class="breadcrumb-item">
-                       
-                        <a href="{{ url('admin/committee_bureau',$data->id) }}" class="btn-sm btn-success shadow-md mr-2">Bureau Members</a>
-                        <a href="{{ url('admin/committee_delegate',$data->id) }}" class="btn-sm btn-warning shadow-md mr-2">Delegates</a>
-                        <a href="{{ url('admin/committee_edit',$data->id) }}" class="btn-sm btn-primary shadow-md mr-2">Edit</a>
+                            <a href="{{ url('admin/committee_bureau',$data->id) }}" class="btn-sm btn-success shadow-md mr-2">Bureau Members</a>
+                            <a href="{{ url('admin/committee_delegate',$data->id) }}" class="btn-sm btn-warning shadow-md mr-2">Delegates</a>
+                            <a href="{{ url('admin/committee_edit',$data->id) }}" class="btn-sm btn-primary shadow-md mr-2">Edit</a>
                             <a class="btn-sm btn-danger shadow-md mr-2 dltButton"  data-url="{{ url('admin/committee_delete',$data->id) }}" data-replaceurl="{{ url('admin/committee') }}" title="Delete Project">Delete</a>
                         </li>
                     </ol>
@@ -51,11 +49,10 @@
                   <div class="card-body">
                    
                             <div class="row">
-                            <div class="col-md-6 col-12">
+                              <div class="col-md-6 col-12">
                                 <div class="form-group">
                                         <label class="form-label text-danger">Short Name</label>
                                         <input type="text" name="name" disabled value="{{ $data->name }}" class="form-control @error('name') border-danger @enderror" placeholder="Name">
-                                        
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-12"></div>
@@ -99,10 +96,9 @@
                                         
                                        
                                         <div class="w-30 h-30 relative image-fit  mb-2 mr-5 ">
-                                         <a href="{{ asset('uploads/'.$data->file) }}" >
-                                            <img class="rounded-md img-preview" src="{{asset('assets/admin/img/file_demo.png')}}" style="width: 47px;"> 
-                                         </a>
-                                        
+                                            <a href="{{ asset('uploads/'.$data->file) }}" >
+                                                <img class="rounded-md img-preview" src="{{asset('assets/admin/img/file_demo.png')}}" style="width: 47px;"> 
+                                            </a>
                                         </div>
                                        
                                        

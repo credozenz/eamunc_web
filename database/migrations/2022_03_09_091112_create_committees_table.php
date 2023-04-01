@@ -24,6 +24,7 @@ class CreateCommitteesTable extends Migration
             $table->string('video')->nullable();
             $table->string('file')->nullable();
             $table->string('position')->nullable();
+            $table->string('live_url')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

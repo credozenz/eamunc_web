@@ -28,8 +28,12 @@
                   </a>
                 </li>
       
-                
-      
+                <li class="nav-item" >
+                  <a class="nav-link @if($routeGroup =='committee_live') active @endif" href="{{ route('app.delegate_committee_live') }}">
+                    <span >Committee Live</span>
+                  </a>
+                </li>
+            
                 <li class="nav-item" >
                   <a class="nav-link @if($routeGroup =='delegate_vienna_formula') active @endif" href="{{ route('app.delegate_vienna_formula') }}">
                     <span >Vienna Formula</span>
@@ -91,6 +95,12 @@
             </a>
           </li>
 
+          <li class="nav-item" >
+              <a class="nav-link @if($routeGroup =='committee_live') active @endif" href="{{ route('app.delegate_committee_live') }}">
+                <span >Committee Live</span>
+              </a>
+            </li>
+
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
             <a class="nav-link @if($routeGroup =='delegate_vienna_formula') active @endif" href="{{ route('app.delegate_vienna_formula') }}">
               <span >Vienna Formula</span>
@@ -98,7 +108,7 @@
           </li>
           
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-            <a class="nav-link @if($routeGroup =='delegate_line_by_line') active @endif" href="{{ route('app.delegate_line_by_line') }}">
+            <a class="nav-link @if($routeGroup =='committee_live') active @endif" href="{{ route('app.delegate_line_by_line') }}">
               <span >Line by Line</span>
             </a>
           </li>

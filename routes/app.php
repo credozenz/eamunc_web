@@ -17,6 +17,7 @@ use App\Http\Controllers\App\Bureau\BureauSpeakersController;
 use App\Http\Controllers\App\Bureau\BureauBlocChatController;
 use App\Http\Controllers\App\Bureau\BureauGeneralPapersController;
 use App\Http\Controllers\App\Bureau\BureauScheduleProgramController;
+use App\Http\Controllers\App\Bureau\BureauCommitteeLiveController;
 
 use App\Http\Controllers\App\Delegate\DelegateDashbordController;
 use App\Http\Controllers\App\Delegate\DelegatePaperSubmissionController;
@@ -31,6 +32,7 @@ use App\Http\Controllers\App\Delegate\DelegateBlocChatController;
 use App\Http\Controllers\App\Delegate\DelegateGeneralPapersController;
 use App\Http\Controllers\App\Delegate\DelegateScheduleProgramController;
 use App\Http\Controllers\App\Delegate\DelegateLiabilityWaiverController;
+use App\Http\Controllers\App\Delegate\DelegateCommitteeLiveController;
 
 
 
@@ -80,6 +82,10 @@ Route::group(['middleware' => 'bureauchecker'], function() {
     Route::get('/bureau_bloc_show/{id}', [BureauBlocFormationController::class,'show'])->name('app.bureau_bloc_show');
     Route::post('/bureau_bloc_update/{id}', [BureauBlocFormationController::class,'update'])->name('app.bureau_bloc_update');
     
+    Route::get('/bureau_committee_live', [BureauCommitteeLiveController::class,'index'])->name('app.bureau_committee_live');
+    Route::post('/bureau_live_update/{id}', [BureauCommitteeLiveController::class,'update'])->name('app.bureau_live_update');
+    
+
     Route::get('/bureau_general_papers', [BureauGeneralPapersController::class,'index'])->name('app.bureau_general_papers');
     Route::post('/bureau_paper_delete/{id}', [BureauGeneralPapersController::class,'destroy'])->name('app.bureau_paper_delete');
 
@@ -135,6 +141,8 @@ Route::group(['middleware' => 'delegatechecker'], function() {
     Route::get('/delegate_general_assembly', [DelegateGeneralAssemblyController::class,'index'])->name('app.delegate_general_assembly');
     Route::get('/delegate_assembly_show/{id}', [DelegateGeneralAssemblyController::class,'show'])->name('app.delegate_assembly_show');
    
+    Route::get('/delegate_committee_live', [DelegateCommitteeLiveController::class,'index'])->name('app.delegate_committee_live');
+  
     Route::get('/delegate_profile', [DelegateProfileController::class,'index'])->name('app.delegate_profile');
     Route::post('/delegate_password', [DelegateProfileController::class,'update_password'])->name('app.delegate_password');
     Route::post('/delegate_avatar', [DelegateProfileController::class,'update_avatar'])->name('app.delegate_avatar');

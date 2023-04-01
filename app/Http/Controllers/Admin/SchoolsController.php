@@ -6,6 +6,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Route;
+use Dompdf\Dompdf;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Writer as Writer;
 use View;
 use App\Helper\AdminHelper;
 use App\Models\SiteIndexes;
@@ -133,4 +137,24 @@ class SchoolsController extends Controller
 
         echo json_encode(['status'=>true,'message'=>'School Deleted Successfully !']);exit();
     }
+
+
+    public function faculty_advisors(Request $request)
+    {   
+        View::share('routeGroup','faculty_advisors');
+        $myschool = School::where('id', 1)->first();
+        $query = School::where('deleted_at', null)
+        ->where('id','!=', 1)
+        ->orderBy('id', 'DESC');
+        if($request->q){
+            $query->where('name','LIKE', $request->q);
+        }
+        
+        $data=$query->paginate(10); 
+
+        return view('admin/schools/faculty_advisor', compact('data','myschool','request'));
+    }
+
+   
+
 }

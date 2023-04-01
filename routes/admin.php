@@ -106,9 +106,6 @@ Route::group(['middleware' => 'adminchecker'], function() {
 
 
 
-
-
-
      Route::get('/importantdate', [ImportantDateController::class,'index'])->name('admin.importantdate');
      Route::get('/importantdate_create', [ImportantDateController::class,'create'])->name('admin.importantdate.create');
      Route::post('/importantdate_store', [ImportantDateController::class,'store'])->name('admin.importantdate.store');
@@ -182,6 +179,11 @@ Route::group(['middleware' => 'adminchecker'], function() {
      Route::get('/participate_schools_show/{id}', [ParticipateSchoolController::class,'show'])->name('admin.participate_schools.show');
      Route::post('/participate_schools_update/{id}', [ParticipateSchoolController::class,'update'])->name('admin.participate_schools.update');
      Route::post('/participate_schools_delete/{id}', [ParticipateSchoolController::class,'destroy'])->name('admin.participate_schools.destroy');
+
+
+     Route::get('/faculty_advisors', [SchoolsController::class,'faculty_advisors'])->name('admin.faculty_advisors');
+     Route::get('/faculty_advisors_export', [SchoolsController::class,'faculty_advisors_export'])->name('admin.faculty_advisors_export');
+
 
      Route::get('/letters', [LetterController::class,'index'])->name('admin.letters');
      Route::get('/letters_create', [LetterController::class,'create'])->name('admin.letters.create');
@@ -296,6 +298,7 @@ Route::group(['middleware' => 'adminchecker'], function() {
 
 
      Route::post('/committee_excelexport/{id}', [ExportExcelController::class,'committee_excelexport'])->name('admin.committee_excelexport');
+     Route::post('/faculty_advisorsexport', [ExportExcelController::class,'faculty_advisorsexport'])->name('admin.faculty_advisorsexport');
 
      
 
@@ -315,7 +318,7 @@ Route::group(['middleware' => 'adminchecker'], function() {
      Route::get('/student_password/{id}', [StudentsController::class,'change_password'])->name('admin.student_password');
      Route::post('/student_pwd_update/{id}', [StudentsController::class,'update_password'])->name('admin.student_pwd_update');
 
-
+     Route::post('/student_certificate/{id}', [StudentsController::class,'student_certificate'])->name('admin.student_certificate');
 
 
      Route::get('/invite_student/{id}', [StudentsController::class,'invite_student'])->name('admin.student.invitestudent');

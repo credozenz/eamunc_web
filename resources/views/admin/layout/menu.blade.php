@@ -26,6 +26,12 @@
                 </a>
             </li>
 
+            <li class="sidebar-item @if($routeGroup=='faculty_advisors') active @endif">
+                <a href="{{ route('admin.faculty_advisors') }}" class='sidebar-link'>
+                    <span><i class="fa fa-university" aria-hidden="true">&nbsp</i>Faculty Advisors</span>
+                </a>
+            </li>
+
 
             <li class="sidebar-item @if($routeGroup=='students') active @endif">
                 <a href="{{ route('admin.students') }}" class='sidebar-link'>
