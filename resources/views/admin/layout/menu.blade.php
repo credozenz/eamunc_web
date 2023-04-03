@@ -59,6 +59,12 @@
                 </a>
             </li>
 
+            <li class="sidebar-item  @if($routeGroup =='certificate') active @endif ">
+                <a href="{{ route('admin.certificate') }}" class='sidebar-link'>
+                    <span><i class="fa fa-graduation-cap" aria-hidden="true">&nbsp</i>Certificate</span>
+                </a>
+            </li>
+
             <li class="sidebar-item @if($routeGroup=='alumni_reg') active @endif">
                 <a href="{{ route('admin.alumni_registration') }}" class='sidebar-link'>
                     <span><i class="fa fa-graduation-cap" aria-hidden="true">&nbsp</i>Alumini</span>

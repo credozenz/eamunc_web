@@ -42,6 +42,7 @@ use App\Http\Controllers\Admin\LiabilityWaiverController;
 use App\Http\Controllers\Admin\AlumniRegController;
 use App\Http\Controllers\Admin\ExportExcelController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\CertificateController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -63,6 +64,9 @@ Route::group(['middleware' => 'adminchecker'], function() {
      
      Route::get('/dashbord', [DashbordController::class,'getDashbord'])->name('admin.dashbord');
      Route::post('/reg_status', [DashbordController::class,'reg_status'])->name('admin.reg_status');
+
+     Route::get('/certificate',[CertificateController::class,'index'])->name('admin.certificate');
+     Route::post('/certificate_set',[CertificateController::class,'certificate_set'])->name('admin.certificate_set');
     
      Route::get('/newsletter', [NewsletterController::class,'index'])->name('admin.newsletter');
      Route::get('/newsletter_create', [NewsletterController::class,'create'])->name('admin.newsletter.create');
