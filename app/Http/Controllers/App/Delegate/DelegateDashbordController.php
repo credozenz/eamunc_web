@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\SiteIndexes;
-use App\Helper\WebAppHelper;
+use App\Helpers\WebAppHelper;
 use App\Models\School;
 use App\Models\Committee;
 use App\Models\User;

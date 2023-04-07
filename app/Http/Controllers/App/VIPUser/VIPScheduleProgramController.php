@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Route;
 use View;
-use App\Helper\WebAppHelper;
+use App\Helpers\WebAppHelper;
 use App\Models\Committee;
 use App\Models\Program_schedule;
 use App\Models\Program_schedule_time;
