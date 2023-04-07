@@ -89,6 +89,6 @@ class Kernel extends HttpKernel
         'userchecker' => \App\Http\Middleware\App\LoginRoleChecker::class,
         'bureauchecker' => \App\Http\Middleware\App\BureauChecker::class,
         'delegatechecker' => \App\Http\Middleware\App\DelegateChecker::class,
-        'vipuserchecker' => \App\Http\Middleware\App\VipUserChecker::class,
+        'vipuserchecker' => \App\Http\Middleware\App\VIPUserChecker::class,
     ];
 }
