@@ -1,5 +1,5 @@
 <?php
-namespace App\Helper;
+namespace App\Helpers;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;

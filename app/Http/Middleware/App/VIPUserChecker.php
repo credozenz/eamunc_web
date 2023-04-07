@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use View;
 
-class VipUserChecker
+class VIPUserChecker
 {
   
     /**
