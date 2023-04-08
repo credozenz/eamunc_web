@@ -368,4 +368,27 @@ $(document).on('click', '.roleButton', function (e) {
 
 
 
+
+
+      
+      $(document).ready(function() {
+        $('.intype').on('change', function() {
+          var selectedOption = $(this).val();
+          
+          if (selectedOption === 'text') {
+            $('.intext').removeClass('hidden');
+            $('.infile').addClass('hidden');
+          } else if (selectedOption === 'file') {
+            $('.intext').addClass('hidden');
+            $('.infile').removeClass('hidden');
+          } 
+        });
+      });
+
+
+
+
+
+
+
 })

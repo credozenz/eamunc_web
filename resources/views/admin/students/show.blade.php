@@ -344,27 +344,9 @@
                         </div>
                     </div>
                     <div class="col-md-6 col-12">
-                        <div class="form-group">
-                            <label for="email"><b>ISG Principal</b></label>
-                            <input type="text" placeholder="Enter ISG Principal Name" name="principal" value="Papri Ghosh" required>
-                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    
-                    <div class="col-md-6 col-12">
-                        <div class="form-group">
-                            <label for="email"><b>Chairman, E.A.MUNC</b></label>
-                            <input type="text" placeholder="Enter Chairman, E.A.MUNC Name" name="chairman" value="Ahmed Rayees" required>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                        <div class="form-group">
-                            <label for="email"><b>Secretary General</b></label>
-                            <input type="text" placeholder="Enter Secretary General Name" name="secretary" value="Yet to Confirm" required>
-                        </div>
-                    </div>
-                </div>
+            
                 <div class="row">
                     
                 </div>

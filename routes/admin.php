@@ -65,8 +65,8 @@ Route::group(['middleware' => 'adminchecker'], function() {
      Route::get('/dashbord', [DashbordController::class,'getDashbord'])->name('admin.dashbord');
      Route::post('/reg_status', [DashbordController::class,'reg_status'])->name('admin.reg_status');
 
-     Route::get('/certificate',[CertificateController::class,'index'])->name('admin.certificate');
-     Route::post('/certificate_set',[CertificateController::class,'certificate_set'])->name('admin.certificate_set');
+     // Route::get('/certificate',[CertificateController::class,'index'])->name('admin.certificate');
+     // Route::post('/certificate_set',[CertificateController::class,'certificate_set'])->name('admin.certificate_set');
     
      Route::get('/newsletter', [NewsletterController::class,'index'])->name('admin.newsletter');
      Route::get('/newsletter_create', [NewsletterController::class,'create'])->name('admin.newsletter.create');
@@ -309,7 +309,12 @@ Route::group(['middleware' => 'adminchecker'], function() {
 
      Route::get('/alumni_registration', [AlumniRegController::class,'index'])->name('admin.alumni_registration');
 
-
+     Route::get('/certificate_design', [CertificateController::class,'index'])->name('admin.certificate_design');
+     Route::post('/certificate_input_store', [CertificateController::class,'store'])->name('admin.certificate_input.store');
+     Route::post('/certificate_input_delete/{id}', [CertificateController::class,'destroy'])->name('admin.certificate_input.destroy');
+     
+     Route::get('/certificate_show', [CertificateController::class,'show'])->name('admin.certificate_show');
+     Route::post('/certificate_design_store/{id}', [CertificateController::class,'update'])->name('admin.certificate_design.store');
 
      Route::get('/students', [StudentsController::class,'index'])->name('admin.students');
      Route::get('/student_show/{id}', [StudentsController::class,'show'])->name('admin.student.show'); 

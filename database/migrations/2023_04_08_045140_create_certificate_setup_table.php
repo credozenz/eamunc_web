@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCertificateTable extends Migration
+class CreateCertificateSetupTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateCertificateTable extends Migration
      */
     public function up()
     {
-        Schema::create('certificate', function (Blueprint $table) {
+        Schema::create('certificate_setup', function (Blueprint $table) {
             $table->id();
-            $table->string('certi_name')->nullable();
-            $table->longText('certi_design')->nullable();
+            $table->string('index_type')->index()->nullable();
+            $table->string('index_name')->index()->nullable();
+            $table->string('index_value')->index()->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +30,6 @@ class CreateCertificateTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('certificate');
+        Schema::dropIfExists('certificate_setup');
     }
 }

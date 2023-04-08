@@ -60,7 +60,7 @@
             </li>
 
             <li class="sidebar-item  @if($routeGroup =='certificate') active @endif ">
-                <a href="{{ route('admin.certificate') }}" class='sidebar-link'>
+                <a href="{{ route('admin.certificate_show') }}" class='sidebar-link'>
                     <span><i class="fa fa-graduation-cap" aria-hidden="true">&nbsp</i>Certificate</span>
                 </a>
             </li>
