@@ -426,7 +426,7 @@ class StudentsController extends Controller
         $setup = CertificateSetup::where('deleted_at', null)->orderBy('id', 'ASC')->get();
 
         $committee = Committee::where('id', $student->committee_choice)->first();
-
+        $country = Countries::where('id', $student->country_choice)->first();
         $html = str_replace("%student_name%", $student->name, $html);
         $html = str_replace("%committee_name%", $committee->name, $html);
 
@@ -437,31 +437,29 @@ class StudentsController extends Controller
         }
 
        
-
+        $data['name'] = $student->name;
+        $data['committee'] = $committee->title;
+        $data['country'] = $country->name;
      
-
-
         $dompdf = new Dompdf();
         $dompdf->loadHtml($html); 
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
         $pdfContent = $dompdf->output();
-
-        $send = Mail::send('admin.auth.issue-certificates', ['data' =>'' ], function($message) use($student){
-                            $message->to(trim($student->email));
-                            $message->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'));
-                            $message->subject('Set Password');
-                        });
-       
-  
-   
+        
+        $send = Mail::send('admin.auth.issue-certificates', ['data' =>$data ], function($message) use($student, $pdfContent){
+            $message->to(trim($student->email));
+            $message->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'));
+            $message->subject('Participation Certificate');
+            $message->attachData($pdfContent, 'participation_certificate.pdf');
+        });
+        
         if ($send) {
             Session::flash('success', 'Certificate sent successfully!');
         } else {
             Session::flash('error', 'Certificate could not be sent.');
         }
         return redirect()->back();
-    
 
         
         // $fileName = "participation certificate.".time().".pdf";

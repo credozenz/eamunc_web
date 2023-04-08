@@ -387,14 +387,14 @@
                 <td>
                   <table class="soapbox">
                     <tr>
-                      <td class="soapbox-title">WELCOME</td>
+                      <td class="soapbox-title">Congratulations !</td>
                     </tr>
                   </table>
                   <table class="body">
                     <tr>
                       <td class="body-padding"></td>
                       <td class="body-padded">
-                        <div class="body-title">Hi ,</div>
+                        <div class="body-title">Hi {{ ucfirst($data['name']) ?? ''}},</div>
                         <table class="body-text">
                           <tr>
                             <td class="body-text-cell">
@@ -403,14 +403,18 @@
                             
                 Your registration with E.A.MUNC is processed.
                        <br>
-                     
-
-Please click the below link to verify your email id and set your user password: 
-Your email id will be your username to login.
+                       <b>Committee Assigned:{{ ucfirst($data['committee']) ?? ''}} </b>
+                       <br>
+                       <b>Country Assigned:{{ ucfirst($data['country']) ?? ''}} </b>
+                       <br>
+                       Congratulations on completing the program! It's a great achievement and you should be proud of yourself. <br>
+                       I hope the program has been a valuable learning experience for you and has helped you to grow both <br>
+                       personally and professionally. Keep up the good work and best of luck with your future endeavors!<br>
                         </td>
                           </tr>
                         </table>
                         <div>
+                            
                        </div>
                         <table class="body-signature-block">
                           <tr>
@@ -443,22 +447,7 @@ Your email id will be your username to login.
         <td></td>
       </tr>
     </table>
-    <!-- <table class="footer-wrap w320 full-width-gmail-android" bgcolor="#e5e5e5">
-      <tr>
-        <td></td>
-        <td class="container">
-          <div class="content">
-            <a href="#">Contact Us</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-            <span class="footer-group">
-              <a href="#">Facebook</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-              <a href="#">Twitter</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-              <a href="#">Support</a>
-            </span>
-          </div>
-        </td>
-        <td></td>
-      </tr>
-    </table> -->
+   
   </div>
 
 </body>
