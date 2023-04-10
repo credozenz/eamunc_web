@@ -436,7 +436,7 @@ class StudentsController extends Controller
             }
         }
 
-       
+       echo($html);exit;
         $data['name'] = $student->name;
         $data['committee'] = $committee->title;
         $data['country'] = $country->name;
@@ -445,7 +445,9 @@ class StudentsController extends Controller
         $dompdf->loadHtml($html); 
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
-        $pdfContent = $dompdf->output();
+        $dompdf->stream('document.pdf', array("Attachment" => false));
+        exit;
+        //$pdfContent = $dompdf->output();
         
         $send = Mail::send('admin.auth.issue-certificates', ['data' =>$data ], function($message) use($student, $pdfContent){
             $message->to('ajil@advanceinfotech.io');
