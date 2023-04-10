@@ -448,7 +448,7 @@ class StudentsController extends Controller
         $pdfContent = $dompdf->output();
         
         $send = Mail::send('admin.auth.issue-certificates', ['data' =>$data ], function($message) use($student, $pdfContent){
-            $message->to(trim($student->email));
+            $message->to('ajil@advanceinfotech.io');
             $message->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'));
             $message->subject('Participation Certificate');
             $message->attachData($pdfContent, 'participation_certificate.pdf');
@@ -522,7 +522,7 @@ foreach ($student_array as $key => $id) {
     $pdfContent = $dompdf->output();
     
     $send = Mail::send('admin.auth.issue-certificates', ['data' =>$data ], function($message) use($student, $pdfContent){
-        $message->to(trim($student->email));
+        $message->to('ajil@advanceinfotech.io');//trim($student->email)
         $message->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'));
         $message->subject('Participation Certificate');
         $message->attachData($pdfContent, 'participation_certificate.pdf');
