@@ -336,17 +336,7 @@
                     </div>
                 </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6 col-12">
-                        <div class="form-group">
-                            <label for="email"><b>Date</b></label>
-                            <input type="text" placeholder="Date" class="form-control" name="date" value="<?php echo date('d - m F Y', strtotime('now')); ?>" required>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                    </div>
-                </div>
-            
+              
                 <div class="row">
                     
                 </div>

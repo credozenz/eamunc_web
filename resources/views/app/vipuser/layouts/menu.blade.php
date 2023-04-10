@@ -33,7 +33,11 @@
                   </a>
                 </li>
       
-                
+                <li class="nav-item" >
+                  <a class="nav-link @if($routeGroup =='vipuser_live') active @endif" href="{{ route('app.vipuser_committee_live') }}">
+                    <span >Committee Live</span>
+                  </a>
+                </li>
       
                 <li class="nav-item" >
                   <a class="nav-link @if($routeGroup =='vipuser_vienna_formula') active @endif" href="{{ route('app.vipuser_vienna_formula') }}">

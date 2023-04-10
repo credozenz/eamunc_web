@@ -48,6 +48,7 @@ use App\Http\Controllers\App\VIPUser\VIPSpeakersController;
 use App\Http\Controllers\App\VIPUser\VIPBlocChatController;
 use App\Http\Controllers\App\VIPUser\VIPGeneralPapersController;
 use App\Http\Controllers\App\VIPUser\VIPScheduleProgramController;
+use App\Http\Controllers\App\VIPUser\VIPCommitteeLiveController;
 
 
 
@@ -185,7 +186,7 @@ Route::group(['middleware' => 'vipuserchecker'], function() {
     Route::get('/vipuser_general_assembly', [VIPGeneralAssemblyController::class,'index'])->name('app.vipuser_general_assembly');
     Route::get('/vipuser_assembly_show/{id}', [VIPGeneralAssemblyController::class,'show'])->name('app.vipuser_assembly_show');
    
-   
+    Route::get('/vipuser_committee_live', [VIPCommitteeLiveController::class,'index'])->name('app.vipuser_committee_live');
     
     Route::get('/vipuser_speaker', [VIPSpeakersController::class,'index'])->name('app.vipuser_speaker');
     Route::post('/vipuser_speaker_country', [VIPSpeakersController::class,'vipuser_speaker_country'])->name('app.speakers_country');

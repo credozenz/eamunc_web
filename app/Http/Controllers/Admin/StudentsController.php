@@ -453,6 +453,13 @@ class StudentsController extends Controller
             $message->subject('Participation Certificate');
             $message->attachData($pdfContent, 'participation_certificate.pdf');
         });
+
+        
+    if ($send) {
+        $student = students::where('id', $id)->first();
+        $student->certi_status  = '1';
+        $student->save();
+    }
         
         if ($send) {
             Session::flash('success', 'Certificate sent successfully!');
