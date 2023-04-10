@@ -58,11 +58,12 @@ class VIPProfileController extends Controller
             'password_confirm.same' => 'Password and Confirm Password must match',
         ]);
 
-    
+       
 
         $member = WebAppHelper::getLogMember();
-        $user = User::where('id', $member->user_id)->first(); 
-
+       
+        $user = User::where('id', $member->id)->first(); 
+      
         $user->password = Hash::make($request->password);
         $user->save();
            
@@ -91,7 +92,7 @@ class VIPProfileController extends Controller
         ]);
 
         $member = WebAppHelper::getLogMember();
-        $profile = User::where('id', $member->user_id)->first(); 
+        $profile = User::where('id', $member->id)->first(); 
        
         if ($request->hasFile('avatar')) {
             $image = $request->file('avatar');

@@ -16,6 +16,11 @@
                      <span >Dashboard</span>
                   </a>
                 </li>
+                <li   class="nav-item">
+                  <a class="nav-link @if($routeGroup =='bureau_guideline') active @endif" href="{{ route('app.bureau_guideline') }}">
+                     <span >Guideline</span>
+                  </a>
+                </li>
                 <li class="nav-item" >
                   <a class="nav-link @if($routeGroup =='bureau_general_papers') active @endif" href="{{ route('app.bureau_general_papers') }}">
                     <span >General Papers</span>
@@ -80,6 +85,12 @@
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
             <a class="nav-link @if($routeGroup =='bureau_dashbord') active @endif" href="{{ route('app.bureau_dashbord') }}">
               <span >Dashboard</span>
+            </a>
+          </li>
+
+          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Guideline">
+            <a class="nav-link @if($routeGroup =='bureau_guideline') active @endif" href="{{ route('app.bureau_guideline') }}">
+              <span >Guideline</span>
             </a>
           </li>
 

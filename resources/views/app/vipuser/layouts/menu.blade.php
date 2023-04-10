@@ -16,6 +16,11 @@
                      <span >Dashboard</span>
                   </a>
                 </li>
+                <li   class="nav-item">
+                  <a class="nav-link @if($routeGroup =='vipuser_guideline') active @endif" href="{{ route('app.vipuser_guideline') }}">
+                     <span >Guideline</span>
+                  </a>
+                </li>
                 <li class="nav-item" >
                   <a class="nav-link @if($routeGroup =='vipuser_general_papers') active @endif" href="{{ route('app.vipuser_general_papers') }}">
                     <span >General Papers</span>
@@ -70,12 +75,18 @@
                 @endif
               
               <h4>{{ str_limit($member->name, $limit = 12, $end = '...') }}</h4>
-              
+              <a href="{{ route('app.vipuser_profile') }}" type="button" class="btn btn-outline-secondary">My Profile</a>
             </div>
 
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
             <a class="nav-link @if($routeGroup =='vipuser_dashbord') active @endif" href="{{ route('app.vipuser_dashbord') }}">
               <span >Dashboard</span>
+            </a>
+          </li>
+
+          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Guideline">
+            <a class="nav-link @if($routeGroup =='vipuser_guideline') active @endif" href="{{ route('app.vipuser_guideline') }}">
+              <span >Guideline</span>
             </a>
           </li>
 

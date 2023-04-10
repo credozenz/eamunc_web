@@ -468,4 +468,93 @@ class StudentsController extends Controller
 }
 
 
+
+public function student_bulk_certi(Request $request) {
+
+
+$students=$request->students;
+$student_array = explode("#", $students);
+
+if (is_null($student_array)) {
+    Session::flash('error', 'Please choose students.');
+    return redirect()->back();
+
+}
+
+foreach ($student_array as $key => $id) {
+   
+
+
+    $student = students::where('id', $id)->first(); 
+   
+    $data = Certificate::where('id',1)->first();
+    $html = $data->certi_design;
+
+    $setup = CertificateSetup::where('deleted_at', null)->orderBy('id', 'ASC')->get();
+
+    $committee = Committee::where('id', $student->committee_choice)->first();
+    $country = Countries::where('id', $student->country_choice)->first();
+    $html = str_replace("%student_name%", $student->name, $html);
+    $html = str_replace("%committee_name%", $committee->name, $html);
+
+    if(!empty($setup)){
+        foreach ($setup as $each){
+                $html =str_replace($each->index_name, $each->index_value, $html);
+        }
+    }
+
+   
+    $data['name'] = $student->name;
+    $data['committee'] = $committee->title;
+    $data['country'] = $country->name;
+ 
+    $dompdf = new Dompdf();
+    $dompdf->loadHtml($html); 
+    $dompdf->setPaper('A4', 'portrait');
+    $dompdf->render();
+    $pdfContent = $dompdf->output();
+    
+    $send = Mail::send('admin.auth.issue-certificates', ['data' =>$data ], function($message) use($student, $pdfContent){
+        $message->to(trim($student->email));
+        $message->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'));
+        $message->subject('Participation Certificate');
+        $message->attachData($pdfContent, 'participation_certificate.pdf');
+    });
+
+
+    if ($send) {
+        $student = students::where('id', $id)->first();
+        $student->certi_status  = '1';
+        $student->save();
+    }
+
+
+
+}
+
+    
+    if ($send) {
+        Session::flash('success', 'Certificate sent successfully!');
+    } else {
+        Session::flash('error', 'Certificate could not be sent.');
+    }
+    return redirect()->back();
+
+    
+    // $fileName = "participation certificate.".time().".pdf";
+    // $dompdf->stream($fileName,array('Attachment'=>0));
+    // exit;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 }

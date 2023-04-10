@@ -65,6 +65,7 @@
                                         <th>Type</th>
                                         <th>School</th>
                                         <th>Action</th>
+                                        <th>Certificate</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -100,6 +101,9 @@
                                             @endif
                                     
                                     </td>
+                                    <td>
+                                    <input type="checkbox" value="{{$value->id ?? ''}}" class="certistudent" name="student">
+                                    </td>
                                     </tr>
                                 @endforeach
                             @else
@@ -107,7 +111,17 @@
                                     <td colspan="10">There are no data.</td>
                                 </tr>
                             @endif
-                                   
+                                <tr>
+                                    <form method="post" action="{{ url('admin/student_bulk_certi') }}"  enctype="multipart/form-data">
+                                     @csrf    
+                                    <td colspan="6">Participation Certificate Issue 
+                                        <input type="hidden" value="" name="students" id="students" required></td>
+                                    <td colspan="1"> 
+                                     <button type='submit' class="btn btn-sm btn-primary w-24 mr-1 mb-2">Issue</button>
+                                    </td>
+                               
+                                    </form> 
+                                </tr>
                                 </tbody>
                             </table>
                             </div>

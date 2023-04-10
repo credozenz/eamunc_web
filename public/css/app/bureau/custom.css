@@ -522,6 +522,36 @@ padding: 20px;
 .dash-table table{
   border-radius: 20px;
 }
+
+.dasboard-menu{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: block;
+}
+.dasboard-menu p{
+  color: #000;
+  margin-top: 10px;
+  
+}
+.icon-bg{
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+  display: inline-block;
+  border: 1px solid #356cd9;
+  border-radius: 100%;
+  color: #356cd9;
+  transition: all 0.3s ease, background-position 1ms;
+}
+.dasboard-menu:hover .icon-bg{
+  background: #356cd9;
+  color: #fff;
+}
+.dasboard{
+  background-color: #fff;
+  padding: 20px;
+}
 @media (max-width: 992px) {
   .fixed-top{
     z-index: 999;

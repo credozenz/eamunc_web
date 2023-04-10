@@ -64,8 +64,8 @@ use App\Http\Controllers\App\VIPUser\VIPScheduleProgramController;
 */
 
 
-
-Route::get('/', [AuthController::class,'getLogin']);
+Route::get('/', [AuthController::class,'getApp']);
+Route::get('/signin/{id}', [AuthController::class,'getLogin']);
 Route::post('/login', [AuthController::class,'postLogin']);
 
 Route::get('forget-password', [ForgotPasswordController::class, 'ForgetPassword'])->name('ForgetPasswordGet');
@@ -76,6 +76,7 @@ Route::post('reset-password', [ForgotPasswordController::class, 'ResetPasswordSt
 Route::group(['middleware' => 'bureauchecker'], function() {
     
     Route::get('/bureau_dashbord', [BureauDashbordController::class,'index'])->name('app.bureau_dashbord');
+    Route::get('/bureau_guideline', [BureauDashbordController::class,'guideline'])->name('app.bureau_guideline');
     Route::get('/bureau_paper_submission', [BureauPaperSubmissionController::class,'index'])->name('app.bureau_paper_submission');
     Route::get('/bureau_bloc_formation', [BureauBlocFormationController::class,'index'])->name('app.bureau_bloc_formation');
     Route::post('/bureau_bloc_store', [BureauBlocFormationController::class,'store'])->name('app.bureau_bloc_store');
@@ -132,6 +133,7 @@ Route::group(['middleware' => 'bureauchecker'], function() {
 Route::group(['middleware' => 'delegatechecker'], function() {
 
     Route::get('/delegate_dashbord', [DelegateDashbordController::class,'index'])->name('app.delegate_dashbord');
+    Route::get('/delegate_guideline', [DelegateDashbordController::class,'guideline'])->name('app.delegate_guideline');
     Route::get('/delegate_paper_submission', [DelegatePaperSubmissionController::class,'index'])->name('app.delegate_paper_submission');
     Route::post('/delegate_paper_submit', [DelegatePaperSubmissionController::class,'store'])->name('app.delegate_paper_submit');
     Route::get('/delegate_bloc_formation', [DelegateBlocFormationController::class,'index'])->name('app.delegate_bloc_formation');
@@ -161,6 +163,7 @@ Route::group(['middleware' => 'delegatechecker'], function() {
 Route::group(['middleware' => 'vipuserchecker'], function() {
    
     Route::get('/vipuser_dashbord', [VIPDashbordController::class,'index'])->name('app.vipuser_dashbord');
+    Route::get('/vipuser_guideline', [VIPDashbordController::class,'guideline'])->name('app.vipuser_guideline');
     Route::get('/vipuser_paper_submission', [VIPPaperSubmissionController::class,'index'])->name('app.vipuser_paper_submission');
     Route::get('/vipuser_bloc_formation', [VIPBlocFormationController::class,'index'])->name('app.vipuser_bloc_formation');
     Route::get('/vipuser_bloc_show/{id}', [VIPBlocFormationController::class,'show'])->name('app.vipuser_bloc_show');
@@ -190,6 +193,10 @@ Route::group(['middleware' => 'vipuserchecker'], function() {
     Route::get('/vipuser_program_schedule', [VIPScheduleProgramController::class,'index'])->name('app.vipuser_program_schedule');
    
     Route::get('/vipuser_log_out', [VIPProfileController::class,'log_out'])->name('app.log_out');
+
+    Route::get('/vipuser_profile', [VIPProfileController::class,'index'])->name('app.vipuser_profile');
+    Route::post('/vipuser_password', [VIPProfileController::class,'update_password'])->name('app.vipuser_password');
+    Route::post('/vipuser_avatar', [VIPProfileController::class,'update_avatar'])->name('app.vipuser_avatar');
 
 
 });

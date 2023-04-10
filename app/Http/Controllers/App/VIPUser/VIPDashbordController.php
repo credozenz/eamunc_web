@@ -43,4 +43,26 @@ class VIPDashbordController extends Controller
                               
         return view('app/vipuser/dashbord', compact('guideline','committee','committee_member'));
     }
+
+    public function guideline()
+    {
+        View::share('routeGroup','vipuser_guideline');
+
+        $member = WebAppHelper::getLogMember();
+        
+        $guideline = SiteIndexes::where('deleted_at', null)->where('type','guideline')->first();
+
+        $committee = Committee::where('id',$member->committee_choice)->first();
+       
+        $committee_member = User::where('users.deleted_at', null)
+                                ->join('students', 'users.id', '=', 'students.user_id')
+                                ->leftjoin('schools', 'students.school_id', '=', 'schools.id')
+                                ->select('students.*', 'schools.name as school_name', 'users.role','users.avatar')
+                                ->where('students.status', '=', 3)
+                                ->where('students.committee_choice', '=' , $committee->id)
+                                ->paginate(300);
+
+
+        return view('app/vipuser/guideline', compact('guideline','committee','committee_member'));
+    }
 }

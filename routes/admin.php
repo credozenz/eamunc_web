@@ -329,6 +329,7 @@ Route::group(['middleware' => 'adminchecker'], function() {
 
      Route::post('/student_certificate/{id}', [StudentsController::class,'student_certificate'])->name('admin.student_certificate');
 
+     Route::post('/student_bulk_certi', [StudentsController::class,'student_bulk_certi'])->name('admin.student_bulk_certi');
 
      Route::get('/invite_student/{id}', [StudentsController::class,'invite_student'])->name('admin.student.invitestudent');
 

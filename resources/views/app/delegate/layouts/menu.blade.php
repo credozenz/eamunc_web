@@ -16,6 +16,11 @@
                     <span >Dashboard</span>
                   </a>
                 </li>
+                <li   class="nav-item">
+                  <a class="nav-link @if($routeGroup =='delegate_guideline') active @endif" href="{{ route('app.delegate_guideline') }}">
+                     <span >Guideline</span>
+                  </a>
+                </li>
                 <li class="nav-item" >
                   <a class="nav-link @if($routeGroup =='delegate_paper_submission') active @endif" href="{{ route('app.delegate_paper_submission') }}">
                      <span >Paper Submission</span>
@@ -82,6 +87,13 @@
               <span >Dashboard</span>
             </a>
           </li>
+
+          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Guideline">
+            <a class="nav-link @if($routeGroup =='delegate_guideline') active @endif" href="{{ route('app.delegate_guideline') }}">
+              <span >Guideline</span>
+            </a>
+          </li>
+
 
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
             <a class="nav-link @if($routeGroup =='delegate_paper_submission') active @endif" href="{{ route('app.delegate_paper_submission') }}">

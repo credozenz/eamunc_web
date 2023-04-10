@@ -18,14 +18,14 @@ class WebAppHelper
         $log_member = Session::get('Log_ID');
         
         if($log_role == 4){
-
+            $log_committee = Session::get('Committee_ID');
             $member = User::where('users.deleted_at', null)
             ->select('users.*')
             ->where('users.id', '=' , $log_member)
             ->first();
-
-            $member->committee_choice ='1';
-
+            
+            $member->committee_choice = $log_committee ?? '';
+            
         }else{
 
             $member = User::where('users.deleted_at', null)

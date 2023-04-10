@@ -30,6 +30,7 @@ class CreateStudentsTable extends Migration
             $table->string('country_choice')->nullable();
             $table->string('position')->nullable();
             $table->string('liability_form')->nullable();
+            $table->integer('certi_status')->comment('0->pending,1->send')->default(0);
             $table->integer('status')->comment('0->pending,1->approve,2->invite,3->active,4->reject')->default(0);
             $table->timestamps();
             $table->softDeletes();

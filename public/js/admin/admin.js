@@ -1,5 +1,7 @@
 $(function(){
 
+
+   
     $(document).on('click', '.dltButton', function (e) {
         e.preventDefault();
         
@@ -386,9 +388,24 @@ $(document).on('click', '.roleButton', function (e) {
       });
 
 
+      
 
-
-
-
+      const checkboxes = document.querySelectorAll('.certistudent');
+      const inputField = document.getElementById("students");
+      
+      checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener("click", function() {
+          let selectedValues = "";
+          checkboxes.forEach((checkbox) => {
+            if (checkbox.checked) {
+              selectedValues += checkbox.value + "#";
+            }
+          });
+          inputField.value = selectedValues.slice(0, -1); // remove the last #
+        });
+      });
 
 })
+
+
+

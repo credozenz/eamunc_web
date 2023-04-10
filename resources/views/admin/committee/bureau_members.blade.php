@@ -65,6 +65,7 @@
                                         <th>Type</th>
                                         <th>School</th>
                                         <th>Action</th>
+                                        <th>Certificate</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -82,25 +83,29 @@
                                              <span class="text text-secondary">Participating School <br>Student</span>
                                             @endif
                                         </td>
-                                        <td class="text-bold-500"> @if($value->school_id=='0')
+                                        <td class="text-bold-500"> 
+                                            @if($value->school_id=='0')
                                             {{ 'ISG' }}
-                                            @else
+                                             @else
                                             {{ $value->school_name }}
-                                            @endif</td>
+                                            @endif
+                                        </td>
                                         <td>
-                                        <a href="{{ url('admin/student_show',$value->id) }}" class="btn btn-sm btn-primary w-24 mr-1 mb-2">View</a>
+                                            <a href="{{ url('admin/student_show',$value->id) }}" class="btn btn-sm btn-primary w-24 mr-1 mb-2">View</a>
                                         
-                                            @if($value->status=='1')
-                                            <a href="{{ url('admin/invite_student',$value->id) }}" class="btn btn-sm btn-info w-24 mr-1 mb-2">Invite</a>
-                                        
+                                              @if($value->status=='1')
+                                              <a href="{{ url('admin/invite_student',$value->id) }}" class="btn btn-sm btn-info w-24 mr-1 mb-2">Invite</a>
                                               @elseif($value->status=='2')
                                               <a href="{{ url('admin/invite_student',$value->id) }}" class="btn btn-sm btn-success w-24 mr-1 mb-2">Re-Invite</a>
                                               @elseif($value->status=='3')
                                               <span  class="btn btn-sm btn-success w-24 mr-1 mb-2">Active</span>
                                         
                                             @endif
-                                    
-                                    </td>
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" value="{{$value->id ?? ''}}" class="certistudent" name="student">
+                                            @if($value->certi_status=='0')  <span class="text text-primary">Pending </span> @else <span class="text text-success">Send  </span> @endif
+                                        </td>
                                     </tr>
                                 @endforeach
                             @else
@@ -108,7 +113,16 @@
                                     <td colspan="10">There are no data.</td>
                                 </tr>
                             @endif
-                                   
+                            <tr>
+                                 <form method="post" action="{{ url('admin/student_bulk_certi') }}">
+                                     @csrf   
+                                    <td colspan="6">Participation Certificate Issue 
+                                        <input type="hidden" value="" name="students" id="students" required></td>
+                                    <td colspan="1"> 
+                                     <button type='submit' class="btn btn-sm btn-primary w-24 mr-1 mb-2">Issue</button>
+                                    </td>
+                                </tr>
+                                </form> 
                                 </tbody>
                             </table>
                             </div>
@@ -123,3 +137,4 @@
 </div>
               
 @endsection
+

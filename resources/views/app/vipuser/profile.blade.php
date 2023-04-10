@@ -72,7 +72,7 @@
               </div>
             </div>
                 <h4 class="mb-3 mt-3 text-primary  fs-3">Change Password</h4>
-                <form method="post" action="{{ url('app/bureau_password') }}"  enctype="multipart/form-data">
+                <form method="post" action="{{ url('app/vipuser_password') }}"  enctype="multipart/form-data">
                         @csrf
                     <div class="row">
                       <div class="col-md-6">
@@ -104,7 +104,7 @@
                   @else
                   <img src="{{ asset('assets/img/avatar.svg') }}" style="width: 150px;" class="rounded m-auto"  alt="{{ $member->name ?? '' }}">
                   @endif
-                    <form method="post" id="avatar_form" action="{{ url('app/bureau_avatar') }}"  enctype="multipart/form-data">
+                    <form method="post" id="avatar_form" action="{{ url('app/vipuser_avatar') }}"  enctype="multipart/form-data">
                           @csrf
                       <label>
                         <input id="avatar" type="file" class="form-control-image" name="avatar" style="width: 0; height: 0;overflow: hidden;opacity: 0;">
@@ -123,7 +123,7 @@
 
           <div class="col-md-2">
             <div class="d-flex flex-row  mb-3">
-              <a href="{{ url('app/bureau_log_out') }}" class="text-danger fs-11 mt-2"><i class="fa fa-power-off" aria-hidden="true"></i>
+              <a href="{{ url('app/vipuser_log_out') }}" class="text-danger fs-11 mt-2"><i class="fa fa-power-off" aria-hidden="true"></i>
               <span class="text-primary mb-3 d-inline-block ps-2 " style="line-height: 37px;"> Sign Out </span></a>
             </div>
           </div>  
