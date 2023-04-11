@@ -451,11 +451,11 @@ class StudentsController extends Controller
         $dompdf->loadHtml($html); 
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
-        $dompdf->stream('certificate_' . $student->name . '.pdf', array("Attachment" => false));
-
-      
-        exit;
+        // $dompdf->stream('certificate_' . $student->name . '.pdf', array("Attachment" => false));
+        // exit;
        
+        $pdfContent = $dompdf->output(); // Get the PDF content as a string
+
         $data['name'] = $student->name;
         $data['committee'] = $committee->title;
         $data['country'] = $country->name;
