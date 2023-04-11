@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Dompdf\Dompdf;
+use Dompdf\Options;
 use Mpdf\Mpdf;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -432,22 +433,60 @@ class StudentsController extends Controller
 
         if(!empty($setup)){
             foreach ($setup as $each){
+                if($each->index_type == 'text'){
                     $html =str_replace($each->index_name, $each->index_value, $html);
+                }elseif($each->index_type == 'file'){
+                    $img = file_get_contents('http://eamunc.credozen.com/assets/web/img/logo.png');
+                    $img_data = base64_encode($img);
+                    $img_data ="data:image/png;base64,'.$img_data.'";
+                    $html = str_replace($each->index_name, $img_data, $html);
+                }
+                    
             }
         }
 
-       echo($html);exit;
-        $data['name'] = $student->name;
-        $data['committee'] = $committee->title;
-        $data['country'] = $country->name;
-     
+    //  echo($html);exit;
+      
         $dompdf = new Dompdf();
         $dompdf->loadHtml($html); 
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
-        $dompdf->stream('document.pdf', array("Attachment" => false));
+        $dompdf->stream('certificate_' . $student->name . '.pdf', array("Attachment" => false));
+
+        // $img = file_get_contents('http://eamunc.credozen.com/assets/web/img/logo.png');
+        // $img_data = base64_encode($img);
+
+        // $html = '<html><body>'.
+        //         ' <div style="background-image: url(data:image/png;base64,'.$img_data.'); width: 500px; height: 500px;"></div>'.
+        //         '<p>Hello World!</p>'.
+        //         '</body></html>';
+
+        // $dompdf = new Dompdf();
+        // $dompdf->load_html($html);
+        // $dompdf->render();
+        // $dompdf->stream("hello_world.pdf", array("Attachment" => false));
+
+       
+        // $img = file_get_contents('http://eamunc.credozen.com/assets/web/img/logo.png');
+        // $img_data = base64_encode($img);
+        
+        // $html = '<html><body>'.
+        //         ' <img src="data:image/png;base64,'.$img_data.'" style="height: 70px; margin-top: 30px;" alt="logo">'.
+        //         '<p>Hello World!</p>'.
+        //         '</body></html>';
+        
+        // $dompdf = new Dompdf();
+        // $dompdf->load_html($html);
+        // $dompdf->render();
+        // $dompdf->stream("hello_world.pdf", array("Attachment" => false));
+
+        
+
         exit;
-        //$pdfContent = $dompdf->output();
+       
+        $data['name'] = $student->name;
+        $data['committee'] = $committee->title;
+        $data['country'] = $country->name;
         
         $send = Mail::send('admin.auth.issue-certificates', ['data' =>$data ], function($message) use($student, $pdfContent){
             $message->to('ajil@advanceinfotech.io');
