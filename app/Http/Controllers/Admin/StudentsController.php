@@ -547,7 +547,13 @@ foreach ($student_array as $key => $id) {
     });
 
 
- 
+    if (count(Mail::failures()) < 0) {
+
+        $student = students::where('id', $id)->first();
+        $student->certi_status  = '1';
+        $student->save();
+
+    }
 
 
 }
@@ -556,11 +562,6 @@ foreach ($student_array as $key => $id) {
     if (count(Mail::failures()) > 0) {
         Session::flash('error', 'Certificate could not be sent.');
     } else {
-
-        $student = students::where('id', $id)->first();
-        $student->certi_status  = '1';
-        $student->save();
-
         Session::flash('success', 'Certificate sent successfully!');
     }
     return redirect()->back();
