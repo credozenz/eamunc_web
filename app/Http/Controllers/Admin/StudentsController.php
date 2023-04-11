@@ -436,7 +436,7 @@ class StudentsController extends Controller
                 if($each->index_type == 'text'){
                     $html =str_replace($each->index_name, $each->index_value, $html);
                 }elseif($each->index_type == 'file'){
-                    $img = file_get_contents($each->index_value);
+                    $img = file_get_contents('http://eamunc.credozen.com/assets/web/img/logo.png');
                     $img_data = base64_encode($img);
                     $img_data ="data:image/png;base64,'.$img_data.'";
                     $html = str_replace($each->index_name, $img_data, $html);
@@ -445,7 +445,7 @@ class StudentsController extends Controller
             }
         }
 
-    //  echo($html);exit;
+    
       
         $dompdf = new Dompdf();
         $dompdf->loadHtml($html); 
@@ -453,35 +453,7 @@ class StudentsController extends Controller
         $dompdf->render();
         $dompdf->stream('certificate_' . $student->name . '.pdf', array("Attachment" => false));
 
-        // $img = file_get_contents('http://eamunc.credozen.com/assets/web/img/logo.png');
-        // $img_data = base64_encode($img);
-
-        // $html = '<html><body>'.
-        //         ' <div style="background-image: url(data:image/png;base64,'.$img_data.'); width: 500px; height: 500px;"></div>'.
-        //         '<p>Hello World!</p>'.
-        //         '</body></html>';
-
-        // $dompdf = new Dompdf();
-        // $dompdf->load_html($html);
-        // $dompdf->render();
-        // $dompdf->stream("hello_world.pdf", array("Attachment" => false));
-
-       
-        // $img = file_get_contents('http://eamunc.credozen.com/assets/web/img/logo.png');
-        // $img_data = base64_encode($img);
-        
-        // $html = '<html><body>'.
-        //         ' <img src="data:image/png;base64,'.$img_data.'" style="height: 70px; margin-top: 30px;" alt="logo">'.
-        //         '<p>Hello World!</p>'.
-        //         '</body></html>';
-        
-        // $dompdf = new Dompdf();
-        // $dompdf->load_html($html);
-        // $dompdf->render();
-        // $dompdf->stream("hello_world.pdf", array("Attachment" => false));
-
-        
-
+      
         exit;
        
         $data['name'] = $student->name;
@@ -509,10 +481,7 @@ class StudentsController extends Controller
         }
         return redirect()->back();
 
-        
-        // $fileName = "participation certificate.".time().".pdf";
-        // $dompdf->stream($fileName,array('Attachment'=>0));
-        // exit;
+      
 }
 
 
