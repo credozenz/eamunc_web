@@ -468,17 +468,18 @@ class StudentsController extends Controller
         });
 
         
-    if ($send) {
+ 
+    if (count(Mail::failures()) > 0) {
+        Session::flash('error', 'Certificate could not be sent.');
+    } else {
+
         $student = students::where('id', $id)->first();
         $student->certi_status  = '1';
         $student->save();
+
+        Session::flash('success', 'Certificate sent successfully!');
     }
-        
-        if ($send) {
-            Session::flash('success', 'Certificate sent successfully!');
-        } else {
-            Session::flash('error', 'Certificate could not be sent.');
-        }
+
         return redirect()->back();
 
       
@@ -546,28 +547,25 @@ foreach ($student_array as $key => $id) {
     });
 
 
-    if ($send) {
-        $student = students::where('id', $id)->first();
-        $student->certi_status  = '1';
-        $student->save();
-    }
-
+ 
 
 
 }
 
     
-    if ($send) {
-        Session::flash('success', 'Certificate sent successfully!');
-    } else {
+    if (count(Mail::failures()) > 0) {
         Session::flash('error', 'Certificate could not be sent.');
+    } else {
+
+        $student = students::where('id', $id)->first();
+        $student->certi_status  = '1';
+        $student->save();
+
+        Session::flash('success', 'Certificate sent successfully!');
     }
     return redirect()->back();
 
     
-    // $fileName = "participation certificate.".time().".pdf";
-    // $dompdf->stream($fileName,array('Attachment'=>0));
-    // exit;
 }
 
 
