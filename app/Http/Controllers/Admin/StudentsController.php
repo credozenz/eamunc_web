@@ -436,7 +436,7 @@ class StudentsController extends Controller
                 if($each->index_type == 'text'){
                     $html =str_replace($each->index_name, $each->index_value, $html);
                 }elseif($each->index_type == 'file'){
-                    $img = file_get_contents('http://eamunc.credozen.com/assets/web/img/logo.png');
+                    $img = file_get_contents($each->index_value);
                     $img_data = base64_encode($img);
                     $img_data ="data:image/png;base64,'.$img_data.'";
                     $html = str_replace($each->index_name, $img_data, $html);
@@ -516,7 +516,14 @@ foreach ($student_array as $key => $id) {
 
     if(!empty($setup)){
         foreach ($setup as $each){
+            if($each->index_type == 'text'){
                 $html =str_replace($each->index_name, $each->index_value, $html);
+            }elseif($each->index_type == 'file'){
+                $img = file_get_contents($each->index_value);
+                $img_data = base64_encode($img);
+                $img_data ="data:image/png;base64,'.$img_data.'";
+                $html = str_replace($each->index_name, $img_data, $html);
+            }
         }
     }
 
