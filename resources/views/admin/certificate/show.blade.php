@@ -30,8 +30,7 @@
     <section id="multiple-column-form">
         <div class="row match-height">
             <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
+                
                         
                    <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
@@ -40,25 +39,16 @@
                         </li>
                     </ol>
                     </nav>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-body">
-                        <div class="row">
-
+                   
+                   
                      
-                        @if(!empty($setup))
-                            @foreach ($setup as $each)
-                              @php  $each->index_name = $each->index_value ?? ''; @endphp
-                            @endforeach
-                        @endif
-                     
+                       
 
-                        {!! $html ?? '' !!}
-                        </div>
-                        </div>
-                    </div>
-                </div>
+                       
+                        
+                
             </div>
+            {!! $html ?? '' !!}
         </div>
     </section>
     <!-- // Basic multiple Column Form section end -->
