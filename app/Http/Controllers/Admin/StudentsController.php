@@ -449,7 +449,7 @@ class StudentsController extends Controller
       
         $dompdf = new Dompdf();
         $dompdf->loadHtml($html); 
-        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->setPaper('A4', 'landscape');
         $dompdf->render();
         // $dompdf->stream('certificate_' . $student->name . '.pdf', array("Attachment" => false));
         // exit;
@@ -535,7 +535,7 @@ foreach ($student_array as $key => $id) {
  
     $dompdf = new Dompdf();
     $dompdf->loadHtml($html); 
-    $dompdf->setPaper('A4', 'portrait');
+    $dompdf->setPaper('A4', 'landscape');
     $dompdf->render();
     $pdfContent = $dompdf->output();
     
