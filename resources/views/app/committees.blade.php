@@ -13,7 +13,7 @@
                     <div class="col-md-3 mb-4">
                        <div class="card">
                            <div class="card-body text-center">
-                            <img src="{{ asset('uploads/'.$value->image) ?? '' }}" alt="{{ $value->name ?? '' }}" class="commitee-image">
+                           <a href="/app/signin/{{$value->id ?? '' }}" > <img src="{{ asset('uploads/'.$value->image) ?? '' }}" alt="{{ $value->name ?? '' }}" class="commitee-image"></a>
                             <a href="/app/signin/{{$value->id ?? '' }}" style="margin-top: 20px; display: block; color: #000;">{{ $value->name ?? '' }}</a>
                             </div>
                         </div>

@@ -482,6 +482,21 @@ font-size: 12px;
   background-color: #fff;
   padding: 20px;
 }
+.main-dasboard{
+  
+  overflow-x: hidden;
+    background: white;
+    border-radius: 30px;
+    padding: 30px;
+    position: relative;
+    z-index: 99;
+}
+
+@media (min-width: 992px) {
+  .main-dasboard{
+  margin-left: 3%;
+  }
+}
 
 @media (max-width: 992px) {
   .fixed-top{

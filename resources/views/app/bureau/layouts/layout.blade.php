@@ -3,10 +3,10 @@
     <!-- BEGIN: Head -->
     @include('app.bureau.layouts.header')
     <!-- END: Head -->
-    <body class="fixed-nav sticky-footer bg-primary theme-dashboard" id="page-top">
-        @if($routeGroup =='bureau_general_assembly')
-        <body class="" id="page-top">
-        <div class="">
+   
+        @if($routeGroup =='bureau_dashbord')
+        <body class="fixed-nav sticky-footer bg-primary theme-dashboard" id="page-top">
+        <div class="main-dasboard">
         @else
         <body class="fixed-nav sticky-footer bg-primary theme-dashboard" id="page-top">
         @include('app.bureau.layouts.menu')
@@ -21,3 +21,4 @@
         @include('app.bureau.layouts.footer')
     </body>
 </html>
+

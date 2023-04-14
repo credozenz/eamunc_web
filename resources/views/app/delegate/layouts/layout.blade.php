@@ -5,8 +5,8 @@
     <!-- END: Head -->
    
         @if($routeGroup =='delegate_dashbord')  
-        <body class="" id="page-top">
-        <div class="">
+        <body class="fixed-nav sticky-footer bg-primary theme-dashboard" id="page-top">
+        <div class="main-dasboard">
         @else
         <body class="fixed-nav sticky-footer bg-primary theme-dashboard" id="page-top">
         @include('app.delegate.layouts.menu')
