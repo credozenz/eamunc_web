@@ -55,7 +55,7 @@
                                  <img class="rounded-md img-preview" src="{{ asset('uploads/'.$data->image) }}" style="width: 103px;">
                             </div>
                         <input type="file" name="image" class="form-control  @error('image') border-danger @enderror">
-                        <small>Image Dimension:1213x666, Size below 3MB</small>
+                        <small>Image Dimension:1519x528, Size below 3MB</small>
                         @error('image')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
