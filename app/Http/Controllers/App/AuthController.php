@@ -103,7 +103,7 @@ class AuthController extends Controller
                         $committee = $committee_id;
 
                     }else{
-                        Session::flash('error', 'Not access! You are not this committee member ?');
+                        Session::flash('error', 'You are not a member of this committee. Kindly choose the right committee or contact a beaureau member for assistance.');
                         return redirect()->back();
                     }
 
