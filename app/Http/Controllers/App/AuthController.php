@@ -7,13 +7,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Route;
 use App\Models\Committee;
 use App\Models\Students;
-
+use View;
 class AuthController extends Controller
 {
 
-   
+    public function __construct()
+    {
+        $routeName  = Route::currentRouteName();
+       
+        View::share('routeGroup','log_app');
+       
+    }
 
     public function getLogin(Request $request,$committee)
     {
