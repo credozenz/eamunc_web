@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Route;
 use App\Helpers\WebAppHelper;
-use App\Helper\AdminHelper;
+use App\Helpers\AdminHelper;
 use App\Models\SiteIndexes;
 use App\Models\School;
 use App\Models\Committee;

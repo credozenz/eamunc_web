@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Route;
 use View;
-use App\Helper\AdminHelper;
+use App\Helpers\AdminHelper;
 use App\Models\Committee;
 use App\Models\Committee_member;
 use App\Models\Committee_files;

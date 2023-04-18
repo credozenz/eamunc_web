@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Route;
 use View;
-use App\Helper\WebHelper;
+use App\Helpers\WebHelper;
 use App\Models\SiteIndexes;
 use App\Models\Alumni_registration;
 

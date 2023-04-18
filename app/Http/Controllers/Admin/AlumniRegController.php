@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use View;
-use App\Helper\AdminHelper;
+use App\Helpers\AdminHelper;
 use App\Models\SiteIndexes;
 use App\Models\School;
 use App\Models\Students;

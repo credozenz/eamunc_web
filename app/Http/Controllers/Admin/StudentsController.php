@@ -16,7 +16,7 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Writer as Writer;
 use View;
-use App\Helper\AdminHelper;
+use App\Helpers\AdminHelper;
 use App\Models\SiteIndexes;
 use App\Models\School;
 use App\Models\Students;

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Route;
 use View;
-use App\Helper\AdminHelper;
+use App\Helpers\AdminHelper;
 use App\Models\Conference_schedule;
 use App\Models\Conference_schedule_time;
 use App\Models\SiteIndexes;

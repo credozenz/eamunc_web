@@ -165,14 +165,7 @@
       </div>
     
     </div>
-    <div class="row">
-        <div class="col-md-2">
-          <div class="d-flex flex-row ">
-            <a href="{{ url('app') }}" class="text-danger fs-11 mt-2"><i class="fa fa-chevron-left" aria-hidden="true"></i>
-            <span class="text-primary d-inline-block ps-2 " style="line-height: 37px;"> Committees </span></a>
-          </div>
-        </div>  
-      </div>
+    
 
   </div>
 </div>

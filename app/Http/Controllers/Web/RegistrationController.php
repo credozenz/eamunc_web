@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Route;
 use View;
-use App\Helper\WebHelper;
+use App\Helpers\WebHelper;
 use App\Models\SiteIndexes;
 use App\Models\Committee;
 use App\Models\School;
