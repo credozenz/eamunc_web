@@ -35,7 +35,7 @@
                 </div>
                
             </div>
-            <div class="col-lg-5 d-none d-lg-block">
+            <div class="col-lg-5 d-lg-block">
                 <div id="auth-left">
                         <div class="auth-logo">
                         <div class="sidebar-header">
@@ -81,7 +81,7 @@
                     </div>
                 </div>
             </div>  
-            <div class="footer clearfix mb-0 text-muted">
+            <div class="footer clearfix mb-0 d-none text-muted">
                 <div class="float-start">   
                 </div>
                 <div class="float-end">
