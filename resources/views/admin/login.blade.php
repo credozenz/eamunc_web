@@ -19,7 +19,7 @@
             <div class="sidebar-header">
               <div class="d-flex justify-content-between">
                 <a class="navbar-brand" href="{{ route('home') }}">
-                    <img src="http://eamunc.credozen.com/assets/admin/img/logo.png" style="width: 4rem;height: 4rem;" alt="E.A.MUNC" srcset="">&nbsp;&nbsp;E.A.MUNC
+                    <img src="http://eamunc.credozen.com/assets/web/img/logo.png" style="width: 4rem;height: 4rem;" alt="E.A.MUNC" srcset="">&nbsp;&nbsp;E.A.MUNC
                 </a>
               </div>
             </div>

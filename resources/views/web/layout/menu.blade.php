@@ -25,8 +25,9 @@
                                 Conference</a>
                         </div>
                         <div class="menu-right">
-                            @if(!isset($routeGroup))
+                            
                             <a href="{{ route('registration') }}" class="button register-btn">Register Now</a>
+                            @if(!isset($routeGroup))
                             <span class="divider"></span>
                             <a href="/app" class="button signin-btn">Sign In</a>
                             @endif
