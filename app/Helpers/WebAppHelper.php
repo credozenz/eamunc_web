@@ -13,7 +13,7 @@ class WebAppHelper
 {
 
 
-    function getLogMember() {
+    public function getLogMember() {
         $log_role = Session::get('Log_ROLE');
         $log_member = Session::get('Log_ID');
         

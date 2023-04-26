@@ -8,7 +8,7 @@ class AdminHelper
 {
 
 
-    function getYoutubeIdFromUrl($url) {
+  public function getYoutubeIdFromUrl($url) {
         $parts = parse_url($url);
         if(isset($parts['query'])){
               parse_str($parts['query'], $qs);
