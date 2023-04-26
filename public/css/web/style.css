@@ -775,6 +775,34 @@ footer {
     margin: 0;
 }
 
+@media only screen and (max-width: 700px){
+    #slider{
+        width:100% !important;
+        height:20rem !important;
+        margin: 10px auto !important;
+        overflow: hidden !important;
+        position: relative !important; 
+      }
+      .slide1 ul{ 
+        display: flex !important;
+        justify-content: center !important; 
+        align-items: center !important;
+      }
+      .slide1 { 
+          position: absolute !important;
+          margin: auto !important;
+          display: table !important;
+      }
+      .slide1 img {
+          display: block !important;
+          position: relative !important;
+          width: 150% !important;
+          height: 115% !important;
+      }
+   
+    
+}
+
 /* data-title */
 
 [data-title]:hover:after {
