@@ -7,8 +7,17 @@
         <div class="wrapper">
             <div class="container">
                 <div class="letter-container">
-                    <div class="mb-4">
-                        <h3 class="color-darkblue">{{ $committees->title ?? '' }}</h3>
+                       <div class="row committee-card" style="background: white;">
+                            <div class="col-md-7">
+                                <div class="content p-4">
+                                    <strong><h4 style="color: #2763AB;">{{ $committees->title ?? '' }}</h4></strong>
+                                </div>
+                            </div>
+                            <div class="col-md-5 committee-thumb" style="background: blue;">
+                                <img src="{{ asset('uploads/'.$committees->image) ?? '' }}" class="commitee-image" alt="{{ $committees->name ?? '' }}">
+                            </div>
+                        </div>
+                    <div class="m-5">
                         <p class="subnote"><strong>AGENDA : </strong>{{ $committees->agenda ?? '' }} </p>
                     </div>
                     <span class="spacer"></span>
