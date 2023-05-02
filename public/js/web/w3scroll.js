@@ -1,68 +1,37 @@
 
-jQuery(document).ready(function ($) {
+$(document).ready(function(){
+    
   
-  // This is for the auto sliding
-  setInterval(function () {
-   
-      changeSlider();
-  }, 6000);
-  
-  //variables
-  var slideCount = $('#slider ul li').length;
-  var slideWidth = $('#slider ul li').width();
-  var slideHeight = $('#slider ul li').height();
-  var sliderUlWidth = slideCount * slideWidth;
-
-  $('#slider').css({ width: slideWidth, height: slideHeight });
-
-  $('#slider ul').css({ width: slideWidth, height: slideHeight });
-
-  $('#slider ul li:last-child').prependTo('#slider ul');
-
-
-
-
-
-  function changeSlider() {
-    $('#slider ul').animate({
-        opacity: 0.1
-    }, 1000, function () {
-        $('#slider ul li:last-child').prependTo('#slider ul');
-        $('#slider ul').css('left', '');
-        $('#slider ul').css('opacity', 1);
+    $(".slideshow").slick({
+      autoplay:true,
+      autoplaySpeed:5000,
+      speed:900,
+      slidesToShow:1,
+      slidesToScroll:1,
+      pauseOnHover:true,
+      dots:true,
+      pauseOnDotsHover:true,
+      cssEase:'linear',
+      fade:true,
+      draggable:false,
+      prevArrow:'<button class="PrevArrow"></button>',
+      nextArrow:'<button class="NextArrow"></button>', 
+      responsive: [
+        {
+          breakpoint: 768, // Define breakpoint for devices with screen width of 768px or less
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false // Hide arrows on mobile devices
+          }
+        }
+      ]
     });
-};
-  
+    
+  })
 
-  function moveLeft() {
-      $('#slider ul').animate({
-        left: '-=100%',
-      }, 200, function () {
-          $('#slider ul li:last-child').prependTo('#slider ul');
-          $('#slider ul').css('left', '');
-          $('#slider ul').css('opacity', 1);
-      });
-  };
 
-  function moveRight() {
-      $('#slider ul').animate({
-        left: '+=100%',
-      },200, function () {
-          $('#slider ul li:first-child').appendTo('#slider ul');
-          $('#slider ul').css('left', '');
-          $('#slider ul').css('opacity', 1);
-      });
-  };
 
-  $('.control_prev').click(function () {
-      moveLeft();
-  });
-
-  $('.control_next').click(function () {
-      moveRight();
-  });
-
-});
 
 
 

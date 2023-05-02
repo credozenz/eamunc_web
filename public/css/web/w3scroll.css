@@ -1,4 +1,317 @@
 
+  /* The Hamburger icon with the menu */
+         .slideshow a {
+            text-decoration: none;
+            color: #232323;
+            -webkit-transition: color 0.3s ease;
+            transition: color 0.3s ease;
+          }
+          
+          .slideshow a:hover {
+            color: #5a91e4;
+          }
+          
+          .slideshow #menuToggle {
+            display: block;
+            position: relative;
+            top: 60px;
+            left: 60px;
+            z-index: 1;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+             -ms-user-select: none;
+                 user-select: none;
+          }
+          
+          .slideshow #menuToggle input {
+            display: block;
+            width: 40px;
+            height: 32px;
+            position: absolute;
+            top: -7px;
+            left: -5px;
+            cursor: pointer;
+            opacity: 0; /* hide this */
+            z-index: 2; /* and place it over the hamburger */
+            -webkit-touch-callout: none;
+          }
+          
+          
+          .slideshow #menuToggle span {
+            display: block;
+            width: 33px;
+            height: 4px;
+            margin-bottom: 5px;
+            position: relative; 
+            background: #5a91e4;
+            border-radius: 3px;
+            z-index: 1;
+            
+            -webkit-transform-origin: 4px 0px;
+                    transform-origin: 4px 0px;
+            
+            -webkit-transition: background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                        opacity 0.55s ease,
+                        -webkit-transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+            
+            transition: background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                        opacity 0.55s ease,
+                        -webkit-transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+            
+            transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                        background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                        opacity 0.55s ease;
+            
+            transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                        background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                        opacity 0.55s ease,
+                        -webkit-transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+          }
+          
+          .slideshow #menuToggle span:first-child {
+            -webkit-transform-origin: 0% 0%;
+                    transform-origin: 0% 0%;
+          }
+          
+          .slideshow #menuToggle span:nth-last-child(2) {
+            -webkit-transform-origin: 0% 100%;
+                    transform-origin: 0% 100%;
+          }
+          
+          /* Transform all the slices of hamburger into a crossmark. */
+          .slideshow #menuToggle input:checked ~ span {
+            opacity: 1;
+            -webkit-transform: rotate(45deg) translate(-2px, -1px);
+                    transform: rotate(45deg) translate(-2px, -1px);
+            background: #232323;
+          }
+          
+          /* But let's hide the middle one.*/
+          .slideshow #menuToggle input:checked ~ span:nth-last-child(3)
+          {
+            opacity: 0;
+            -webkit-transform: rotate(0deg) scale(0.2, 0.2);
+                    transform: rotate(0deg) scale(0.2, 0.2);
+          }
+          
+          /* And the last one should go the other direction */
+          .slideshow #menuToggle input:checked ~ span:nth-last-child(2)
+          {
+            opacity: 1;
+            -webkit-transform: rotate(-45deg) translate(0, -1px);
+                    transform: rotate(-45deg) translate(0, -1px);
+          }
+          
+  
+          .slideshow #menu {
+            position: absolute;
+            width: 100px;
+            margin: -60px 0 0 -60px;
+            padding: 40px;
+            padding-top: 100px;
+            background: #cdcdba;
+            list-style-type: none;
+            -webkit-transform-origin: 0% 0%;
+            
+                    transform-origin: 0% 0%;
+            -webkit-transform: translate(-100%, 0);
+                    transform: translate(-100%, 0);
+            
+            -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+            
+            transition: -webkit-transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+            
+            transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+            
+            transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0), -webkit-transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+          }
+          
+          .slideshow #menu li{
+            padding: 10px 0;
+            font-size: 1.2rem;
+            font-family: 'Century Gothic', sans-serif;
+          }
+          
+  
+          .slideshow #menuToggle input:checked ~ ul {
+            -webkit-transform: scale(1.0, 1.0);
+                    transform: scale(1.0, 1.0);
+            opacity: 1;
+          }
+  
+          .slideshow .img-fill{
+                width: 100%;
+                display: block;
+                overflow: hidden;
+                position: relative;
+                text-align: center
+            }
+            
+            .slideshow .img-fill img {
+                height: 100%;
+                width: 100%;
+                position: relative;
+                display: inline-block;
+                max-width: none;
+            }
+
+            @media (max-width:600px){
+                .slideshow .img-fill img {
+                    height: 35rem !important;
+                    width: 60rem !important;
+                    float: right;
+                    position: relative;
+                    display: inline-block;
+                }
+            }
+            
+            .slideshow .blocks-box,
+            .slick-slider {
+                margin: 0;
+                padding: 0 !important;
+            }
+            
+            .slideshow .slick-slide {
+                float: left /* If RTL Make This Right */ ;
+                padding: 0;
+            }
+            
+            /* ==== Slider Style === */
+            .slideshow .item .img-fill{
+                height:81vh;
+                background:#5a91e4;
+            }
+            
+            .slideshow .item .img-fill .info{
+                position:absolute;
+                min-width:100%;
+                height:100%;
+                right:5%;
+                top: -45%;
+                line-height:100vh;
+                text-align:right;
+            }
+            
+            .slideshow .item .info > div{
+                display:inline-block!important;
+            }
+            
+            .slideshow .NextArrow{
+                position:absolute;
+                top:50%;
+                right:0px;
+                width:45px;
+                height:45px;
+                background:#5a91e4;
+                border:0 none;
+                margin-top:-22.5px;
+                text-align:center;
+                font:20px/45px FontAwesome;
+                color:#FFF;
+                z-index:3;
+            }
+            
+            .slideshow .NextArrow:before{content:'\f105';}
+            
+            .slideshow .PrevArrow{
+                position:absolute;
+                top:50%;
+                left:0px;
+                width:45px;
+                height:45px;
+                background:#5a91e4;
+                border:0 none;
+                margin-top:-22.5px;
+                text-align:center;
+                font:20px/45px FontAwesome;
+                color:#FFF;
+                z-index:3;
+            }
+            
+            .slideshow .PrevArrow:before{content:'\f104';}
+            
+            .slideshow .slick-dots{
+                position:absolute;
+                height:5px;
+                background:rgba(255,255,255,.20);
+                bottom:0px;
+                width:100%;
+                left:0px;
+                padding:0px;
+                margin:0px;
+                list-style-type:none;
+            }
+            .slideshow .slick-dots li button{display:none;}
+            .slideshow .slick-dots li{
+                float:left;
+                width:0px;
+                height:5px;
+                background:#5a91e4;
+                position:absolute;
+                left:0px;
+                bottom:0px;
+            }
+            
+            .slideshow .slick-dots li.slick-active{
+                width:100%;
+                -webkit-animation:ProgressDots 6s both;
+                        animation:ProgressDots 6s both;
+            }
+            
+            .slideshow .item h3{
+                font-family: 'Century Gothic', sans-serif;
+                font-size: 1.6rem;
+                text-transform:uppercase;
+                color:#5a91e4;
+                -webkit-animation:fadeIn 1s both;
+                        animation:fadeIn 1s both;
+                margin:0;
+                padding:0;
+            }
+            
+            .slideshow .item.slick-active h3{
+                -webkit-animation:fadeIn 1s both 1s;
+                        animation:fadeIn 1s both 1s;
+            }
+            
+            
+            .slideshow .item img{
+                -webkit-animation:fadeIn 1s both;
+                        animation:fadeIn 1s both;
+            }
+            
+            .slideshow .item.slick-active img{
+                -webkit-animation:fadeIn 1s both;
+                        animation:fadeIn 1s both;
+            }
+            
+            
+            @-webkit-keyframes ProgressDots{from{width:0px;}to{width:100%;}}
+            @keyframes ProgressDots{from{width:0px;}to{width:100%;}}
+            
+            /* ==== Slick Slider Css Ruls === */
+            .slick-slider{position:relative;display:block;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none;-khtml-user-select:none;-ms-touch-action:pan-y;touch-action:pan-y;-webkit-tap-highlight-color:transparent}
+            .slick-list{position:relative;display:block;overflow:hidden;margin:0;padding:0}
+            .slick-list:focus{outline:none}.slick-list.dragging{cursor:hand}
+            .slick-slider .slick-track,.slick-slider .slick-list{-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
+            .slick-track{position:relative;top:0;left:0;display:block}
+            .slick-track:before,.slick-track:after{display:table;content:''}.slick-track:after{clear:both}
+            .slick-loading .slick-track{visibility:hidden}
+            .slick-slide{display:none;float:left /* If RTL Make This Right */ ;height:100%;min-height:1px}
+            .slick-slide.dragging img{pointer-events:none}
+            .slick-initialized .slick-slide{display:block}
+            .slick-loading .slick-slide{visibility:hidden}
+            .slick-vertical .slick-slide{display:block;height:auto;border:1px solid transparent}
+
+
+
+
+
+
+
+
+
+
 .w3-left, .w3-right, .w3-badge {cursor:pointer}
 .w3-badge {height:13px;width:13px;padding:0}
 .w3-image{max-width:100%;height:auto}img{vertical-align:middle}a{color:inherit}

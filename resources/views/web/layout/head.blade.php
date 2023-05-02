@@ -47,5 +47,6 @@
     <link rel="stylesheet" href="{{asset('css/web/responsive.css')}}">
     <link rel="stylesheet" href="{{asset('css/web/w3scroll.css')}}"/>
     <link rel="stylesheet" href="{{asset('css/web/owl.carousel.min.css')}}"/>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{asset('css/web/select2.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('css/web/animate.min.css')}}"/>
 </head>

@@ -1,23 +1,24 @@
 @extends('web.layout.main')
 @section('content')
 
-    
     @if (!empty($banner) && $banner->count())
-        <div id="slider">
-          <p class="control_next"><i class="fa fa-chevron-right" aria-hidden="true"></i></p>
-          <p class="control_prev"><i class="fa fa-chevron-left"  aria-hidden="true"></i></p>
-            <ul>
-                @foreach ($banner as $key => $value)
-                <li class="slide1">
-                    <div class="slider-title-wrapper">
-                    </div>
-                    <img src="{{ asset('uploads/'.$value->image) }}" alt="">
-                </li>
-                @endforeach
-            </ul>
+    <div class="slideshow">
+    <!-- Item -->
+    @foreach ($banner as $key => $value)
+    <div class="item">
+        <div class="img-fill">
+        <img src="{{ asset('uploads/'.$value->image) }}" alt="{{ $value->title ?? '' }}">
+        <div class="info">
+            <div>
+            <!-- <h3>{{ $value->title ?? '' }}</h3> -->
+            </div>
         </div>
+        </div>
+    </div>
+    @endforeach
+    </div>
     @endif
-
+   
     @if (!empty($timer) && $timer->count())
         <section id="counter" class="section-padding">
             <div class="container">
