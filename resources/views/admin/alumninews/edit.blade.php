@@ -7,7 +7,7 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Our Mentors</h3>
+                <h3>Alumni News</h3>
                 <p class="text-subtitle text-muted"></p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
@@ -55,7 +55,7 @@
                                  <img class="rounded-md img-preview" src="{{ asset('uploads/'.$data->image) }}" style="width: 103px;">
                             </div>
                         <input type="file" name="image" class="form-control  @error('image') border-danger @enderror">
-                        <small>Image Dimension:345x225, Size below 3MB</small>
+                        <small>Image Dimension:1296X845, Size below 3MB</small>
                         @error('image')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>

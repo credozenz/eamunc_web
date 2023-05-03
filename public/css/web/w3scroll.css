@@ -157,11 +157,15 @@
 
             @media (max-width:600px){
                 .slideshow .img-fill img {
-                    height: 35rem !important;
-                    width: 60rem !important;
-                    float: right;
+                    height: 100% !important;
+                    width: 100% !important;
                     position: relative;
                     display: inline-block;
+                }
+
+                .slideshow .item .img-fill {
+                  height: 35vh !important;
+                  background: #5a91e4;
                 }
             }
             

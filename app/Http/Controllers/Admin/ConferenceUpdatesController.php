@@ -63,9 +63,12 @@ class ConferenceUpdatesController extends Controller
             if($extension=='svg'){
                $img = $image->get();
             }else{
+                $width = 306; 
+                $height = 348; 
                 $img = Image::make($image->getRealPath());
-                $img->resize(345, 225, function ($constraint) {
-                   $constraint->aspectRatio();                 
+                $img->height() > $img->width() ? $width=null : $height=null;
+                $img->resize($width, $height, function ($constraint) {
+                    $constraint->aspectRatio();
                 });
                 $img->stream('png', 100);
             }
@@ -143,9 +146,12 @@ class ConferenceUpdatesController extends Controller
             if($extension=='svg'){
                $img = $image->get();
             }else{
+                $width = 306; 
+                $height = 348; 
                 $img = Image::make($image->getRealPath());
-                $img->resize(345, 225, function ($constraint) {
-                   $constraint->aspectRatio();                 
+                $img->height() > $img->width() ? $width=null : $height=null;
+                $img->resize($width, $height, function ($constraint) {
+                    $constraint->aspectRatio();
                 });
                 $img->stream('png', 100);
             }

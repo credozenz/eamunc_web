@@ -65,7 +65,7 @@
                                         <th>Type</th>
                                         <th>School</th>
                                         <th>Action</th>
-                                        <th>Certificate</th>
+                                        <th>Certificate <input type="checkbox" id="check-all"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -103,7 +103,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <input type="checkbox" value="{{$value->id ?? ''}}" class="certistudent" name="student">
+                                            <input type="checkbox" value="{{$value->id ?? ''}}" class="certistudent checkbox-item" name="student">
                                             @if($value->certi_status=='0')  <span class="text text-primary">Pending </span> @else <span class="text text-success">Send  </span> @endif
                                         </td>
                                     </tr>

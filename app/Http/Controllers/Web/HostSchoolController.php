@@ -15,7 +15,7 @@ class HostSchoolController extends Controller
 {
     public function index()
     {
-        $schools = SiteIndexes::where('deleted_at', null)->where('type', 'host_schools')->orderBy('id', 'DESC')->paginate(10); 
+        $schools = SiteIndexes::where('deleted_at', null)->where('type', 'host_schools')->orderBy('id', 'DESC')->paginate(3); 
 
         return view('web/host-schools', compact('schools'));
     }

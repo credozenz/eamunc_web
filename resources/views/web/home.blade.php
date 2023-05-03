@@ -146,7 +146,6 @@
                         <div class="image-box fixed-thumb">
                             <img src="{{ asset('uploads/'.$value->image) ?? '' }}" alt="{{ $value->title ?? '' }}">
                             <p class="update-name color-blue">{{ $value->title ?? '' }}</p>
-                            <p class="update-description color-white">{{ str_limit($value->description, $limit = 100, $end = '...') }}</p>
                         </div>
                       </a>
                       @endforeach

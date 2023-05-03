@@ -24,8 +24,9 @@
                                 </div>
                             </div>
                         </div>
+                        
                     </div>
-
+                    
                     @endforeach
                     @else
                     <div class="col-md-6 text-center text-md-end color-darkblue">
@@ -35,8 +36,9 @@
                     
 
                 </div>
+                @include('web.layout.pagination', ['paginator' => $schools])
             </div>
-
+            
         </div>
     </section>
 

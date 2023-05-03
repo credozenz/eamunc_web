@@ -18,7 +18,7 @@
                 </li>
                 <li   class="nav-item">
                   <a class="nav-link @if($routeGroup =='vipuser_guideline') active @endif" href="{{ route('app.vipuser_guideline') }}">
-                     <span >Guideline</span>
+                     <span >Rules Of Procedure</span>
                   </a>
                 </li>
                 <li class="nav-item" >
@@ -90,7 +90,7 @@
 
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Guideline">
             <a class="nav-link @if($routeGroup =='vipuser_guideline') active @endif" href="{{ route('app.vipuser_guideline') }}">
-              <span >Guideline</span>
+              <span >Rules Of Procedure</span>
             </a>
           </li>
 

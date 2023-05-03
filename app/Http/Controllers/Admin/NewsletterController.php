@@ -41,8 +41,8 @@ class NewsletterController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'description' => ['required'],
-            'image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:255'],
-            'news_doc' => ['required','mimes:pdf', 'max:255'],
+            'image' => ['required','mimes:jpeg,png,jpg,gif,svg', 'max:2055'],
+            'news_doc' => ['required','mimes:pdf', 'max:2055'],
         ],[
             'title.required' => 'The Title field is required',
             'description.required' => 'The Description field is required',
@@ -70,7 +70,7 @@ class NewsletterController extends Controller
                $img = $image->get();
             }else{
                 $img = Image::make($image->getRealPath());
-                $img->resize(100, 100, function ($constraint) {
+                $img->resize(659, 300, function ($constraint) {
                    $constraint->aspectRatio();                 
                 });
                 $img->stream('png', 100);
@@ -160,7 +160,7 @@ class NewsletterController extends Controller
                $img = $image->get();
             }else{
                 $img = Image::make($image->getRealPath());
-                $img->resize(100, 100, function ($constraint) {
+                $img->resize(659, 300, function ($constraint) {
                    $constraint->aspectRatio();                 
                 });
                 $img->stream('png', 100);

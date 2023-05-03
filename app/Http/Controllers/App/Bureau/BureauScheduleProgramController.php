@@ -27,7 +27,7 @@ class BureauScheduleProgramController extends Controller
 {
     public function __construct()
     {
-        View::share('routeGroup','bureau_dashbord');
+        View::share('routeGroup','bureau_guideline');
     }
     public function index(Request $request)
     {   

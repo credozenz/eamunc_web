@@ -18,7 +18,7 @@
                 </li>
                 <li   class="nav-item">
                   <a class="nav-link @if($routeGroup =='delegate_guideline') active @endif" href="{{ route('app.delegate_guideline') }}">
-                     <span >Guideline</span>
+                     <span >Rules Of Procedure</span>
                   </a>
                 </li>
                 <li class="nav-item" >
@@ -90,7 +90,7 @@
 
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Guideline">
             <a class="nav-link @if($routeGroup =='delegate_guideline') active @endif" href="{{ route('app.delegate_guideline') }}">
-              <span >Guideline</span>
+              <span >Rules Of Procedure</span>
             </a>
           </li>
 
@@ -120,7 +120,7 @@
           </li>
           
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-            <a class="nav-link @if($routeGroup =='committee_live') active @endif" href="{{ route('app.delegate_line_by_line') }}">
+            <a class="nav-link @if($routeGroup =='delegate_line_by_line') active @endif" href="{{ route('app.delegate_line_by_line') }}">
               <span >Line by Line</span>
             </a>
           </li>

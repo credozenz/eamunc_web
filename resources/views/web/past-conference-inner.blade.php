@@ -41,10 +41,10 @@
             <div class="row justify-content-between">
             @if (!empty($images) && $images->count())
                         @foreach ($images as $key => $value)
-
-                <div class="col-md-4 image-box mb-3 fixed-thumb">
-                <img src="{{ asset('uploads/'.$value->image) ?? '' }}" alt="{{ $value->name ?? '' }}">
-                </div>
+                        <div class="col-md-4 image-box mb-5">
+                        <img width="40%" height="100%" src="{{ asset('uploads/'.$value->image) ?? '' }}" class="open-img" alt="{{ $value->name ?? '' }}">
+                        </div> 
+              
                 @endforeach
             @else
             <div class="col-md-6 text-center text-md-end color-darkblue">

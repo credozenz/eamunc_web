@@ -24,7 +24,7 @@ class ParticipateSchoolController extends Controller
   
     public function index(Request $request)
     {   
-        $schools = SiteIndexes::where('deleted_at', null)->where('type', 'participate_schools')->orderBy('id', 'DESC')->paginate(10); 
+        $schools = SiteIndexes::where('deleted_at', null)->where('type', 'participate_schools')->orderBy('id', 'DESC')->paginate(5); 
         return view('web/participate-schools', compact('schools'));
     }
 

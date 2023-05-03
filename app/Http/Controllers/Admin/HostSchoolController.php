@@ -63,11 +63,17 @@ class HostSchoolController extends Controller
             if($extension=='svg'){
                $img = $image->get();
             }else{
+                $width = 220; 
+                $height = 270; 
                 $img = Image::make($image->getRealPath());
-                $img->resize(198,252, function ($constraint) {
-                   $constraint->aspectRatio();                 
+                $img->height() > $img->width() ? $width=null : $height=null;
+                $img->resize($width, $height, function ($constraint) {
+                    $constraint->aspectRatio();
                 });
+
                 $img->stream('png', 100);
+
+              
             }
             
             Storage::disk('public')->put('host_schools/'.$fileName,$img,'public');
@@ -126,7 +132,7 @@ class HostSchoolController extends Controller
         if ($request->hasFile('image')) {
 
             $validatedData = $request->validate([
-                'image' => ['mimes:jpeg,png,jpg,gif,svg', 'max:255'],
+                'image' => ['mimes:jpeg,png,jpg,gif,svg', 'max:2055'],
             ],[
                 'image.max' => 'Image  must be smaller than 2 MB',
                 'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
@@ -143,11 +149,16 @@ class HostSchoolController extends Controller
             if($extension=='svg'){
                $img = $image->get();
             }else{
+                $width = 220; 
+                $height = 270; 
                 $img = Image::make($image->getRealPath());
-                $img->resize(198,252, function ($constraint) {
-                   $constraint->aspectRatio();                 
+                $img->height() > $img->width() ? $width=null : $height=null;
+                $img->resize($width, $height, function ($constraint) {
+                    $constraint->aspectRatio();
                 });
+
                 $img->stream('png', 100);
+
             }
             
             Storage::disk('public')->put('host_schools/'.$fileName,$img,'public');

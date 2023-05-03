@@ -64,7 +64,7 @@ class ParticipateSchoolController extends Controller
                $img = $image->get();
             }else{
                 $img = Image::make($image->getRealPath());
-                $img->resize(198,252, function ($constraint) {
+                $img->resize(220,270, function ($constraint) {
                    $constraint->aspectRatio();                 
                 });
                 $img->stream('png', 100);
@@ -142,7 +142,7 @@ class ParticipateSchoolController extends Controller
                $img = $image->get();
             }else{
                 $img = Image::make($image->getRealPath());
-                $img->resize(198,252, function ($constraint) {
+                $img->resize(220,270, function ($constraint) {
                    $constraint->aspectRatio();                 
                 });
                 $img->stream('png', 100);

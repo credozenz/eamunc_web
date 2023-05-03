@@ -35,7 +35,7 @@
                   
 
 
-                </div>
+                </div>@include('web.layout.pagination', ['paginator' => $newsletter])
             </div>
             <span class="spacer"></span>
         </div>

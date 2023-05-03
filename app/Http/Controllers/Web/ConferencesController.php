@@ -19,7 +19,7 @@ class ConferencesController extends Controller
         
 
         $letter = SiteIndexes::where('deleted_at', null)->where('type', 'letter')->orderBy('id', 'DESC')->paginate(4); 
-        $work_members = SiteIndexes::where('deleted_at', null)->where('type', 'work_members')->orderBy('id', 'DESC')->paginate(20);
+        $work_members = SiteIndexes::where('deleted_at', null)->where('type', 'work_members')->orderBy('id', 'DESC')->paginate(12);
         $important_date = SiteIndexes::where('deleted_at', null)->where('type', 'important_date')->orderBy('id', 'DESC')->paginate(4);
         $rules = SiteIndexes::where('deleted_at', null)->where('type','rules')->first();
         

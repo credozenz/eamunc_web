@@ -18,7 +18,7 @@
                 </li>
                 <li   class="nav-item">
                   <a class="nav-link @if($routeGroup =='bureau_guideline') active @endif" href="{{ route('app.bureau_guideline') }}">
-                     <span >Guideline</span>
+                     <span >Rules Of Procedure</span>
                   </a>
                 </li>
                 <li class="nav-item" >
@@ -90,7 +90,7 @@
 
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Guideline">
             <a class="nav-link @if($routeGroup =='bureau_guideline') active @endif" href="{{ route('app.bureau_guideline') }}">
-              <span >Guideline</span>
+              <span >Rules Of Procedure</span>
             </a>
           </li>
 

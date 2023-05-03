@@ -65,7 +65,7 @@ class AlumniNewsController extends Controller
                $img = $image->get();
             }else{
                 $img = Image::make($image->getRealPath());
-                $img->resize(345,225, function ($constraint) {
+                $img->resize(1296, 845, function ($constraint) {
                    $constraint->aspectRatio();                 
                 });
                 $img->stream('png', 100);
@@ -145,7 +145,7 @@ class AlumniNewsController extends Controller
                $img = $image->get();
             }else{
                 $img = Image::make($image->getRealPath());
-                $img->resize(345,225, function ($constraint) {
+                $img->resize(1296, 845, function ($constraint) {
                    $constraint->aspectRatio();                 
                 });
                 $img->stream('png', 100);

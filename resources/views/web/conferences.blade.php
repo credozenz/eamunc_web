@@ -5,9 +5,9 @@
 @if (!empty($letter) && $letter->count())
     <section id="hero" class="section-padding">
         <div class="wrapper">
-
+        <div class="container">
         @foreach ($letter as $key => $value)
-            <div class="container">
+            
                 <div class="letter-container">
 
                     <h3 class="color-darkblue mb-4">{{ $value->title ?? '' }}</h3>
@@ -29,9 +29,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            
         @endforeach  
-
+        @include('web.layout.pagination', ['paginator' => $letter])
+        </div>
         </div>
     </section>
 @endif
@@ -73,7 +74,7 @@
                     <p> <strong class="me-2">{{ date('jS  F l Y',strtotime($value->date)) ?? '' }}:</strong>{{ $value->title ?? '' }}</p>
                 </div>
             @endforeach  
-               
+            @include('web.layout.pagination', ['paginator' => $important_date])
             </div>
         </div>
     </section>

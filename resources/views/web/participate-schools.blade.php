@@ -35,6 +35,7 @@
                     
 
                 </div>
+                @include('web.layout.pagination', ['paginator' => $schools])
             </div>
 
         </div>

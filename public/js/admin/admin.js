@@ -370,8 +370,6 @@ $(document).on('click', '.roleButton', function (e) {
 
 
 
-
-
       
       $(document).ready(function() {
         $('.intype').on('change', function() {
@@ -404,8 +402,27 @@ $(document).on('click', '.roleButton', function (e) {
           inputField.value = selectedValues.slice(0, -1); // remove the last #
         });
       });
+      
 
 })
+
+
+
+var checkAll = document.getElementById('check-all');
+var checkboxes = document.querySelectorAll('.checkbox-item');
+
+checkAll.addEventListener('change', function() {
+    for (var i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].checked = checkAll.checked;
+    }
+});
+
+for (var i = 0; i < checkboxes.length; i++) {
+    checkboxes[i].addEventListener('change', function() {
+        checkAll.checked = document.querySelectorAll('.checkbox-item:checked').length === checkboxes.length;
+    });
+}
+
 
 
 

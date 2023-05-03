@@ -46,11 +46,25 @@
                         <div class="row gallery" data-bs-toggle="modal" data-bs-target="#galleryModal">
                         @if (!empty($images) && $images->count())
                                 @foreach ($images as $key => $value)
+                           
+
+                            @if(!empty($value->image))
                             <div class="col-6 col-sm-6 col-lg-3 mt-2 mt-md-0 mb-md-0 mb-2">
                            
                                     <img class="w-100 active" src="{{ asset('uploads/'.$value->image) }}" data-bs-slide-to="0">
                                 
                             </div>
+                            @elseif(!empty($value->video))
+                            <div class="col-6 col-sm-6 col-lg-3 mt-2 mt-md-0 mb-md-0 mb-2">
+                                
+                                    <iframe width="250" height="145" src="https://www.youtube.com/embed/{{ $value->video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                            </div>
+                            @endif
+
+
+
+
                             @endforeach
                             @else
                             <div>empty images !</div>
