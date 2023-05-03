@@ -936,4 +936,14 @@ footer {
   }
 
   
+  .element {
+    height: 600px;
+    overflow-y: scroll;
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For Internet Explorer and Edge */
+  }
   
+  /* Hide scrollbar for Chrome, Safari, and Opera */
+  .element::-webkit-scrollbar {
+    display: none;
+  }

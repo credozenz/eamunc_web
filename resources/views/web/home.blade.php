@@ -38,7 +38,7 @@
                         <div class="col-md-4 col-sm-3 image-box">
                             <img src="{{ asset('uploads/'.$president_messages->image) }}" alt="">
                         </div>
-                        <div class="col-md-8 col-sm-9 content-box">
+                        <div class="col-md-8 col-sm-9 content-box element">
                             <p class="message-text color-white">{{ $president_messages->description ?? '' }}</p>
                             <div class="designation">
                                 <p class="message-name color-white">{{ $president_messages->name ?? '' }}</p>

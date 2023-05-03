@@ -27,9 +27,9 @@
     <meta property="twitter:image" content="https://i.ibb.co/cr6H8BW/hero.jpg">
 
     <!-- favicons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/web/img/favicon/favicon-180x180.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/web/img/favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/web/img/favicon/favicon-16x16.png') }}">
     <link rel="manifest" href="assets/img/favicon/site.webmanifest">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
