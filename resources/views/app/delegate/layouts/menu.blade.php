@@ -59,7 +59,7 @@
       
                 <li class="nav-item" >
                    <a class="nav-link @if($routeGroup =='delegate_general_assembly') active @endif" href="{{ route('app.delegate_general_assembly') }}">
-                      <span >General Assembly</span>
+                      <span >Position Papers</span>
                   </a>
                 </li>
                

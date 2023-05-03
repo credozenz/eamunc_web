@@ -19,7 +19,7 @@
 
       <div class="col-md-12">
         
-        <h5 class="text-primary mt-5 mb-3">General Papers</h5>
+        <h5 class="text-primary mt-5 mb-3">Position Papers</h5>
         <p style="color: #4D4D4D; font-size: 14px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>
         
         <div class="table-responsive dash-table">
@@ -48,7 +48,7 @@
                 <td>
                   <a href="{{ asset('uploads/'.$each->paper) ?? '' }}" target="_blank"><span class="text-primary text-decoration-underline p-1">View Paper</span></a>
                 
-                  <a class="dltButton" data-url="{{ url('app/bureau_paper_delete',$each->paper_id) }}" data-replaceurl="{{ url('app/bureau_general_papers') }}" title="Delete General Papers"><i class="fa fa-trash text-danger" aria-hidden="true" target="_blank"></i></a>
+                  <a class="dltButton" data-url="{{ url('app/bureau_paper_delete',$each->paper_id) }}" data-replaceurl="{{ url('app/bureau_general_papers') }}" title="Delete Position Papers"><i class="fa fa-trash text-danger" aria-hidden="true" target="_blank"></i></a>
                 </td>
               
               </tr>

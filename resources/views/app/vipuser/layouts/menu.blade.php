@@ -23,7 +23,7 @@
                 </li>
                 <li class="nav-item" >
                   <a class="nav-link @if($routeGroup =='vipuser_general_papers') active @endif" href="{{ route('app.vipuser_general_papers') }}">
-                    <span >General Papers</span>
+                    <span >Position Papers</span>
                   </a>
                 </li>
       
@@ -96,7 +96,7 @@
 
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
             <a class="nav-link @if($routeGroup =='vipuser_general_papers') active @endif" href="{{ route('app.vipuser_general_papers') }}">
-              <span >General Papers</span>
+              <span >Position Papers</span>
             </a>
           </li>
 

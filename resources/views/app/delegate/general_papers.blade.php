@@ -19,7 +19,7 @@
             </div>
        <div class="col-md-12">
     
-     <h5 class="text-primary mt-5 mb-3">General Papers</h5>
+     <h5 class="text-primary mt-5 mb-3">Position Papers</h5>
      <p style="color: #4D4D4D; font-size: 14px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>
     
     <div class="table-responsive dash-table">
