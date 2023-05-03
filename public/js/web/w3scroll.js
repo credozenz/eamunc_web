@@ -8,7 +8,7 @@ $(document).ready(function(){
       speed:900,
       slidesToShow:1,
       slidesToScroll:1,
-      pauseOnHover:true,
+      pauseOnHover:false,
       dots:true,
       pauseOnDotsHover:true,
       cssEase:'linear',
@@ -18,11 +18,11 @@ $(document).ready(function(){
       nextArrow:'<button class="NextArrow"></button>', 
       responsive: [
         {
-          breakpoint: 768, // Define breakpoint for devices with screen width of 768px or less
+          breakpoint: 768, 
           settings: {
             slidesToShow: 1,
             slidesToScroll: 1,
-            arrows: false // Hide arrows on mobile devices
+            arrows: false 
           }
         }
       ]

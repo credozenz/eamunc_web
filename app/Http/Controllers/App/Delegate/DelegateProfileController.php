@@ -103,9 +103,12 @@ class DelegateProfileController extends Controller
             if($extension=='svg'){
                $img = $image->get();
             }else{
+                $width = 600; 
+                $height = 600; 
                 $img = Image::make($image->getRealPath());
-                $img->resize(100, 100, function ($constraint) {
-                   $constraint->aspectRatio();                 
+                $img->height() > $img->width() ? $width=null : $height=null;
+                $img->resize($width, $height, function ($constraint) {
+                    $constraint->aspectRatio();
                 });
                 $img->stream('png', 100);
             }
