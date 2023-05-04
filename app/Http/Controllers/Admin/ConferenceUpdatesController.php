@@ -63,8 +63,8 @@ class ConferenceUpdatesController extends Controller
             if($extension=='svg'){
                $img = $image->get();
             }else{
-                $width = 306; 
-                $height = 348; 
+                $width = 1296; 
+                $height = 845; 
                 $img = Image::make($image->getRealPath());
                 $img->height() > $img->width() ? $width=null : $height=null;
                 $img->resize($width, $height, function ($constraint) {
@@ -146,8 +146,8 @@ class ConferenceUpdatesController extends Controller
             if($extension=='svg'){
                $img = $image->get();
             }else{
-                $width = 306; 
-                $height = 348; 
+                $width = 1296; 
+                $height = 845; 
                 $img = Image::make($image->getRealPath());
                 $img->height() > $img->width() ? $width=null : $height=null;
                 $img->resize($width, $height, function ($constraint) {

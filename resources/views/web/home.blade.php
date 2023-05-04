@@ -118,8 +118,8 @@
                 @foreach ($our_mentors as $key => $value)
                     <div class="col-lg-3 col-md-4 col-6 image-box mb-4">
                     <img src="{{ asset('uploads/'.$value->image) ?? '' }}" alt="{{ $value->name ?? '' }}">
-                        <p class="mentor-name">{{ $value->name ?? '' }}</p>
-                        <p class="mentor-designation color-blue">{{ $value->post ?? '' }}</p>
+                        <p class="mentor-name" style="text-align: center;">{{ $value->name ?? '' }}</p>
+                        <p class="mentor-designation color-blue" style="text-align: center;">{{ $value->post ?? '' }}</p>
                     </div>
                 @endforeach
                 </div>
