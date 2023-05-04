@@ -103,8 +103,15 @@
                                             @endif
                                         </td>
                                         <td>
+                                          @if($value->status=='3')
                                             <input type="checkbox" value="{{$value->id ?? ''}}" class="certistudent checkbox-item" name="student">
                                             @if($value->certi_status=='0')  <span class="text text-primary">Pending </span> @else <span class="text text-success">Send  </span> @endif
+                                            
+                                            @else
+                                            <span  class="text text-warning w-24 mr-1 mb-2">Inactive Member</span>
+                                        
+                                            @endif
+                                           
                                         </td>
                                     </tr>
                                 @endforeach

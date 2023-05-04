@@ -282,13 +282,13 @@ $(document).on('click', '.roleButton', function (e) {
             tinymce.init({
             selector: '#ckeditor',
             plugins: [
-              'a11ychecker','advlist','advcode','advtable','autolink','checklist','export',
+              'advlist','autolink',
               'lists','link','charmap','preview','anchor','searchreplace','visualblocks',
-              'powerpaste','fullscreen','formatpainter','insertdatetime','table','wordcount'
+              'fullscreen','insertdatetime','table','wordcount'
             ],
             toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
               'alignleft aligncenter alignright alignjustify | ' +
-              'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
+              'bullist numlist checklist outdent indent'
           });
 
 

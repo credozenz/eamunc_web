@@ -34,7 +34,7 @@
 
                         <div class="col-lg-3 col-md-4 col-6 image-box mb-4">
                               @if(!empty($value->avatar)) 
-                              <img src="{{ asset('uploads/'.$value->avatar) ?? '' }}" alt="{{ $value->name ?? '' }}">
+                              <img src="{{ asset('uploads/'.$value->avatar) ?? '' }}" style ="min-height: 93%;" alt="{{ $value->name ?? '' }}">
                               @else
                               <img class="w-100 active" src="{{ asset('assets/img/avatar.svg') }}" style ="min-height: 93%;" data-bs-slide-to="0">
                               @endif
