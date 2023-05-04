@@ -18,13 +18,13 @@
       </div>
 
       <div class="col-md-12">
-        <h4 class="fs-3 text-primary mb-3 mt-5">Bloc Formation</h4>
+        <h4 class="fs-3 text-primary mb-3 mt-5">Block Formation</h4>
         <p style="color:#4D4D4D; font-size: 15px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>    
       </div>
 
       <div class="col-md-10"> </div>
       <div class="col-md-2 mb-3">
-        <button type="button" class="btn btn-primary mt-3" id="mdlbtn"><i class="fa fa-plus" aria-hidden="true"></i>  Create Bloc</button>
+        <button type="button" class="btn btn-primary mt-3" id="mdlbtn"><i class="fa fa-plus" aria-hidden="true"></i>  Create Block</button>
       </div>
       
       <div class="row mt-6 mb-3">
@@ -58,7 +58,7 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Create Bloc</h5>
+                      <h5 class="modal-title" id="exampleModalLabel">Create Block</h5>
                       <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                   <form method="post" action="{{ url('app/bureau_bloc_store') }}" class="col-md-12"  enctype="multipart/form-data">
@@ -66,7 +66,7 @@
                     <div class="modal-body">
                           
                           <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Bloc Name:</label>
+                            <label for="recipient-name" class="col-form-label">Block Name:</label>
                             <input type="text" class="form-control" name="name" id="recipient-name" maxlength="55" required>
                           </div>
                           <div class="form-group">

@@ -18,13 +18,13 @@
       </div>
 
       <div class="col-md-12">
-        <h4 class="fs-3 text-primary mb-3 mt-5">Bloc Formation</h4>
+        <h4 class="fs-3 text-primary mb-3 mt-5">Block Formation</h4>
         <p style="color:#4D4D4D; font-size: 15px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>    
       </div>
 
       <div class="col-md-10"> </div>
       <div class="col-md-2 mb-3">
-        <!-- <button type="button" class="btn btn-primary mt-3" id="mdlbtn"><i class="fa fa-plus" aria-hidden="true"></i>  Create Bloc</button> -->
+        <!-- <button type="button" class="btn btn-primary mt-3" id="mdlbtn"><i class="fa fa-plus" aria-hidden="true"></i>  Create Block</button> -->
       </div>
       
       <div class="row mt-6 mb-3">

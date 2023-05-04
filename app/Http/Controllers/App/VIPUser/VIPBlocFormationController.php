@@ -101,7 +101,7 @@ class VIPBlocFormationController extends Controller
 
             
             if($bloc_member->id){
-                Session::flash('success', 'Bloc successfully Created!');
+                Session::flash('success', 'Block successfully Created!');
                 return redirect('/app/vipuser_bloc_formation');
             }else{
                 Session::flash('error', 'Something went wrong!!');

@@ -270,13 +270,26 @@ $(document).on('click', '.roleButton', function (e) {
 
 
     
-        ClassicEditor.create( document.querySelector( '#ckeditor' ) )
-        .then( editor => {
-            editor.ui.view.editable.element.style.height = '500px';
-        } )
-        .catch( error => {
-            console.log(error);
-        } );
+        // ClassicEditor.create( document.querySelector( '#ckeditor' ) )
+        // .then( editor => {
+        //     editor.ui.view.editable.element.style.height = '500px';
+        // } )
+        // .catch( error => {
+        //     console.log(error);
+        // } );
+
+
+            tinymce.init({
+            selector: '#ckeditor',
+            plugins: [
+              'a11ychecker','advlist','advcode','advtable','autolink','checklist','export',
+              'lists','link','charmap','preview','anchor','searchreplace','visualblocks',
+              'powerpaste','fullscreen','formatpainter','insertdatetime','table','wordcount'
+            ],
+            toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
+              'alignleft aligncenter alignright alignjustify | ' +
+              'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
+          });
 
 
 

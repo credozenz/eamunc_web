@@ -29,7 +29,7 @@
                     </div>
                     
                     <div class="card-body text-center">
-                            <img src="{{ asset('uploads/'.$committee->image) ?? '' }}" alt="{{ $committee->name ?? '' }}" class="commitee-image">
+                            <img src="{{ asset('uploads/'.$committee->image) ?? '' }}" alt="{{ $committee->name ?? '' }}" width="100%" class="commitee-image">
                             <h5>{{ $committee->name.' -' ?? '' }} {{ $committee->title ?? '' }}</h5>
                             </div>
                 </div>

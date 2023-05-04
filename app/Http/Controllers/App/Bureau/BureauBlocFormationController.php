@@ -101,7 +101,7 @@ class BureauBlocFormationController extends Controller
 
             
             if($bloc_member->id){
-                Session::flash('success', 'Bloc successfully Created!');
+                Session::flash('success', 'Block successfully Created!');
                 return redirect('/app/bureau_bloc_formation');
             }else{
                 Session::flash('error', 'Something went wrong!!');
@@ -198,7 +198,7 @@ class BureauBlocFormationController extends Controller
 
             
             if($bloc_member->id){
-                Session::flash('success', 'Bloc successfully Created!');
+                Session::flash('success', 'Block successfully Created!');
                 return redirect('/app/bureau_bloc_formation');
             }else{
                 Session::flash('error', 'Something went wrong!!');

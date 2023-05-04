@@ -44,7 +44,7 @@
 
                 <div class="row credit-notes color-grey">
                     <div class="col-md-4 mb-2">
-                        <p class="text-center text-sm-start">Website inspired by Aditya Sharma</p>
+                        <p class="text-center text-sm-start">Website inspired by ISG Bureau members</p>
                     </div>
                     <div class="col-md-4 mb-2 text-center text-sm-end">
                         <p>Powered By <a href="#" class="color-white">Agility Solutions</a></p>

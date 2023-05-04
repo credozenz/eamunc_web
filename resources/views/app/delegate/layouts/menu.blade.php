@@ -29,7 +29,7 @@
       
                 <li class="nav-item" >
                   <a class="nav-link @if($routeGroup =='delegate_bloc_formation') active @endif" href="{{ route('app.delegate_bloc_formation') }}">
-                    <span >Bloc Formation</span>
+                    <span >Block Formation</span>
                   </a>
                 </li>
       
@@ -103,7 +103,7 @@
 
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
             <a class="nav-link @if($routeGroup =='delegate_bloc_formation') active @endif" href="{{ route('app.delegate_bloc_formation') }}">
-              <span >Bloc Formation</span>
+              <span >Block Formation</span>
             </a>
           </li>
 
