@@ -110,6 +110,7 @@
                                         <th>Role</th>
                                         <th>Status</th>
                                         <th>Action</th>
+                                        <th>Invite</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -157,6 +158,18 @@
                                         <td>
                                         <a href="{{ url('admin/student_show',$value->id) }}" class="btn btn-sm btn-primary w-24 mr-1 mb-2">View</a>
                                         </td>
+                                        <td>
+
+                                            @if($value->status=='3')
+                                            <span  class="text text-success w-24 mr-1 mb-2"> Active</span>
+                                            @elseif($value->status=='4')
+                                            <span  class="text text-danger w-24 mr-1 mb-2"> Rejected</span>
+                                            @else
+                                            <input type="checkbox" value="{{$value->id ?? ''}}" class="invitestudent checkbox-item" name="student">
+                                           
+                                            @endif
+                                            
+                                        </td>
                                     </tr>
                                 @endforeach
                             @else
@@ -164,6 +177,17 @@
                                     <td colspan="10">There are no data.</td>
                                 </tr>
                             @endif
+
+                            <tr>
+                                 <form method="post" action="{{ url('admin/student_bulk_invite') }}">
+                                     @csrf   
+                                    <td colspan="8">Invite Students 
+                                        <input type="hidden" value="" name="students" id="students" required></td>
+                                    <td colspan="1"> 
+                                     <button type='submit' class="btn btn-sm btn-success w-24 mr-1 mb-2">Invite</button>
+                                    </td>
+                                </tr>
+                                </form> 
                                    
                                 </tbody>
                         </table>

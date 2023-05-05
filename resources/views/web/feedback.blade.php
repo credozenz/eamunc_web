@@ -19,23 +19,23 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group w-70">
-                                        <label for="">Delegate Name*</label>
-                                            <input type="text" name="delegate_name" value="{{ old('delegate_name') }}" class="form-control @error('delegate_name') border-danger @enderror" {{ $errors->has('delegate_name') ? 'autofocus' : '' }} aria-describedby="textHelp" placeholder="Delegate Name" required>
+                                        <label for="">Delegate Name</label>
+                                            <input type="text" name="delegate_name" value="{{ old('delegate_name') }}" class="form-control @error('delegate_name') border-danger @enderror" {{ $errors->has('delegate_name') ? 'autofocus' : '' }} aria-describedby="textHelp" placeholder="Delegate Name">
                                             @error('delegate_name')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group w-70">
-                                        <label for="">Email*</label>
-                                        <input type="text" name="email" value="{{ old('email') }}" class="form-control @error('email') border-danger @enderror" {{ $errors->has('email') ? 'autofocus' : '' }} aria-describedby="textHelp" placeholder="Email" required>
+                                        <label for="">Email</label>
+                                        <input type="text" name="email" value="{{ old('email') }}" class="form-control @error('email') border-danger @enderror" {{ $errors->has('email') ? 'autofocus' : '' }} aria-describedby="textHelp" placeholder="Email">
                                             @error('email')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group w-70">
                                         <label for="">Committee*</label>
-                                        <select class="form-control" name="committee" placeholder="Select">
-                                            <option> Select your choice </option>
+                                        <select class="form-control" name="committee" placeholder="Select" required>
+                                            <option value=''> Select your choice </option>
                                             @foreach ($committees as $key => $value)
                                             <option value="{{ $value->id ?? '' }}" {{ (old('committee') == $value->id ? "selected":"") }}> {{ $value->name ?? '' }}</option>
                                             @endforeach
@@ -44,8 +44,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group w-70">
-                                        <label for="">Country Represented*</label>
-                                        <input type="text" name="country" value="{{ old('country') }}" class="form-control @error('country') border-danger @enderror" {{ $errors->has('country') ? 'autofocus' : '' }} aria-describedby="textHelp" placeholder="Country" required>
+                                        <label for="">Country Represented</label>
+                                        <input type="text" name="country" value="{{ old('country') }}" class="form-control @error('country') border-danger @enderror" {{ $errors->has('country') ? 'autofocus' : '' }} aria-describedby="textHelp" placeholder="Country">
                                             @error('country')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>

@@ -415,6 +415,22 @@ $(document).on('click', '.roleButton', function (e) {
           inputField.value = selectedValues.slice(0, -1); // remove the last #
         });
       });
+
+
+      const checkboxes1 = document.querySelectorAll('.invitestudent');
+      const inputField1 = document.getElementById("students");
+      
+      checkboxes1.forEach((checkbox) => {
+        checkbox.addEventListener("click", function() {
+          let selectedValues = "";
+          checkboxes1.forEach((checkbox) => {
+            if (checkbox.checked) {
+              selectedValues += checkbox.value + "#";
+            }
+          });
+          inputField1.value = selectedValues.slice(0, -1); // remove the last #
+        });
+      });
       
 
 })

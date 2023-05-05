@@ -41,8 +41,8 @@
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
                                             <label class="form-label text-danger">Question</label>
-                        <textarea id="input-filter-5" type="text" name="question" class="form-control @error('question') border-danger @enderror" placeholder="Question" style="height: 250px;">{{ old('question') }}</textarea>
-                        @error('question')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                            <textarea id="input-filter-5" type="text" name="question" class="form-control @error('question') border-danger @enderror" placeholder="Question" style="height: 250px;">{{ old('question') }}</textarea>
+                                            @error('question')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>
                                          

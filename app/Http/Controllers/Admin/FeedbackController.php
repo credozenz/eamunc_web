@@ -42,18 +42,18 @@ class FeedbackController extends Controller
         $data = Feedback_qsn::find($id);
 
 
-        $feedback = Feedback::where('feedback.id', $id)
-                            ->join('committees','committees.id','=','feedback.committee')
-                            ->select('feedback.*','committees.name as committee_name')
+        $feedback = Feedback::select('feedback.*','committees.name as committee_name')
+                            ->leftjoin('committees','committees.id','=','feedback.committee')
+                            ->where('feedback.id', $id)
                             ->first(); 
 
-
+                            
 
         $data = Feedback_ans::where('feedback_answer.feedback_id', $id)
                             ->join('feedback_question','feedback_question.id','=','feedback_answer.question_id')
                             ->select('feedback_question.question','feedback_answer.answers as answer')
                             ->get(); 
-
+                           
         
         return view('admin/feedback/feedback_show', compact('data','feedback'));
     }

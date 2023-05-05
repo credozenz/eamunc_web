@@ -21,8 +21,8 @@ class FeedbackController extends Controller
     {
         
 
-        $committees = Committee::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4); 
-        $question = Feedback_qsn::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4); 
+        $committees = Committee::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(30); 
+        $question = Feedback_qsn::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(30); 
 
         return view('web/feedback', compact('committees','question'));
 
@@ -35,10 +35,10 @@ class FeedbackController extends Controller
     {
 
         $validatedData = $request->validate([
-            'delegate_name' => 'required|max:255',
-            'email' => 'required|max:255',
+            // 'delegate_name' => 'required|max:255',
+            // 'email' => 'required|max:255',
             'committee' => 'required|max:255',
-            'country' => 'required|max:255',
+            // 'country' => 'required|max:255',
         ],[
             'delegate_name.required' => 'The Delegate name field is required',
             'email.required' => 'The Email field is required',

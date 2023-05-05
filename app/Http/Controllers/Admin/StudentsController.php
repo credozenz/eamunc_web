@@ -182,14 +182,18 @@ class StudentsController extends Controller
 
                 if($request->status=='1'){
 
-                    $check_student = students::where('committee_choice', $request->committee_choice)
-                    ->where('country_choice', $request->country_choice)
-                    ->where('id', '!=' , $id)
+                    $check_student = user::where('users.deleted_at', null)
+                    ->join('students', 'users.id', '=', 'students.user_id')
+                    ->select('students.*', 'users.role')
+                    ->where('users.role', '!=' , 2)
+                    ->where('students.committee_choice', $student->committee_choice)
+                    ->where('students.country_choice', $student->country_choice)
+                    ->where('students.id', '!=' , $id)
                     ->first(); 
 
                     if(!empty($check_student)){
                         Session::flash('error', 'This country, Committee
-                        combination has already been assigned to another student !');
+                        combination has already been assigned to another Delegate !');
                         return  redirect()->back();
                     }
 
@@ -570,6 +574,108 @@ foreach ($student_array as $key => $id) {
 }
 
 
+
+
+
+public function student_bulk_invite(Request $request) {
+
+    
+    $students=$request->students;
+    $student_array = explode("#", $students);
+    
+    if (is_null($student_array)) {
+        Session::flash('error', 'Please choose students.');
+        return redirect()->back();
+    
+    }
+    
+    foreach ($student_array as $key => $id) {
+       
+    
+    
+        $student = students::where('id', $id)->first();
+        
+        $committee = Committee::where('id', $student->committee_choice)->first();  
+        $country = Countries::where('id', $student->country_choice)->first(); 
+    
+        $check_student = user::where('users.deleted_at', null)
+                        ->join('students', 'users.id', '=', 'students.user_id')
+                        ->select('students.*', 'users.role')
+                        ->where('users.role', '!=' , 2)
+                        ->where('students.committee_choice', $student->committee_choice)
+                        ->where('students.country_choice', $student->country_choice)
+                        ->where('students.id', '!=' , $id)
+                        ->first(); 
+  
+            $unsendstudent = array();
+
+                if(empty($check_student)){
+                   
+                    $data['name']      = $student->name;
+                    $data['committee'] = $committee->title;
+                    $data['country']   = $country->name;
+    
+                    if($student){
+    
+                            $token = Str::random(64);
+    
+                            $settoken = DB::table('password_resets')->insert([
+                                        'email' => $student->email,
+                                        'token' => $token,
+                                        'created_at' => Carbon::now()
+                                        ]);
+                                
+                            if($settoken) {
+                                Mail::send('admin.auth.invite-email', ['token' => $token,'data' => $data], function($message) use($student){
+                                    $message->to(trim($student->email));
+                                    $message->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'));
+                                    $message->subject('Set Password');
+                                });
+    
+    
+                                $student->status  = 2;
+                                $student->save();
+    
+                                
+                            } 
+                    }
+    
+                } else {
+    
+                    $unsendstudent[] = $student->name;
+                }            
+    
+    
+    
+        
+        
+       
+            
+            if (count(Mail::failures()) > 0) {
+                Session::flash('error', 'Something went wrong!!');
+            } else {
+                Session::flash('success', 'Student invited successfully Completed!');
+            }
+    
+            if(isset($unsendstudent[0])){
+                foreach ($unsendstudent as $key => $student) {
+                    Session::flash('error', $student.'Not Invite!, This country, Committee combination has already been assigned to another Delegate !');
+                }
+            }
+            
+
+            return redirect()->back();
+    
+    
+       
+    
+    }
+    
+        
+       
+    
+        
+    }
 
 
 

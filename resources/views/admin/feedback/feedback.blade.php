@@ -49,7 +49,7 @@
                                 @foreach ($data as $key => $value)
                                     <tr>
                                         <td class="text-bold-500">{{ $key+1 }}</td>
-                                        <td class="text-bold-500">{{ $value->delegate_name }}</td>
+                                        <td class="text-bold-500">{{ $value->delegate_name ?? 'Unknown !' }}</td>
                                         <td class="text-bold-500">{{ $value->email }}</td>
                                         <td>
                                         <a href="{{ url('admin/user_feedback_show',$value->id) }}" class="btn btn-sm btn-primary w-24 mr-1 mb-2">View</a>

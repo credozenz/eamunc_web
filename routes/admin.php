@@ -332,7 +332,7 @@ Route::group(['middleware' => 'adminchecker'], function() {
      Route::post('/student_bulk_certi', [StudentsController::class,'student_bulk_certi'])->name('admin.student_bulk_certi');
 
      Route::get('/invite_student/{id}', [StudentsController::class,'invite_student'])->name('admin.student.invitestudent');
-
+     Route::post('/student_bulk_invite', [StudentsController::class,'student_bulk_invite'])->name('admin.student_bulk_invite');
     
      Route::get('/committee_bureau/{id}', [CommitteeController::class,'committee_bureau'])->name('admin.committee.bureau');
      
