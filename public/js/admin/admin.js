@@ -280,7 +280,7 @@ $(document).on('click', '.roleButton', function (e) {
 
 
             tinymce.init({
-            selector: '#ckeditor',
+            selector: 'textarea',
             plugins: [
               'advlist','autolink',
               'lists','link','charmap','preview','anchor','searchreplace','visualblocks',

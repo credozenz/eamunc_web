@@ -82,3 +82,32 @@
     </section>
     @endif
     @endsection
+
+    <!-- The Modal -->
+<div id="myModal" class="modal">
+<!-- The Close Button -->
+<span class="close">&times;</span>
+<!-- Modal Content (The Image) -->
+<img class="modal-content" id="img01">
+<div class="w3-content" style="max-width:1200px">
+ 
+  <div class="w3-row-padding w3-section">
+        @if (!empty($images) && $images->count())
+            <div class="row mt-2">
+            @if (!empty($images) && $images->count())
+                @foreach ($images as $key => $value)
+                    @if(!empty($value->image))
+                    <div class="col-md-1 mb-2">
+                    <img width="100%" height="100%" src="{{ asset('uploads/'.$value->image) ?? '' }}" class="open-img" alt="{{ $value->name ?? '' }}">
+                    </div> 
+                    @endif
+                @endforeach
+            @endif   
+            </div>
+        @endif
+  </div>
+
+</div>
+<!-- Modal Caption (Image Text) -->
+<div id="caption"></div>
+</div>
