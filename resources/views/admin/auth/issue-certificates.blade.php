@@ -401,13 +401,13 @@
                               
                             
                             
-                Your registration with E.A.MUNC is processed.
+                        Congratulations on completing the program!.
                        <br>
                        <b>Committee Assigned:{{ ucfirst($data['committee']) ?? ''}} </b>
                        <br>
                        <b>Country Assigned:{{ ucfirst($data['country']) ?? ''}} </b>
                        <br>
-                       Congratulations on completing the program! It's a great achievement and you should be proud of yourself. <br>
+                        It's a great achievement and you should be proud of yourself. <br>
                        I hope the program has been a valuable learning experience for you and has helped you to grow both <br>
                        personally and professionally. Keep up the good work and best of luck with your future endeavors!<br>
                         </td>
