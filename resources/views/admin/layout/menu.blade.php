@@ -139,7 +139,7 @@
                         <a href="{{ route('admin.letters') }}">Letter</a>
                     </li>
                     <li class="submenu-item ">
-                        <a href="{{ route('admin.work_members') }}">Working Members</a>
+                        <a href="{{ route('admin.work_members') }}">Core Committee Members</a>
                     </li>
                     <li class="submenu-item ">
                         <a href="{{ route('admin.importantdate') }}">Important Date</a>

@@ -61,7 +61,7 @@
 
                         <div class="col-md-12">
                             <div class="content border-black lh-2">
-                                 {{ $committees->description ?? '' }}
+                                 {!! $committees->description ?? '' !!}
                             </div>
                         </div>
                     </div>

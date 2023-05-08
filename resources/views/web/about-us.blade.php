@@ -69,7 +69,7 @@
                     <div class="content p-4">
                         <p class="mentor-name color-darkblue h4 text-start mt-0">{{ $value->name ?? '' }}</p>
                         <p class="mentor-description lh-2">
-                            {{ $value->description ?? '' }}
+                            {!! $value->description ?? '' !!}
                         </p>
                     </div>
                 </div>

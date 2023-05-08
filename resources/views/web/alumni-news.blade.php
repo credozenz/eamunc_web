@@ -23,7 +23,7 @@
 
                         <div class="col-md-12">
                             <div class="content border-black lh-2">
-                            {{ $alumni_news->description ?? '' }}
+                            {!! $alumni_news->description ?? '' !!}
                             </div>
                         </div>
                     </div>

@@ -28,7 +28,7 @@
                                         <div id="flush-collapse{{ $key }}" class="accordion-collapse collapse"
                                             aria-labelledby="flush-heading{{ $key }}" data-bs-parent="#accordionFlushExample">
                                             <div class="accordion-body">
-                                            {{ $value->description ?? '' }}
+                                            {!! $value->description ?? '' !!}
                                             </div>
                                         </div>
                                     </div>

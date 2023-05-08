@@ -19,7 +19,7 @@
                                 <h4 class="text-start color-darkblue mb-3">{{ $value->name ?? '' }}</h4>
                                 <div class="content border-black lh-2">
                                     <p>
-                                    {{ $value->description ?? '' }}
+                                    {!! $value->description ?? '' !!}
                                     </p>
                                 </div>
                             </div>

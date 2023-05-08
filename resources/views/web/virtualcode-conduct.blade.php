@@ -18,7 +18,7 @@
                     @if (!empty($virtualcode) && $virtualcode->count())
                         <div class="col-md-12">
                             <div class="content border-black lh-2">
-                               {{ $virtualcode->description ?? '' }}
+                               {!! $virtualcode->description ?? '' !!}
                             </div>
                         </div>
                     @else

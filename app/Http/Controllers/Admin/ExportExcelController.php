@@ -108,10 +108,15 @@ class ExportExcelController extends Controller
                     $sheet->getColumnDimension('B')->setWidth(35);
                     $sheet->getColumnDimension('C')->setWidth(35);
                     $sheet->getColumnDimension('D')->setWidth(35);
-                    $sheet->mergeCells('A1:D1');
-                    $sheet->mergeCells('A2:D2');
-                    $sheet->mergeCells('A3:D3');
-                    $sheet->mergeCells('A4:D4');
+                    $sheet->getColumnDimension('E')->setWidth(35);
+                    $sheet->getColumnDimension('F')->setWidth(35);
+                    $sheet->getColumnDimension('G')->setWidth(35);
+                    $sheet->getColumnDimension('H')->setWidth(35);
+                    $sheet->getColumnDimension('I')->setWidth(35);
+                    $sheet->mergeCells('A1:I1');
+                    $sheet->mergeCells('A2:I2');
+                    $sheet->mergeCells('A3:I3');
+                    $sheet->mergeCells('A4:I4');
                     $sheet->getStyle('A1')->applyFromArray($styleArray);
                     $sheet->getStyle('A2')->applyFromArray($headstyleArray);
                     $sheet->getStyle('A5')->applyFromArray($headstyleArray);
@@ -119,6 +124,11 @@ class ExportExcelController extends Controller
                     $sheet->getStyle('B6')->applyFromArray($subheadstyleArray);
                     $sheet->getStyle('C6')->applyFromArray($subheadstyleArray);
                     $sheet->getStyle('D6')->applyFromArray($subheadstyleArray);
+                    $sheet->getStyle('E6')->applyFromArray($subheadstyleArray);
+                    $sheet->getStyle('F6')->applyFromArray($subheadstyleArray);
+                    $sheet->getStyle('G6')->applyFromArray($subheadstyleArray);
+                    $sheet->getStyle('H6')->applyFromArray($subheadstyleArray);
+                    $sheet->getStyle('I6')->applyFromArray($subheadstyleArray);
                     $sheet->setCellValue('A1', $committee->name.' - '.$committee->title.'');
                     $sheet->setCellValue('A2', $committee->sub_title);
 
@@ -134,9 +144,13 @@ class ExportExcelController extends Controller
                     $sheet->setCellValue('A4', 'Agenda: '.$committee->agenda);
                     $sheet->setCellValue('A5', 'Committee Bureau Members');
                     $sheet->setCellValue('A6', 'Name');
-                    $sheet->setCellValue('B6', 'Country Choice');
-                    $sheet->setCellValue('C6', 'Position');
-                    $sheet->setCellValue('D6', 'School');
+                    $sheet->setCellValue('B6', 'Email');
+                    $sheet->setCellValue('C6', 'Phone');
+                    $sheet->setCellValue('D6', 'Class & Section');
+                    $sheet->setCellValue('E6', 'MUN Experience');
+                    $sheet->setCellValue('F6', 'Bureau Member Experience');
+                    $sheet->setCellValue('G6', 'Position');
+                    $sheet->setCellValue('H6', 'School');
 
                 
                     $rows=6;
@@ -144,9 +158,13 @@ class ExportExcelController extends Controller
                     foreach ($bureau as $key => $each) {
                     $rows = $rows+1;
                     $sheet->setCellValue('A' . $rows, $each->name);
-                    $sheet->setCellValue('B' . $rows, $each->country_choice_name);
-                    $sheet->setCellValue('C' . $rows, $each->position);
-                    $sheet->setCellValue('D' . $rows, $each->school_name);
+                    $sheet->setCellValue('B' . $rows, $each->email);
+                    $sheet->setCellValue('C' . $rows, $each->phone);
+                    $sheet->setCellValue('D' . $rows, $each->class);
+                    $sheet->setCellValue('E' . $rows, $each->mun_experience);
+                    $sheet->setCellValue('F' . $rows, $each->bureaumem_experience);
+                    $sheet->setCellValue('G' . $rows, $each->position);
+                    $sheet->setCellValue('H' . $rows, $each->school_name);
                     }
 
                 
@@ -160,17 +178,32 @@ class ExportExcelController extends Controller
                     $sheet->getStyle('B' . $rows)->applyFromArray($subheadstyleArray);
                     $sheet->getStyle('C' . $rows)->applyFromArray($subheadstyleArray);
                     $sheet->getStyle('D' . $rows)->applyFromArray($subheadstyleArray);
+                    $sheet->getStyle('E' . $rows)->applyFromArray($subheadstyleArray);
+                    $sheet->getStyle('F' . $rows)->applyFromArray($subheadstyleArray);
+                    $sheet->getStyle('G' . $rows)->applyFromArray($subheadstyleArray);
+                    $sheet->getStyle('H' . $rows)->applyFromArray($subheadstyleArray);
+                    $sheet->getStyle('I' . $rows)->applyFromArray($subheadstyleArray);
                     $sheet->setCellValue('A' . $rows, 'Name');
-                    $sheet->setCellValue('B' . $rows, 'Role');
-                    $sheet->setCellValue('C' . $rows, 'Position');
-                    $sheet->setCellValue('D' . $rows, 'School');
+                    $sheet->setCellValue('B' . $rows, 'Email');
+                    $sheet->setCellValue('C' . $rows, 'Phone');
+                    $sheet->setCellValue('D' . $rows, 'Class & Section');
+                    $sheet->setCellValue('E' . $rows, 'Country Choice');
+                    $sheet->setCellValue('F' . $rows, 'MUN Experience');
+                    $sheet->setCellValue('G' . $rows, 'Bureau Member Experience');
+                    $sheet->setCellValue('H' . $rows, 'Position');
+                    $sheet->setCellValue('I' . $rows, 'School');
 
                     foreach ($delegate as $key => $each) {
                     $rows = $rows+1;
                     $sheet->setCellValue('A' . $rows, $each->name);
-                    $sheet->setCellValue('B' . $rows, $each->country_choice_name);
-                    $sheet->setCellValue('C' . $rows, $each->position);
-                    $sheet->setCellValue('D' . $rows, $each->school_name);
+                    $sheet->setCellValue('B' . $rows, $each->email);
+                    $sheet->setCellValue('C' . $rows, $each->phone);
+                    $sheet->setCellValue('D' . $rows, $each->class);
+                    $sheet->setCellValue('E' . $rows, $each->country_choice_name);
+                    $sheet->setCellValue('F' . $rows, $each->mun_experience);
+                    $sheet->setCellValue('G' . $rows, $each->bureaumem_experience);
+                    $sheet->setCellValue('H' . $rows, $each->position);
+                    $sheet->setCellValue('I' . $rows, $each->school_name);
                     }
 
 

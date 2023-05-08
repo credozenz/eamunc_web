@@ -41,14 +41,14 @@
 @if (!empty($work_members) && $work_members->count())
     <section id="mentors" class="section-padding">
         <div class="container">
-            <h3 class="color-darkblue mb-md-4 mb-5">Working Comittee Members</h3>
+            <h3 class="color-darkblue mb-md-4 mb-5">Core Committee Members</h3>
             <div class="row">
             @foreach ($work_members as $key => $value)
 
                 <div class="col-lg-3 col-md-4 col-6 image-box mb-4">
                     <img src="{{ asset('uploads/'.$value->image) ?? '' }}" alt="{{ $value->name ?? '' }}">
                     <p class="mentor-name text-center">{{ $value->name ?? '' }}</p>
-                    <p class="mentor-designation text-center color-blue  text-center">{{ $value->post ?? '' }}</p>
+                    <p class="mentor-designation text-center color-blue  text-center">{{ $value->title ?? '' }}</p>
                 </div>
             @endforeach  
                

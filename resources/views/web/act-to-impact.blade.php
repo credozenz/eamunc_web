@@ -19,7 +19,7 @@
 
                         <div class="col-md-12">
                             <div class="content border-black lh-2">
-                                {{ $impact->description ?? '' }}
+                                {!! $impact->description ?? '' !!}
                             </div>
                         </div>
                     </div>

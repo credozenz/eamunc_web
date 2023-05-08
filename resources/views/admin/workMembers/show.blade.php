@@ -8,13 +8,13 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Working Committee Members</h3>
+                <h3>Core Committee Members</h3>
                 <p class="text-subtitle text-muted"></p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ url('admin/work_members') }}">Working Committee Members</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('admin/work_members') }}">Core Committee Members</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Show </li>
                     </ol>
                 </nav>
@@ -54,8 +54,8 @@
                                     </div>
                                     <div class="col-md-6 col-12">
                                     <div class="form-group">
-                                            <label for="text-danger">Title</label>
-                        <input type="text" name="title" value="{{ $data->title }}" class="form-control" disabled placeholder="Title">
+                                            <label for="text-danger">Designation</label>
+                        <input type="text" name="title" value="{{ $data->title }}" class="form-control" disabled placeholder="Designation">
                       
                                         </div>
                                     </div>
