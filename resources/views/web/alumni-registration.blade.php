@@ -12,7 +12,7 @@
                     <h3 class="color-darkblue mb-4">Alumni Registration</h3>
 
                     <div class="row mt-5">
-                        <img src="{{ asset('assets/web/img/isg.jpg') }}" alt="">
+                        <img src="{{ asset('assets/web/img/alumini.jpg') }}" alt="">
                     </div>
                     <span class="spacer"></span>
                   

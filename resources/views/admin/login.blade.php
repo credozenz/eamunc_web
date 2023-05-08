@@ -54,14 +54,10 @@
     </div>
     <div class="col-lg-7 d-none d-lg-block">
         <div id="auth-right">
-        <img src="{{ asset('assets/admin/img/hero.jpg') }}" alt="Logo">
+        <img src="{{ asset('assets/admin/img/admin_banner.JPG') }}" alt="admin_banner" width="100%" height="70%">
         
                 <div class="footer clearfix mb-0 text-muted">
-                    <div class="float-start">   
-                    </div>
-                    <div class="float-end">
-                    <p>2022 &copy; E.A.MUNC</p>
-                    </div>
+                  <h3 class="auth-title text-white text-center  mt-5">E.Ahamed Model <br>United Nations Conference</h3>
                 </div>
             
         </div>
