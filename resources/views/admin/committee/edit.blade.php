@@ -97,7 +97,7 @@
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
-                                        <label class="form-label text-danger">File</label>
+                                        <label class="form-label">File</label>
                                         @if($files)
                                         @foreach ($files as $key => $file)
                                         <div class="w-30 h-30 relative image-fit  mb-2 mr-5 ">

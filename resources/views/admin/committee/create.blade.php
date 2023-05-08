@@ -90,8 +90,8 @@
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
-                                        <label class="form-label text-danger">File</label>
-                                        <input type="file" name="file[]" multiple="multiple" accept=".doc,.docx,.pdf" class="form-control  @error('file') border-danger @enderror" required>
+                                        <label class="form-label ">File</label>
+                                        <input type="file" name="file[]" multiple="multiple" accept=".doc,.docx,.pdf" class="form-control  @error('file') border-danger @enderror">
                                         <small>Input file type pdf only</small>
                                         @error('file')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>

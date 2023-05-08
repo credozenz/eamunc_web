@@ -66,7 +66,7 @@
                 <div class="box border-black">
                     <div class="row align-items-center">
                         <div class="col-md-6">
-                            <p class="color-darkblue h5 mb-3 mb-md-0 text-center text-md-start">Resolutions of E.A.MUNC 2022</p>
+                            <p class="color-darkblue h5 mb-3 mb-md-0 text-center text-md-start">Resolutions of {{ $past_conferences->title ?? '' }}</p>
                         </div>
                         <div class="col-md-6 text-center text-md-end">
                         <a href="{{ asset('uploads/'.$past_conferences->file) ?? '' }}" target="_blank">
