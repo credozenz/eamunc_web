@@ -37,7 +37,7 @@
                             <li><a href="#" class="color-white"><i class="fa fa-facebook"></i></a></li>
                             <li><a href="#" class="color-white"><i class="fa fa-linkedin"></i></a></li>
                             <li><a href="#" class="color-white"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#" class="color-white"><i class="fa fa-youtube"></i></a></li>
+                            <li><a href="https://www.youtube.com/@eamunc2215" class="color-white"><i class="fa fa-youtube"></i></a></li>
                         </ul>
                     </div>
                 </div>

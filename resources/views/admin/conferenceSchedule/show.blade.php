@@ -56,7 +56,7 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="text-danger">Date</label>
-                        <input type="text" name="date" value="{{ $data->date }}" class="form-control" disabled placeholder="Date">
+                        <input type="date" name="date" value="{{ $data->date }}" class="form-control" disabled placeholder="Date">
                       
                                         </div>
                                     </div>
