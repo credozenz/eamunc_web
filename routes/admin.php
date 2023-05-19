@@ -252,8 +252,11 @@ Route::group(['middleware' => 'adminchecker'], function() {
      Route::post('/pastconference_delete/{id}', [PastConferenceController::class,'destroy'])->name('admin.pastconference.destroy');
      
      Route::get('/pastconference_images/{id}', [PastConferenceController::class,'pastconference_images'])->name('admin.pastconference.images');
+     Route::get('/pastconference_files/{id}', [PastConferenceController::class,'pastconference_files'])->name('admin.pastconference.files');
      Route::post('/pastconference_add_images', [PastConferenceController::class,'add_images'])->name('admin.pastconference.add_images');
+     Route::post('/pastconference_add_files', [PastConferenceController::class,'add_files'])->name('admin.pastconference.add_files');
      Route::post('/pastconference_img_delete/{id}', [PastConferenceController::class,'gallery_img_delete'])->name('admin.pastconference.dlt_image');
+     Route::post('/pastconference_file_delete/{id}', [PastConferenceController::class,'gallery_file_delete'])->name('admin.pastconference.dlt_file');
 
      Route::get('/act_impacts', [ActImpactsController::class,'index'])->name('admin.act_impacts');
      Route::post('/act_impacts_update', [ActImpactsController::class,'update'])->name('admin.act_impacts.update');

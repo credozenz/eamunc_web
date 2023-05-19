@@ -24,6 +24,8 @@ class PastConferenceController extends Controller
     {
         $past_conferences = SiteIndexes::find($id); 
         $images = Images::where('connect_id', $id)->where('type', 'past_conference')->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(9);
-        return view('web/past-conference-inner', compact('past_conferences','images'));
+        $files = Images::where('connect_id', $id)->where('type', 'past_conference_files')->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(9);
+        
+        return view('web/past-conference-inner', compact('past_conferences','images','files'));
     }
 }

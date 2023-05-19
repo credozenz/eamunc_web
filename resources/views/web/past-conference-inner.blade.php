@@ -57,7 +57,45 @@
             @include('web.layout.pagination', ['paginator' => $images])
         </div>
 
+
     </section>
+
+
+    <section id="regulations" class="section-padding">
+        <div class="wrapper">
+            <div class="container p-0">
+                <div class="box border-black">
+                    <div class="row align-items-center">
+                        <div class="col-md-4">
+                            <p class="color-darkblue h5 mb-3 mb-md-0 text-center text-md-start">Handbooks</p>
+                        </div>
+                        @foreach ($files as $key => $value)
+                        <div class="col-md-1  mb-3">
+                       
+                        <a href="{{ asset('uploads/'.$value->image) }}" class="mt-5" data-title="Handbook {{ $key+1 }}">
+                           <img class="rounded-md img-preview" src="{{asset('assets/admin/img/file_demo.png')}}"  style="width: 47px;"> 
+                         </a>
+                      
+                         </div>
+                        @endforeach
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
 
     @if (!empty($past_conferences->file))
     <section id="regulations" class="section-padding">

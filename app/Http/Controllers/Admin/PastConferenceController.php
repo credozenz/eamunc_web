@@ -305,4 +305,82 @@ class PastConferenceController extends Controller
 
         echo json_encode(['status'=>true,'message'=>'Image Deleted Successfully !']);exit();
     }
+
+
+
+    public function pastconference_files($id)
+    {
+        $data = Images::where('connect_id', $id)->where('type', 'past_conference_files')->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(50);
+        return view('admin/pastConference/add_files', compact('data','id'));
+    }
+
+    public function add_files(Request $request)
+{
+    $validatedData = $request->validate([
+        'conference_id' => 'required|max:255',
+        'file.*' => [
+            'required',
+            'mimes:pdf,doc',
+            'max:2055',
+            function ($attribute, $value, $fail) {
+                if (!$value->isValid()) {
+                    $fail($value->getErrorMessage());
+                }
+            }
+        ]
+    ], [
+        'conference_id.required' => 'The Title field is required',
+        'file.*.required' => 'All file fields are required.',
+        'file.*.max' => 'All files must be smaller than 2 MB.',
+        'file.*.mimes' => 'Only PDF and DOC file types are allowed.',
+    ]);
+
+    $files = $request->file('file');
+
+    foreach ($files as $file) {
+        if ($file->isValid()) {
+            $fileName = time() . '_' . Str::random(5) . '_' . rand(1111, 9999) . '.' . $file->getClientOriginalExtension();
+            $origin_name = $file->getClientOriginalName();
+            Storage::disk('public')->put('conference/' . $fileName, $file->get(), 'public');
+
+            $conference_item = new Images;
+            $conference_item->type = 'past_conference_files';
+            $conference_item->connect_id = $request->conference_id;
+            $conference_item->image = 'conference/' . $fileName;
+            $conference_item->save();
+        }
+    }
+
+    if ($request->conference_id) {
+        Session::flash('success', 'Handbook added successfully!');
+        return redirect()->back();
+    } else {
+        Session::flash('error', 'Something went wrong!');
+        return redirect()->back();
+    }
+}
+
+
+   
+
+
+public function gallery_file_delete(Request $request,$id)
+{
+
+    $gallery = Images::where('id', $id)->first(); 
+    $mytime = Carbon::now();
+    $timestamp=$mytime->toDateTimeString();
+    $gallery->deleted_at = $timestamp;
+    $gallery->save();
+
+    echo json_encode(['status'=>true,'message'=>'Handbook Deleted Successfully !']);exit();
+}
+
+
+
+
+
+
+
+
 }

@@ -37,6 +37,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
                             <a href="{{ url('admin/pastconference_images',$data->id) }}" class="btn-sm btn-warning shadow-md mr-2">Images</a>
+                            <a href="{{ url('admin/pastconference_files',$data->id) }}" class="btn-sm btn-warning shadow-md mr-2">Handbooks</a>
                             <a href="{{ url('admin/pastconference_edit',$data->id) }}" class="btn-sm btn-primary shadow-md mr-2">Edit</a>
                             <a class="btn-sm btn-danger shadow-md mr-2 dltButton" data-url="{{ url('admin/pastconference_delete',$data->id) }}" data-replaceurl="{{ url('admin/pastconference') }}" title="Delete Project">Delete</a>
                         </li>
