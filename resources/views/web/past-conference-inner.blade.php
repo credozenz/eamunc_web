@@ -60,7 +60,7 @@
 
     </section>
 
-
+    @if(isset($files[0]))
     <section id="regulations" class="section-padding">
         <div class="wrapper">
             <div class="container p-0">
@@ -85,7 +85,7 @@
 
         </div>
     </section>
-
+@endif
 
 
 
