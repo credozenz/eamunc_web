@@ -81,6 +81,42 @@
             </div>
         </div>
     </section>
+
+    <section id="multiple-column-form">
+        <div class="row match-height">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Conference Schedule Note</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                    <form method="post" action="{{ url('admin/conference_schedule_note') }}"  enctype="multipart/form-data">
+                          @csrf
+                    
+                            <div class="row">
+                            <div class="col-md-12 col-12">
+                                        <div class="form-group">
+                                            <label class="form-label text-danger">Note</label>
+                        <textarea id="input-filter-5" type="text" name="description" class="form-control @error('description') border-danger @enderror" placeholder="Description" style="height: 250px;">{{ $note->description ?? '' }}</textarea>
+                        @error('description')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                        </div>
+                                    </div>
+                                  
+                                <div class="col-12 d-flex justify-content-end">
+                                    <a href="{{ url('admin/conference_schedule') }}" class="btn btn-light-secondary me-1 mb-1">Back</a>
+                                    <button class="btn btn-primary me-1 mb-1">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                    </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
 </div>
 </div>             
 @endsection

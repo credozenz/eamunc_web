@@ -31,7 +31,8 @@ class ScheduleConfController extends Controller
     public function index(Request $request)
     {   
         $data = Conference_schedule::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4); 
-        return view('admin/conferenceSchedule/index', compact('data'));
+        $note = SiteIndexes::where('deleted_at', null)->where('type','conf_schedule_note')->first(); 
+        return view('admin/conferenceSchedule/index', compact('data','note'));
     }
 
     
@@ -203,4 +204,54 @@ class ScheduleConfController extends Controller
 
         echo json_encode(['status'=>true,'message'=>'Schedule Deleted Successfully !']);exit();
     }
+
+
+
+    public function note(Request $request)
+    {
+        
+        $validatedData = $request->validate([
+            'description' => 'required',
+            
+        ],[
+            'description.required' => 'The Note field is required',
+        ]);
+
+        
+
+        $type_data = SiteIndexes::where('type','conf_schedule_note')->first(); 
+
+        if(!empty($type_data)){
+          $note = SiteIndexes::where('type','conf_schedule_note')->first(); 
+        }else{
+          $note = new SiteIndexes;
+        }
+    
+        
+        $note->description = $request->description;
+        $note->type  = 'conf_schedule_note';
+        $note->save();
+           
+           if($note->id){
+            Session::flash('success', 'Conference Schedule Note updated successfully!');
+            return redirect('/admin/conference_schedule');
+          }else{
+            Session::flash('error', 'Something went wrong!!');
+            return  redirect()->back();
+          }
+
+     
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 }

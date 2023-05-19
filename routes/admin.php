@@ -204,6 +204,7 @@ Route::group(['middleware' => 'adminchecker'], function() {
      Route::get('/conference_schedule_show/{id}', [ScheduleConfController::class,'show'])->name('admin.conference_schedule.show');
      Route::post('/conference_schedule_update/{id}', [ScheduleConfController::class,'update'])->name('admin.conference_schedule.update');
      Route::post('/conference_schedule_delete/{id}', [ScheduleConfController::class,'destroy'])->name('admin.conference_schedule.destroy');
+     Route::post('/conference_schedule_note', [ScheduleConfController::class,'note'])->name('admin.conference_schedule_note.note');
 
      Route::get('/conference_updates', [ConferenceUpdatesController::class,'index'])->name('admin.conference_updates');
      Route::get('/conference_updates_create', [ConferenceUpdatesController::class,'create'])->name('admin.conference_updates.create');
@@ -304,7 +305,8 @@ Route::group(['middleware' => 'adminchecker'], function() {
      Route::post('/committee_excelexport/{id}', [ExportExcelController::class,'committee_excelexport'])->name('admin.committee_excelexport');
      Route::post('/faculty_advisorsexport', [ExportExcelController::class,'faculty_advisorsexport'])->name('admin.faculty_advisorsexport');
 
-     
+     Route::post('/students_export', [ExportExcelController::class,'students_export'])->name('admin.students_export');
+
 
 
      Route::get('/alumni_registration', [AlumniRegController::class,'index'])->name('admin.alumni_registration');

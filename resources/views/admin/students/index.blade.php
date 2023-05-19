@@ -6,6 +6,7 @@
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
                 <h3>Students</h3>
+               
                 <p class="text-subtitle text-muted"></p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
@@ -40,7 +41,8 @@
                                     <button class="btn-info">Search</button>
                                     </form>
                                     </div>
-                                    <div class="col-5 d-flex align-items-center">
+                                    <div class="col-5 m-4 d-flex align-items-center">
+                                  
                                     </div>
                                     
                                     <div class="col-1">
@@ -60,11 +62,11 @@
                         <h5 class="card-title">Index</h5>
                         <form action="{{ url('/admin/students') }}" method="get" id="indexfilter"> 
                         <div class="row">
-                        <div class="col-6 d-flex align-items-center">
+                        <div class="col-1 d-flex align-items-center">
                         </div>
                         
-                                    <div class="col-4 d-flex align-items-center">
-                                    <select name="school" class="custom-select mr-2 col-4 idx-school" style="border: hidden;text-align-last: end;">
+                                    <div class="col-9 d-flex align-items-center">
+                                    <select name="school" class="custom-select mr-2 col-2 idx-school" style="border: hidden;text-align-last: end;">
                                     <option value="">School</option>
                                     @if(!empty($school) && $school->count())
                                        @foreach ($school as $key => $value)
@@ -72,17 +74,17 @@
                                        @endforeach
                                     @endif
                                     </select>
-                                    <select name="r" class="custom-select mr-2 col-4 idx-role" style="border: hidden;text-align-last: end;">
+                                    <select name="r" class="custom-select mr-2 col-2 idx-role" style="border: hidden;text-align-last: end;">
                                     <option value="">Role</option>
                                     <option value="2" {{ ($request->r == '2' ? "selected":"") }}>Delegate</option>
                                     <option value="3" {{ ($request->r == '3' ? "selected":"") }}>Bureau member</option>
                                     </select>
-                                    <select name="t" class="custom-select mr-2 col-4 idx-type" style="border: hidden;text-align-last: end;">
+                                    <select name="t" class="custom-select mr-2 col-2 idx-type" style="border: hidden;text-align-last: end;">
                                     <option value="">Type</option>
                                     <option value="1" {{ ($request->t == '1' ? "selected":"") }}>ISG Student</option>
                                     <option value="2" {{ ($request->t == '2' ? "selected":"") }}>Participating School Student</option>
                                     </select>
-                                    <select name="s" class="custom-select mr-2 col-4 idx-status" style="border: hidden;text-align-last: end;">
+                                    <select name="s" class="custom-select mr-2 col-2 idx-status" style="border: hidden;text-align-last: end;">
                                     <option value="">Status</option>
                                     <option value="0" {{ ($request->s == '0' ? "selected":"") }}>Pending</option>
                                     <option value="1" {{ ($request->s == '1' ? "selected":"") }}>Approve</option>
@@ -90,7 +92,7 @@
                                     <option value="3" {{ ($request->s == '3' ? "selected":"") }}>Active</option>
                                     <option value="4" {{ ($request->s == '4' ? "selected":"") }}>Reject</option>
                                     </select>
-                                  
+                                    <input type="checkbox" class="mr-1 col-1 idx-status" name="xls" value='1' {{ $request->xls == '1' ? 'checked' : '' }}> Excel Export
                                     </div>
                                     
                         </div>

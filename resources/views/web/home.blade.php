@@ -192,10 +192,7 @@
                 @endforeach
 
                 <div class="notes">
-                    <p class="note">Note 1 : A separate Zoom link will be shared for opening ceremony, committee sessions &
-                        valedictory session.</p>
-                    <p class="note">Note 2 : 15 minutes break will be given as per the president’s discretion in all
-                        commitee sessions.</p>
+                  {!! $schedule_note->description ?? '' !!}
                 </div>
 
             </div>

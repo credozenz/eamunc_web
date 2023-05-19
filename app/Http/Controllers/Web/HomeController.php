@@ -39,9 +39,9 @@ class HomeController extends Controller
                                 ];
                             });
              
-      
+        $schedule_note = SiteIndexes::where('deleted_at', null)->where('type','conf_schedule_note')->first(); 
 
-        return view('web/home', compact('banner','timer','president_messages','faculties_messages','our_mentors','conference_update','conference_schedule'));
+        return view('web/home', compact('banner','timer','president_messages','faculties_messages','our_mentors','conference_update','conference_schedule','schedule_note'));
     }
 
     

@@ -12,9 +12,6 @@ use Illuminate\Validation\Rule;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use Mpdf\Mpdf;
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-use PhpOffice\PhpSpreadsheet\Writer as Writer;
 use View;
 use App\Helpers\AdminHelper;
 use App\Models\SiteIndexes;
@@ -33,6 +30,9 @@ use Mail;
 use Image;
 use Storage;
 use League\Flysystem\File;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Writer as Writer;
 
 class StudentsController extends Controller
 {
@@ -72,6 +72,15 @@ class StudentsController extends Controller
 
         if($request->school != NULL){
             $query->where('students.school_id','=', $request->school);
+        }
+
+        if($request->xls == '1'){
+            $students = $query ->orderBy('students.id', 'desc')->get();
+          
+            $filePath = $this->students_export($students);
+            return response()->download($filePath);
+            $request->request->set('xls', '0');
+            return redirect()->to($request->fullUrl());
         }
 
         $data = $query ->orderBy('students.id', 'desc')
@@ -682,6 +691,151 @@ public function student_bulk_invite(Request $request) {
 
 
 
+
+
+    public function students_export($students)
+    {
+
+
+
+        $styleArray = array(
+            'font'  => array(
+                'bold'  => true,
+                'color' => array('rgb' => '000000'),
+                'background-color' => array('rgb' => '800000'),
+                'size'  => 12,
+                'name'  => 'Verdana'
+            ),
+            'alignment' => array(
+                    'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+            )
+            );
+
+        $headstyleArray = array(
+            'font'  => array(
+                'bold'  => true,
+                'color' => array('rgb' => '000000'),
+                'size'  => 12,
+                'name'  => 'Verdana'
+            ),
+            'alignment' => array(
+                    'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+            )
+            );
+
+        $subheadstyleArray = array(
+            'font'  => array(
+                'bold'  => true,
+                'color' => array('rgb' => '000000'),
+                'size'  => 10,
+                'name'  => 'Verdana'
+            ),
+            'alignment' => array(
+                    'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+            )
+            );
+
+
+
+
+
+
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+                    $sheet->getColumnDimension('A')->setWidth(35);
+                    $sheet->getColumnDimension('B')->setWidth(35);
+                    $sheet->getColumnDimension('C')->setWidth(35);
+                    $sheet->getColumnDimension('D')->setWidth(35);
+                    $sheet->getColumnDimension('E')->setWidth(35);
+                    $sheet->getColumnDimension('F')->setWidth(35);
+                    $sheet->getColumnDimension('G')->setWidth(35);
+                    $sheet->getColumnDimension('H')->setWidth(35);
+                    $sheet->getColumnDimension('I')->setWidth(35);
+                    $sheet->mergeCells('A1:I1');
+                    $sheet->mergeCells('A2:I2');
+                    $sheet->mergeCells('A3:I3');
+                    $sheet->mergeCells('A4:I4');
+                    $sheet->getStyle('A1')->applyFromArray($styleArray);
+                    $sheet->getStyle('A2')->applyFromArray($headstyleArray);
+                    $sheet->getStyle('A5')->applyFromArray($headstyleArray);
+                    $sheet->getStyle('A6')->applyFromArray($subheadstyleArray);
+                    $sheet->getStyle('B6')->applyFromArray($subheadstyleArray);
+                    $sheet->getStyle('C6')->applyFromArray($subheadstyleArray);
+                    $sheet->getStyle('D6')->applyFromArray($subheadstyleArray);
+                    $sheet->getStyle('E6')->applyFromArray($subheadstyleArray);
+                    $sheet->getStyle('F6')->applyFromArray($subheadstyleArray);
+                    $sheet->getStyle('G6')->applyFromArray($subheadstyleArray);
+                    $sheet->getStyle('H6')->applyFromArray($subheadstyleArray);
+                    $sheet->getStyle('I6')->applyFromArray($subheadstyleArray);
+                    $sheet->setCellValue('A1', 'E.Ahamed Model United Nations Conference');
+                    $sheet->setCellValue('A2', 'Students List');
+
+                   
+                   
+                  
+                    $sheet->setCellValue('A3', '');
+                    $sheet->setCellValue('A4', '');
+                    $sheet->setCellValue('A5', '');
+                    $sheet->setCellValue('A6', 'Name');
+                    $sheet->setCellValue('B6', 'Email');
+                    $sheet->setCellValue('C6', 'Phone');
+                    $sheet->setCellValue('D6', 'Class & Section');
+                    $sheet->setCellValue('E6', 'MUN Experience');
+                    $sheet->setCellValue('F6', 'Bureau Member Experience');
+                    $sheet->setCellValue('G6', 'Position');
+                    $sheet->setCellValue('H6', 'School');
+                    $sheet->setCellValue('I6', 'Status');
+                
+                    $rows=6;
+
+                    foreach ($students as $key => $each) {
+                    $rows = $rows+1;
+                    $sheet->setCellValue('A' . $rows, $each->name);
+                    $sheet->setCellValue('B' . $rows, $each->email);
+                    $sheet->setCellValue('C' . $rows, $each->phone_code.'-'.$each->whatsapp_no);
+                    $sheet->setCellValue('D' . $rows, $each->class);
+                    $sheet->setCellValue('E' . $rows, $each->mun_experience);
+                    $sheet->setCellValue('F' . $rows, $each->bureaumem_experience);
+                    $sheet->setCellValue('G' . $rows, $each->position);
+                   
+
+                    if($each->type=='1'){
+                        $sheet->setCellValue('H' . $rows, 'ISG Student');
+                    }elseif($each->type=='2'){
+                        $sheet->setCellValue('H' . $rows, $each->school_name);
+                    }
+                    
+                   
+
+                    if($each->status=='0'){
+                        $sheet->setCellValue('I' . $rows, 'Pending');
+                    }elseif($each->status=='1'){
+                        $sheet->setCellValue('I' . $rows, 'Approve');
+                    }elseif($each->status=='2'){
+                        $sheet->setCellValue('I' . $rows, 'Invite');
+                    }elseif($each->status=='3'){
+                        $sheet->setCellValue('I' . $rows, 'Active');
+                    }elseif($each->status=='4'){
+                        $sheet->setCellValue('I' . $rows, 'Reject');
+                    }
+                                            
+
+                    }
+
+                
+                    
+        
+        $writer = new Xlsx($spreadsheet);
+        $fileName = "students.".time().".xlsx";
+        $filePath = "./excel/students/".$fileName;
+        $writer->save($filePath);
+
+        return $filePath;
+       
+    }
+    
 
 
 
