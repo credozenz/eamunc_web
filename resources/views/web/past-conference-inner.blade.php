@@ -67,7 +67,7 @@
                 <div class="box border-black">
                     <div class="row align-items-center">
                         <div class="col-md-4">
-                            <p class="color-darkblue h5 mb-3 mb-md-0 text-center text-md-start">Handbooks</p>
+                            <p class="color-darkblue h5 mb-3 mb-md-0 text-center text-md-start">E.A.MUNC Handbooks</p>
                         </div>
                         @foreach ($files as $key => $value)
                         <div class="col-md-1  mb-3">
