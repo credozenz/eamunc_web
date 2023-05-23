@@ -26,16 +26,28 @@
                     <div class="row mt-5">
                     @if (!empty($images) && $images->count())
                         @foreach ($images as $key => $value)
-
                         @if(!empty($value->video))
                         <div class="col-md-4 image-box mb-5">
-                            <div class="form-group">
-                            
-                                <iframe width="100%" height="350rem" src="https://www.youtube.com/embed/{{ $value->video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <div class="form-group video-wrapper">
+                                <div class="youtube-thumbnail" data-video="{{ $value->video }}">
+                                    <img src="https://img.youtube.com/vi/{{ $value->video }}/0.jpg" alt="YouTube Thumbnail">
+                                    <button onclick="document.getElementById('modal'+{{$key+1}}).style.display='block'" >Play Video <i class="fa fa-play"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                       
 
+                        <div id="modal{{$key+1}}" class="w3-modal">
+                            <div class="w3-modal-content">
+                            <div class="w3-container">
+                                <span onclick="videoPopup({{$key+1}})" class="w3-button w3-display-topright">&times;</span>
+                                <iframe id="iframe{{$key+1}}" width="100%" height="400" src="https://www.youtube-nocookie.com/embed/{{ $value->video ?? '' }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+                                </iframe>
+                            </div>
                             </div>
                         </div>
                         @endif
+
                         @endforeach
                     @endif   
                     </div>
