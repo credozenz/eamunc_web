@@ -218,7 +218,7 @@ class PastConferenceController extends Controller
 
     public function pastconference_images($id)
     {
-        $data = Images::where('connect_id', $id)->where('type', 'past_conference')->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(50);
+        $data = Images::where('connect_id', $id)->where('type', 'past_conference')->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(12);
         return view('admin/pastConference/add_images', compact('data','id'));
     }
 
@@ -310,7 +310,7 @@ class PastConferenceController extends Controller
 
     public function pastconference_files($id)
     {
-        $data = Images::where('connect_id', $id)->where('type', 'past_conference_files')->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(50);
+        $data = Images::where('connect_id', $id)->where('type', 'past_conference_files')->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(12);
         return view('admin/pastConference/add_files', compact('data','id'));
     }
 

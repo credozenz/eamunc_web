@@ -82,7 +82,7 @@
                             @endforeach
                             
                         </div>
-
+                        @include('admin.layout.pagination', ['paginator' => $data])
                     </div>
                     </div>
                     <div class="col-12 d-flex justify-content-end">
