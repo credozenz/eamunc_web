@@ -93,7 +93,7 @@ class GalleryController extends Controller
 
     public function gallery_images($id)
     {
-        $data = Images::where('connect_id', $id)->where('type', 'gallery')->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(20);
+        $data = Images::where('connect_id', $id)->where('type', 'gallery')->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(12);
         return view('admin/gallery/add_images', compact('data','id'));
     }
 
@@ -198,7 +198,7 @@ public function add_images(Request $request)
     public function show($id)
     {
         $gallery = Gallery::find($id); 
-        $images = Images::where('connect_id', $id)->where('type', 'gallery')->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4);
+        $images = Images::where('connect_id', $id)->where('type', 'gallery')->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(12);
         return view('admin/gallery/show', compact('gallery','images','id'));
     }
 

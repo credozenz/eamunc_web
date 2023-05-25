@@ -70,7 +70,7 @@
                             <div>empty images !</div>
                             @endif
                         </div>
-
+                        @include('admin.layout.pagination', ['paginator' => $images])
                     </div>
                     </div>
                    
