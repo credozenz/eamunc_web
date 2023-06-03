@@ -9,3 +9,5 @@ ALTER TABLE `users` CHANGE `type` `type` INT NOT NULL DEFAULT '0' COMMENT '1=>is
 ALTER TABLE `committees` ADD `live_url` VARCHAR(250) NULL AFTER `video`;
 
 ALTER TABLE `students` ADD `certi_status` INT NULL DEFAULT '0' AFTER `status`;
+
+ALTER TABLE `resolution` ADD `accepted_delegates` VARCHAR(155) NULL AFTER `content`;

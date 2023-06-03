@@ -42,7 +42,7 @@
                 <div class="d-flex  align-items-center mb-4">
                   <div class="form-count" style="background: #32e643;">{{ $skey+1 }}</div>
                   <div class=" flex-fill ps-5 pe-5">
-                    <label class="form-label">Enter Counry Name</label>
+                    <label class="form-label">Enter country Name</label>
                     <select class="form-control blocspeaker" name="country_id[]" readonly required>
                     <option value="">Select Country Name</option>
                       @foreach($committee_member as $key => $value)
@@ -63,7 +63,7 @@
           <div class="d-flex  align-items-center mb-4">
             <div class="form-count ">1</div>
             <div class=" flex-fill ps-5 pe-5">
-              <label class="form-label">Enter Counry Name</label>
+              <label class="form-label">Enter Country Name</label>
               <select class="form-control blocspeaker" name="country_id[]"  required >
               <option value="">Select Country Name</option>
               @if(!empty($committee_member))

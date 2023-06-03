@@ -152,8 +152,8 @@ $(document).ready(function() {
                                 '</div>'+     
                                 '<div class="col-md-4">'+
                                     '<div class="form-group">'+
-                                        '<label for="form-label">Class & Section*</label>'+
-                                        '<input type="text" name="class['+i+']" value="" maxlength="80" class="form-control" placeholder="Class & Section" aria-describedby="textHelp" required>'+
+                                        '<label for="form-label">Class*</label>'+
+                                        '<input type="text" name="class['+i+']" value="" maxlength="80" class="form-control" placeholder="Class" aria-describedby="textHelp" required>'+
                                         '<div class="text-danger mt-2"></div>'+
                                     '</div>'+
                                 '</div>'+
@@ -211,15 +211,23 @@ $(document).ready(function() {
                                 '<div class="col-md-4">'+
                                     '<div class="form-group">'+
                                         '<label for="form-label">MUN Experience (if any)</label>'+
-                                        '<input type="text" name="mun_experience['+i+']" value="" maxlength="80" class="form-control"  placeholder="MUN Experience (if any)" aria-describedby="textHelp">'+
+                                            '<select name="mun_experience['+i+']"  class="form-control @error("mun_experience") border-danger @enderror" {{ $errors->has("mun_experience") ? "autofocus" : "" }}  aria-describedby="textHelp">';  
+                                                for ($i = 0; $i <= 20; $i++) {
+                                                    html+='echo "<option value="'+$i+'">'+$i+'</option>";';
+                                                }
+                                     html+='</select>'+
                                         '<div class="text-danger mt-2"></div>'+
                                     '</div>'+
-                            '</div>'+
+                                '</div>'+
                                 '<div class="col-md-4">'+
                                     '<div class="form-group">'+
                                         '<label for="form-label">Bureau Member Experience</label>'+
-                                        '<input type="text" name="bureaumem_experience['+i+']" value="" maxlength="80" class="form-control" placeholder="Bureau Member Experience" aria-describedby="textHelp">'+
-                                        '<div class="text-danger mt-2"></div>'+
+                                            '<select name="bureaumem_experience['+i+']"  class="form-control @error("bureaumem_experience") border-danger @enderror" {{ $errors->has("bureaumem_experience") ? "autofocus" : "" }}  aria-describedby="textHelp">';
+                                            for ($i = 0; $i <= 20; $i++) {
+                                                html+='echo "<option value="'+$i+'">'+$i+'</option>";';
+                                            }
+                                 html+='</select>'+
+                                         '<div class="text-danger mt-2"></div>'+
                                     '</div>'+
                                 '</div>'+
                                 '<div class="col-md-4">'+
@@ -454,7 +462,7 @@ $(document).ready(function() {
                 required: true
             },
             'school_logo': {
-                required: true
+                required: false
             },
             'advisor_name': {
                 required: true

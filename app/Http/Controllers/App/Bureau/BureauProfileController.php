@@ -38,7 +38,7 @@ class BureauProfileController extends Controller
 
         $committees = Committee::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(50); 
        
-        $countries = Countries::all();
+        $countries = Countries::where('deleted_at', null)->get();
 
         return view('app/bureau/profile', compact('guideline','committees','countries','member'));
     }

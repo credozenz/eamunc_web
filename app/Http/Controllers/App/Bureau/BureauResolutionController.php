@@ -13,6 +13,7 @@ use App\Models\SiteIndexes;
 use App\Models\School;
 use App\Models\Committee;
 use App\Models\User;
+use App\Models\Line_by_line;
 use App\Models\Resolution;
 use View;
 class BureauResolutionController extends Controller
@@ -34,7 +35,22 @@ class BureauResolutionController extends Controller
        
         $resolution = Resolution::where('committe_id',$committee->id)->first();
 
-        return view('app/bureau/resolution', compact('committee','resolution'));
+        $acceptedDelegatesArray = isset($resolution->accepted_delegates) ? explode(',', $resolution->accepted_delegates) : [];
+
+        $acceptedDelegates = User::where('users.deleted_at', null)
+                                    ->join('students', 'users.id', '=', 'students.user_id')
+                                    ->leftJoin('schools', 'students.school_id', '=', 'schools.id')
+                                    ->select('students.*', 'schools.name as school_name', 'users.role', 'users.avatar')
+                                    ->where('users.role', '=', 2)
+                                    ->where('students.committee_choice', '=', $committee->id)
+                                    ->where(function ($query) use ($acceptedDelegatesArray) {
+                                        if (!empty($acceptedDelegatesArray)) {
+                                            $query->whereIn('students.id', $acceptedDelegatesArray);
+                                        }
+                                    })
+                                    ->paginate(300);
+
+        return view('app/bureau/resolution', compact('committee','resolution','acceptedDelegates'));
     }
 
 
@@ -46,7 +62,9 @@ class BureauResolutionController extends Controller
        
         $resolution = Resolution::where('committe_id',$committee->id)->first();
 
-        return view('app/bureau/resolution_editor', compact('committee','resolution'));
+        $line = Line_by_line::where('committe_id',$committee->id)->first();
+
+        return view('app/bureau/resolution_editor', compact('committee','resolution','line'));
     }
 
 

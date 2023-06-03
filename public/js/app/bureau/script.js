@@ -359,7 +359,7 @@ $(document).ready(function() {
 
 
 
-
+      
 
 
 
@@ -374,4 +374,15 @@ $(function() {
     var height = wtf[0].scrollHeight;
     wtf.scrollTop(height);
     }
+
+    function closePopup(id) {
+        alert("dfdf");
+        document.getElementById("modal"+id).style.display='none';
+        $("#iframe"+id).attr('src','');
+        location.reload();
+        
+      }
+
+
+
   });

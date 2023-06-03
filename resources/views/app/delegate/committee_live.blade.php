@@ -24,32 +24,69 @@
 
       
       <br>
-      <div class="row mt-6 mb-3">
-
-      <div class="col-12 px-0 mt-5">
-      @if (!empty($committee->live_url))
-          <iframe width="100%" height="800"
-              src="https://www.youtube-nocookie.com/embed/{{ $committee->live_url ?? '' }}"
-              title="YouTube video player" frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen>
-          </iframe>
-      @else
-      <div class="col-md-6 mt-5 text-center text-md-end color-darkblue">
-        Live Streaming isn't available right Now !
-      </div>
-      @endif
-      </div>
-
-       
       
-      </div>
+
+
+      <div class="row mt-5">
+                    @if (!empty($committee_lives) && $committee_lives->count())
+                        @foreach ($committee_lives as $key => $value)
+                        @if(!empty($value->video))
+                        <div class="col-md-4 image-box mb-5">
+                            <div class="form-group video-wrapper">
+                                <div class="youtube-thumbnail" data-video="{{ $value->video }}">
+                                    <img src="https://img.youtube.com/vi/{{ $value->video }}/0.jpg" alt="YouTube Thumbnail">
+                                    <button onclick="document.getElementById('modal'+{{$key+1}}).style.display='block'" class="btn-sm btn-success shadow-md mr-2">Play <i class="fa fa-play"></i></button>
+                                   
+                                  </div>
+                            </div>
+                            
+                        </div>
+                       
+
+                        <div id="modal{{$key+1}}" class="w3-modal">
+                            <div class="w3-modal-content">
+                            <div class="w3-container">
+                                <span onclick="closePopup({{$key+1}})" class="w3-button w3-display-topright">&times;</span>
+                                <iframe id="iframe{{$key+1}}" width="100%" height="400" src="https://www.youtube-nocookie.com/embed/{{ $value->video ?? '' }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+                                </iframe>
+                            </div>
+                            </div>
+                        </div>
+                        
+                        @endif
+
+                        @endforeach
+                        @else
+                        <div class="col-12 px-0">
+                          <div class="col-md-8 mt-5 text-center text-md-end color-darkblue">
+                            Live Streaming isn't available right Now !
+                          </div>
+                        </div>
+                        @endif   
+                    </div>
+               
+
+
+
+
+
+
+                </div>
+
+
+
      
     </div>
 
   </div>
    
-
+<script>
+  function closePopup(id) {
+    document.getElementById("modal"+id).style.display='none';
+    $("#iframe"+id).attr('src','');
+    location.reload();
+  }
+</script>
 
 @endsection 
   

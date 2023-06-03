@@ -38,8 +38,8 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="form-label">Class & Section*</label>
-                                        <input type="text" name="class" value="{{ old('class') }}" maxlength="80" class="form-control @error('class') border-danger @enderror" {{ $errors->has('class') ? 'autofocus' : '' }} placeholder="Class & Section" aria-describedby="textHelp" required>
+                                        <label for="form-label">Class*</label>
+                                        <input type="text" name="class" value="{{ old('class') }}" maxlength="80" class="form-control @error('class') border-danger @enderror" {{ $errors->has('class') ? 'autofocus' : '' }} placeholder="Class" aria-describedby="textHelp" required>
                                         @error('class')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
@@ -89,7 +89,14 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="form-label">MUN Experience (if any)</label>
-                                        <input type="text" name="mun_experience" value="{{ old('mun_experience') }}" maxlength="80" class="form-control @error('mun_experience') border-danger @enderror" {{ $errors->has('mun_experience') ? 'autofocus' : '' }} placeholder="MUN Experience (if any)" aria-describedby="textHelp" >
+                                            <select name="mun_experience"  class="form-control @error('mun_experience') border-danger @enderror" {{ $errors->has('mun_experience') ? 'autofocus' : '' }}  aria-describedby="textHelp">
+                                                <?php
+                                                for ($i = 0; $i <= 20; $i++) {
+                                                    echo "<option value=\"$i\">$i</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                        <!-- <input type="text" name="mun_experience" value="{{ old('mun_experience') }}" maxlength="80" class="form-control @error('mun_experience') border-danger @enderror" {{ $errors->has('mun_experience') ? 'autofocus' : '' }} placeholder="MUN Experience (if any)" aria-describedby="textHelp" > -->
                                         @error('mun_experience')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
@@ -97,8 +104,23 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="form-label">Bureau Member Experience</label>
-                                        <input type="text" name="bureaumem_experience" value="{{ old('bureaumem_experience') }}" maxlength="80" class="form-control @error('bureaumem_experience') border-danger @enderror" {{ $errors->has('bureaumem_experience') ? 'autofocus' : '' }} placeholder="Bureau Member Experience" aria-describedby="textHelp" >
+                                            <select name="bureaumem_experience"  class="form-control @error('bureaumem_experience') border-danger @enderror" {{ $errors->has('bureaumem_experience') ? 'autofocus' : '' }}  aria-describedby="textHelp">
+                                                <?php
+                                                for ($i = 0; $i <= 20; $i++) {
+                                                    echo "<option value=\"$i\">$i</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                        <!-- <input type="text" name="bureaumem_experience" value="{{ old('bureaumem_experience') }}" maxlength="80" class="form-control @error('bureaumem_experience') border-danger @enderror" {{ $errors->has('bureaumem_experience') ? 'autofocus' : '' }} placeholder="Bureau Member Experience" aria-describedby="textHelp" > -->
                                         @error('bureaumem_experience')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                    <label for="form-label">Awards Received</label>
+                                        <input type="text" name="awards_received" value="{{ old('awards_received') }}" maxlength="80" class="form-control @error('awards_received') border-danger @enderror" {{ $errors->has('awards_received') ? 'autofocus' : '' }} placeholder="Awards Received" aria-describedby="textHelp">
+                                        @error('awards_received')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
 

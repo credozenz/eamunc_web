@@ -27,7 +27,7 @@
             @csrf
                 <div class="col-md-12 col-12">
                     <div class="form-group">
-                        <textarea id="txt_editor" type="text" name="resolution" class="form-control @error('resolution') border-danger @enderror" style="height: 850px;">{{ $resolution->content ?? old('resolution') }}</textarea>
+                        <textarea id="txt_editor" type="text" name="resolution" class="form-control @error('resolution') border-danger @enderror" style="height: 850px;">{{ $resolution->content ?? $line->content }}</textarea>
                         @error('resolution')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                     </div>
                 </div>

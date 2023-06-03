@@ -146,7 +146,7 @@ class ExportExcelController extends Controller
                     $sheet->setCellValue('A6', 'Name');
                     $sheet->setCellValue('B6', 'Email');
                     $sheet->setCellValue('C6', 'Phone');
-                    $sheet->setCellValue('D6', 'Class & Section');
+                    $sheet->setCellValue('D6', 'Class');
                     $sheet->setCellValue('E6', 'MUN Experience');
                     $sheet->setCellValue('F6', 'Bureau Member Experience');
                     $sheet->setCellValue('G6', 'Position');
@@ -186,7 +186,7 @@ class ExportExcelController extends Controller
                     $sheet->setCellValue('A' . $rows, 'Name');
                     $sheet->setCellValue('B' . $rows, 'Email');
                     $sheet->setCellValue('C' . $rows, 'Phone');
-                    $sheet->setCellValue('D' . $rows, 'Class & Section');
+                    $sheet->setCellValue('D' . $rows, 'Class');
                     $sheet->setCellValue('E' . $rows, 'Country Choice');
                     $sheet->setCellValue('F' . $rows, 'MUN Experience');
                     $sheet->setCellValue('G' . $rows, 'Bureau Member Experience');
@@ -398,7 +398,7 @@ class ExportExcelController extends Controller
                     $sheet->setCellValue('A6', 'Name');
                     $sheet->setCellValue('B6', 'Email');
                     $sheet->setCellValue('C6', 'Phone');
-                    $sheet->setCellValue('D6', 'Class & Section');
+                    $sheet->setCellValue('D6', 'Class');
                     $sheet->setCellValue('E6', 'MUN Experience');
                     $sheet->setCellValue('F6', 'Bureau Member Experience');
                     $sheet->setCellValue('G6', 'Position');

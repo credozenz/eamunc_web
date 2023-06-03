@@ -25,7 +25,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Total<br> ISG Students</h6>
+                                    <h6 class="text-muted font-semibold mb-4">Total<br> ISG Students</h6>
                                     <h6 class="font-extrabold mb-0">{{ $Isg_count }}</h6>
                                 </div>
                             </div>
@@ -42,7 +42,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Total<br> School Students</h6>
+                                    <h6 class="text-muted font-semibold">Total<br> Participating School Students</h6>
                                     <h6 class="font-extrabold mb-0">{{ $scoolDelecount }}</h6>
                                 </div>
                             </div>
@@ -59,7 +59,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Total<br> Committee</h6>
+                                    <h6 class="text-muted font-semibold mb-4">Total<br> Committee</h6>
                                     <h6 class="font-extrabold mb-0">{{ $cmtecount }}</h6>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Total<br> School</h6>
+                                    <h6 class="text-muted font-semibold mb-4">Total<br> School</h6>
                                     <h6 class="font-extrabold mb-0">{{ $schoolcount }}</h6>
                                 </div>
                             </div>
@@ -137,7 +137,7 @@
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Whatsapp NO</th>
-                                        <th>Class & Section</th>
+                                        <th>Class</th>
                                         <th>Country</th>
                                         <th>Action</th>
                                     </tr>
@@ -192,7 +192,7 @@
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Whatsapp NO</th>
-                                        <th>Class & Section</th>
+                                        <th>Class</th>
                                         <th>School</th>
                                         <th>Action</th>
                                     </tr>

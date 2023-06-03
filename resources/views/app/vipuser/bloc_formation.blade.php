@@ -24,7 +24,7 @@
 
       <div class="col-md-10"> </div>
       <div class="col-md-2 mb-3">
-        <!-- <button type="button" class="btn btn-primary mt-3" id="mdlbtn"><i class="fa fa-plus" aria-hidden="true"></i>  Create Block</button> -->
+        
       </div>
       
       <div class="row mt-6 mb-3">

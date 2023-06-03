@@ -34,7 +34,7 @@
 
               <div class="col-md-6">
                 <div class="mb-3">
-                  <label class="form-label">Committee</label>
+                  <label class="form-label">Country</label>
                   <select name="country_choice" disabled style="border: none;background: white;" class="form-control @error('country_choice') border-danger @enderror" {{ $errors->has('country_choice') ? 'autofocus' : '' }} placeholder="Country of Choice" required>
                       <option value="">Select Country of Choice</option>
                       @foreach ($countries as $key => $value)
@@ -46,7 +46,7 @@
 
               <div class="col-md-6">
                 <div class="mb-3">
-                  <label class="form-label">Country </label>
+                  <label class="form-label">Committee </label>
                   <select name="committee_choice" disabled style="border: none;background: white;" class="form-control @error('committee_choice') border-danger @enderror" {{ $errors->has('committee_choice') ? 'autofocus' : '' }} placeholder="Committee of Choice" required>
                       <option value=""> Select Committee of Choice </option>
                       @foreach ($committees as $key => $value)

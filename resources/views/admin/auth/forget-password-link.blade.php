@@ -14,10 +14,27 @@
 <main class="login-form">
   <div class="cotainer">
       <div class="row justify-content-center">
+      <table class="head-wrap w320 full-width-gmail-android mt-4" cellpadding="0" cellspacing="0" >
+      <tr>
+       
+      </tr>
+      <tr class="header-background">
+        <td class="header container" align="center">
+          <div class="content">
+            <span class="brand">
+            <a href="{{ url('/') }}">
+              <img src="{{ asset('assets/web/img/logo.png') }}" alt="E.Ahamed Model United Nations Conference" style="width: 8%;height: auto;">
+              <h2>E.A.MUNC</h2>
+              </a>
+            </span>
+          </div>
+        </td>
+      </tr>
+    </table>
           <div class="col-md-8">
               <div class="card">
                   <div class="card-header" style="text-align: center;">
-                   <h2>Set Password</h2>
+                   <h6>Set Password</h6>
                  </div>
                   <div class="card-body">
                   @if (Session::has('message'))

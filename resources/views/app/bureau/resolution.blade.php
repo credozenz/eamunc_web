@@ -31,7 +31,35 @@
         
           
       </div>
-      
+      @if(!empty($resolution))
+      <div class="commitee-box disable-scrollbars" style="max-height: 600px;">
+      <h6 class="text-primary text-start">Accepted Delegates</h6>
+      <div class="row">
+      @if($acceptedDelegates)
+              @foreach($acceptedDelegates as $value)
+                @if($value->role==2)
+                <div class="col-md-4">
+                    <div class="d-flex flex-row  mb-3">
+                          @if(!empty($value->avatar)) 
+                          <img src="{{ asset('uploads/'.$value->avatar) }}" class="rounded-circle" alt="{{ $value->name ?? '' }}">
+                          @else
+                          <img src="{{ asset('assets/img/avatar.svg') }}" alt="{{ $value->name ?? '' }}">
+                          @endif
+                      <p>{{ str_limit($value->name ?? '', $limit = 12, $end = '...') }}</p>
+                    </div>
+                  </div>
+                  
+                @endif
+              @endforeach
+          @else
+              <div class="blue-box mt-3">
+                        <h4>Please wait !</h4>
+                  <p class="mt-2 mb-3">This session has not started !</p>
+              </div>
+          @endif
+          </div>
+        </div>
+      @endif
   </div>
 
 </div>

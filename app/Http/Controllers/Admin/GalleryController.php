@@ -195,6 +195,7 @@ public function add_images(Request $request)
           }
        
     }
+    
     public function show($id)
     {
         $gallery = Gallery::find($id); 

@@ -70,9 +70,7 @@
                                             @if(!empty($school->logo))
                                             <img alt="School logo" class="rounded-full" src="{{ asset('uploads/'.$school->logo) }}" width="150" height="80">
                                             @else
-                                            <div class="stats-icon red">
-                                            <i class="fa fa-ban" aria-hidden="true"></i>
-                                            </div>
+                                            <div class="stats-icon green"><i class="fa fa-picture-o" aria-hidden="true"></i></div>
                                             @endif
                                            </div>
                                         </div>
@@ -122,7 +120,7 @@
 
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="text-danger">Class & Section</label>
+                                            <label for="text-danger">Class</label>
                                             <input type="text" name="class" value="{{ $data->class }}" class="form-control" disabled placeholder="class">
                                         </div>
                                     </div>

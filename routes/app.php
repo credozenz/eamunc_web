@@ -86,7 +86,8 @@ Route::group(['middleware' => 'bureauchecker'], function() {
     
     Route::get('/bureau_committee_live', [BureauCommitteeLiveController::class,'index'])->name('app.bureau_committee_live');
     Route::post('/bureau_live_update/{id}', [BureauCommitteeLiveController::class,'update'])->name('app.bureau_live_update');
-    
+    Route::post('/bureau_live_add/{id}', [BureauCommitteeLiveController::class,'add'])->name('app.bureau_live_add');
+    Route::post('/bureau_live_delete/{id}', [BureauCommitteeLiveController::class,'live_delete'])->name('app.bureau_live_delete');
 
     Route::get('/bureau_general_papers', [BureauGeneralPapersController::class,'index'])->name('app.bureau_general_papers');
     Route::post('/bureau_paper_delete/{id}', [BureauGeneralPapersController::class,'destroy'])->name('app.bureau_paper_delete');
@@ -141,6 +142,8 @@ Route::group(['middleware' => 'delegatechecker'], function() {
     Route::get('/delegate_vienna_formula', [DelegateViennaFormulaController::class,'index'])->name('app.delegate_vienna_formula');
     Route::get('/delegate_line_by_line', [DelegateLineByLineController::class,'index'])->name('app.delegate_line_by_line');
     Route::get('/delegate_resolution', [DelegateResolutionController::class,'index'])->name('app.delegate_resolution');
+    Route::post('/delegate_resolution_accept', [DelegateResolutionController::class,'accept'])->name('app.delegate_resolution_accept');
+  
     Route::get('/delegate_general_assembly', [DelegateGeneralAssemblyController::class,'index'])->name('app.delegate_general_assembly');
     Route::get('/delegate_assembly_show/{id}', [DelegateGeneralAssemblyController::class,'show'])->name('app.delegate_assembly_show');
    

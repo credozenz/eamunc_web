@@ -103,7 +103,7 @@ class StudentsController extends Controller
         $data   = students::where('id', $id)->first();  
         $school = School::where('id', $data->school_id)->first(); 
         $user   = User::where('id', $data->user_id)->first(); 
-        $countries = Countries::all();
+        $countries = Countries::where('deleted_at', null)->get();
         return view('admin/students/edit', compact('data','school','committees','user','countries'));
        
     }
@@ -114,7 +114,7 @@ class StudentsController extends Controller
         $data   = students::where('id', $id)->first();  
         $school = School::where('id', $data->school_id)->first();
         $user   = User::where('id', $data->user_id)->first(); 
-        $countries = Countries::all();
+        $countries = Countries::where('deleted_at', null)->get();
         return view('admin/students/show', compact('data','school','user','committees','id','countries'));
        
     }
@@ -781,7 +781,7 @@ public function student_bulk_invite(Request $request) {
                     $sheet->setCellValue('A6', 'Name');
                     $sheet->setCellValue('B6', 'Email');
                     $sheet->setCellValue('C6', 'Phone');
-                    $sheet->setCellValue('D6', 'Class & Section');
+                    $sheet->setCellValue('D6', 'Class');
                     $sheet->setCellValue('E6', 'MUN Experience');
                     $sheet->setCellValue('F6', 'Bureau Member Experience');
                     $sheet->setCellValue('G6', 'Position');

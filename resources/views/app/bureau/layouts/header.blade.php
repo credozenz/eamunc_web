@@ -45,4 +45,5 @@
     <link href="{{asset('css/app/bureau/responsive.css')}}" rel="stylesheet">
     <link href="{{asset('css/app/bureau/dashboard.css')}}" rel="stylesheet">
     <link href="{{asset('css/app/bureau/custom.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/web/w3scroll.css')}}"/>
 </head>

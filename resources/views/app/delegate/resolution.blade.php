@@ -36,6 +36,15 @@
                      </div>
                      @endif
                     </div>
+                    @if($accepted==true)
+                    <form method="post" action="{{ url('app/delegate_resolution_accept') }}" class="mt-5 col-md-12"  enctype="multipart/form-data">
+                    @csrf
+                    <button type="submit" class="btn btn-primary mt-3"> Accept</button>
+                    </form>
+                    @else
+
+                    <button type="submit" class="btn btn-success mt-3"> <i class="fa fa-check-square-o" aria-hidden="true"></i> Accepted </button>
+                    @endif
                 </div>
                  
         </div>

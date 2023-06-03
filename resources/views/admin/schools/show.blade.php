@@ -60,8 +60,12 @@
                                         <div class="form-group">
                                             <label for="">School Logo</label>
                                             <div class="w-30 h-30 relative image-fit  mb-2 mr-5 ">
+                                            @if(!empty($data->logo))
                                             <img alt="{{ $data->name }}" class="rounded-full" src="{{ asset('uploads/'.$data->logo) }}" width="150" height="80">
-                                             </div>
+                                            @else
+                                            <div class="stats-icon green"><i class="fa fa-picture-o" aria-hidden="true"></i></div>
+                                            @endif
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

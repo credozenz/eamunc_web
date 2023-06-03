@@ -106,7 +106,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Name</th>
-                                        <th>Class & Section</th>
+                                        <th>Class</th>
                                         <th>Type</th>
                                         <th>School</th>
                                         <th>Role</th>

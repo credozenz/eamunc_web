@@ -15,7 +15,9 @@ use App\Models\Committee;
 use App\Models\Blocs;
 use App\Models\Bloc_members;
 use App\Models\User;
+use App\Models\Images;
 use Carbon\Carbon;
+use Image;
 use View;
 class DelegateCommitteeLiveController extends Controller
 {
@@ -51,9 +53,10 @@ class DelegateCommitteeLiveController extends Controller
                                         })
                                 ->get();
 
+     $committee_lives = Images::where('connect_id', $committee->id)->where('type', 'app_committee_live')->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(12);
+       
 
-
-        return view('app/delegate/committee_live', compact('committee','committee_member','committee_bloc'));
+        return view('app/delegate/committee_live', compact('committee','committee_member','committee_bloc','committee_lives'));
     }
 
 

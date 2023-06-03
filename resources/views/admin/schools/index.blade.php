@@ -86,7 +86,11 @@
                                             <td>
 
                                             <div class="w-30 h-30 relative image-fit  mb-2 mr-5 ">
+                                            @if(!empty($value->logo))
                                             <img alt="{{ $value->name }}" class="rounded-full" src="{{ asset('uploads/'.$value->logo) }}" width="200" height="80">
+                                            @else
+                                            <div class="stats-icon green"><i class="fa fa-picture-o" aria-hidden="true"></i></div>
+                                            @endif
                                              </div>
         
                                             </td>

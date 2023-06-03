@@ -47,4 +47,5 @@
     <link href="{{asset('css/app/delegate/responsive.css')}}" rel="stylesheet">
     <link href="{{asset('css/app/delegate/dashboard.css')}}" rel="stylesheet">
     <link href="{{asset('css/app/delegate/custom.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/web/w3scroll.css')}}"/>
 </head>

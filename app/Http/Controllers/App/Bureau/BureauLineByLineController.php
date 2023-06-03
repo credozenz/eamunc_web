@@ -13,6 +13,7 @@ use App\Models\SiteIndexes;
 use App\Models\School;
 use App\Models\Committee;
 use App\Models\User;
+use App\Models\Vienna_formula;
 use App\Models\Line_by_line;
 use View;
 class BureauLineByLineController extends Controller
@@ -46,8 +47,9 @@ class BureauLineByLineController extends Controller
        
         $line = Line_by_line::where('committe_id',$committee->id)->first();
 
+        $vienna = Vienna_formula::where('committe_id',$committee->id)->first();
 
-        return view('app/bureau/line_by_line_editor', compact('committee','line'));
+        return view('app/bureau/line_by_line_editor', compact('committee','line','vienna'));
     }
 
 

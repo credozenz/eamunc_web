@@ -81,7 +81,13 @@ $(function() {
 
  
   
-
+    function closePopup(id) {
+        alert("dfdf");
+        document.getElementById("modal"+id).style.display='none';
+        $("#iframe"+id).attr('src','');
+        location.reload();
+        
+      }
 
 
 });

@@ -61,8 +61,8 @@
 
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="text-danger">Class & Section</label>
-                                            <input type="text" name="class" value="{{  $data->class }}" class="form-control @error('class') border-danger @enderror" {{ $errors->has('class') ? 'autofocus' : '' }} placeholder="Class & Section" aria-describedby="textHelp" required>
+                                            <label for="text-danger">Class</label>
+                                            <input type="text" name="class" value="{{  $data->class }}" class="form-control @error('class') border-danger @enderror" {{ $errors->has('class') ? 'autofocus' : '' }} placeholder="Class" aria-describedby="textHelp" required>
                                              @error('class')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                         </div>
                                     </div>

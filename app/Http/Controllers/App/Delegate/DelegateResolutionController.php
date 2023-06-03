@@ -35,6 +35,71 @@ class DelegateResolutionController extends Controller
        
         $resolution = Resolution::where('committe_id',$committee->id)->first();
 
-        return view('app/delegate/resolution', compact('committee','resolution'));
+        $acceptedDelegatesArray = isset($resolution->accepted_delegates) ? explode(',', $resolution->accepted_delegates) : [];
+
+        $newDelegateId = $member->id;
+        $accepted = false;
+       if(!empty($resolution->accepted_delegates)){
+            if (!in_array($newDelegateId, $acceptedDelegatesArray)) {
+                $accepted = true;           
+            }
+
+        }
+
+        return view('app/delegate/resolution', compact('committee','resolution','accepted'));
     }
+
+
+
+    public function accept(Request $request)
+    {
+
+    
+        $member = WebAppHelper::getLogMember();
+        
+        $committee = Committee::where('id',$member->committee_choice)->first();
+
+        $resolution = Resolution::where('committe_id',$committee->id)->first();
+
+        $acceptedDelegatesArray = isset($resolution->accepted_delegates) ? explode(',', $resolution->accepted_delegates) : [];
+
+        $newDelegateId = $member->id;
+        
+        if(!empty($resolution->accepted_delegates)){
+            if (!in_array($newDelegateId, $acceptedDelegatesArray)) {
+                $acceptedDelegatesArray[] = $newDelegateId;           
+            }
+
+            $acceptedDelegates = implode(',', $acceptedDelegatesArray);
+        }else{
+            $acceptedDelegates = $newDelegateId;
+        }
+        
+
+        
+        
+        $resolution = Resolution::where('id', $resolution->id)->first(); 
+        $resolution->accepted_delegates = $acceptedDelegates;
+        $resolution->save();
+              
+        
+
+            
+        if($resolution->id){
+            Session::flash('success', 'Resolution Accepted !');
+            return  redirect()->back();
+        }else{
+            Session::flash('error', 'Something went wrong!!');
+            return  redirect()->back();
+        }
+    
+
+    }
+
+
+
+
+
+
+
 }

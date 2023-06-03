@@ -20,7 +20,7 @@
                     <form method="post" action="{{ url('school-registration-store') }}" id="school-regForm"  enctype="multipart/form-data">
                           @csrf
                             <div class="form-section mb-5">
-                                <h4 class="color-darkblue mb-5">School Details</h4>
+                                <h4 class="color-darkblue mb-5">Faculty Advisor Details</h4>
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
@@ -91,8 +91,8 @@
                            
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="form-label">Class & Section*</label>
-                                        <input type="text" name="class[]" value="{{ old('class.0') }}" maxlength="80" class="form-control @error('class') border-danger @enderror" {{ $errors->has('class') ? 'autofocus' : '' }} placeholder="Class & Section" aria-describedby="textHelp" required>
+                                        <label for="form-label">Class*</label>
+                                        <input type="text" name="class[]" value="{{ old('class.0') }}" maxlength="80" class="form-control @error('class') border-danger @enderror" {{ $errors->has('class') ? 'autofocus' : '' }} placeholder="Class" aria-describedby="textHelp" required>
                                         @error('class')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
@@ -136,7 +136,6 @@
                                             <option value="{{ $value->id }}" {{ (old('country_choice') == $value->id ? "selected":"") }}> {{ $value->name ?? '' }}</option>
                                             @endforeach
                                         </select>
-                                       
                                         @error('country_choice')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
@@ -145,7 +144,14 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="form-label">MUN Experience (if any)</label>
-                                        <input type="phone" name="mun_experience[]" value="{{ old('mun_experience.0') }}" maxlength="80" class="form-control @error('mun_experience') border-danger @enderror" {{ $errors->has('mun_experience') ? 'autofocus' : '' }} placeholder="MUN Experience (if any)" aria-describedby="textHelp">
+                                            <select name="mun_experience"  class="form-control @error('mun_experience') border-danger @enderror" {{ $errors->has('mun_experience') ? 'autofocus' : '' }}  aria-describedby="textHelp">
+                                                <?php
+                                                for ($i = 0; $i <= 20; $i++) {
+                                                    echo "<option value=\"$i\">$i</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                        <!-- <input type="phone" name="mun_experience[]" value="{{ old('mun_experience.0') }}" maxlength="80" class="form-control @error('mun_experience') border-danger @enderror" {{ $errors->has('mun_experience') ? 'autofocus' : '' }} placeholder="MUN Experience (if any)" aria-describedby="textHelp"> -->
                                         @error('mun_experience')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
@@ -153,7 +159,14 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="form-label">Bureau Member Experience</label>
-                                        <input type="text" name="bureaumem_experience[]" value="{{ old('bureaumem_experience.0') }}" maxlength="80" class="form-control @error('bureaumem_experience') border-danger @enderror" {{ $errors->has('bureaumem_experience') ? 'autofocus' : '' }} placeholder="Bureau Member Experience" aria-describedby="textHelp">
+                                            <select name="bureaumem_experience"  class="form-control @error('bureaumem_experience') border-danger @enderror" {{ $errors->has('bureaumem_experience') ? 'autofocus' : '' }}  aria-describedby="textHelp">
+                                                <?php
+                                                for ($i = 0; $i <= 20; $i++) {
+                                                    echo "<option value=\"$i\">$i</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                        <!-- <input type="text" name="bureaumem_experience[]" value="{{ old('bureaumem_experience.0') }}" maxlength="80" class="form-control @error('bureaumem_experience') border-danger @enderror" {{ $errors->has('bureaumem_experience') ? 'autofocus' : '' }} placeholder="Bureau Member Experience" aria-describedby="textHelp"> -->
                                         @error('bureaumem_experience')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>

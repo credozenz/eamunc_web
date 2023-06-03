@@ -34,7 +34,7 @@ class RegistrationController extends Controller
     {
         $committees = Committee::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(50); 
 
-        $countries = Countries::all();
+        $countries = Countries::where('deleted_at', null)->get();
         $reg_status = SiteIndexes::where('type','reg_status')->first();
         return view('web/isg-registration', compact('committees','countries','reg_status'));
     }
@@ -45,7 +45,7 @@ class RegistrationController extends Controller
        
         $validatedData = $request->validate([
             'name' => 'required|max:255',
-            'email' => 'required|max:255|email|unique:users,email',
+            'email' => 'required|max:255|email|unique:users,email,NULL,id,deleted_at,NULL',
             'class' => 'required|max:255',
             'committee_choice' => 'required|max:255',
             'country_choice' => 'required|max:255',
@@ -88,9 +88,10 @@ class RegistrationController extends Controller
             $student->class = $request->class;
             $student->committee_choice = $request->committee_choice;
             $student->country_choice   = $request->country_choice;
-            $student->phone_code     = $phone_code;
-            $student->whatsapp_no    = $request->whatsapp_no;
-            $student->mun_experience = $request->mun_experience;
+            $student->phone_code      = $phone_code;
+            $student->whatsapp_no     = $request->whatsapp_no;
+            $student->mun_experience  = $request->mun_experience;
+            $student->awards_received = $request->awards_received;
             $student->bureaumem_experience = $request->bureaumem_experience;
             $student->user_id = $user->id;
             $student->save();
@@ -112,8 +113,8 @@ class RegistrationController extends Controller
 
     public function school_registration()
     {
-        $committees = Committee::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4); 
-        $countries = Countries::all();
+        $committees = Committee::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(50); 
+        $countries = Countries::where('deleted_at', null)->get();
         $reg_status = SiteIndexes::where('type','reg_status')->first();
         return view('web/school-registration', compact('committees','countries','reg_status'));
     }
@@ -168,7 +169,7 @@ class RegistrationController extends Controller
             $school->mobile = $phone_code.$request->advisor_mobile;
             $school->advisor_name = $request->advisor_name;
             
-
+           
                 if ($request->hasFile('school_logo')) {
                 $image = $request->file('school_logo');
                 $fileName   =  time().'_'.str_random(5).'_'.rand(1111,9999). '.' . $image->getClientOriginalExtension();
@@ -186,9 +187,10 @@ class RegistrationController extends Controller
                 }
                 
                 Storage::disk('public')->put('host_schools/'.$fileName,$img,'public');
+                $school->logo = 'host_schools/'.$fileName; 
                }
     
-            $school->logo = 'host_schools/'.$fileName; 
+               
 
             $school->save();
 
@@ -298,7 +300,7 @@ class RegistrationController extends Controller
     {
        
         $committees = Committee::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4); 
-        $countries = Countries::all();
+        $countries = Countries::where('deleted_at', null)->get();
       
         if(!empty($committees)){
               echo json_encode(['status'=>true,'committees'=>$committees,'countries'=>$countries]);exit();

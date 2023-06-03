@@ -156,6 +156,31 @@
 
     <div class="col-md-4">
         
+      <div class="commitee-box disable-scrollbars" style="max-height: 200px;">
+        <h6 class="text-primary text-start">My Profile</h6>
+                                              
+            <div class="d-flex flex-row  mb-3">
+                        @if(!empty($member->avatar)) 
+                        <img src="{{ asset('uploads/'.$member->avatar) }}" class="rounded-circle" alt="{{ $member->name ?? '' }}">
+                        @else
+                        <img src="{{ asset('assets/img/avatar.svg') }}" alt="{{ $value->name ?? '' }}">
+                        @endif
+                  <a href="{{ route('app.bureau_profile') }}" class="text-primary mt-3 d-inline-block ps-2 ">{{ ucfirst($member->name) ?? '' }}</a>
+            </div>
+
+        <div class="row"><div class="col-md-8"></div>
+          <div class="col-md-4">     
+            <a href="{{ url('app/bureau_log_out') }}" class="text-danger fs-11 mt-1"><i class="fa fa-power-off" aria-hidden="true"></i>
+            <span class="text-primary mb-3 d-inline-block ps-2 " style="line-height: 37px;"> Sign Out </span>
+            </a>                     
+          </div>
+        </div>
+      
+        </div>
+      
+    
+    
+        
       <div class="commitee-box disable-scrollbars" style="max-height: 600px;">
         <h6 class="text-primary text-start">Bureau Members</h6>
           @if($committee_member)
@@ -198,16 +223,7 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-md-10">
-  </div>
-    <div class="col-md-2">
-      <div class="d-flex flex-row  mb-3">
-        <a href="{{ url('app/bureau_log_out') }}" class="text-danger fs-11 mt-2"><i class="fa fa-power-off" aria-hidden="true"></i>
-        <span class="text-primary mb-3 d-inline-block ps-2 " style="line-height: 37px;"> Sign Out </span></a>
-      </div>
-    </div>  
-</div>
+
    
 @endsection 
   
