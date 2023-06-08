@@ -30,6 +30,7 @@ class AuthController extends Controller
         {
             $admin = DB::table('users')
                         ->where('email', $request->email)
+                        ->where('deleted_at', null)
                         ->whereIn('role', [1, 4])
                         ->first();
                 

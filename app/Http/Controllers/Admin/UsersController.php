@@ -81,14 +81,16 @@ class UsersController extends Controller
         $phone_no = $request->input('phone');
         $password = $request->input('password');
                 
-                $useremail = User::where('email', $email); 
+                $useremail = User::where('email', $email)
+                           ->where('deleted_at', null); 
                
                 if(!empty($useremail->count())){
                     Session::flash('error', 'Email id already exists !');
                     return  redirect()->back();
                 }
 
-                $userphone = User::where('phone', $phone_no); 
+                $userphone = User::where('phone', $phone_no)
+                            ->where('deleted_at', null); 
                
                 if(!empty($useremail->count())){
                     Session::flash('error', 'Phone no already exists !');
@@ -201,14 +203,14 @@ class UsersController extends Controller
         $phone_no = $request->input('phone');
         $password = $request->input('password');
                 
-        $useremail = User::where('email', $email)->where('id', '<>',$id); 
+        $useremail = User::where('email', $email)->where('deleted_at', null)->where('id', '<>',$id); 
                
         if(!empty($useremail->count())){
             Session::flash('error', 'Email id already exists !');
             return  redirect()->back();
         }
 
-        $userphone = User::where('phone', $phone_no)->where('id', '<>',$id); 
+        $userphone = User::where('phone', $phone_no)->where('deleted_at', null)->where('id', '<>',$id); 
        
         if(!empty($useremail->count())){
             Session::flash('error', 'Phone no already exists !');

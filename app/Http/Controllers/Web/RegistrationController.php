@@ -215,7 +215,7 @@ class RegistrationController extends Controller
 
            
                 
-                $user = User::where('email', $email[$count]); 
+                $user = User::where('email', $email[$count])->where('deleted_at', null); 
                
                 if(empty($user->count())){
                     

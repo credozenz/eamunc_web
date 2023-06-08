@@ -84,7 +84,7 @@ class ForgotPasswordController extends Controller
             'password_confirmation.same' => 'Password and confirm password must match',
         ]);
 
-        $update = DB::table('password_resets')->where(['email' => trim($request->email), 'token' => $request->token])->first();
+        $update = DB::table('password_resets')->where(['email' => trim($request->email),'deleted_at' => null, 'token' => $request->token])->first();
 
         if(!$update){
             
@@ -92,8 +92,9 @@ class ForgotPasswordController extends Controller
         }
 
         
-
-        $user = User::where('email', trim($request->email))->first();
+        $user = user::where('users.deleted_at', null)
+                ->where('users.email', trim($request->email))
+                ->first();
         $user->password  = Hash::make($request->password);
         $user->status  = 1;
         $user->save(); 

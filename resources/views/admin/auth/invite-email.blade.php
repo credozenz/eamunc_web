@@ -370,8 +370,7 @@
             <span class="brand">
             <a href="{{ url('/') }}">
               <img src="{{ asset('assets/web/img/logo.png') }}" alt="E.Ahamed Model United Nations Conference" style="width: 8%;height: auto;">
-                 E.A.MUNC
-              </a>
+            </a>
             </span>
           </div>
         </td>
