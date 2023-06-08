@@ -96,8 +96,7 @@
                                                 }
                                                 ?>
                                             </select>
-                                        <!-- <input type="text" name="mun_experience" value="{{ old('mun_experience') }}" maxlength="80" class="form-control @error('mun_experience') border-danger @enderror" {{ $errors->has('mun_experience') ? 'autofocus' : '' }} placeholder="MUN Experience (if any)" aria-describedby="textHelp" > -->
-                                        @error('mun_experience')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                          @error('mun_experience')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
 
@@ -106,20 +105,25 @@
                                         <label for="form-label">Bureau Member Experience</label>
                                             <select name="bureaumem_experience"  class="form-control @error('bureaumem_experience') border-danger @enderror" {{ $errors->has('bureaumem_experience') ? 'autofocus' : '' }}  aria-describedby="textHelp">
                                                 <?php
-                                                for ($i = 0; $i <= 20; $i++) {
+                                                for ($i = 0; $i <= 10; $i++) {
                                                     echo "<option value=\"$i\">$i</option>";
                                                 }
                                                 ?>
                                             </select>
-                                        <!-- <input type="text" name="bureaumem_experience" value="{{ old('bureaumem_experience') }}" maxlength="80" class="form-control @error('bureaumem_experience') border-danger @enderror" {{ $errors->has('bureaumem_experience') ? 'autofocus' : '' }} placeholder="Bureau Member Experience" aria-describedby="textHelp" > -->
-                                        @error('bureaumem_experience')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                                         @error('bureaumem_experience')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-group">
                                     <label for="form-label">Awards Received</label>
-                                        <input type="text" name="awards_received" value="{{ old('awards_received') }}" maxlength="80" class="form-control @error('awards_received') border-danger @enderror" {{ $errors->has('awards_received') ? 'autofocus' : '' }} placeholder="Awards Received" aria-describedby="textHelp">
+                                    <select name="awards_received"  class="form-control @error('awards_received') border-danger @enderror" {{ $errors->has('awards_received') ? 'autofocus' : '' }}  aria-describedby="textHelp">
+                                                <?php
+                                                for ($i = 0; $i <= 10; $i++) {
+                                                    echo "<option value=\"$i\">$i</option>";
+                                                }
+                                                ?>
+                                            </select>
                                         @error('awards_received')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
