@@ -11,3 +11,5 @@ ALTER TABLE `committees` ADD `live_url` VARCHAR(250) NULL AFTER `video`;
 ALTER TABLE `students` ADD `certi_status` INT NULL DEFAULT '0' AFTER `status`;
 
 ALTER TABLE `resolution` ADD `accepted_delegates` VARCHAR(155) NULL AFTER `content`;
+
+ALTER TABLE `bloc_chats` ADD `type` VARCHAR(50) NOT NULL DEFAULT 'text' COMMENT 'text,file' AFTER `committe_id`;

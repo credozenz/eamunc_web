@@ -33,7 +33,7 @@ class BureauBlocFormationController extends Controller
 
         $committee = Committee::where('id',$member->committee_choice)->first();
 
-        $committee_bloc = Blocs::where('committe_id',$member->committee_choice)->get();
+        $committee_bloc = Blocs::where('committe_id',$member->committee_choice)->where('deleted_at', null)->get();
 
         $committee_member = DB::table('users as u')
                                 ->join('students as s', 'u.id', '=', 's.user_id')

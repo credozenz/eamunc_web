@@ -128,7 +128,10 @@ class StudentsController extends Controller
         
         $validatedData = $request->validate([
             'name' => 'required|max:255',
-            'email' => 'required|max:255|email|unique:users,email,NULL,id,deleted_at,NULL',
+            'email' => [
+                'required',
+                Rule::unique('users')->ignore($student->user_id, 'id')->whereNull('deleted_at')
+            ],
             'class' => 'required|max:255',
             'committee_choice' => 'required|max:255',
             'country_choice' => 'required|max:255',

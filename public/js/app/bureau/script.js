@@ -384,5 +384,29 @@ $(function() {
       }
 
 
+      
+
+
+
+      $('#file-upload').change(function() {
+        var i = $(this).prev('label').clone();
+        
+        var file = $('#file-upload')[0].files[0].name;
+        document.getElementById("msg").value = file;
+        $('#msg').attr('readonly', true);
+        $("#crs").css("display","");
+         });
+      
+         $('#crs').click(function() {
+          document.getElementById("msg").value = "";
+          $("#crs").css("display","none");
+          $('#msg').attr('readonly',"");
+        });
+      
+        
+
+
+
+
 
   });
