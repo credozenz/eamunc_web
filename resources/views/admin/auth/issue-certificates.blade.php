@@ -360,19 +360,13 @@
 <body bgcolor="#ffffff">
 
   <div align="center">
-    <table class="head-wrap w320 full-width-gmail-android" bgcolor="#f9f8f8" cellpadding="0" cellspacing="0" border="0">
+  <table class="head-wrap w320 full-width-gmail-android" bgcolor="#f9f8f8" cellpadding="0" cellspacing="0" border="0">
       <tr>
        
       </tr>
       <tr class="header-background">
         <td class="header container" align="center">
-          <div class="content">
-            <span class="brand">
-            <a href="{{ url('/') }}">
-              <img src="{{ asset('assets/web/img/logo.png') }}" alt="E.Ahamed Model United Nations Conference" style="width: 8%;height: auto;">
-            </a>
-            </span>
-          </div>
+          
         </td>
       </tr>
     </table>
@@ -382,7 +376,13 @@
         <td></td>
         <td class="container">
           <div class="content">
-            <table cellspacing="0">
+          <table cellspacing="10">
+            <tr >
+             <td >
+              <img src="{{ asset('assets/web/img/logo.png') }}" alt="E.Ahamed Model United Nations Conference" style="width: 18%;height: auto;">
+             </td>
+        
+             </tr> 
               <tr>
                 <td>
                   <table class="soapbox">
