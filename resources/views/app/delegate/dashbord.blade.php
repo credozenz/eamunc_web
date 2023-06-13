@@ -167,7 +167,7 @@
                         @else
                         <img src="{{ asset('assets/img/avatar.svg') }}" alt="{{ $value->name ?? '' }}">
                         @endif
-                  <a href="{{ route('app.bureau_profile') }}" class="text-primary mt-3 d-inline-block ps-2 ">{{ ucfirst($member->name) ?? '' }}</a>
+                  <a href="{{ route('app.delegate_profile') }}" class="text-primary mt-3 d-inline-block ps-2 ">{{ ucfirst($member->name) ?? '' }}</a>
             </div>
             
         <div class="row"><div class="col-md-8"></div>

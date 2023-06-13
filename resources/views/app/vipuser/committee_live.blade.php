@@ -1,4 +1,4 @@
-@extends('app.bureau.layouts.layout')
+@extends('app.vipuser.layouts.layout')
 @section('content')
    
   <div class="container-fluid dasboard">

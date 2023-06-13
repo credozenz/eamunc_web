@@ -128,10 +128,6 @@
 
       <div class="col-md-4">
         
-        <div class="d-grid">
-          <a href="{{ route('app.liability_waiver_form') }}" class="btn btn-primary "><i class="fa fa-file-text-o" aria-hidden="true"></i> Submit Liability Waiver Form</a>
-        </div>
-          
         <div class="commitee-box disable-scrollbars" style="max-height: 600px;">
 
           <h6 class="text-primary">Bureau Members</h6>

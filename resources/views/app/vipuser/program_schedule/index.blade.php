@@ -2,7 +2,7 @@
 @section('content')
 
 
-<div class="container-fluid dasboard add-speaker-page">  
+<div class="container-fluid dasboard add-speaker-page"  style="min-height: 650px;">  
     <div class="row">
 
 
