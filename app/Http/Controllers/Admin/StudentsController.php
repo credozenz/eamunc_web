@@ -45,47 +45,53 @@ class StudentsController extends Controller
     public function index(Request $request)
     {
 
-        $query = user::where('users.deleted_at', null)
+       // Create the initial query
+        $query = User::whereNull('users.deleted_at')
         ->join('students', 'users.id', '=', 'students.user_id')
-        ->leftjoin('schools', 'students.school_id', '=', 'schools.id')
+        ->leftJoin('schools', 'students.school_id', '=', 'schools.id')
         ->select('students.*', 'schools.name as school_name', 'users.role')
-        ->where('users.role', '!=' , 1);
-        
-        if($request->q){
-            $query->where('students.name','LIKE', $request->q)
-            ->orwhere('schools.name','LIKE', $request->q)
-            ->orwhere('students.email','LIKE', $request->q)
-            ->orwhere('students.whatsapp_no','LIKE', $request->q);
+        ->where('users.role', '!=', 1);
+
+        // Filter by search term
+        if ($request->q) {
+        $query->where(function ($subQuery) use ($request) {
+            $searchTerm = '%' . $request->q . '%';
+            $subQuery->where('students.name', 'LIKE', $searchTerm)
+                ->orWhere('schools.name', 'LIKE', $searchTerm)
+                ->orWhere('students.email', 'LIKE', $searchTerm)
+                ->orWhere('students.whatsapp_no', 'LIKE', $searchTerm);
+        });
         }
 
-        if($request->s != NULL){
-            $query->where('students.status','=', $request->s);
+        // Filter by student status
+        if ($request->s !== NULL) {
+        $query->where('students.status', '=', $request->s);
         }
 
-        if($request->t != NULL){
-            $query->where('users.type','=', $request->t);
+        // Filter by user type
+        if ($request->t !== NULL) {
+        $query->where('users.type', '=', $request->t);
         }
 
-        if($request->r != NULL){
-            $query->where('users.role','=', $request->r);
+        // Filter by user role
+        if ($request->r !== NULL) {
+        $query->where('users.role', '=', $request->r);
         }
 
-        if($request->school != NULL){
-            $query->where('students.school_id','=', $request->school);
+        // Filter by school ID
+        if ($request->school !== NULL) {
+        $query->where('students.school_id', '=', $request->school);
         }
 
-        if($request->xls == '1'){
-            $students = $query ->orderBy('students.id', 'desc')->get();
-          
-            $filePath = $this->students_export($students);
-            return response()->download($filePath);
-            $request->request->set('xls', '0');
-            return redirect()->to($request->fullUrl());
+        // Export to Excel if requested
+        if ($request->xls == '1') {
+        $students = $query->orderByDesc('students.id')->get();
+        $filePath = $this->students_export($students);
+        return response()->download($filePath);
         }
-
-        $data = $query ->orderBy('students.id', 'desc')
-        ->paginate(10);
-
+        $filterParams = $request->except('page');
+        // Continue with pagination for normal request
+        $data = $query->orderByDesc('students.id')->paginate(10)->appends($filterParams);
 
 
         $school = School::where('deleted_at', null)
