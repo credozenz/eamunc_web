@@ -73,7 +73,7 @@
 
     <section id="mentors" class="section-padding">
         <div class="container">
-            <h3 class="color-darkblue mb-md-4 mb-5">Committee Webinar</h3>
+            <h3 class="color-darkblue mb-md-4 mb-5">Committee Video</h3>
             <div class="row">
 
                 <div class="col-12 px-0">
