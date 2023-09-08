@@ -28,7 +28,14 @@
           @csrf
               <div class="col-md-12 col-12">
                   <div class="form-group">
-                      <textarea id="txt_editor" type="text" name="line" class="form-control @error('line') border-danger @enderror" style="height: 850px;">{{ $line->content ?? $vienna->content }}</textarea>
+                   
+                      <textarea id="txt_editor" type="text" name="line" class="form-control @error('line') border-danger @enderror" style="height: 850px;">
+                        @if(!empty($line->content))
+                          {{ $line->content }}
+                        @elseif(!empty($vienna->content))
+                          {{ $vienna->content }}
+                        @endif
+                      </textarea>
                       @error('line')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                   </div>
               </div>
