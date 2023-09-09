@@ -36,11 +36,12 @@ class PaperController extends IndexController
     public function get_papers(Request $request)
     {
 
-        $member = Students::where('user_id', $request->user_id)->where('deleted_at', null)->first(); 
+        $loguser = auth()->user();
+        $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first(); 
 
-        $committee = Committee::where('id',$member->committee_choice)->first();
+        $committee = Committee::where('id',$user->committee_choice)->first();
 
-        $papers = Paper_submission::where('committe_id',$member->committee_choice)->get();
+        $papers = Paper_submission::where('committe_id',$user->committee_choice)->get();
 
         $papers = DB::table('users as u')
                     ->join('paper_submissions as b', 'u.id', '=', 'b.user_id')
@@ -79,9 +80,9 @@ class PaperController extends IndexController
                 
             }
 
+            $loguser = auth()->user();
+            $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first(); 
     
-        $member = Students::where('user_id', $request->user_id)->where('deleted_at', null)->first(); 
-        
 
         if ($request->paper) {
             $image      =  $request->paper;
@@ -95,8 +96,8 @@ class PaperController extends IndexController
             Storage::disk('public')->put('paper/'.$fileName,$img,'public');
 
             $paper = new Paper_submission;
-            $paper->committe_id = $member->committee_choice;
-            $paper->user_id     = $member->user_id;
+            $paper->committe_id = $user->committee_choice;
+            $paper->user_id     = $user->user_id;
             $paper->paper       = 'paper/'.$fileName; 
             $paper->paper_name  = $image->getClientOriginalName(); 
             $paper->save();
@@ -128,7 +129,9 @@ class PaperController extends IndexController
     public function view_paper(Request $request)
     {
 
-        $paper = Paper_submission::where('deleted_at', null)->where('user_id',$request->user_id)->first();            
+        $loguser = auth()->user();
+
+        $paper = Paper_submission::where('deleted_at', null)->where('user_id',$loguser->id)->first();            
                     
 
         if (!$paper) {

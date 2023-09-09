@@ -39,9 +39,10 @@ class LineByLineController extends IndexController
     public function get_line_by_line(Request $request)
     {
 
-        $member = Students::where('user_id', $request->user_id)->where('deleted_at', null)->first(); 
+        $loguser = auth()->user();
+        $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first(); 
 
-        $committee = Committee::where('id',$member->committee_choice)->first();
+        $committee = Committee::where('id',$user->committee_choice)->first();
 
         $line = Line_by_line::where('committe_id',$committee->id)->first();
       
@@ -74,10 +75,10 @@ class LineByLineController extends IndexController
                 
             }
 
-    
-            $member = Students::where('user_id', $request->user_id)->where('deleted_at', null)->first(); 
-            
-            $committee = Committee::where('id',$member->committee_choice)->first();
+            $loguser = auth()->user();
+            $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first(); 
+
+            $committee = Committee::where('id',$user->committee_choice)->first();
     
             $line = Line_by_line::where('committe_id',$committee->id)->first();
     

@@ -37,10 +37,10 @@ class ViennaController extends IndexController
 
     public function get_vienna(Request $request)
     {
-
-        $member = Students::where('user_id', $request->user_id)->where('deleted_at', null)->first(); 
-
-        $committee = Committee::where('id',$member->committee_choice)->first();
+        $loguser = auth()->user();
+        $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first();
+        
+        $committee = Committee::where('id',$user->committee_choice)->first();
 
         $vienna = Vienna_formula::where('committe_id',$committee->id)->first();
       
@@ -73,10 +73,10 @@ class ViennaController extends IndexController
                 
             }
 
-    
-            $member = Students::where('user_id', $request->user_id)->where('deleted_at', null)->first(); 
-            
-            $committee = Committee::where('id',$member->committee_choice)->first();
+            $loguser = auth()->user();
+            $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first();
+             
+            $committee = Committee::where('id',$user->committee_choice)->first();
     
             $vienna = Vienna_formula::where('committe_id',$committee->id)->first();
     

@@ -39,10 +39,10 @@ class ResolutionController extends IndexController
 
     public function get_resolution(Request $request)
     {
-
-        $member = Students::where('user_id', $request->user_id)->where('deleted_at', null)->first(); 
-
-        $committee = Committee::where('id',$member->committee_choice)->first();
+        $loguser = auth()->user();
+        $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first();
+        
+        $committee = Committee::where('id',$user->committee_choice)->first();
 
         $resolution = Resolution::where('committe_id',$committee->id)->first();
       
@@ -75,10 +75,11 @@ class ResolutionController extends IndexController
                 
             }
 
-    
-            $member = Students::where('user_id', $request->user_id)->where('deleted_at', null)->first(); 
+            $loguser = auth()->user();
+            $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first();
             
-            $committee = Committee::where('id',$member->committee_choice)->first();
+           
+            $committee = Committee::where('id',$user->committee_choice)->first();
     
             $resolution = Resolution::where('committe_id',$committee->id)->first();
     
@@ -123,16 +124,16 @@ class ResolutionController extends IndexController
     public function accept_resolution(Request $request)
     {
 
+        $loguser = auth()->user();
+        $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first();
     
-        $member = Students::where('user_id', $request->user_id)->where('deleted_at', null)->first(); 
-        
-        $committee = Committee::where('id',$member->committee_choice)->first();
+        $committee = Committee::where('id',$user->committee_choice)->first();
 
         $resolution = Resolution::where('committe_id',$committee->id)->first();
 
         $acceptedDelegatesArray = isset($resolution->accepted_delegates) ? explode(',', $resolution->accepted_delegates) : [];
 
-        $newDelegateId = $member->id;
+        $newDelegateId = $user->id;
         
         if(!empty($resolution->accepted_delegates)){
             if (!in_array($newDelegateId, $acceptedDelegatesArray)) {

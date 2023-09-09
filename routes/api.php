@@ -4,10 +4,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\HomeController;
+use App\Http\Controllers\Api\BlockController;
 use App\Http\Controllers\Api\PaperController;
 use App\Http\Controllers\Api\ViennaController;
 use App\Http\Controllers\Api\LineByLineController;
 use App\Http\Controllers\Api\ResolutionController;
+use App\Http\Controllers\Api\AssemblyController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,7 +22,6 @@ use App\Http\Controllers\Api\ResolutionController;
 */
 
 Route::post('/login', [AuthController::class,'login']);
-Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
 Route::post('/get_allcommittee', [AuthController::class,'get_allcommittee']);
 
@@ -42,10 +43,14 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::post('/delete_program_schedule', [HomeController::class,'delete_program_schedule']);
     Route::post('/add_program_schedule', [HomeController::class,'add_program_schedule']);
 
-    Route::post('/get_blocks', [HomeController::class,'get_blocks']);
-    Route::post('/add_blocks', [HomeController::class,'add_blocks']);
-    Route::post('/update_blocks', [HomeController::class,'update_blocks']);
-    Route::post('/delete_blocks', [HomeController::class,'delete_blocks']);
+    Route::post('/get_blocks', [BlockController::class,'get_blocks']);
+    Route::post('/add_blocks', [BlockController::class,'add_blocks']);
+    Route::post('/update_blocks', [BlockController::class,'update_blocks']);
+    Route::post('/delete_blocks', [BlockController::class,'delete_blocks']);
+    Route::post('/get_block_chat', [BlockController::class,'get_block_chat']);
+    Route::post('/add_block_chat', [BlockController::class,'add_block_chat']);
+    Route::post('/delete_block_chat', [BlockController::class,'delete_block_chat']);
+
 
     Route::post('/get_live_stream', [HomeController::class,'get_live_stream']);
     Route::post('/add_live_stream', [HomeController::class,'add_live_stream']);
@@ -67,7 +72,9 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::post('/add_resolution', [ResolutionController::class,'add_resolution']);
     Route::post('/accept_resolution', [ResolutionController::class,'accept_resolution']);
     
+    Route::post('/get_all_resolutions', [AssemblyController::class,'get_all_resolutions']);
+    Route::post('/get_committe_resolution', [AssemblyController::class,'get_committe_resolution']);
 
-
+    Route::post('/logout', [AuthController::class, 'logout']);
 
 });

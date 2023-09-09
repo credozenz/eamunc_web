@@ -53,13 +53,17 @@ class HomeController extends IndexController
     public function get_speakers_list(Request $request)
     {
 
+        $loguser = auth()->user();
+        $student   = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first(); 
+        $committee = Committee::where([['id', $student->committee_choice]])->first();
+
         $speakers =  User::where('users.deleted_at', null)
                                     ->join('speakers', 'users.id', '=', 'speakers.user_id')
                                     ->join('countries', 'speakers.country_id', '=', 'countries.id')
                                     ->select('speakers.*','countries.name as country_name','countries.id as country_id')
                                     ->where('users.role', '=', 2)
                                     ->where('speakers.deleted_at', '=', null)
-                                    ->where('speakers.committe_id', '=' , $request->committee_id)
+                                    ->where('speakers.committe_id', '=' , $committee->id)
                                     ->get();                            
                     
 
@@ -80,8 +84,8 @@ class HomeController extends IndexController
 
     public function speakers_country(Request $request)
     {
-
-        $student   = Students::where('user_id', $request->user_id)->where('deleted_at', null)->first(); 
+        $loguser = auth()->user();
+        $student   = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first(); 
         $committee = Committee::where([['id', $student->committee_choice]])->first();
 
       
@@ -127,7 +131,6 @@ class HomeController extends IndexController
             // Validate the request data
             $validator = Validator::make($request->all(), [
                 "country_id"    => "required",
-                'committee_id'   => 'required|max:255',
             ]);
 
             if ($validator->fails()) {
@@ -138,8 +141,12 @@ class HomeController extends IndexController
                 
             }
 
+            $loguser = auth()->user();
+            $student   = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first(); 
+            $committee = Committee::where([['id', $student->committee_choice]])->first();
+
             $countryId   = $request->country_id;
-            $committeeId = $request->committee_id;
+            $committeeId = $committee->id;
       
 
       
@@ -190,7 +197,11 @@ class HomeController extends IndexController
     public function get_program_schedule(Request $request)
     {
 
-        $schedule = Program_schedule::where('deleted_at', null)->where('committe_id', $request->committe_id)->orderBy('id', 'ASC')->paginate(25);
+            $loguser = auth()->user();
+            $student   = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first(); 
+            $committee = Committee::where([['id', $student->committee_choice]])->first();
+
+        $schedule = Program_schedule::where('deleted_at', null)->where('committe_id', $committee->id)->orderBy('id', 'ASC')->paginate(25);
   
         $program_schedule = $schedule->map(function($item, $key) {
 
@@ -249,7 +260,6 @@ class HomeController extends IndexController
     {
 
             $validator = Validator::make($request->all(), [
-                "committee_id" => 'required',
                 "date"         => 'required',
                 "title"    => "required|array",
                 "title.*"  => "required",
@@ -268,7 +278,9 @@ class HomeController extends IndexController
             }
 
          
-        $committee = Committee::where([['id', $request->committee_id]])->first();
+            $loguser = auth()->user();
+            $student   = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first(); 
+            $committee = Committee::where([['id', $student->committee_choice]])->first();
 
      
         $schedule = new Program_schedule;
@@ -325,12 +337,11 @@ class HomeController extends IndexController
 
     public function get_blocks(Request $request)
     {
+        $loguser = auth()->user();
+        $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first();
+        $committee = Committee::where('id',$user->committee_choice)->first();
 
-        $member = Students::where('user_id', $request->user_id)->where('deleted_at', null)->first(); 
-
-        $committee = Committee::where('id',$member->committee_choice)->first();
-
-        $committee_bloc = Blocs::where('committe_id',$member->committee_choice)->where('deleted_at', null)->get();
+        $committee_bloc = Blocs::where('committe_id',$user->committee_choice)->where('deleted_at', null)->get();
       
         if (!$committee_bloc) {
 
@@ -366,10 +377,10 @@ class HomeController extends IndexController
                 
             }
 
-         
-            $user = Students::where('user_id', $request->user_id)->where('deleted_at', null)->first();
+            $loguser = auth()->user();
+            $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first();
             $committee = Committee::where('id',$user->committee_choice)->first();
-           
+          
             $user_id  = $request->member_id;
            
             $name = $request->name;
@@ -458,7 +469,8 @@ class HomeController extends IndexController
             }
 
          
-            $user = Students::where('user_id', $request->user_id)->where('deleted_at', null)->first();
+            $loguser = auth()->user();
+            $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first();
             $committee = Committee::where('id',$user->committee_choice)->first();
            
             $user_id  = $request->member_id;
@@ -529,10 +541,10 @@ class HomeController extends IndexController
 
     public function get_live_stream(Request $request)
     {
-
-        $member = Students::where('user_id', $request->user_id)->where('deleted_at', null)->first(); 
-
-        $committee = Committee::where('id',$member->committee_choice)->first();
+        $loguser = auth()->user();
+        $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first();
+        
+        $committee = Committee::where('id',$user->committee_choice)->first();
 
         $committee_lives = Images::where('connect_id', $committee->id)->where('type', 'app_committee_live')->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(12);
        
@@ -567,8 +579,8 @@ class HomeController extends IndexController
                 
             }
 
-         
-            $user = Students::where('user_id', $request->user_id)->where('deleted_at', null)->first();
+            $loguser = auth()->user();
+            $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first();
             $committee = Committee::where('id',$user->committee_choice)->first();
 
             $youtubeurl = ApiHelper::getYoutubeIdFromUrl($request->live_url);

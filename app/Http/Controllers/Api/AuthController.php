@@ -96,27 +96,25 @@ class AuthController extends IndexController
 
     public function logout(Request $request)
     {
-        $user = $request->user();
-        $isUser = $user->tokens()->revoke();
+    $user = auth()->user();
 
-        if ($isUser) {
-            $success['message'] = "Successfully logged out.";
-            $success['status'] = true;
-            return $this->sendResponse($success);
-        } else {
-            $erroe['message'] = "Something went wrong.";
-            $erroe['status'] = false;
-            return $this->sendResponse($erroe);
-        }
+    $user->tokens->each(function ($token, $key) {
+        $token->delete();
+    });
+
+    // Respond with a success message
+    $response['message'] = "Successfully logged out.";
+    $response['status'] = true;
+    return $this->sendResponse($response);
     }
 
 
     public function get_profile(Request $request)
     {
+        
+        $loguser = auth()->user();
 
-        $user = User::where('id', $request->user_id)->where('deleted_at', null)->first();
-
-        if (!$user) {
+        if (!$loguser) {
             $response['status'] = false;
             $response['message'] = "Something went wrong !";
             return $this->sendResponse($response);
@@ -124,7 +122,7 @@ class AuthController extends IndexController
         }else{
 
             $response['status'] = true;
-            $response['data'] = $user;
+            $response['data'] = $loguser;
             return $this->sendResponse($response);
                 
         }
@@ -133,8 +131,8 @@ class AuthController extends IndexController
     public function get_committee(Request $request)
     {
 
-        $user = User::where('id', $request->user_id)->where('deleted_at', null)->first();
-        $student   = Students::where('user_id', $user->id)->where('deleted_at', null)->first(); 
+        $loguser = auth()->user();
+        $student   = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first(); 
         $committee = Committee::where([['id', $student->committee_choice]])->first();
 
         if (!$committee) {
@@ -173,13 +171,17 @@ class AuthController extends IndexController
     public function get_committee_member(Request $request)
     {
 
+            $loguser = auth()->user();
+            $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first();
+            $committee = Committee::where('id',$user->committee_choice)->first();
+
         $committee_member = User::where('users.deleted_at', null)
                                 ->join('students', 'users.id', '=', 'students.user_id')
                                 ->leftjoin('schools', 'students.school_id', '=', 'schools.id')
                                 ->select('users.*', 'schools.name as school_name', 'users.role', 'users.avatar')
                                 ->where('students.status', '=', 3)
-                                ->where('students.committee_choice', '=' , $request->committee_id)
-                                ->paginate(300);
+                                ->where('students.committee_choice', '=' , $committee->id)
+                                ->get();
 
         if (!$committee_member) {
             $response['status'] = false;
@@ -216,19 +218,19 @@ class AuthController extends IndexController
     }
 
     // Retrieve the user's profile
-    $user = User::find($request->user_id);
+    $loguser = auth()->user();
 
-    if (!$user) {
+    if (!$loguser) {
         $response['status'] = false;
         $response['message'] = "User not found";
         return $this->sendResponse($response);
     }
 
     // Update the user's password
-    $user->password = Hash::make($request->password);
-    $user->save();
+    $loguser->password = Hash::make($request->password);
+    $loguser->save();
 
-    if ($user->id) {
+    if ($loguser->id) {
         $response['status'] = true;
         $response['message'] = "Password updated successfully!";
         return $this->sendResponse($response);
@@ -256,9 +258,9 @@ class AuthController extends IndexController
     }
 
     // Retrieve the user's profile
-    $profile = User::find($request->user_id);
+    $loguser = auth()->user();
 
-    if (!$profile) {
+    if (!$loguser) {
         $response['status'] = false;
         $response['message'] = "User not found";
         return $this->sendResponse($response);
@@ -296,8 +298,8 @@ class AuthController extends IndexController
         Storage::disk('public')->put('user_image/' . $fileName, $img, 'public');
 
         // Update the user's avatar path in the database
-        $profile->avatar = 'user_image/' . $fileName;
-        $profile->save();
+        $loguser->avatar = 'user_image/' . $fileName;
+        $loguser->save();
 
         $response['status'] = true;
         $response['message'] = "Avatar updated successfully!";
