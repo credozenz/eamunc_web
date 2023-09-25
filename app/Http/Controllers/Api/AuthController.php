@@ -113,7 +113,12 @@ class AuthController extends IndexController
     {
         
         $loguser = auth()->user();
-
+        $student   = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first(); 
+      
+        $loguser['phone_code'] = $student->phone_code ?? '';
+        $loguser['whatsapp_no'] = $student->whatsapp_no ?? '';
+        $loguser['country_choice'] = $student->country_choice ?? '';
+        
         if (!$loguser) {
             $response['status'] = false;
             $response['message'] = "Something went wrong !";

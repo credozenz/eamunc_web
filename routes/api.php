@@ -71,6 +71,7 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::post('/get_resolution', [ResolutionController::class,'get_resolution']);
     Route::post('/add_resolution', [ResolutionController::class,'add_resolution']);
     Route::post('/accept_resolution', [ResolutionController::class,'accept_resolution']);
+    Route::post('/accept_resolution_list', [ResolutionController::class,'accept_resolution_list']);
     
     Route::post('/get_all_resolutions', [AssemblyController::class,'get_all_resolutions']);
     Route::post('/get_committe_resolution', [AssemblyController::class,'get_committe_resolution']);

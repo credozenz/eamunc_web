@@ -169,6 +169,48 @@ class ResolutionController extends IndexController
     }
 
 
+    public function accept_resolution_list(Request $request)
+    {
+
+        $loguser = auth()->user();
+        $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first();
+    
+        $committee = Committee::where('id',$user->committee_choice)->first();
+
+        $resolution = Resolution::where('committe_id',$committee->id)->first();
+
+        $acceptedDelegatesArray = isset($resolution->accepted_delegates) ? explode(',', $resolution->accepted_delegates) : [];
+
+        $newDelegateId = $user->id;
+        
+        
+        $acceptedDelegates=[];
+        foreach ($acceptedDelegatesArray as $Delegate){ 
+            $acceptedDelegates[] = User::where('users.deleted_at', null)
+                                ->join('students', 'users.id', '=', 'students.user_id')
+                                ->leftjoin('schools', 'students.school_id', '=', 'schools.id')
+                                ->select('users.*', 'schools.name as school_name', 'users.role', 'users.avatar')
+                                ->where('students.user_id', '=', $Delegate)
+                                ->get();
+        }
+     
+              
+        
+
+        if($acceptedDelegates){
+            return $this->sendResponse($acceptedDelegates);
+          }else{
+            $response['status']  = false;
+            $response['message'] = "Something went wrong!!";
+            return $this->sendResponse($response);
+          } 
+       
+    
+
+    }
+
+
+
 
 
 
