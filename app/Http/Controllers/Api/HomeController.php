@@ -657,14 +657,14 @@ class HomeController extends IndexController
         $program['committee'] =$committee;
 
         $members = user::where('users.deleted_at', null)
-        ->join('students', 'users.id', '=', 'students.user_id')
-        ->leftjoin('schools', 'students.school_id', '=', 'schools.id')
-        ->select('students.*', 'schools.name as school_name', 'users.role', 'users.avatar')
-        ->where('users.role', '=' , 3)
-        ->whereIn('students.status', [3])
-        ->where('students.committee_choice', '=' , $committee->id)
-        ->orderBy('students.id', 'desc')
-        ->paginate(12);
+                        ->join('students', 'users.id', '=', 'students.user_id')
+                        ->leftjoin('schools', 'students.school_id', '=', 'schools.id')
+                        ->select('students.*', 'schools.name as school_name', 'users.role', 'users.avatar')
+                        ->where('users.role', '=' , 3)
+                        ->whereIn('students.status', [3])
+                        ->where('students.committee_choice', '=' , $committee->id)
+                        ->orderBy('students.id', 'desc')
+                        ->get();
         $program['members'] =$members;
         $files = Committee_files::where('committe_id', $committee->id)->where('deleted_at', null)->get(); 
         $program['files'] =$files;
