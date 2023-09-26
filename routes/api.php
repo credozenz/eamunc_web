@@ -47,6 +47,7 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::post('/add_blocks', [BlockController::class,'add_blocks']);
     Route::post('/update_blocks', [BlockController::class,'update_blocks']);
     Route::post('/delete_blocks', [BlockController::class,'delete_blocks']);
+    Route::post('/get_block_members', [BlockController::class,'get_block_members']);
     Route::post('/get_block_chat', [BlockController::class,'get_block_chat']);
     Route::post('/add_block_chat', [BlockController::class,'add_block_chat']);
     Route::post('/delete_block_chat', [BlockController::class,'delete_block_chat']);

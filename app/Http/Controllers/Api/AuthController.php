@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Committee;
 use App\Models\Students;
 use App\Models\User;
+use App\Models\Countries;
 use View;
 use Illuminate\Support\Facades\Validator;
 use App\Helpers\ApiHelper;
@@ -114,10 +115,12 @@ class AuthController extends IndexController
         
         $loguser = auth()->user();
         $student   = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first(); 
+        $country   = Countries::where('id', $student->country_choice)->where('deleted_at', null)->first(); 
       
         $loguser['phone_code'] = $student->phone_code ?? '';
         $loguser['whatsapp_no'] = $student->whatsapp_no ?? '';
         $loguser['country_choice'] = $student->country_choice ?? '';
+        $loguser['country_name'] = $country->name ?? '';
         
         if (!$loguser) {
             $response['status'] = false;

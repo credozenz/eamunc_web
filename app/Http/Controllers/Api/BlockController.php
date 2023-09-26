@@ -119,6 +119,52 @@ class BlockController extends IndexController
     }
 
 
+    public function get_block_members(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            "block_id"    => "required",
+          ]);
+
+                if ($validator->fails()) {
+
+                $response['status']  = false;
+                $response['message'] = 'Validation Error: ' . $validator->errors();
+                return $this->sendResponse($response);
+
+                }
+
+                $bloc_members = DB::table('bloc_members as b')
+                                    ->join('users as u', 'b.user_id', '=', 'u.id')
+                                    ->join('students as s', 'b.user_id', '=', 's.user_id')
+                                    ->join('countries as c', 's.country_choice', '=', 'c.id')
+                                    ->select('b.*','c.name as country_choice','u.name as user_name','u.avatar as avatar')
+                                    ->where('u.deleted_at', null)
+                                    ->where('b.deleted_at', null)
+                                    ->where('b.bloc_id', '=',$request->block_id)
+                                    ->orderBy('b.id', 'ASC')
+                                    ->get();
+
+
+       
+
+        if (!$bloc_members) {
+
+            $response['status']  = false;
+            $response['message'] = "Something went wrong !";
+            return $this->sendResponse($response);
+     
+        }else{
+
+            $response['status'] = true;
+            $response['data']   = $bloc_members;
+            return $this->sendResponse($response);
+                
+        }
+    }
+
+
+
 
     public function delete_blocks(Request $request)
     {
