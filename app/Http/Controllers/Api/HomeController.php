@@ -18,6 +18,7 @@ use App\Models\Program_schedule_time;
 use App\Models\Blocs;
 use App\Models\Bloc_members;
 use App\Models\Images;
+use App\Models\Committee_files;
 use View;
 use Illuminate\Support\Facades\Validator;
 use App\Helpers\ApiHelper;
@@ -633,6 +634,50 @@ class HomeController extends IndexController
 
             $response['status'] = true;
             $response['data']   = "Live stream successfully deleted";
+            return $this->sendResponse($response);
+                
+        }
+    }
+
+
+
+
+
+
+
+
+    public function get_program_resources()
+    {
+
+        $loguser = auth()->user();
+        $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first();
+        $program =[];
+        $committee = Committee::where('id',$user->committee_choice)->first();
+
+        $program['committee'] =$committee;
+
+        $members = user::where('users.deleted_at', null)
+        ->join('students', 'users.id', '=', 'students.user_id')
+        ->leftjoin('schools', 'students.school_id', '=', 'schools.id')
+        ->select('students.*', 'schools.name as school_name', 'users.role', 'users.avatar')
+        ->where('users.role', '=' , 3)
+        ->whereIn('students.status', [3])
+        ->where('students.committee_choice', '=' , $committee->id)
+        ->orderBy('students.id', 'desc')
+        ->paginate(12);
+        $program['members'] =$members;
+        $files = Committee_files::where('committe_id', $committee->id)->where('deleted_at', null)->get(); 
+        $program['files'] =$files;
+        if (!$program) {
+
+            $response['status']  = false;
+            $response['message'] = "Something went wrong !";
+            return $this->sendResponse($response);
+     
+        }else{
+
+            $response['status'] = true;
+            $response['data']   = $program;
             return $this->sendResponse($response);
                 
         }

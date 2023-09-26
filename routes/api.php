@@ -77,6 +77,8 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::post('/get_all_resolutions', [AssemblyController::class,'get_all_resolutions']);
     Route::post('/get_committe_resolution', [AssemblyController::class,'get_committe_resolution']);
 
+    Route::post('/get_program_resources', [HomeController::class,'get_program_resources']);
+
     Route::post('/logout', [AuthController::class, 'logout']);
 
 });
