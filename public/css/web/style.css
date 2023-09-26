@@ -630,7 +630,7 @@ footer {
     overflow: hidden;
     height: 100%;
     object-fit: cover;
-    max-height: 160px;
+    max-height: 15rem;
 }
 
 .committee-card .content {
