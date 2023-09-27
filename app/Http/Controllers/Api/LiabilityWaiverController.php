@@ -37,9 +37,7 @@ class LiabilityWaiverController extends IndexController
     public function get_liability_waiverform(Request $request)
     {
 
-        $loguser = auth()->user();
-        $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first(); 
-
+       
         $form = SiteIndexes::where('deleted_at', null)->where('type', 'liability_waiver')->orderBy('id', 'DESC')->first(); 
       
         if (!$form) {

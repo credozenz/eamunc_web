@@ -37,11 +37,16 @@ class PaperController extends IndexController
     {
 
         $loguser = auth()->user();
-        $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first(); 
+        
+        if($loguser->role != 4){
+            $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first(); 
+            $committee = Committee::where('id',$user->committee_choice)->first();
 
-        $committee = Committee::where('id',$user->committee_choice)->first();
+        }else{
+            $committee = Committee::where([['id', $request->committee_id]])->first();
+        }
 
-        $papers = Paper_submission::where('committe_id',$user->committee_choice)->get();
+        $papers = Paper_submission::where('committe_id',$committee->id)->get();
 
         $papers = DB::table('users as u')
                     ->join('paper_submissions as b', 'u.id', '=', 'b.user_id')

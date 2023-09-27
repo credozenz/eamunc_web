@@ -55,8 +55,14 @@ class HomeController extends IndexController
     {
 
         $loguser = auth()->user();
-        $student   = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first(); 
-        $committee = Committee::where([['id', $student->committee_choice]])->first();
+        if($loguser->role != 4){
+            $student   = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first(); 
+            $committee = Committee::where([['id', $student->committee_choice]])->first();
+        }else{
+            $committee = Committee::where([['id', $request->committee_id]])->first();
+        }
+
+        
 
         $speakers =  User::where('users.deleted_at', null)
                                     ->join('speakers', 'users.id', '=', 'speakers.user_id')
@@ -199,8 +205,15 @@ class HomeController extends IndexController
     {
 
             $loguser = auth()->user();
-            $student   = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first(); 
-            $committee = Committee::where([['id', $student->committee_choice]])->first();
+            
+
+            if($loguser->role != 4){
+                $student   = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first(); 
+                $committee = Committee::where([['id', $student->committee_choice]])->first();
+            }else{
+                $committee = Committee::where([['id', $request->committee_id]])->first();
+            }
+
 
         $schedule = Program_schedule::where('deleted_at', null)->where('committe_id', $committee->id)->orderBy('id', 'ASC')->paginate(25);
   
@@ -339,10 +352,17 @@ class HomeController extends IndexController
     public function get_blocks(Request $request)
     {
         $loguser = auth()->user();
-        $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first();
-        $committee = Committee::where('id',$user->committee_choice)->first();
+       
 
-        $committee_bloc = Blocs::where('committe_id',$user->committee_choice)->where('deleted_at', null)->get();
+        if($loguser->role != 4){
+            $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first();
+            $committee = Committee::where('id',$user->committee_choice)->first();
+        }else{
+            $committee = Committee::where([['id', $request->committee_id]])->first();
+        }
+
+
+        $committee_bloc = Blocs::where('committe_id',$committee->id)->where('deleted_at', null)->get();
       
         if (!$committee_bloc) {
 
@@ -543,9 +563,15 @@ class HomeController extends IndexController
     public function get_live_stream(Request $request)
     {
         $loguser = auth()->user();
-        $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first();
         
-        $committee = Committee::where('id',$user->committee_choice)->first();
+
+        if($loguser->role != 4){
+            $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first();
+            $committee = Committee::where('id',$user->committee_choice)->first();
+        }else{
+            $committee = Committee::where([['id', $request->committee_id]])->first();
+        }
+
 
         $committee_lives = Images::where('connect_id', $committee->id)->where('type', 'app_committee_live')->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(12);
        
@@ -650,10 +676,16 @@ class HomeController extends IndexController
     {
 
         $loguser = auth()->user();
-        $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first();
-        $program =[];
-        $committee = Committee::where('id',$user->committee_choice)->first();
+       
+        if($loguser->role != 4){
+            $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first();
+            $committee = Committee::where('id',$user->committee_choice)->first();
 
+        }else{
+            $committee = Committee::where([['id', $request->committee_id]])->first();
+        }
+
+        $program =[];
         $program['committee'] =$committee;
 
         $members = user::where('users.deleted_at', null)

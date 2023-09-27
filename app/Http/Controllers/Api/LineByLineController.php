@@ -40,9 +40,15 @@ class LineByLineController extends IndexController
     {
 
         $loguser = auth()->user();
-        $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first(); 
 
-        $committee = Committee::where('id',$user->committee_choice)->first();
+        if($loguser->role != 4){
+            $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first(); 
+            $committee = Committee::where('id',$user->committee_choice)->first();
+
+        }else{
+            $committee = Committee::where([['id', $request->committee_id]])->first();
+        }
+       
 
         $line = Line_by_line::where('committe_id',$committee->id)->first();
       
@@ -76,9 +82,16 @@ class LineByLineController extends IndexController
             }
 
             $loguser = auth()->user();
-            $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first(); 
 
-            $committee = Committee::where('id',$user->committee_choice)->first();
+            if($loguser->role != 4){
+                $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first(); 
+                $committee = Committee::where('id',$user->committee_choice)->first();
+    
+            }else{
+                $committee = Committee::where([['id', $request->committee_id]])->first();
+            }
+
+            
     
             $line = Line_by_line::where('committe_id',$committee->id)->first();
     

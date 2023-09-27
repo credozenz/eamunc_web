@@ -114,15 +114,16 @@ class AuthController extends IndexController
     {
         
         $loguser = auth()->user();
-        $student   = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first(); 
-        $country   = Countries::where('id', $student->country_choice)->where('deleted_at', null)->first(); 
-      
-        $loguser['phone_code'] = $student->phone_code ?? '';
-        $loguser['whatsapp_no'] = $student->whatsapp_no ?? '';
-        $loguser['country_choice'] = $student->country_choice ?? '';
-        $loguser['class'] = $student->class ?? '';
-        $loguser['country_name'] = $country->name ?? '';
+        if($loguser->role != 4){
+            $student   = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first(); 
+            $country   = Countries::where('id', $student->country_choice)->where('deleted_at', null)->first(); 
         
+            $loguser['phone_code'] = $student->phone_code ?? '';
+            $loguser['whatsapp_no'] = $student->whatsapp_no ?? '';
+            $loguser['country_choice'] = $student->country_choice ?? '';
+            $loguser['class'] = $student->class ?? '';
+            $loguser['country_name'] = $country->name ?? '';
+        }
         if (!$loguser) {
             $response['status'] = false;
             $response['message'] = "Something went wrong !";
@@ -141,8 +142,12 @@ class AuthController extends IndexController
     {
 
         $loguser = auth()->user();
-        $student   = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first(); 
-        $committee = Committee::where([['id', $student->committee_choice]])->first();
+        if($loguser->role != 4){
+            $student   = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first(); 
+            $committee = Committee::where([['id', $student->committee_choice]])->first();
+        }else{
+            $committee = Committee::where([['id', $request->committee_id]])->first();
+        }
 
         if (!$committee) {
             $response['status'] = false;
@@ -181,8 +186,12 @@ class AuthController extends IndexController
     {
 
             $loguser = auth()->user();
-            $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first();
-            $committee = Committee::where('id',$user->committee_choice)->first();
+            if($loguser->role != 4){
+                $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first();
+                $committee = Committee::where('id',$user->committee_choice)->first();
+            }else{
+                $committee = Committee::where([['id', $request->committee_id]])->first();
+            }
 
             $committee_member = User::where('users.deleted_at', null)
                                     ->join('students', 'users.id', '=', 'students.user_id')
