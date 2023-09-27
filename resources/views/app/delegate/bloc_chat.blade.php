@@ -76,7 +76,7 @@
 
                             <time class="chat-time" >{{ date("d-m-Y g:i a", strtotime($chat->created_at)) ?? '' }}</time>
                           
-                          
+                            @if($chat->user_id == $member->user_id)
                             <form method="post" action="{{ url('app/delegate_chat_dlt',$chat->id) }}" class="col-md-12 mt-4"  enctype="multipart/form-data">
                                   @csrf 
                                   <hr>
@@ -85,7 +85,7 @@
                               </span>
                     
                             </form>
-                          
+                            @endif
                           
                           </div>
                          
@@ -139,6 +139,7 @@
                 @include('app.delegate.layouts.chat_pagination',['paginator' => $blocs_chats])
               </div>
 
+              @if($block_exists==true)
               <div class="panel-footer">
                 <form method="post" action="{{ url('app/delegate_chat_store',$id) }}" class="col-md-12"  enctype="multipart/form-data">
                                   @csrf 
@@ -162,6 +163,7 @@
                     </div>
                 </form>
               </div>
+              @endif
 
             </div>
             <!-- End Panel Chat -->

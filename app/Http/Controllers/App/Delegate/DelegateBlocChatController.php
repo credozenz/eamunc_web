@@ -16,6 +16,7 @@ use App\Models\Blocs;
 use App\Models\Bloc_members;
 use App\Models\Bloc_chats;
 use App\Models\User;
+use App\Models\Students;
 use Carbon\Carbon;
 use Str;
 use Image;
@@ -57,7 +58,15 @@ class DelegateBlocChatController extends Controller
                             ->orderBy('b.id', 'ASC')
                             ->paginate(2000);
 
-        return view('app/delegate/bloc_chat', compact('id','member','committee','committee_bloc','blocs_members','blocs_chats'));
+             $user_id_to_check = $member->user_id ?? '';
+
+             $block_exists = $blocs_members->contains(function ($blocs_members) use ($user_id_to_check) {
+                                return $blocs_members->id === $user_id_to_check;
+                            });
+                              
+                       
+
+        return view('app/delegate/bloc_chat', compact('id','member','committee','committee_bloc','blocs_members','blocs_chats','block_exists'));
     }
 
 

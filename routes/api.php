@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\ViennaController;
 use App\Http\Controllers\Api\LineByLineController;
 use App\Http\Controllers\Api\ResolutionController;
 use App\Http\Controllers\Api\AssemblyController;
+use App\Http\Controllers\Api\LiabilityWaiverController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -78,6 +79,11 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::post('/get_committe_resolution', [AssemblyController::class,'get_committe_resolution']);
 
     Route::post('/get_program_resources', [HomeController::class,'get_program_resources']);
+
+    Route::post('/get_liability_form', [LiabilityWaiverController::class,'get_liability_waiverform']);
+    Route::post('/add_liability_form', [LiabilityWaiverController::class,'add_liability_waiverform']);
+    Route::post('/show_liability_form', [LiabilityWaiverController::class,'show_liability_waiverform']);
+    Route::post('/delete_liability_form', [LiabilityWaiverController::class,'delete_liability_waiverform']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
 
