@@ -189,7 +189,7 @@ class ResolutionController extends IndexController
             $acceptedDelegates[] = User::where('users.deleted_at', null)
                                 ->join('students', 'users.id', '=', 'students.user_id')
                                 ->leftjoin('schools', 'students.school_id', '=', 'schools.id')
-                                ->select('users.*', 'schools.name as school_name', 'users.role', 'users.avatar')
+                                ->select('users.*', 'schools.name as school_name','students.position','users.role', 'users.avatar')
                                 ->where('students.user_id', '=', $Delegate)
                                 ->get();
         }

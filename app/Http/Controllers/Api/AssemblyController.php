@@ -43,6 +43,8 @@ class AssemblyController extends IndexController
         $resolutions = Resolution::where('resolution.deleted_at', null)
                         ->join('committees', 'resolution.committe_id', '=', 'committees.id')
                         ->select('resolution.*','committees.name as committee_name','committees.title as committee_title')
+                        ->where('committees.deleted_at', null)
+                        ->where('resolution.deleted_at', null)
                         ->get();   
 
     
@@ -80,6 +82,8 @@ class AssemblyController extends IndexController
                         ->join('committees', 'resolution.committe_id', '=', 'committees.id')
                         ->select('resolution.*','committees.name as committee_name','committees.title as committee_title')
                         ->where('resolution.id', '=', $request->resolution_id)
+                        ->where('committees.deleted_at', null)
+                        ->where('resolution.deleted_at', null)
                         ->get();   
 
     

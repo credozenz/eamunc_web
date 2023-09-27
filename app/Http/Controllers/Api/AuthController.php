@@ -120,6 +120,7 @@ class AuthController extends IndexController
         $loguser['phone_code'] = $student->phone_code ?? '';
         $loguser['whatsapp_no'] = $student->whatsapp_no ?? '';
         $loguser['country_choice'] = $student->country_choice ?? '';
+        $loguser['class'] = $student->class ?? '';
         $loguser['country_name'] = $country->name ?? '';
         
         if (!$loguser) {
@@ -183,13 +184,13 @@ class AuthController extends IndexController
             $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first();
             $committee = Committee::where('id',$user->committee_choice)->first();
 
-        $committee_member = User::where('users.deleted_at', null)
-                                ->join('students', 'users.id', '=', 'students.user_id')
-                                ->leftjoin('schools', 'students.school_id', '=', 'schools.id')
-                                ->select('users.*', 'schools.name as school_name', 'users.role', 'users.avatar')
-                                ->where('students.status', '=', 3)
-                                ->where('students.committee_choice', '=' , $committee->id)
-                                ->get();
+            $committee_member = User::where('users.deleted_at', null)
+                                    ->join('students', 'users.id', '=', 'students.user_id')
+                                    ->leftjoin('schools', 'students.school_id', '=', 'schools.id')
+                                    ->select('users.*', 'schools.name as school_name', 'students.position', 'users.role', 'users.avatar')
+                                    ->where('students.status', '=', 3)
+                                    ->where('students.committee_choice', '=' , $committee->id)
+                                    ->get();
 
         if (!$committee_member) {
             $response['status'] = false;

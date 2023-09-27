@@ -152,7 +152,7 @@ class BlockController extends IndexController
                                     ->join('users as u', 'b.user_id', '=', 'u.id')
                                     ->join('students as s', 'b.user_id', '=', 's.user_id')
                                     ->join('countries as c', 's.country_choice', '=', 'c.id')
-                                    ->select('b.*','c.name as country_choice','u.name as user_name','u.avatar as avatar')
+                                    ->select('b.*','c.name as country_choice','u.name as user_name','s.position','u.avatar as avatar')
                                     ->where('u.deleted_at', null)
                                     ->where('b.deleted_at', null)
                                     ->where('b.bloc_id', '=',$request->block_id)
@@ -176,6 +176,48 @@ class BlockController extends IndexController
                 
         }
     }
+
+
+    public function get_addblock_members(Request $request)
+    {
+
+        $loguser = auth()->user();
+       
+        $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first();
+        $committee = Committee::where('id',$user->committee_choice)->first();
+        
+        $committee_members = DB::table('users as u')
+                                ->join('students as s', 'u.id', '=', 's.user_id')
+                                ->select('u.*')
+                                ->where('s.status', '=', 3)
+                                ->where('u.role', '=', 2)
+                                ->where('u.deleted_at', null)
+                                ->where('s.committee_choice', '=' , $committee->id)
+                                ->whereNotExists(function($query)
+                                        {
+                                            $query->select(DB::raw(1))
+                                                ->from('bloc_members as bm')
+                                                ->whereRaw('u.id = bm.user_id')
+                                                ->where('bm.deleted_at', null);
+                                        })
+                                ->get();
+
+                             
+        if (!$committee_members) {
+
+            $response['status']  = false;
+            $response['message'] = "Something went wrong !";
+            return $this->sendResponse($response);
+     
+        }else{
+
+            $response['status'] = true;
+            $response['data']   = $committee_members;
+            return $this->sendResponse($response);
+                
+        }
+    }
+
 
 
 
@@ -407,7 +449,7 @@ class BlockController extends IndexController
         }else{
 
             $response['status'] = true;
-            $response['message'] = "Message Send !";
+            $response['data'] = ['chat_id' => $chat->id];
             return $this->sendResponse($response);
                 
         }
