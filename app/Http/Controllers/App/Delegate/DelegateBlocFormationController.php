@@ -33,14 +33,7 @@ class DelegateBlocFormationController extends Controller
 
         $committee = Committee::where('id',$member->committee_choice)->first();
 
-        $committee_bloc = DB::table('blocs as b')
-                            ->join('bloc_members as m', 'b.id', '=', 'm.bloc_id')
-                            ->select('b.*')
-                            ->where('b.committe_id',$member->committee_choice)
-                            ->where('m.user_id','!=',$member->user_id)
-                            ->where('b.deleted_at', null)
-                            ->where('m.deleted_at', null)
-                            ->get();
+        $committee_bloc = Blocs::where('committe_id',$member->committee_choice)->where('deleted_at', null)->orderBy('id', 'DESC')->get();
 
         $mybloc = DB::table('blocs as b')
                             ->join('bloc_members as m', 'b.id', '=', 'm.bloc_id')

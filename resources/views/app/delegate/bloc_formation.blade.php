@@ -52,12 +52,14 @@
 
           
               @foreach($committee_bloc as $value)
+              @if($value->id != $mybloc->id)
               <div class="col-md-3 mb-3">
                 <div class="bloc-box text-center">
                     <h6>{{ ucfirst($value->name) ?? '' }}</h6>
                     <a href="{{ url('app/delegate_bloc_chat',$value->id) }}">View</a>
                 </div>
               </div>
+              @endif
               @endforeach
           
           
