@@ -347,7 +347,7 @@ class BlockController extends IndexController
                             ->where('b.deleted_at', null)
                             ->where('b.bloc_id', '=',$request->block_id)
                             ->orderBy('b.id', 'ASC')
-                            ->get();
+                            ->paginate(10);
 
                           
      
@@ -492,6 +492,26 @@ class BlockController extends IndexController
     }
 
 
+    public function delete_block_member(Request $request)
+    {
+        $mytime = Carbon::now();
+        $timestamp=$mytime->toDateTimeString();
+        $bloc = Bloc_members::where('bloc_id', $request->bloc_id)->where('user_id', $request->user_id)->update(['deleted_at'=>$timestamp]);
+
+        if (!$bloc) {
+
+            $response['status']  = false;
+            $response['message'] = "Something went wrong !";
+            return $this->sendResponse($response);
+     
+        }else{
+
+            $response['status'] = true;
+            $response['data']   = "Bloc member successfully deleted";
+            return $this->sendResponse($response);
+                
+        }
+    }
 
 
 

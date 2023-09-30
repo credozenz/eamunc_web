@@ -39,6 +39,8 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::post('/get_speakers_list', [HomeController::class,'get_speakers_list']);
     Route::post('/speakers_country', [HomeController::class,'speakers_country']);
     Route::post('/add_speakers', [HomeController::class,'add_speakers']);
+    Route::post('/delete_speaker', [HomeController::class,'delete_speaker']);
+
 
     Route::post('/get_program_schedule', [HomeController::class,'get_program_schedule']);
     Route::post('/delete_program_schedule', [HomeController::class,'delete_program_schedule']);
@@ -49,6 +51,7 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::post('/update_blocks', [BlockController::class,'update_blocks']);
     Route::post('/delete_blocks', [BlockController::class,'delete_blocks']);
     Route::post('/get_block_members', [BlockController::class,'get_block_members']);
+    Route::post('/delete_block_member', [BlockController::class,'delete_block_member']);
     Route::post('/get_addblock_members', [BlockController::class,'get_addblock_members']);
     Route::post('/get_block_chat', [BlockController::class,'get_block_chat']);
     Route::post('/add_block_chat', [BlockController::class,'add_block_chat']);

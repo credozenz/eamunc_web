@@ -720,6 +720,27 @@ class HomeController extends IndexController
 
 
 
+    public function delete_speaker(Request $request)
+    {
+        $mytime = Carbon::now();
+        $timestamp=$mytime->toDateTimeString();
+        $speak = Speakers::where('id', $request->speaker_id)->update(['deleted_at'=>$timestamp]);
+
+        if (!$speak) {
+
+            $response['status']  = false;
+            $response['message'] = "Something went wrong !";
+            return $this->sendResponse($response);
+     
+        }else{
+
+            $response['status'] = true;
+            $response['data']   = "Speaker successfully deleted";
+            return $this->sendResponse($response);
+                
+        }
+    }
+
 
 
 
