@@ -43,8 +43,11 @@ class ForgotPasswordController extends Controller
     }
 
     public function ForgetPasswordStore(Request $request) {
+        
         $request->validate([
             'email' => 'required|email|exists:users',
+        ], [
+            'email.exists' => 'The selected email does not exist in our records.',
         ]);
 
         $token = Str::random(64);
