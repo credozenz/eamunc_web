@@ -246,6 +246,9 @@ class BlockController extends IndexController
      
         }else{
 
+            $bloc = Bloc_members::where('bloc_id', $request->block_id)->update(['deleted_at'=>$timestamp]);
+
+
             $response['status'] = true;
             $response['data']   = "Block successfully deleted";
             return $this->sendResponse($response);
@@ -346,7 +349,7 @@ class BlockController extends IndexController
                             ->where('u.deleted_at', null)
                             ->where('b.deleted_at', null)
                             ->where('b.bloc_id', '=',$request->block_id)
-                            ->orderBy('b.id', 'ASC')
+                            ->orderBy('b.id', 'DESC')
                             ->paginate(10);
 
                           
@@ -496,7 +499,7 @@ class BlockController extends IndexController
     {
         $mytime = Carbon::now();
         $timestamp=$mytime->toDateTimeString();
-        $bloc = Bloc_members::where('bloc_id', $request->bloc_id)->where('user_id', $request->user_id)->update(['deleted_at'=>$timestamp]);
+        $bloc = Bloc_members::where('bloc_id', $request->block_id)->where('user_id', $request->user_id)->update(['deleted_at'=>$timestamp]);
 
         if (!$bloc) {
 
