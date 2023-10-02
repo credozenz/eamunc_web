@@ -31,6 +31,7 @@
       </tr>
     </table>
           <div class="col-md-8">
+            @if($token_valid==true &&  $email !='')
               <div class="card">
                   <div class="card-header" style="text-align: center;">
                    <h6>Set Password</h6>
@@ -84,6 +85,16 @@
                         
                   </div>
               </div>
+              @else
+              <div class="card">
+                  <div class="card-header" style="text-align: center;">
+                    <div class="alert alert-success" role="alert">
+                      <h6>Token expired or invalid.</h6>
+                      <p>Please contact our administrator for further assistance.</p>
+                    </div>
+                 </div>
+              </div>
+              @endif
           </div>
       </div>
   </div>

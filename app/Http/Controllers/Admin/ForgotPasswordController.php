@@ -95,7 +95,15 @@ class ForgotPasswordController extends Controller
     public function ResetPassword($token) {
         $reset_row = DB::table('password_resets')->where('token', $token)->first();
 
-        return view('admin.auth.forget-password-link', ['token' => $token,'email' =>$reset_row->email ]);
+        if (!$reset_row) {
+            $token_valid = false;
+            $email ='';
+        }else{
+            $token_valid = true; 
+            $email = $reset_row->email;
+        }
+
+        return view('admin.auth.forget-password-link', ['token' => $token,'email' =>$email,'token_valid' =>$token_valid ]);
     }
     
     public function ResetPasswordStore(Request $request) {
