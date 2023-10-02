@@ -172,7 +172,7 @@
             
         <div class="row"><div class="col-md-8"></div>
           <div class="col-md-4">     
-            <a href="{{ url('app/delegate_dashbord') }}" class="text-danger fs-11 mt-1"><i class="fa fa-power-off" aria-hidden="true"></i>
+            <a href="{{ url('app/delegate_log_out') }}" class="text-danger fs-11 mt-1"><i class="fa fa-power-off" aria-hidden="true"></i>
             <span class="text-primary mb-3 d-inline-block ps-2 " style="line-height: 37px;"> Sign Out </span>
             </a>                     
           </div>
