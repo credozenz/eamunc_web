@@ -113,7 +113,7 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="">Committee of Choice*</label>
-                                            <select name="committee_choice" class="form-control @error('committee_choice') border-danger @enderror" {{ $errors->has('committee_choice') ? 'autofocus' : '' }} placeholder="Committee of Choice" required>
+                                            <select name="committee_choice" id="committee_choice"  data-url="{{ url('admin/committee_country') }}" class="form-control @error('committee_choice') border-danger @enderror" {{ $errors->has('committee_choice') ? 'autofocus' : '' }} placeholder="Committee of Choice" required>
                                                 <option value=""> Select Committee of Choice </option>
                                                 @foreach ($committees as $key => $value)
                                                 <option value="{{ $value->id ?? '' }}" {{ ($data->committee_choice == $value->id ? "selected":"") }}> {{ $value->name ?? '' }}</option>
@@ -126,7 +126,7 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="form-label">Country of Choice*</label>
-                                            <select name="country_choice" class="form-control @error('country_choice') border-danger @enderror" {{ $errors->has('country_choice') ? 'autofocus' : '' }} placeholder="Country of Choice" required>
+                                            <select name="country_choice" id="country_choice" class="form-control @error('country_choice') border-danger @enderror" {{ $errors->has('country_choice') ? 'autofocus' : '' }} placeholder="Country of Choice" required>
                                                 <option value="">Select Country of Choice</option>
                                                 @foreach ($countries as $key => $value)
                                                 <option value="{{ $value->id }}" {{ ($data->country_choice == $value->id ? "selected":"") }}> {{ $value->name ?? '' }}</option>

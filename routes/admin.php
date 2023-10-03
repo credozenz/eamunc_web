@@ -345,6 +345,7 @@ Route::group(['middleware' => 'adminchecker'], function() {
      // Route::post('/committee_dlt_bureau/{id}', [CommitteeController::class,'delete_bureau'])->name('admin.committee.dlt_bureau');
      
      Route::get('/committee_delegate/{id}', [CommitteeController::class,'committee_delegate'])->name('admin.committee.delegate');
+     Route::post('/committee_country', [CommitteeController::class,'committee_country'])->name('admin.committee.committee_country');
      
      // Route::post('/committee_add_delegate', [CommitteeController::class,'add_delegate'])->name('admin.committee.add_delegate');
      // Route::post('/committee_dlt_delegate/{id}', [CommitteeController::class,'delete_delegate'])->name('admin.committee.dlt_delegate');

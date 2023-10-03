@@ -110,6 +110,23 @@ class StudentsController extends Controller
         $school = School::where('id', $data->school_id)->first(); 
         $user   = User::where('id', $data->user_id)->first(); 
         $countries = Countries::where('deleted_at', null)->get();
+
+        if($data->committee_choice){
+
+            $countries = Countries::where('countries.deleted_at', null)
+            ->whereNotIn('countries.id', function($query) use ($data) {
+                $query->select('students.country_choice')
+                    ->from('students')
+                    ->join('committees', 'students.committee_choice', '=', 'committees.id')
+                    ->where('committees.id', '=', $data->committee_choice);
+            })
+            ->get();
+        
+      
+
+        }
+
+
         return view('admin/students/edit', compact('data','school','committees','user','countries'));
        
     }

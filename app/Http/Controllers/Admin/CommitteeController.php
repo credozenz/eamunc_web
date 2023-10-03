@@ -12,6 +12,7 @@ use App\Models\Committee;
 use App\Models\Committee_member;
 use App\Models\Committee_files;
 use App\Models\User;
+use App\Models\Countries;
 use App\Models\School;
 use Carbon\Carbon;
 use Str;
@@ -380,6 +381,23 @@ class CommitteeController extends Controller
         return view('admin/committee/bureau_members', compact('data','id','request'));
     }
 
+
+
+    public function committee_country(Request $request)
+   {
+    $committeeChoice = $request->input('committee_choice');
+    $countries = Countries::where('countries.deleted_at', null)
+        ->whereNotIn('countries.id', function($query) use ($committeeChoice) {
+        $query->select('students.country_choice')
+            ->from('students')
+            ->join('committees', 'students.committee_choice', '=', 'committees.id')
+            ->where('committees.id', '=', $committeeChoice);
+    })
+    ->get();
+    
+    return response()->json($countries);
+
+    }
     
 
 

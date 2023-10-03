@@ -118,9 +118,14 @@
                                 <tbody>
 
                             @if(!empty($data) && $data->count())
+                            @php
+                                $currentPage = $data->currentPage(); 
+                                $itemsPerPage = $data->perPage(); 
+                                $startingRowNumber = ($currentPage - 1) * $itemsPerPage + 1; 
+                            @endphp
                                 @foreach ($data as $key => $value)
                                     <tr>
-                                        <td class="text-bold-500">{{ $key+1 }}</td>
+                                        <td class="text-bold-500">{{ $startingRowNumber }}</td>
                                         <td class="text-bold-500">{{ $value->name }}</td>
                                         <td class="text-bold-500">{{ $value->class }}</td>
                                         <td class="text-bold-500">
@@ -173,6 +178,9 @@
                                             
                                         </td>
                                     </tr>
+                                    @php
+                                        $startingRowNumber++;
+                                    @endphp
                                 @endforeach
                             @else
                                 <tr>
