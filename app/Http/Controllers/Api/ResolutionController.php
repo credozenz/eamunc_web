@@ -193,6 +193,8 @@ class ResolutionController extends IndexController
 
         $resolution = Resolution::where('committe_id',$committee->id)->first();
 
+        if(isset($resolution->accepted_delegates) && !empty($resolution->accepted_delegates)){
+
         $acceptedDelegatesArray = isset($resolution->accepted_delegates) ? explode(',', $resolution->accepted_delegates) : [];
 
         $newDelegateId = $user->id;
@@ -212,12 +214,21 @@ class ResolutionController extends IndexController
         
 
         if($acceptedDelegates){
-            return $this->sendResponse($acceptedDelegates);
+
+            $response['status'] = true;
+            $response['data']   = $acceptedDelegates;
+            return $this->sendResponse($response);
           }else{
             $response['status']  = false;
             $response['message'] = "Something went wrong!!";
             return $this->sendResponse($response);
           } 
+
+        }else{
+            $response['status'] = true;
+            $response['data']   = [];
+            return $this->sendResponse($response);
+        }
        
     
 

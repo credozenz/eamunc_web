@@ -697,6 +697,7 @@ class HomeController extends IndexController
                         ->where('students.committee_choice', '=' , $committee->id)
                         ->orderBy('students.id', 'desc')
                         ->get();
+                        
         $program['members'] =$members;
         $files = Committee_files::where('committe_id', $committee->id)->where('deleted_at', null)->get(); 
         $program['files'] =$files;
