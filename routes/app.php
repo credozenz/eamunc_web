@@ -141,6 +141,7 @@ Route::group(['middleware' => 'delegatechecker'], function() {
     Route::post('/delegate_paper_submit', [DelegatePaperSubmissionController::class,'store'])->name('app.delegate_paper_submit');
     Route::get('/delegate_bloc_formation', [DelegateBlocFormationController::class,'index'])->name('app.delegate_bloc_formation');
     Route::get('/delegate_vienna_formula', [DelegateViennaFormulaController::class,'index'])->name('app.delegate_vienna_formula');
+    Route::post('/delegate_vienna_formula_store', [DelegateViennaFormulaController::class,'store'])->name('app.delegate_vienna_formula_store');
     Route::get('/delegate_line_by_line', [DelegateLineByLineController::class,'index'])->name('app.delegate_line_by_line');
     Route::get('/delegate_resolution', [DelegateResolutionController::class,'index'])->name('app.delegate_resolution');
     Route::post('/delegate_resolution_accept', [DelegateResolutionController::class,'accept'])->name('app.delegate_resolution_accept');

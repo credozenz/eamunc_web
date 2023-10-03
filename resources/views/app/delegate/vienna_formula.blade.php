@@ -26,13 +26,27 @@
                 <div class="col-md-12 col-12">
                     <div class="form-group">
                     @if(!empty($vienna->content))
-                        <textarea id="view_editor" > {!! $vienna->content ?? '' !!}</textarea>
-                     @else
+                    <form method="post" action="{{ url('app/delegate_vienna_formula_store') }}" class="mt-5 col-md-12"  enctype="multipart/form-data">
+                      @csrf
+                          <div class="col-md-12 col-12">
+                              <div class="form-group">
+                                
+                                  <textarea id="txt_editor" type="text" name="vienna" class="form-control @error('vienna') border-danger @enderror" style="height: 850px;">{{ $vienna->content ?? old('vienna') }}</textarea>
+                                  @error('vienna')<div class="text-danger mt-2">{{ $message }}</div>@enderror
+                              </div>
+                          </div>
+                          <button type="submit" class="btn btn-primary mt-3"> Submit</button>
+                    </form>
+                    @else
                      <div class="blue-box mt-3">
                                 <h4>Please wait !</h4>
                          <p class="mt-2 mb-3">This session has not started !</p>
                      </div>
                      @endif
+
+
+
+                  
                         
                     </div>
                 </div>
