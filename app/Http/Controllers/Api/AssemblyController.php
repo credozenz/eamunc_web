@@ -50,8 +50,8 @@ class AssemblyController extends IndexController
     
         if (!$resolutions) {
 
-            $response['status']  = false;
-            $response['message'] = "Please wait, This session has not started !";
+            $response['status']  = true;
+            $response['data'] = [];
             return $this->sendResponse($response);
      
         }else{
@@ -89,8 +89,8 @@ class AssemblyController extends IndexController
     
         if (!$resolutions) {
 
-            $response['status']  = false;
-            $response['message'] = "Please wait, This session has not started !";
+            $response['status']  = true;
+            $response['data'] = [];
             return $this->sendResponse($response);
      
         }else{

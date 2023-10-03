@@ -42,8 +42,8 @@ class LiabilityWaiverController extends IndexController
       
         if (!$form) {
 
-            $response['status']  = false;
-            $response['message'] = "Something went wrong!!";
+            $response['status']  = true;
+            $response['data'] = [];
             return $this->sendResponse($response);
      
         }else{
@@ -123,8 +123,8 @@ class LiabilityWaiverController extends IndexController
 
         if (!$form->liability_form) {
 
-            $response['status']  = false;
-            $response['message'] = "Something went wrong!!";
+            $response['status']  = true;
+            $response['data'] = [];
             return $this->sendResponse($response);
      
         }else{

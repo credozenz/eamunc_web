@@ -125,8 +125,8 @@ class AuthController extends IndexController
             $loguser['country_name'] = $country->name ?? '';
         }
         if (!$loguser) {
-            $response['status'] = false;
-            $response['message'] = "Something went wrong !";
+            $response['status']  = true;
+            $response['data'] = [];
             return $this->sendResponse($response);
      
         }else{
@@ -150,8 +150,8 @@ class AuthController extends IndexController
         }
 
         if (!$committee) {
-            $response['status'] = false;
-            $response['message'] = "Something went wrong !";
+            $response['status']  = true;
+            $response['data'] = [];
             return $this->sendResponse($response);
      
         }else{
@@ -169,8 +169,8 @@ class AuthController extends IndexController
         $committees = Committee::where([['deleted_at', null]])->paginate(300);
 
         if (!$committees) {
-            $response['status'] = false;
-            $response['message'] = "Something went wrong !";
+            $response['status']  = true;
+            $response['data'] = [];
             return $this->sendResponse($response);
      
         }else{
@@ -202,8 +202,8 @@ class AuthController extends IndexController
                                     ->get();
 
         if (!$committee_member) {
-            $response['status'] = false;
-            $response['message'] = "Something went wrong !";
+            $response['status']  = true;
+            $response['data'] = [];
             return $this->sendResponse($response);
      
         }else{

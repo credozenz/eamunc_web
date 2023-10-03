@@ -54,8 +54,8 @@ class ResolutionController extends IndexController
       
         if (!$resolution) {
 
-            $response['status']  = false;
-            $response['message'] = "Please wait, This session has not started !";
+            $response['status']  = true;
+            $response['data'] = [];
             return $this->sendResponse($response);
      
         }else{
@@ -113,7 +113,7 @@ class ResolutionController extends IndexController
             return $this->sendResponse($success);
           }else{
             $response['status']  = false;
-            $response['message'] = "No Resolution added. Check your input data.";
+            $response['message'] = "Something went wrong !";
             return $this->sendResponse($response);
           }
 

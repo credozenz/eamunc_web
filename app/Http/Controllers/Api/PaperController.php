@@ -58,8 +58,8 @@ class PaperController extends IndexController
       
         if (!$papers) {
 
-            $response['status']  = false;
-            $response['message'] = "Something went wrong !";
+            $response['status']  = true;
+            $response['data'] = [];
             return $this->sendResponse($response);
      
         }else{
@@ -141,8 +141,8 @@ class PaperController extends IndexController
 
         if (!$paper) {
 
-            $response['status']  = false;
-            $response['message'] = "Something went wrong !";
+            $response['status']  = true;
+            $response['data'] = [];
             return $this->sendResponse($response);
      
         }else{

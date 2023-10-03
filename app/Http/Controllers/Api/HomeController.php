@@ -38,8 +38,8 @@ class HomeController extends IndexController
 
         if (!$guideline) {
 
-            $response['status']  = false;
-            $response['message'] = "Something went wrong !";
+            $response['status']  = true;
+            $response['data'] = [];
             return $this->sendResponse($response);
      
         }else{
@@ -76,8 +76,8 @@ class HomeController extends IndexController
 
         if (!$speakers) {
 
-            $response['status']  = false;
-            $response['message'] = "Something went wrong !";
+            $response['status']  = true;
+            $response['data'] = [];
             return $this->sendResponse($response);
      
         }else{
@@ -117,8 +117,8 @@ class HomeController extends IndexController
 
         if (!$speaker_country) {
 
-            $response['status']  = false;
-            $response['message'] = "Something went wrong !";
+            $response['status']  = true;
+            $response['data'] = [];
             return $this->sendResponse($response);
      
         }else{
@@ -230,8 +230,8 @@ class HomeController extends IndexController
 
         if (!$program_schedule) {
 
-            $response['status']  = false;
-            $response['message'] = "Something went wrong !";
+            $response['status']  = true;
+            $response['data'] = [];
             return $this->sendResponse($response);
      
         }else{
@@ -366,8 +366,8 @@ class HomeController extends IndexController
       
         if (!$committee_bloc) {
 
-            $response['status']  = false;
-            $response['message'] = "Something went wrong !";
+            $response['status']  = true;
+            $response['data'] = [];
             return $this->sendResponse($response);
      
         }else{
@@ -578,8 +578,8 @@ class HomeController extends IndexController
       
         if (!$committee_lives) {
 
-            $response['status']  = false;
-            $response['message'] = "Something went wrong !";
+            $response['status']  = true;
+            $response['data'] = [];
             return $this->sendResponse($response);
      
         }else{
@@ -703,8 +703,8 @@ class HomeController extends IndexController
         $program['files'] =$files;
         if (!$program) {
 
-            $response['status']  = false;
-            $response['message'] = "Something went wrong !";
+            $response['status']  = true;
+            $response['data'] = [];
             return $this->sendResponse($response);
      
         }else{

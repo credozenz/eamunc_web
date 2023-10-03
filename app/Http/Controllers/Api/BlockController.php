@@ -61,8 +61,8 @@ class BlockController extends IndexController
      
         if (!$committee_bloc) {
 
-            $response['status']  = false;
-            $response['message'] = "Something went wrong !";
+            $response['status']  = true;
+            $response['data'] = [];
             return $this->sendResponse($response);
      
         }else{
@@ -128,7 +128,7 @@ class BlockController extends IndexController
              }else{
     
                 $response['status']  = false;
-                $response['message'] = "No Block added. Check your input data.";
+                $response['message'] = "Something went wrong !";
                 return $this->sendResponse($response);
                     
             }
@@ -170,8 +170,8 @@ class BlockController extends IndexController
 
         if (!$bloc_members) {
 
-            $response['status']  = false;
-            $response['message'] = "Something went wrong !";
+            $response['status']  = true;
+            $response['data'] = [];
             return $this->sendResponse($response);
      
         }else{
@@ -211,8 +211,8 @@ class BlockController extends IndexController
                              
         if (!$committee_members) {
 
-            $response['status']  = false;
-            $response['message'] = "Something went wrong !";
+            $response['status']  = true;
+            $response['data'] = [];
             return $this->sendResponse($response);
      
         }else{
@@ -240,8 +240,8 @@ class BlockController extends IndexController
 
         if (!$block) {
 
-            $response['status']  = false;
-            $response['message'] = "Something went wrong !";
+            $response['status']  = true;
+            $response['data'] = [];
             return $this->sendResponse($response);
      
         }else{
@@ -356,8 +356,8 @@ class BlockController extends IndexController
      
         if (!$blocs_chats) {
 
-            $response['status']  = false;
-            $response['message'] = "Something went wrong !";
+            $response['status']  = true;
+            $response['data'] = [];
             return $this->sendResponse($response);
      
         }else{
@@ -503,8 +503,8 @@ class BlockController extends IndexController
 
         if (!$bloc) {
 
-            $response['status']  = false;
-            $response['message'] = "Something went wrong !";
+            $response['status']  = true;
+            $response['data'] = [];
             return $this->sendResponse($response);
      
         }else{
