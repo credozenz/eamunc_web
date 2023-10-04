@@ -25,7 +25,25 @@
                         </div>
                     </div>
                 @endforeach
-            
+
+                @if ($committees->currentPage() === $committees->lastPage())
+                    @if(!empty($press_corp))
+                    <div class="col-12 px-0">
+                            <h4 class="color-darkblue mb-4">{{ $press_corp->name ?? '' }}</h4>
+                            <div class="row committee-card">
+                                <div class="col-md-5 committee-thumb">
+                                    <img src="{{ asset('uploads/'.$value->image) ?? '' }}" class="commitee-image" alt="{{ $value->name ?? '' }}">
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="content p-4">
+                                        <strong><a href="{{ route('presscorp-inner' ?? '') }}" class="color-white">{{ $press_corp->title ?? '' }}</a></strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                @endif
+              
                 </div>
                 @include('web.layout.pagination', ['paginator' => $committees])
                 <span class="spacer"></span>

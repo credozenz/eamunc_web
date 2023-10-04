@@ -47,6 +47,7 @@
                 </a>
             </li>
 
+           
             <li class="sidebar-item @if($routeGroup=='users') active @endif ">
                 <a href="{{ route('admin.users') }}" class='sidebar-link'>
                     <span><i class="fa fa-users" aria-hidden="true">&nbsp</i>VIP Users</span>
@@ -154,6 +155,11 @@
             <li class="sidebar-item  @if($routeGroup =='gallery') active @endif ">
                 <a href="{{ route('admin.gallery') }}" class='sidebar-link'>
                     <span><i class="fa fa-picture-o" aria-hidden="true">&nbsp</i>Gallery</span>
+                </a>
+            </li>
+            <li class="sidebar-item @if($routeGroup=='press_corp') active @endif ">
+                <a href="{{ route('admin.committee.press_corp') }}" class='sidebar-link'>
+                    <span><i class="fa fa-users" aria-hidden="true">&nbsp</i>Press Corp</span>
                 </a>
             </li>
 

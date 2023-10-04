@@ -222,7 +222,13 @@ Route::group(['middleware' => 'adminchecker'], function() {
      Route::post('/committee_update/{id}', [CommitteeController::class,'update'])->name('admin.committee.update');
      Route::post('/committee_delete/{id}', [CommitteeController::class,'destroy'])->name('admin.committee.destroy');
      Route::post('/committee_file_delete/{id}', [CommitteeController::class,'file_destroy'])->name('admin.committee.file_destroy');
-    
+
+     Route::get('/press_corp', [CommitteeController::class,'press_corp'])->name('admin.committee.press_corp');
+     Route::post('/press_corp_update', [CommitteeController::class,'press_corp_update'])->name('admin.committee.press_corp_update');
+     Route::get('/press_corp_member', [CommitteeController::class,'press_corp_member'])->name('admin.committee.press_corp_member');
+     Route::post('/press_corp_addmember', [CommitteeController::class,'press_corp_addmember'])->name('admin.committee.press_corp_addmember');
+     Route::get('/press_corp_member_dlt/{id}', [CommitteeController::class,'press_corp_member_dlt'])->name('admin.committee.press_corp_member_dlt');
+     Route::get('/press_corp_dlt/{id}', [CommitteeController::class,'press_corp_dlt'])->name('admin.committee.press_corp_dlt');
 
      Route::get('/users', [UsersController::class,'index'])->name('admin.users');
      Route::get('/users_create', [UsersController::class,'create'])->name('admin.users.create');

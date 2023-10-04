@@ -39,6 +39,7 @@ Route::post('/alumni-registration-store', [AlumniController::class,'registration
 Route::get('/alumninews-inner/{id}', [AlumniController::class,'alumni_news_inner'])->name('alumni-news-inner');
 Route::get('/committees', [CommitteesController::class,'index'])->name('committees');
 Route::get('/committees-inner/{id}', [CommitteesController::class,'index_inner'])->name('committees-inner');
+Route::get('/presscorp-inner', [CommitteesController::class,'presscorp_inner'])->name('presscorp-inner');
 Route::get('/conferences', [ConferencesController::class,'index'])->name('conference');
 Route::get('/conference-update-inner/{id}', [ConferencesController::class,'conference_update_inner'])->name('conference-update-inner');
 Route::get('/faq', [FaqController::class,'index'])->name('faq');
@@ -61,6 +62,8 @@ Route::get('/virtual-code', [VirtualCodeController::class,'index'])->name('virtu
 Route::post('/committees_and_country', [RegistrationController::class,'committees_and_country'])->name('committees_and_country');
 Route::post('/validate_user_email', [RegistrationController::class,'validate_user_email'])->name('validate_user_email');
 Route::post('/validate_user_phone', [RegistrationController::class,'validate_user_phone'])->name('validate_user_phone');
+
+Route::post('/committee_country', [CommitteesController::class,'committee_country'])->name('committee-country');
 
 Route::get('/privacy_policy', [PolicyController::class,'privacy_policy'])->name('privacy-policy');
 Route::get('/terms_service', [PolicyController::class,'terms_service'])->name('terms-service');

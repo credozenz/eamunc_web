@@ -520,6 +520,51 @@ $(document).ready(function() {
 
 
 
+$(document).ready(function () {
+       
+    $("#committee_choice").change(function () {
+        
+        var url = $(this).data('url');
+        
+        updateCountryDropdown(url);
+    });
+
+    function updateCountryDropdown(url) {
+        var committeeChoice = $("#committee_choice").val();
+
+
+        $.ajaxSetup({
+            headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+    
+        let _token1   = $('meta[name="csrf-token"]').attr('content');
+
+        // Send an AJAX request to fetch the countries based on the selected committee
+        $.ajax({
+            type: "POST",
+            url: url, 
+            dataType:"json",
+            data: { committee_choice: committeeChoice },
+            _token: _token1,
+            success: function(response){
+       
+                console.log(response);
+                // Clear existing options
+                $("#country_choice").empty();
+
+                // Add placeholder option
+                $("#country_choice").append('<option value="">Select Country of Choice</option>');
+
+                // Add fetched countries
+                $.each(response, function (key, value) {
+                    $("#country_choice").append('<option value="' + value.id + '">' + value.name + '</option>');
+                });
+            },
+        });
+    }
+});
 
 
 

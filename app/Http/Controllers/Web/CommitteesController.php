@@ -11,10 +11,11 @@ use View;
 use App\Helpers\WebHelper;
 use App\Models\SiteIndexes;
 use App\Models\Committee;
+use App\Models\Images;
 use App\Models\User;
 use App\Models\Committee_member;
 use App\Models\Committee_files;
-
+use App\Models\Countries;
 
 class CommitteesController extends Controller
 {
@@ -24,7 +25,14 @@ class CommitteesController extends Controller
 
         $committees = Committee::where('deleted_at', null)->orderBy('position', 'ASC')->paginate(4); 
 
-        return view('web/committees', compact('committees'));
+        $press_corp = SiteIndexes::where('deleted_at', null)->where('type', 'press_corp')->first();
+
+        if(isset($press_corp->id)){
+            $press_corp_members = Images::where('type', 'press_corp')->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(12);
+        }else{
+            $press_corp_members =[];
+        }
+        return view('web/committees', compact('committees','press_corp','press_corp_members'));
 
 
     }
@@ -53,6 +61,42 @@ class CommitteesController extends Controller
 
 
     }
+
+
+    public function presscorp_inner()
+    {
+        
+
+        $press_corp = SiteIndexes::where('deleted_at', null)->where('type', 'press_corp')->first();
+
+        if(isset($press_corp->id)){
+            $press_corp_members = Images::where('type', 'press_corp')->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(12);
+        }else{
+            $press_corp_members =[];
+        }
+        return view('web/presscorp-inner', compact('press_corp','press_corp_members'));
+
+
+    }
+
+
+    public function committee_country(Request $request)
+    {
+     $committeeChoice = $request->input('committee_choice');
+    
+     $countries = Countries::where('countries.deleted_at', null)
+         ->whereNotIn('countries.id', function($query) use ($committeeChoice) {
+         $query->select('students.country_choice')
+             ->from('students')
+             ->join('committees', 'students.committee_choice', '=', 'committees.id')
+             ->where('committees.id', '=', $committeeChoice)
+             ->whereIn('students.status', [1, 2, 3]);
+     })   
+     ->get();
+     
+     return response()->json($countries);
+ 
+     }
 
 
 
