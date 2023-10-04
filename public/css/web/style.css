@@ -269,7 +269,7 @@ button {
 }
 
 #message .box .content-box {
-    padding: 80px 40px 40px;
+    padding: 40px 40px 40px;
     display: -webkit-flex;
     display: -ms-flex;
     display: flex;
@@ -623,6 +623,7 @@ footer {
 .committee-thumb {
     padding: 0;
     width: auto;
+    background-color: white;
 }
 
 .committee-thumb img {

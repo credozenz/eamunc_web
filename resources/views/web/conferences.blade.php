@@ -24,7 +24,7 @@
                         </div>
                         <div class="col-md-9">
                             <div class="content border-black lh-2">
-                            {{ $value->description ?? '' }}
+                            {!! $value->description ?? '' !!}
                             </div>
                         </div>
                     </div>
