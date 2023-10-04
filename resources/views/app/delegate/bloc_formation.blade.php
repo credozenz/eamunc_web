@@ -50,7 +50,7 @@
           </div>
           <div class="row">
 
-          
+              @if(isset($mybloc) && $mybloc->id)
               @foreach($committee_bloc as $value)
               @if($value->id != $mybloc->id)
               <div class="col-md-3 mb-3">
@@ -61,7 +61,7 @@
               </div>
               @endif
               @endforeach
-          
+              @endif
           
           </div>
         @endif 
