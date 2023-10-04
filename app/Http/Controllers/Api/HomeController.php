@@ -672,7 +672,7 @@ class HomeController extends IndexController
 
 
 
-    public function get_program_resources()
+    public function get_program_resources(Request $request)
     {
 
         $loguser = auth()->user();
@@ -682,7 +682,7 @@ class HomeController extends IndexController
             $committee = Committee::where('id',$user->committee_choice)->first();
 
         }else{
-            $committee = Committee::where([['id', $request->committee_id]])->first();
+            $committee = Committee::where('id', $request->committee_id)->first();
         }
 
         $program =[];
