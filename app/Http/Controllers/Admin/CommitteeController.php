@@ -14,6 +14,8 @@ use App\Models\Committee_files;
 use App\Models\User;
 use App\Models\Countries;
 use App\Models\School;
+use App\Models\SiteIndexes;
+use App\Models\Images;
 use Carbon\Carbon;
 use Str;
 use Image;
@@ -391,14 +393,219 @@ class CommitteeController extends Controller
         $query->select('students.country_choice')
             ->from('students')
             ->join('committees', 'students.committee_choice', '=', 'committees.id')
-            ->where('committees.id', '=', $committeeChoice);
-    })
+            ->where('committees.id', '=', $committeeChoice)
+            ->whereIn('students.status', [1, 2, 3]);
+    })   
     ->get();
     
     return response()->json($countries);
 
     }
+
+
+    public function press_corp(Request $request)
+    {
+        $data = SiteIndexes::where('deleted_at', null)->where('type', 'press_corp')->first();
+       
+       
+        return view('admin/pressCorp/index', compact('data'));
+    }
+
+
+   
+    public function press_corp_update(Request $request)
+    {
+       
+        $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'name' => 'required|max:255',
+            'post' => 'required|max:255',
+            'description' => ['required'],
+            'image' => ['mimes:jpeg,png,jpg,gif,svg', 'max:2055'],
+        ],[
+            'title.required' => 'The Title field is required',
+            'name.required' => 'The Name field is required',
+            'post.required' => 'The Sub Title field is required',
+            'description.required' => 'The Description field is required',
+            'image.max' => 'Image  must be smaller than 2 MB',
+            'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
+        ]);
+
     
+        
+
+        $type_data = SiteIndexes::where('type','press_corp')->where('deleted_at', null)->first(); 
+        
+        if(!empty($type_data)){
+            $committee = SiteIndexes::where('type','press_corp')->where('deleted_at', null)->first();  
+        }else{
+            $committee = new SiteIndexes;
+        }
+
+
+        $committee->title = $request->title;
+        $committee->name = $request->name;
+        $committee->post = $request->post;
+        $committee->description  = $request->description;
+        $committee->type  = 'press_corp';
+       
+        
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $fileName   =  time().'_'.str_random(5).'_'.rand(1111,9999). '.' . $image->getClientOriginalExtension();
+          
+            $extension=$image->getClientOriginalExtension();
+           
+            if($extension=='svg'){
+               $img = $image->get();
+            }else{
+                $img = Image::make($image->getRealPath());
+                $img->resize(440, 654, function ($constraint) {
+                   $constraint->aspectRatio();                 
+                });
+                $img->stream('png', 100);
+            }
+            
+            Storage::disk('public')->put('press_corp/'.$fileName,$img,'public');
+
+            $committee->image = 'press_corp/'.$fileName; 
+           }
+
+           
+           $committee->save();
+           
+           if($committee->id){
+            Session::flash('success', 'Committee updated successfully!');
+            return redirect('/admin/press_corp');
+          }else{
+            Session::flash('error', 'Something went wrong!!');
+            return  redirect()->back();
+          }
+           
+    }
+
+
+    public function press_corp_member(Request $request)
+    {
+
+       
+            $press_corp_members = Images::where('type', 'press_corp')->where('deleted_at', null)->orderBy('id', 'DESC')->paginate(12);
+       
+      
+        return view('admin/pressCorp/add_members', compact('press_corp_members'));
+
+    }
+
+
+       public function press_corp_addmember(Request $request)
+        {
+
+            $press_corp = SiteIndexes::where('deleted_at', null)->where('type', 'press_corp')->first();
+
+            $validatedData = $request->validate([
+                'name' => 'required|max:255',
+                'image' => ['mimes:jpeg,png,jpg,gif,svg', 'max:2055'],
+            ], [
+                'name.required' => 'The Name field is required',
+                'image.max' => 'Image  must be smaller than 2 MB',
+                'image.mimes' => 'Input accept only jpeg,png,jpg,gif,svg',
+            ]);
+
+        
+
+           
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $fileName   =  time().'_'.str_random(5).'_'.rand(1111,9999). '.' . $image->getClientOriginalExtension();
+              
+                $extension=$image->getClientOriginalExtension();
+               
+                if($extension=='svg'){
+                   $img = $image->get();
+                }else{
+                    $img = Image::make($image->getRealPath());
+                    $img->resize(440, 654, function ($constraint) {
+                       $constraint->aspectRatio();                 
+                    });
+                    $img->stream('png', 100);
+                }
+                
+                Storage::disk('public')->put('press_corp_member/'.$fileName,$img,'public');
+    
+                $press_corp_member = 'press_corp_member/'.$fileName; 
+               }else{
+                $press_corp_member = ''; 
+               }
+    
+
+
+
+            $member = new Images;
+            $member->type = 'press_corp';
+            $member->name = $request->name ?? '';
+            $member->connect_id = $press_corp->id;
+            $member->image = $press_corp_member; 
+           
+            $member->save();
+
+            if($member){
+                Session::flash('success', 'Member added successfully!');
+                return  redirect()->back();
+            }else{
+                Session::flash('error', 'Something went wrong!!');
+                return  redirect()->back();
+            }
+        }
+
+    
+    
+
+        public function press_corp_member_dlt(Request $request,$id)
+        {
+          
+            $member = Images::where('id', $id)->first(); 
+            $mytime = Carbon::now();
+            $timestamp=$mytime->toDateTimeString();
+            $member->deleted_at = $timestamp;
+           
+            $member->save();
+            if($member){
+                Session::flash('success', 'Member deleted successfully!');
+                return  redirect()->back();
+            }else{
+                Session::flash('error', 'Something went wrong!!');
+                return  redirect()->back();
+            }
+        }
+
+        public function press_corp_dlt(Request $request,$id)
+        {
+          
+            $press = SiteIndexes::where('id', $id)->first(); 
+            $mytime = Carbon::now();
+            $timestamp=$mytime->toDateTimeString();
+            $press->deleted_at = $timestamp;
+            $press->save();
+
+            if($press){
+                $members = Images::where('connect_id', $id)->get();
+
+                foreach ($members as $member) {
+                    $mytime = Carbon::now();
+                    $timestamp=$mytime->toDateTimeString();
+                    $member->deleted_at = $timestamp;
+                
+                    $member->save();
+                }
+            }
+            if($press){
+                Session::flash('success', 'Committee deleted successfully!');
+                return  redirect()->back();
+            }else{
+                Session::flash('error', 'Something went wrong!!');
+                return  redirect()->back();
+            }
+        }
 
 
 
