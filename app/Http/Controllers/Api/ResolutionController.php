@@ -139,7 +139,7 @@ class ResolutionController extends IndexController
 
         $acceptedDelegatesArray = isset($resolution->accepted_delegates) ? explode(',', $resolution->accepted_delegates) : [];
 
-        $newDelegateId = $user->id;
+        $newDelegateId = $user->user_id;
         
         if(!empty($resolution->accepted_delegates)){
             if (!in_array($newDelegateId, $acceptedDelegatesArray)) {
@@ -208,8 +208,7 @@ class ResolutionController extends IndexController
                                 ->get();
         }
      
-              
-        
+       
 
         if($acceptedDelegates){
 
