@@ -114,16 +114,19 @@ class AuthController extends IndexController
     {
         
         $loguser = auth()->user();
-        if($loguser->role != 4){
-            $student   = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first(); 
-            $country   = Countries::where('id', $student->country_choice)->where('deleted_at', null)->first(); 
+       
+            $student   = Students::where('user_id', 102)->where('deleted_at', null)->first(); 
+            if(isset($student->country_choice)){
+                $country = Countries::where('id', $student->country_choice)->where('deleted_at', null)->first(); 
+            }
+            
         
-            $loguser['phone_code'] = $student->phone_code ?? '';
-            $loguser['whatsapp_no'] = $student->whatsapp_no ?? '';
-            $loguser['country_choice'] = $student->country_choice ?? '';
-            $loguser['class'] = $student->class ?? '';
-            $loguser['country_name'] = $country->name ?? '';
-        }
+            $loguser['phone_code']     = isset($student->phone_code)? $student->phone_code : '';
+            $loguser['whatsapp_no']    = isset($student->whatsapp_no)? $student->whatsapp_no : '';
+            $loguser['country_choice'] = isset($student->country_choice)? $student->country_choice : '';
+            $loguser['class'] = isset($student->class)? $student->class : '';
+            $loguser['country_name'] = isset($country->name)? $country->name : '';
+       
         if (!$loguser) {
             $response['status']  = true;
             $response['data'] = (object)[];
