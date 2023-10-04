@@ -197,9 +197,7 @@ class ResolutionController extends IndexController
 
         $acceptedDelegatesArray = isset($resolution->accepted_delegates) ? explode(',', $resolution->accepted_delegates) : [];
 
-        $newDelegateId = $user->id;
-        
-        
+     
         $acceptedDelegates=[];
         foreach ($acceptedDelegatesArray as $Delegate){ 
             $acceptedDelegates[] = User::where('users.deleted_at', null)
