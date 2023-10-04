@@ -226,7 +226,7 @@ class ResolutionController extends IndexController
 
         }else{
             $response['status'] = true;
-            $response['data']   = [];
+            $response['data']   = (object)[];
             return $this->sendResponse($response);
         }
        
