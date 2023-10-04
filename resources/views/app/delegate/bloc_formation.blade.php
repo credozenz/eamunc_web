@@ -50,9 +50,11 @@
           </div>
           <div class="row">
 
-              @if(isset($mybloc) && $mybloc->id)
+              @php
+              $mybloc_id = isset($mybloc->id)? $mybloc->id : 0;
+              @endphp
               @foreach($committee_bloc as $value)
-              @if($value->id != $mybloc->id)
+              @if($value->id != $mybloc_id)
               <div class="col-md-3 mb-3">
                 <div class="bloc-box text-center">
                     <h6>{{ ucfirst($value->name) ?? '' }}</h6>
@@ -61,7 +63,7 @@
               </div>
               @endif
               @endforeach
-              @endif
+            
           
           </div>
         @endif 
