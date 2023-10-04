@@ -43,7 +43,7 @@ class LiabilityWaiverController extends IndexController
         if (!$form) {
 
             $response['status']  = true;
-            $response['data'] = [];
+           $response['data'] = (object)[];
             return $this->sendResponse($response);
      
         }else{
@@ -124,7 +124,7 @@ class LiabilityWaiverController extends IndexController
         if (!$form->liability_form) {
 
             $response['status']  = true;
-            $response['data'] = [];
+           $response['data'] = (object)[];
             return $this->sendResponse($response);
      
         }else{

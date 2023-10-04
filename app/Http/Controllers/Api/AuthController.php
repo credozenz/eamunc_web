@@ -126,7 +126,7 @@ class AuthController extends IndexController
         }
         if (!$loguser) {
             $response['status']  = true;
-            $response['data'] = [];
+            $response['data'] = (object)[];
             return $this->sendResponse($response);
      
         }else{
@@ -151,7 +151,7 @@ class AuthController extends IndexController
 
         if (!$committee) {
             $response['status']  = true;
-            $response['data'] = [];
+           $response['data'] = (object)[];
             return $this->sendResponse($response);
      
         }else{
@@ -170,7 +170,7 @@ class AuthController extends IndexController
 
         if (!$committees) {
             $response['status']  = true;
-            $response['data'] = [];
+           $response['data'] = (object)[];
             return $this->sendResponse($response);
      
         }else{
@@ -203,7 +203,7 @@ class AuthController extends IndexController
 
         if (!$committee_member) {
             $response['status']  = true;
-            $response['data'] = [];
+           $response['data'] = (object)[];
             return $this->sendResponse($response);
      
         }else{

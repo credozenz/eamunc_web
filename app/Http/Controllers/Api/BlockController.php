@@ -62,7 +62,7 @@ class BlockController extends IndexController
         if (!$committee_bloc) {
 
             $response['status']  = true;
-            $response['data'] = [];
+           $response['data'] = (object)[];
             return $this->sendResponse($response);
      
         }else{
@@ -171,7 +171,7 @@ class BlockController extends IndexController
         if (!$bloc_members) {
 
             $response['status']  = true;
-            $response['data'] = [];
+           $response['data'] = (object)[];
             return $this->sendResponse($response);
      
         }else{
@@ -212,7 +212,7 @@ class BlockController extends IndexController
         if (!$committee_members) {
 
             $response['status']  = true;
-            $response['data'] = [];
+           $response['data'] = (object)[];
             return $this->sendResponse($response);
      
         }else{
@@ -241,7 +241,7 @@ class BlockController extends IndexController
         if (!$block) {
 
             $response['status']  = true;
-            $response['data'] = [];
+           $response['data'] = (object)[];
             return $this->sendResponse($response);
      
         }else{
@@ -357,7 +357,7 @@ class BlockController extends IndexController
         if (!$blocs_chats) {
 
             $response['status']  = true;
-            $response['data'] = [];
+           $response['data'] = (object)[];
             return $this->sendResponse($response);
      
         }else{
@@ -504,7 +504,7 @@ class BlockController extends IndexController
         if (!$bloc) {
 
             $response['status']  = true;
-            $response['data'] = [];
+           $response['data'] = (object)[];
             return $this->sendResponse($response);
      
         }else{

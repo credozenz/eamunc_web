@@ -55,7 +55,7 @@ class ResolutionController extends IndexController
         if (!$resolution) {
 
             $response['status']  = true;
-            $response['data'] = [];
+           $response['data'] = (object)[];
             return $this->sendResponse($response);
      
         }else{

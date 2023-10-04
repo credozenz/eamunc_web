@@ -51,7 +51,7 @@ class AssemblyController extends IndexController
         if (!$resolutions) {
 
             $response['status']  = true;
-            $response['data'] = [];
+            $response['data'] = (object)[];
             return $this->sendResponse($response);
      
         }else{
@@ -90,7 +90,7 @@ class AssemblyController extends IndexController
         if (!$resolutions) {
 
             $response['status']  = true;
-            $response['data'] = [];
+            $response['data'] = (object)[];
             return $this->sendResponse($response);
      
         }else{

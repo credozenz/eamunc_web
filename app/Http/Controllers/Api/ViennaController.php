@@ -53,7 +53,7 @@ class ViennaController extends IndexController
         if (!$vienna) {
 
             $response['status']  = true;
-            $response['data'] = [];
+           $response['data'] = (object)[];
             return $this->sendResponse($response);
      
         }else{

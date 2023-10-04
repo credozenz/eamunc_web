@@ -39,7 +39,7 @@ class HomeController extends IndexController
         if (!$guideline) {
 
             $response['status']  = true;
-            $response['data'] = [];
+           $response['data'] = (object)[];
             return $this->sendResponse($response);
      
         }else{
@@ -77,7 +77,7 @@ class HomeController extends IndexController
         if (!$speakers) {
 
             $response['status']  = true;
-            $response['data'] = [];
+           $response['data'] = (object)[];
             return $this->sendResponse($response);
      
         }else{
@@ -118,7 +118,7 @@ class HomeController extends IndexController
         if (!$speaker_country) {
 
             $response['status']  = true;
-            $response['data'] = [];
+           $response['data'] = (object)[];
             return $this->sendResponse($response);
      
         }else{
@@ -231,7 +231,7 @@ class HomeController extends IndexController
         if (!$program_schedule) {
 
             $response['status']  = true;
-            $response['data'] = [];
+           $response['data'] = (object)[];
             return $this->sendResponse($response);
      
         }else{
@@ -367,7 +367,7 @@ class HomeController extends IndexController
         if (!$committee_bloc) {
 
             $response['status']  = true;
-            $response['data'] = [];
+           $response['data'] = (object)[];
             return $this->sendResponse($response);
      
         }else{
@@ -579,7 +579,7 @@ class HomeController extends IndexController
         if (!$committee_lives) {
 
             $response['status']  = true;
-            $response['data'] = [];
+           $response['data'] = (object)[];
             return $this->sendResponse($response);
      
         }else{
@@ -704,7 +704,7 @@ class HomeController extends IndexController
         if (!$program) {
 
             $response['status']  = true;
-            $response['data'] = [];
+           $response['data'] = (object)[];
             return $this->sendResponse($response);
      
         }else{

@@ -51,11 +51,11 @@ class LineByLineController extends IndexController
        
 
         $line = Line_by_line::where('committe_id',$committee->id)->first();
-      
+     
         if (!$line) {
 
             $response['status']  = true;
-            $response['data'] = [];
+            $response['data'] = (object)[];
             return $this->sendResponse($response);
      
         }else{
