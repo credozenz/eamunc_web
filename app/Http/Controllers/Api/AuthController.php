@@ -18,6 +18,8 @@ use App\Helpers\ApiHelper;
 use Str;
 use Image;
 use Storage;
+use Carbon\Carbon;
+use Mail;
 use League\Flysystem\File;
 class AuthController extends IndexController
 {
@@ -97,16 +99,16 @@ class AuthController extends IndexController
 
     public function logout(Request $request)
     {
-    $user = auth()->user();
+        $user = auth()->user();
 
-    $user->tokens->each(function ($token, $key) {
-        $token->delete();
-    });
+        $user->tokens->each(function ($token, $key) {
+            $token->delete();
+        });
 
-    // Respond with a success message
-    $response['message'] = "Successfully logged out.";
-    $response['status'] = true;
-    return $this->sendResponse($response);
+        // Respond with a success message
+        $response['message'] = "Successfully logged out.";
+        $response['status'] = true;
+        return $this->sendResponse($response);
     }
 
 
@@ -222,118 +224,188 @@ class AuthController extends IndexController
 
 
     public function update_password(Request $request)
-{
-    $validator = Validator::make($request->all(), [
-        'password' => 'required|string|min:8',
-        'password_confirm' => 'required|same:password',
-    ], [
-        'password.min' => 'The password must be at least 8 characters long.',
-        'password.string' => 'The password must be a string.',
-        'password.required' => 'The password field is required.',
-        'password_confirm.required' => 'The password confirmation field is required.',
-        'password_confirm.same' => 'The password and password confirmation must match.',
-    ]);
+    {
+        $validator = Validator::make($request->all(), [
+            'password' => 'required|string|min:8',
+            'password_confirm' => 'required|same:password',
+        ], [
+            'password.min' => 'The password must be at least 8 characters long.',
+            'password.string' => 'The password must be a string.',
+            'password.required' => 'The password field is required.',
+            'password_confirm.required' => 'The password confirmation field is required.',
+            'password_confirm.same' => 'The password and password confirmation must match.',
+        ]);
 
-    if ($validator->fails()) {
-        return $this->sendError($validator->errors());
+        if ($validator->fails()) {
+            return $this->sendError($validator->errors());
+        }
+
+        // Retrieve the user's profile
+        $loguser = auth()->user();
+
+        if (!$loguser) {
+            $response['status'] = false;
+            $response['message'] = "User not found";
+            return $this->sendResponse($response);
+        }
+
+        // Update the user's password
+        $loguser->password = Hash::make($request->password);
+        $loguser->save();
+
+        if ($loguser->id) {
+            $response['status'] = true;
+            $response['message'] = "Password updated successfully!";
+            return $this->sendResponse($response);
+        } else {
+            $response['status'] = false;
+            $response['message'] = "Something went wrong!";
+            return $this->sendResponse($response);
+        }
     }
-
-    // Retrieve the user's profile
-    $loguser = auth()->user();
-
-    if (!$loguser) {
-        $response['status'] = false;
-        $response['message'] = "User not found";
-        return $this->sendResponse($response);
-    }
-
-    // Update the user's password
-    $loguser->password = Hash::make($request->password);
-    $loguser->save();
-
-    if ($loguser->id) {
-        $response['status'] = true;
-        $response['message'] = "Password updated successfully!";
-        return $this->sendResponse($response);
-    } else {
-        $response['status'] = false;
-        $response['message'] = "Something went wrong!";
-        return $this->sendResponse($response);
-    }
-}
 
 
 
     public function update_avatar(Request $request)
-{
-    // Validate the request data
-    $validator = Validator::make($request->all(), [
-        'avatar' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'], // Reduce max size to 2MB (2048 KB)
-    ], [
-        'avatar.max' => 'Image must be smaller than 2 MB',
-        'avatar.mimes' => 'Input accepts only jpeg, png, jpg, gif, svg images',
-    ]);
+    {
+        // Validate the request data
+        $validator = Validator::make($request->all(), [
+            'avatar' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'], // Reduce max size to 2MB (2048 KB)
+        ], [
+            'avatar.max' => 'Image must be smaller than 2 MB',
+            'avatar.mimes' => 'Input accepts only jpeg, png, jpg, gif, svg images',
+        ]);
 
-    if ($validator->fails()) {
-        return $this->sendError($validator->errors());
-    }
-
-    // Retrieve the user's profile
-    $loguser = auth()->user();
-
-    if (!$loguser) {
-        $response['status'] = false;
-        $response['message'] = "User not found";
-        return $this->sendResponse($response);
-    }
-
-    if ($request->hasFile('avatar')) {
-        // Handle avatar upload
-        $image = $request->file('avatar');
-        $extension = $image->getClientOriginalExtension();
-        
-        if ($extension === 'svg') {
-            // For SVG images, no need for resizing
-            $img = $image->get();
-        } else {
-            // For non-SVG images, resize and convert to PNG
-            $width = 600;
-            $height = 600;
-            $img = Image::make($image->getRealPath());
-            
-            if ($img->height() > $img->width()) {
-                $width = null;
-            } else {
-                $height = null;
-            }
-            
-            $img->resize($width, $height, function ($constraint) {
-                $constraint->aspectRatio();
-            });
-            
-            $img->encode('png'); // Convert to PNG format
+        if ($validator->fails()) {
+            return $this->sendError($validator->errors());
         }
 
-        // Store the image in the storage disk (public storage)
-        $fileName = time() . '_' . str_random(5) . '_' . rand(1111, 9999) . '.png'; // Always store as PNG
-        Storage::disk('public')->put('user_image/' . $fileName, $img, 'public');
+        // Retrieve the user's profile
+        $loguser = auth()->user();
 
-        // Update the user's avatar path in the database
-        $loguser->avatar = 'user_image/' . $fileName;
-        $loguser->save();
+        if (!$loguser) {
+            $response['status'] = false;
+            $response['message'] = "User not found";
+            return $this->sendResponse($response);
+        }
 
-        $response['status'] = true;
-        $response['message'] = "Avatar updated successfully!";
+        if ($request->hasFile('avatar')) {
+            // Handle avatar upload
+            $image = $request->file('avatar');
+            $extension = $image->getClientOriginalExtension();
+            
+            if ($extension === 'svg') {
+                // For SVG images, no need for resizing
+                $img = $image->get();
+            } else {
+                // For non-SVG images, resize and convert to PNG
+                $width = 600;
+                $height = 600;
+                $img = Image::make($image->getRealPath());
+                
+                if ($img->height() > $img->width()) {
+                    $width = null;
+                } else {
+                    $height = null;
+                }
+                
+                $img->resize($width, $height, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+                
+                $img->encode('png'); // Convert to PNG format
+            }
+
+            // Store the image in the storage disk (public storage)
+            $fileName = time() . '_' . str_random(5) . '_' . rand(1111, 9999) . '.png'; // Always store as PNG
+            Storage::disk('public')->put('user_image/' . $fileName, $img, 'public');
+
+            // Update the user's avatar path in the database
+            $loguser->avatar = 'user_image/' . $fileName;
+            $loguser->save();
+
+            $response['status'] = true;
+            $response['message'] = "Avatar updated successfully!";
+            return $this->sendResponse($response);
+        }
+
+        // If no avatar file was provided
+        $response['status'] = false;
+        $response['message'] = "Something went wrong !";
         return $this->sendResponse($response);
     }
 
-    // If no avatar file was provided
-    $response['status'] = false;
-    $response['message'] = "Something went wrong !";
-    return $this->sendResponse($response);
-}
 
 
 
+    public function RequestForgetPassword(Request $request) 
+    {
 
+               
+        $customMessages = [
+            'email.exists' => 'The selected email does not exist in our records.',
+        ];
+
+        
+        $validator = Validator::make($request->all(), [
+            'email' => [
+                'required',
+                'email',
+                function ($attribute, $value, $fail) {
+                    $user = DB::table('users')
+                        ->where('email', $value)
+                        ->whereNull('deleted_at')
+                        ->where('status', 1)
+                        ->first();
+
+                    if (!$user) {
+
+                        $response['status'] = false;
+                        $response['message'] = 'The selected email (' . $value . ') does not exist in our records or the account is not active.';
+                        return $this->sendResponse($response);
+                       
+                    }
+                },
+            ],
+        ], $customMessages);
+
+       
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+            $token = Str::random(64);
+            DB::table('password_resets')->insert([
+                'email' => $request->email,
+                'token' => $token,
+                'created_at' => Carbon::now()
+            ]);
+
+            $sent = Mail::send('admin.auth.forget-password-email', ['token' => $token], function($message) use($request){
+                                $message->to(trim($request->email));
+                                $message->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'));
+                                $message->subject('Reset Password');
+                               
+                            });
+
+                            $response['status'] = true;
+                            $response['message'] = 'We have emailed your password reset link!';
+                            return $this->sendResponse($response);
+
+            // if ($sent > 0) {
+            //     $response['status'] = true;
+            //     $response['message'] = 'We have emailed your password reset link!';
+            //     return $this->sendResponse($response);
+            // } else {
+            //     $response['status'] = false;
+            //     $response['message'] = 'Something went wrong !';
+            //     return $this->sendResponse($response);
+            // }
+
+
+    }
+
+  
 }

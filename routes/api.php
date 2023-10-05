@@ -25,6 +25,7 @@ use App\Http\Controllers\Api\LiabilityWaiverController;
 Route::post('/login', [AuthController::class,'login']);
 
 Route::post('/get_allcommittee', [AuthController::class,'get_allcommittee']);
+Route::post('/request_forgetpassword', [AuthController::class,'RequestForgetPassword']);
 
 Route::group(['middleware' => 'auth:sanctum'], function(){
 
