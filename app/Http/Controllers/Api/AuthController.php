@@ -77,6 +77,8 @@ class AuthController extends IndexController
        
             // Generate and attach a new access token
             $token = $user->createToken('token');
+
+            
             $user->token = $token->plainTextToken;
             
             $success['user'] = $user;
@@ -96,7 +98,6 @@ class AuthController extends IndexController
 
     }
 
-
     public function logout(Request $request)
     {
         $user = auth()->user();
@@ -111,12 +112,11 @@ class AuthController extends IndexController
         return $this->sendResponse($response);
     }
 
-
     public function get_profile(Request $request)
     {
         
         $loguser = auth()->user();
-       
+      
             $student   = Students::where('user_id', 102)->where('deleted_at', null)->first(); 
             if(isset($student->country_choice)){
                 $country = Countries::where('id', $student->country_choice)->where('deleted_at', null)->first(); 
@@ -220,9 +220,6 @@ class AuthController extends IndexController
         }
     }
 
-
-
-
     public function update_password(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -263,8 +260,6 @@ class AuthController extends IndexController
             return $this->sendResponse($response);
         }
     }
-
-
 
     public function update_avatar(Request $request)
     {
@@ -334,9 +329,6 @@ class AuthController extends IndexController
         $response['message'] = "Something went wrong !";
         return $this->sendResponse($response);
     }
-
-
-
 
     public function RequestForgetPassword(Request $request) 
     {

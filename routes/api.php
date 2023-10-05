@@ -27,8 +27,9 @@ Route::post('/login', [AuthController::class,'login']);
 Route::post('/get_allcommittee', [AuthController::class,'get_allcommittee']);
 Route::post('/request_forgetpassword', [AuthController::class,'RequestForgetPassword']);
 
-Route::group(['middleware' => 'auth:sanctum'], function(){
 
+    Route::group(['middleware' => 'apitokenvalidation'], function() {
+        
     Route::post('/get_profile', [AuthController::class,'get_profile']);
     Route::post('/update_password', [AuthController::class,'update_password']);
     Route::post('/update_avatar', [AuthController::class,'update_avatar']);
