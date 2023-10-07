@@ -41,17 +41,24 @@ class BlockController extends IndexController
             $committee_bloc = Blocs::where('committe_id',$user->committee_choice)->where('deleted_at', null)->get();
 
             $loguserbloc = Bloc_members::where('user_id', $loguser->id)->where('deleted_at', null)->first();
-    
-            
-            foreach ($committee_bloc as $key => $bloc) {
-                if ($bloc->id === $loguserbloc->bloc_id) {
-                    // Set a flag to true for the matching bloc
-                    $committee_bloc[$key]->user_block = true;
-                } else {
-                    // Set a flag to false for non-matching blocs
-                    $committee_bloc[$key]->user_block = false;
-                }
-            }
+
+           
+             
+                    foreach ($committee_bloc as $key => $bloc) {
+                        if (!$loguserbloc) {
+                            if ($bloc->id === $loguserbloc->bloc_id) {
+                                // Set a flag to true for the matching bloc
+                                $committee_bloc[$key]->user_block = true;
+                            } else {
+                                // Set a flag to false for non-matching blocs
+                                $committee_bloc[$key]->user_block = false;
+                            }
+                        }else{
+                            $committee_bloc[$key]->user_block = false;
+                        }
+                    }
+              
+
         }else{
             $committee = Committee::where([['id', $request->committee_id]])->first();
             $committee_bloc = Blocs::where('committe_id',$committee->id)->where('deleted_at', null)->get();
@@ -62,7 +69,7 @@ class BlockController extends IndexController
         if (!$committee_bloc) {
 
             $response['status']  = true;
-           $response['data'] = (object)[];
+            $response['data'] = (object)[];
             return $this->sendResponse($response);
      
         }else{
