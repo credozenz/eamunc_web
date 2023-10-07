@@ -39,7 +39,7 @@ class HomeController extends IndexController
         if (!$guideline) {
 
             $response['status']  = true;
-           $response['data'] = (object)[];
+            $response['data'] = (object)[];
             return $this->sendResponse($response);
      
         }else{
@@ -77,7 +77,7 @@ class HomeController extends IndexController
         if (!$speakers) {
 
             $response['status']  = true;
-           $response['data'] = (object)[];
+            $response['data'] = [];
             return $this->sendResponse($response);
      
         }else{
@@ -118,7 +118,7 @@ class HomeController extends IndexController
         if (!$speaker_country) {
 
             $response['status']  = true;
-           $response['data'] = (object)[];
+            $response['data']    = [];
             return $this->sendResponse($response);
      
         }else{
@@ -231,7 +231,7 @@ class HomeController extends IndexController
         if (!$program_schedule) {
 
             $response['status']  = true;
-           $response['data'] = (object)[];
+            $response['data']    = [];
             return $this->sendResponse($response);
      
         }else{

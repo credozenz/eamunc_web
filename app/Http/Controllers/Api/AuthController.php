@@ -100,16 +100,25 @@ class AuthController extends IndexController
 
     public function logout(Request $request)
     {
-        $user = auth()->user();
+       
+        $token =$request->bearerToken();
+        [$id, $user_token] = explode('|', $token, 2);
+        $user_token = hash('sha256', $user_token);
+        
+        $token_status = DB::table('personal_access_tokens')->where('token', $user_token)->delete();
 
-        $user->tokens->each(function ($token, $key) {
-            $token->delete();
-        });
+        if($token_status){
+            $response['status'] = true;
+            $response['message'] = "Successfully logged out.";
+            return $this->sendResponse($response);
+        }else{
+            $response['status'] = false;
+            $response['message'] = "Something went wrong!";
+            return $this->sendResponse($response);
+        }
 
-        // Respond with a success message
-        $response['message'] = "Successfully logged out.";
-        $response['status'] = true;
-        return $this->sendResponse($response);
+
+       
     }
 
     public function get_profile(Request $request)
@@ -175,7 +184,7 @@ class AuthController extends IndexController
 
         if (!$committees) {
             $response['status']  = true;
-           $response['data'] = (object)[];
+            $response['data'] = [];
             return $this->sendResponse($response);
      
         }else{
@@ -208,13 +217,13 @@ class AuthController extends IndexController
 
         if (!$committee_member) {
             $response['status']  = true;
-           $response['data'] = (object)[];
+            $response['data']    = [];
             return $this->sendResponse($response);
      
         }else{
 
             $response['status'] = true;
-            $response['data'] = $committee_member;
+            $response['data']   = $committee_member;
             return $this->sendResponse($response);
                 
         }
