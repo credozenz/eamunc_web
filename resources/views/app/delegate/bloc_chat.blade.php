@@ -39,7 +39,7 @@
                 <div class="chats disable-scrollbars chatscreen" style="max-height: 500px;">
 
                   @if(!empty($blocs_chats))
-                  @php  $message_no=0; @endphp
+                  @php  $timeDifference=0; @endphp
                     @foreach($blocs_chats as $key => $chat)
 
                     @if($chat->user_id == $member->user_id)
@@ -96,14 +96,9 @@
 
                       @php   
                       
-                          $oneHourAgo = strtotime('-1 hour');
-                          $messageTimestamp = strtotime($chat->created_at);
-                          
-                          if ($messageTimestamp > $oneHourAgo) {
-                              
-                            $message_no+=1;
-                          }             
-                      
+                      $messageTimestamp = strtotime($chat->created_at);
+                      $currentTimestamp = time();
+                      $timeDifference = $currentTimestamp - $messageTimestamp;
                       @endphp
 
                    
@@ -159,7 +154,7 @@
               </div>
 
               @if($block_exists==true)
-              @if($message_no < '10')
+              @if($timeDifference >= 30)
               <div class="panel-footer">
                 <form method="post" action="{{ url('app/delegate_chat_store',$id) }}" class="col-md-12"  enctype="multipart/form-data">
                                   @csrf 
@@ -185,8 +180,9 @@
               </div>
               @else
               <div class="text-center">
-                <p class="btn btn-primary"> You have reached the chat sending limit. Please wait for 1 hour before sending more messages. </p>
+                <p class="btn btn-primary get-sendfield">  You have to wait 30 seconds before sending another message. </p>
               </div>
+              
               @endif
               @endif
 

@@ -384,7 +384,16 @@ $(function() {
       }
 
 
-      
+      reloadPageIfClassExists("get-sendfield", 30000);
+      reloadPageIfClassExists("chat-body", 30000);
+    
+      function reloadPageIfClassExists(className, delay) {
+        setTimeout(function() {
+          if (document.querySelector("." + className)) {
+            window.location.reload(1);
+          }
+        }, delay);
+      }
 
 
 
