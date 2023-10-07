@@ -34,7 +34,7 @@ class BlockController extends IndexController
     public function get_blocks(Request $request)
     {
         $loguser = auth()->user();
-
+        
         if($loguser->role != 4){
             $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first();
             $committee = Committee::where('id',$user->committee_choice)->first();
@@ -43,9 +43,9 @@ class BlockController extends IndexController
             $loguserbloc = Bloc_members::where('user_id', $loguser->id)->where('deleted_at', null)->first();
 
            
-             
+           
                     foreach ($committee_bloc as $key => $bloc) {
-                        if (!$loguserbloc) {
+                        if (isset($loguserbloc->bloc_id)) {
                             if ($bloc->id === $loguserbloc->bloc_id) {
                                 // Set a flag to true for the matching bloc
                                 $committee_bloc[$key]->user_block = true;
