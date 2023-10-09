@@ -94,14 +94,7 @@
                       </div>
 
 
-                      @php   
-                      
-                      $messageTimestamp = strtotime($chat->created_at);
-                      $currentTimestamp = time();
-                      $timeDifference = $currentTimestamp - $messageTimestamp;
-                      @endphp
-
-                   
+                     
 
 
                     @else
@@ -154,7 +147,7 @@
               </div>
 
               @if($block_exists==true)
-              @if($timeDifference >= 30)
+              
               <div class="panel-footer">
                 <form method="post" action="{{ url('app/delegate_chat_store',$id) }}" class="col-md-12"  enctype="multipart/form-data">
                                   @csrf 
@@ -178,12 +171,12 @@
                     </div>
                 </form>
               </div>
-              @else
-              <div class="text-center">
+             
+              <!-- <div class="text-center">
                 <p class="btn btn-primary get-sendfield">  You have to wait 30 seconds before sending another message. </p>
-              </div>
+              </div> -->
               
-              @endif
+             
               @endif
 
             </div>
