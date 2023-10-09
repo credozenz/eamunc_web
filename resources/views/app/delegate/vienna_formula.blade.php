@@ -21,8 +21,7 @@
     
           <h5 class="text-primary mt-5 mb-3 fs-2">Vienna Formula</h5>
           <label class="form-label text-dark">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-          </label>
+           </label>
                 <div class="col-md-12 col-12">
                     <div class="form-group">
                     @if(!empty($vienna->content))

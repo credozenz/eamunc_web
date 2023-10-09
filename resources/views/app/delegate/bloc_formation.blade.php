@@ -20,15 +20,18 @@
           </div>  
 
           <div class="col-md-12">
-          <h4 class="fs-3 text-primary mb-3">Bloc Formation</h4>
-              <p style="color:#4D4D4D; font-size: 15px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>
+          <h4 class="fs-3 text-primary mb-3">Block Formation</h4>
+              <p style="color:#4D4D4D; font-size: 15px;">Once the general speakers list has been exhausted, the committee 
+moves into informal- informal meeting. At this stage, the rules of 
+procedure are suspended and delegates are divided into blocs along 
+regional or political lines. </p>
           </div>     
             
           <div class="col-md-8">
              <div class="blue-box mt-3">
                 @if($mybloc)  
                 <h4>Start My Discussion</h4>
-                <p class="mt-2 mb-3">Card layouts can vary to support the types of content they contain. The following elements are commonly found among that variety.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>
+                <p class="mt-2 mb-3"> </p>
                 
                 <div class="col-md-3 mb-3">
                 <div class="bloc-box text-center">
@@ -39,14 +42,14 @@
                
                 @else
                 <h4>Start My Discussion</h4>
-                <p class="mt-2 mb-3">You are not a part of any bloc !, Please wait for assign to a block</p>
+                <p class="mt-2 mb-3">You are not a part of any Block !, Please wait for assign to a block</p>
                 @endif 
               </div>
           </div>
 
         @if($committee_bloc)
           <div class="col-md-12">
-          <h4 class="fs-3 text-primary mb-3 mt-5 fw-bold">View Other Blocs</h4>
+          <h4 class="fs-3 text-primary mb-3 mt-5 fw-bold">View Other Blocks</h4>
           </div>
           <div class="row">
 

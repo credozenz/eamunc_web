@@ -22,7 +22,11 @@
     
           <h5 class="text-primary mt-5 mb-3 fs-2">Resolution Corner</h5>
           <label class="form-label text-dark">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+          Once all the changes have been made and amendments been added, 
+the committee moves into the action phase. At this point in time, the
+chair will ask the delegates if there are any objections to the draft 
+resolution. If there are none, the draft resolution is adopted by con-
+sensus and is renamed resolution 1.1.
           </label>
                 <div class="col-md-12 col-12">
                     <div class="form-group">

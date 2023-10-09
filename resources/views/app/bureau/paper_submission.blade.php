@@ -16,7 +16,15 @@
        <div class="col-md-6 offset-md-3 pt-2">
      <h4 class="dash-main-head mb-3 text-center">Paper Submission</h4>
      
-     <p style="color:#4D4D4D; font-size: 15px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>
+     <p style="color:#4D4D4D; font-size: 15px;">Delegates have to  ensure that their position paper adheres
+to these specifications to maintain consistency and read-
+ability throughout the conference.<br>
+1. Font size-12<br>
+2. Font style-Times New Roman <br>
+3. Position paper-1 Page length <br>
+Additionally, delegates have to include the bibliography at 
+the end of your position paper to provide proper attribution
+for their research sources.</p>
    
      
      <div class="file-upload text-center">
