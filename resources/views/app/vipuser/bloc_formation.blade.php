@@ -61,7 +61,7 @@ regional or political lines. </p>
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Create Block</h5>
+                      <h5 class="modal-title" id="exampleModalLabel">Create Bloc</h5>
                       <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                   <form method="post" action="{{ url('app/bureau_bloc_store') }}" class="col-md-12"  enctype="multipart/form-data">

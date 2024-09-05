@@ -46,4 +46,5 @@
     <link href="{{asset('css/app/bureau/dashboard.css')}}" rel="stylesheet">
     <link href="{{asset('css/app/bureau/custom.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/web/w3scroll.css')}}"/>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
 </head>

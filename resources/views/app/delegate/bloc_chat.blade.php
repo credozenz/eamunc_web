@@ -186,7 +186,7 @@
                         @include('app.delegate.layouts.chat_pagination', ['paginator' => $blocs_chats])
                     </div>
 
-                    @if ($block_exists == true)
+                    @if ($block_exists == true && $committee_bloc->is_closed == 0)
                         <div class="panel-footer">
                             <form method="post" action="{{ url('app/delegate_chat_store', $id) }}" class="col-md-12"
                                 enctype="multipart/form-data" id="chat_frm">
@@ -269,7 +269,7 @@
                 } else {
                     // Handle the form submission logic here
                     // For example, you can submit the form via AJAX if needed
-                    localStorage.setItem("counter_" + $("#committee_bloc_id").val(), 30);
+                    localStorage.setItem("counter_" + $("#committee_bloc_id").val(), 5);
                     $("#chat_frm").submit();
                     
                 }

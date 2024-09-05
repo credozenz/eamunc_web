@@ -20,12 +20,18 @@
              <small class="text-primary mb-3 d-inline-block ps-2 "> {{ ucfirst($committee_bloc->name) ?? '' }} </small>
           </div>
 
-          <div class="col-md-3 "></div>
+         
 
           <div class="col-md-3 ">
             <h5 class="text-primary mb-3 d-inline-block ps-2 " style="line-height: 40px;">{{ ucfirst($committee->name) ?? '' }}</h5>
           </div>
-            
+          <div class="col-md-3 ">
+            @if($committee_bloc->is_closed == 0)
+            <button class="btn btn-danger" id="btn-close-bloc">Close Bloc</button>
+            @else
+            <button class="btn btn-danger" id="btn-close-bloc" disabled>Bloc Closed</button>
+            @endif
+          </div>
           <div class="col-md-12">
        
       
@@ -165,7 +171,7 @@
                           </svg>
                         </span> 
                       </label>
-                      <input type="text" id="msg" name="message" class="form-control" placeholder="Say something">
+                      <input type="text" id="msg" name="message" class="form-control" placeholder="Say something" >
                       <label  id="crs" style="display:none; padding-left: 58px;color: red;position: absolute;">x</label>
                       <input id="file-upload" name='file' type="file" style="display:none;">
                       <span class="input-group-btn">
@@ -193,5 +199,64 @@
 </div>
   
 @endsection 
-  
+@section('script')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  $(document).on('click', '#btn-close-bloc', function(e) {
+    console.log('click');
+    e.preventDefault();
+    Swal.fire({
+        title: 'Confirm',
+        text: 'Are you sure you want to close this bloc?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#DD6B55',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Close',
+        cancelButtonText: 'No',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: '{{ route('app.bureau_bloc_close',$id) }}',
+                method: 'POST',
+                data:{
+                  _token:'{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    if (response.status) {
+                        Swal.fire({
+                            title: 'Closed!',
+                            text: response.message,
+                            icon: 'success',
+                        });
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 1000);
+                    } else {
+                        Swal.fire({
+                            title: 'Cancelled!',
+                            text: response.message,
+                            icon: 'error',
+                        });
+                    }
+                },
+                error: function() {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Something went wrong while closing!',
+                        icon: 'error',
+                    });
+                }
+            });
+        } else {
+            Swal.fire({
+                title: 'Cancelled',
+                text: 'Your closing is cancelled.',
+                icon: 'error',
+            });
+        }
+    });
+  });
+</script>
+@endsection
    

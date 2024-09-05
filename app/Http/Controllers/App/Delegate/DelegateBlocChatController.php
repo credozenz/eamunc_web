@@ -40,7 +40,9 @@ class DelegateBlocChatController extends Controller
         $committee = Committee::where('id',$member->committee_choice)->first();
 
         $committee_bloc = Blocs::where('id',$id)->first();
-        
+        if(!$committee_bloc){
+            return redirect()->route('app.delegate_bloc_formation');
+        }
         $blocs_members = DB::table('users as u')
                             ->join('bloc_members as b', 'u.id', '=', 'b.user_id')
                             ->select('u.*')
@@ -62,7 +64,6 @@ class DelegateBlocChatController extends Controller
                             ->paginate(2000);
 
              $user_id_to_check = $member->user_id ?? '';
-
              $block_exists = $blocs_members->contains(function ($blocs_members) use ($user_id_to_check) {
                                 return $blocs_members->id === $user_id_to_check;
                             });
@@ -77,6 +78,11 @@ class DelegateBlocChatController extends Controller
     public function store(Request $request,$id)
     {
 
+        $is_closed = Blocs::where('id',$id)->where('is_closed',1)->exists();
+        if($is_closed){
+            Session::flash('error', 'Bloc is closed!!');
+            return  redirect()->back();
+        }
         $validatedData = $request->validate([
             'message'    => 'required|max:255',
         ],[

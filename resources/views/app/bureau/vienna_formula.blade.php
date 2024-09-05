@@ -27,6 +27,11 @@
         @else
         <a href="{{ url('app/bureau_vienna_formula_editor') }}" type="button" class="btn btn-primary mt-3">View Vienna Formula</a>
         @endif
+        @if($vienna->is_closed == 0)
+          <button class="btn btn-danger mt-3" id="btn-close-vf">Close Vienna Formula</button>
+        @else
+          <button class="btn btn-danger mt-3" id="btn-close-vf" disabled>Vienna Formula Closed</button>
+        @endif
       </div>
       
   </div>
@@ -34,5 +39,65 @@
 </div>
    
 @endsection 
+@section('script')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  $(document).on('click', '#btn-close-vf', function(e) {
+    console.log('click');
+    e.preventDefault();
+    Swal.fire({
+        title: 'Confirm',
+        text: 'Are you sure you want to close this Vienna Formula?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#DD6B55',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Close',
+        cancelButtonText: 'No',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: '{{ route('app.bureau_vienna_formula_close',$vienna->id) }}',
+                method: 'POST',
+                data:{
+                  _token:'{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    if (response.status) {
+                        Swal.fire({
+                            title: 'Closed!',
+                            text: response.message,
+                            icon: 'success',
+                        });
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 1000);
+                    } else {
+                        Swal.fire({
+                            title: 'Cancelled!',
+                            text: response.message,
+                            icon: 'error',
+                        });
+                    }
+                },
+                error: function() {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Something went wrong while closing!',
+                        icon: 'error',
+                    });
+                }
+            });
+        } else {
+            Swal.fire({
+                title: 'Cancelled',
+                text: 'Your closing is cancelled.',
+                icon: 'error',
+            });
+        }
+    });
+  });
+</script>
+@endsection
   
    

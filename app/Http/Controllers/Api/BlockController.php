@@ -106,7 +106,7 @@ class BlockController extends IndexController
 
         if (!empty($bloc_member->id)) {
 
-            $success['message'] = "Block added successfully";
+            $success['message'] = "Bloc added successfully";
             $success['status'] = true;
             return $this->sendResponse($success);
 
@@ -225,7 +225,7 @@ class BlockController extends IndexController
             $bloc = Bloc_members::where('bloc_id', $request->block_id)->update(['deleted_at' => $timestamp]);
 
             $response['status'] = true;
-            $response['data'] = "Block successfully deleted";
+            $response['data'] = "Bloc successfully deleted";
             return $this->sendResponse($response);
 
         }
@@ -279,14 +279,14 @@ class BlockController extends IndexController
 
             if (!empty($bloc_member->id)) {
 
-                $success['message'] = "Block update successfully";
+                $success['message'] = "Bloc update successfully";
                 $success['status'] = true;
                 return $this->sendResponse($success);
 
             } else {
 
                 $response['status'] = false;
-                $response['message'] = "No Block added. Check your input data.";
+                $response['message'] = "No Bloc added. Check your input data.";
                 return $this->sendResponse($response);
 
             }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\App\Bureau;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bloc_chats;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -53,11 +54,31 @@ class BureauBlocFormationController extends Controller
                                 ->get();
 
 
-
         return view('app/bureau/bloc_formation', compact('committee','committee_member','committee_bloc'));
     }
 
+    public function destroy(Blocs $bloc)
+    {
+        try{
+            DB::beginTransaction();
+            Bloc_members::where('bloc_id', $bloc->id)->delete();
+            Bloc_chats::where('bloc_id', $bloc->id)->delete();
+            $bloc->delete();
+            DB::commit();
+            return response()->json(['status' => true, 'message' => 'Bloc deleted successfully']);
+        }catch(\Throwable $e){
+            info($e);
+            DB::rollBack();
+            return response()->json(['status' => false, 'message' => 'Something went wrong!!']);
+        }
+    }
 
+    public function close(Blocs $bloc)
+    {
+        $bloc->is_closed = 1;
+        $bloc->save();
+        return response()->json(['status' => true, 'message' => 'Bloc closed successfully']);
+    }
 
     public function store(Request $request)
     {
@@ -102,7 +123,7 @@ class BureauBlocFormationController extends Controller
 
             
             if($bloc_member->id){
-                Session::flash('success', 'Block successfully Created!');
+                Session::flash('success', 'Bloc successfully Created!');
                 return redirect('/app/bureau_bloc_formation');
             }else{
                 Session::flash('error', 'Something went wrong!!');
@@ -202,7 +223,7 @@ class BureauBlocFormationController extends Controller
 
             
             if($bloc_member->id){
-                Session::flash('success', 'Block successfully Created!');
+                Session::flash('success', 'Bloc successfully Created!');
                 return redirect('/app/bureau_bloc_formation');
             }else{
                 Session::flash('error', 'Something went wrong!!');

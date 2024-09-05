@@ -42,7 +42,11 @@
                                   @error('vienna')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                               </div>
                           </div>
+                          @if($main_vienna->is_closed == 0)
                           <button type="submit" class="btn btn-primary mt-3"> Submit</button>
+                          @else
+                          <button class="btn btn-danger mt-3" disabled> Closed</button>
+                          @endif
                     </form>
                     @else
                      <div class="blue-box mt-3">

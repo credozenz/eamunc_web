@@ -29,7 +29,7 @@
                 <label class="form-label text-dark">
 
                 </label>
-                <form method="post" action="{{ url('app/bureau_vienna_formula_store') }}" class="mt-5 col-md-12"
+                <form method="post" class="vienna_formula_store" action="{{ url('app/bureau_vienna_formula_store') }}" class="mt-5 col-md-12"
                     enctype="multipart/form-data">
                     @csrf
                     <div class="col-md-12 col-12">
@@ -71,7 +71,45 @@
                 load_delegate_vienna();
             }, 30000);
         });
+        $('.vienna_formula_store').on('submit', function(e) {
+            e.preventDefault();
+            document.querySelectorAll('#txt_editor').forEach(function(editorElement) {
+                var editor = tinymce.get(editorElement.id);
+                if (editor) {
+                    editor.save();
+                }
+            });
 
+            var form = $(this)[0];
+            var data = new FormData(form);
+            var url = $(this).attr("action");
+            var method = $(this).attr("method");
+
+            $.ajax({
+                url: url,
+                type: method,
+                dataType: 'json',
+                data: data,
+                contentType: false,
+                processData: false,
+                success: function(res) {
+                    console.log(res);
+                    if (res['success'] == true) {
+                        load_delegate_vienna();
+                        document.querySelectorAll('#txt_editor').forEach(function(editorElement) {
+                            tinymce.init({
+                                target: editorElement,
+                            });
+                        });
+                    } else {
+                        alert(res['message']);
+                    }
+                },
+                error: function(e) {
+                    console.error('Error:', e);
+                }
+            });
+        });
         function load_delegate_vienna() {
             $.ajax({
                 url: "{{url('app/bureau_load_delegate_vienna')}}",

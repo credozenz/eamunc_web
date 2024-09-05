@@ -7,3 +7,4 @@
     <script src="https://cdn.tiny.cloud/1/avdc1bcyvcdf3pfb6a0vycg7212jxa976ymz8ai22c4dbbuw/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="{{asset('js/app/bureau/jquery.countdown.min.js')}}"></script>
     <script src="{{asset('js/app/bureau/script.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

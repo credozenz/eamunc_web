@@ -269,7 +269,7 @@ class BlocFormationController extends Controller
                               ->update(["deleted_at" => $timestamp]);
 
 
-        echo json_encode(['status'=>true,'message'=>'Block Deleted Successfully !']);exit();
+        echo json_encode(['status'=>true,'message'=>'Bloc Deleted Successfully !']);exit();
     }
 
 

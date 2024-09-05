@@ -426,14 +426,14 @@ class HomeController extends IndexController
             
             if (!empty($bloc_member->id)) {
 
-                $success['message'] = "Block added successfully";
+                $success['message'] = "Bloc added successfully";
                 $success['status']  = true;
                 return $this->sendResponse($success);
     
              }else{
     
                 $response['status']  = false;
-                $response['message'] = "No Block added. Check your input data.";
+                $response['message'] = "No Bloc added. Check your input data.";
                 return $this->sendResponse($response);
                     
             }
@@ -464,7 +464,7 @@ class HomeController extends IndexController
         }else{
 
             $response['status'] = true;
-            $response['data']   = "Block successfully deleted";
+            $response['data']   = "Bloc successfully deleted";
             return $this->sendResponse($response);
                 
         }
@@ -527,14 +527,14 @@ class HomeController extends IndexController
                     
                 if (!empty($bloc_member->id)) {
 
-                    $success['message'] = "Block update successfully";
+                    $success['message'] = "Bloc update successfully";
                     $success['status']  = true;
                     return $this->sendResponse($success);
         
                 }else{
         
                     $response['status']  = false;
-                    $response['message'] = "No Block added. Check your input data.";
+                    $response['message'] = "No Bloc added. Check your input data.";
                     return $this->sendResponse($response);
                         
                 }

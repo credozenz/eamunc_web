@@ -68,7 +68,7 @@
                                         <th>#</th>
                                         <th>Name</th>
                                         <th>Members</th>
-                                        <th>Block Manage</th>
+                                        <th>Bloc Manage</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -84,7 +84,7 @@
                                         <a href="{{ url('subadmin/committee_delegate',$value->id) }}" class="btn-sm btn-warning shadow-md mr-2">Delegates</a>
                                         </td>
                                         <td>
-                                        <a href="{{ url('subadmin/blocformation',$value->id) }}" class="btn-sm btn-info shadow-md mr-2">Block</a>
+                                        <a href="{{ url('subadmin/blocformation',$value->id) }}" class="btn-sm btn-info shadow-md mr-2">Bloc</a>
                                         </td>
                                         <td>
                                         <a href="{{ url('subadmin/committee_show',$value->id) }}" class="btn btn-sm btn-primary w-24 mr-1 mb-2">View</a>

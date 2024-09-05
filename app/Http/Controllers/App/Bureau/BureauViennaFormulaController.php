@@ -66,6 +66,12 @@ class BureauViennaFormulaController extends Controller
         echo json_encode(['status' => $status, 'message' => $message,'deligatevienna' => $deligatevienna]);
     }
 
+    public function close(Vienna_formula $vf)
+    {
+        $vf->is_closed = 1;
+        $vf->save();
+        return response()->json(['status' => true, 'message' => 'Vienna Formula closed successfully']);
+    }
     public function store(Request $request)
     {
 
@@ -74,7 +80,6 @@ class BureauViennaFormulaController extends Controller
         ], [
             'vienna.required' => 'The vienna field is required',
         ]);
-
         $member = WebAppHelper::getLogMember();
 
         $committee = Committee::where('id', $member->committee_choice)->first();
@@ -107,10 +112,10 @@ class BureauViennaFormulaController extends Controller
        
         if ($vienna->id) {
             Session::flash('success', 'Vienna Formula Submitted !');
-            return redirect()->back();
+            return response()->json(['success' => true, 'message' => 'Vienna Formula Submitted !']);
         } else {
             Session::flash('error', 'Something went wrong!!');
-            return redirect()->back();
+            return response()->json(['success' => false, 'message' => 'Something went wrong!!']);
         }
 
     }
