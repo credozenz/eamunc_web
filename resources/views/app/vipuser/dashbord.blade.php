@@ -59,7 +59,7 @@
               <path d="M0 0h16v16H0V0zm1 1v6.5h6.5V1H1zm7.5 0v6.5H15V1H8.5zM15 8.5H8.5V15H15V8.5zM7.5 15V8.5H1V15h6.5z"></path>
             </svg>
           </div>
-         <p> Block Formation</p>
+         <p> Bloc Formation</p>
         </a>  
       </div>
 
@@ -152,9 +152,9 @@
                 @if($value->role==2)
                     <div class="d-flex flex-row  mb-3">
                           @if(!empty($value->avatar)) 
-                          <img src="{{ asset('uploads/'.$value->avatar) }}" class="rounded-circle" alt="{{ $value->name ?? '' }}">
+                          <img src="{{ asset('uploads/'.$value->avatar) }}" class="rounded-circle" alt="{{ isset($value->cntry_name) && $value->cntry_name ? $value->cntry_name : '' }}">
                           @else
-                          <img src="{{ asset('assets/img/avatar.svg') }}" alt="{{ $value->name ?? '' }}">
+                          <img src="{{ asset('assets/img/avatar.svg') }}" alt="{{ isset($value->cntry_name) && $value->cntry_name ? $value->cntry_name : '' }}">
                           @endif
                       <p>{{ str_limit($value->name, $limit = 12, $end = '...') }}</p>
                     </div>

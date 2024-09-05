@@ -60,7 +60,7 @@
               <path d="M0 0h16v16H0V0zm1 1v6.5h6.5V1H1zm7.5 0v6.5H15V1H8.5zM15 8.5H8.5V15H15V8.5zM7.5 15V8.5H1V15h6.5z"></path>
             </svg>
           </div>
-         <p> Block Formation</p>
+         <p> Bloc Formation</p>
         </a>  
       </div>
 
@@ -142,7 +142,17 @@
         </a>  
       </div>
 
-
+      <div class="col-md-3 text-center">
+        <a class="dasboard-menu" href="{{ route('app.bureau_program_attendance') }}">
+          <div class="icon-bg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+              <path d="M8 0a.5.5 0 0 1 .5.5V7h4.36a.5.5 0 0 1 .41.8l-5 5a.5.5 0 0 1-.77 0l-5-5a.5.5 0 0 1 .41-.8H7V.5a.5.5 0 0 1 .5-.5z"/>
+              <path d="M7 1a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5V7a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5V1z"/>
+            </svg>
+          </div>
+             <p> Attendance</p>
+        </a>  
+      </div>
 
 
 
@@ -204,11 +214,11 @@
                 @if($value->role==2)
                     <div class="d-flex flex-row  mb-3">
                           @if(!empty($value->avatar)) 
-                          <img src="{{ asset('uploads/'.$value->avatar) }}" class="rounded-circle" alt="{{ $value->name ?? '' }}">
+                          <img src="{{ asset('uploads/'.$value->avatar) }}" class="rounded-circle" alt="{{ $value->cntry_name ?? '' }}">
                           @else
-                          <img src="{{ asset('assets/img/avatar.svg') }}" alt="{{ $value->name ?? '' }}">
+                          <img src="{{ asset('assets/img/avatar.svg') }}" alt="{{ $value->cntry_name ?? '' }}">
                           @endif
-                      <p>{{ str_limit($value->name ?? '', $limit = 12, $end = '...') }}</p>
+                      <p>{{ str_limit($value->cntry_name ?? '', $limit = 12, $end = '...') }}</p>
                     </div>
                 @endif
               @endforeach

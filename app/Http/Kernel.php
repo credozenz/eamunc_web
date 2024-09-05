@@ -39,6 +39,16 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
+        'subadmin' => [
+            \App\Http\Middleware\EncryptCookies::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \Illuminate\Session\Middleware\StartSession::class,
+            // \Illuminate\Session\Middleware\AuthenticateSession::class,
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            \App\Http\Middleware\VerifyCsrfToken::class,
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        ],
+
         'web' => [
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
@@ -87,6 +97,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
         'adminchecker' => \App\Http\Middleware\Admin\AdminRoleChecker::class,
+        'subadminchecker' => \App\Http\Middleware\SubAdmin\SubAdminRoleChecker::class,
         'userchecker' => \App\Http\Middleware\App\LoginRoleChecker::class,
         'bureauchecker' => \App\Http\Middleware\App\BureauChecker::class,
         'delegatechecker' => \App\Http\Middleware\App\DelegateChecker::class,

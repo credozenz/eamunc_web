@@ -38,8 +38,10 @@ class BureauGeneralPapersController extends Controller
         $papers = Paper_submission::where('committe_id',$member->committee_choice)->get();
 
         $papers = DB::table('users as u')
+                    ->join('students as s', 'u.id', '=', 's.user_id')
+                    ->join('countries', 'countries.id', '=', 's.country_choice')
                     ->join('paper_submissions as b', 'u.id', '=', 'b.user_id')
-                    ->select('u.*','b.paper','b.id as paper_id')
+                    ->select('u.*','b.paper','b.id as paper_id','countries.name as cntry_name')
                     ->where('u.deleted_at', null)
                     ->where('b.deleted_at', null)
                     ->where('b.committe_id', '=', $committee->id)

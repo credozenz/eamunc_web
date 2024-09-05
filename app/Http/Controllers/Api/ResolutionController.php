@@ -67,6 +67,51 @@ class ResolutionController extends IndexController
         }
     }
 
+    public function get_resolution_new(Request $request)
+    {
+        $loguser = auth()->user();
+
+        if($loguser->role != 4){
+            $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first(); 
+            $committee = Committee::where('id',$user->committee_choice)->first();
+
+        }else{
+            $committee = Committee::where([['id', $request->committee_id]])->first();
+        }
+
+
+        $resolution = Resolution::where('committe_id',$committee->id)->first();
+
+        // $line = Line_by_line::where('committe_id', $committee->id)->first();
+        // if ($line) {
+        //     if ($resolution) {
+        //         // $resolution->content = $line->content;
+        //         // $resolution->committe_id = $committee->id;
+        //         // $resolution->save();
+        //     } else {
+        //         $resolution = new Resolution;
+        //         $resolution->content = $line->content;
+        //         $resolution->committe_id = $committee->id;
+        //         $resolution->save();
+        //     }
+        // }
+      
+        if (!$resolution) {
+            $resolution = Line_by_line::where('committe_id', $committee->id)->first();
+
+            $response['status']  = true;
+            $response['data']    =  $resolution;
+            return $this->sendResponse($response);
+     
+        }else{
+
+            $response['status'] = true;
+            $response['data']   = $resolution;
+            return $this->sendResponse($response);
+                
+        }
+    }
+
 
     public function add_resolution(Request $request)
     {
@@ -202,10 +247,14 @@ class ResolutionController extends IndexController
         foreach ($acceptedDelegatesArray as $Delegate) {
             $accepteds = User::where('users.deleted_at', null)
                 ->join('students', 'users.id', '=', 'students.user_id')
+                ->join('countries', 'countries.id', '=', 'students.country_choice')
                 ->leftjoin('schools', 'students.school_id', '=', 'schools.id')
-                ->select('users.*', 'schools.name as school_name', 'students.position', 'users.role', 'users.avatar')
+                ->select('users.*', 'schools.name as school_name', 'students.position', 'users.role', 'users.avatar','countries.name as cntry_name')
                 ->where('students.user_id', '=', $Delegate)
                 ->get();
+                foreach ($accepteds as $key => $val) {
+                    $accepteds[$key]->name = $val->cntry_name;
+                }
 
             if (!$accepteds->isEmpty()) {
                 $acceptedDelegates = array_merge($acceptedDelegates, $accepteds->toArray());

@@ -415,8 +415,8 @@ Your email id will be your username to login.
                         </table>
                         <div>
                             
-                        <a href="{{ route('ResetPasswordGet', $token) }}"
-    style="background-color:#41CC00;border:1px solid #407429;border-radius:4px;color:#ffffff;display:inline-block;font-family:sans-serif;font-size:17px;font-weight:bold;line-height:38px;text-align:center;text-decoration:none;width:230px;-webkit-text-size-adjust:none;mso-hide:all;">Account Settings</a>
+                        <a href="{{ url('admin/reset-password/'.$token) }}"
+    style="background-color:#41CC00;border:1px solid #407429;border-radius:4px;color:#ffffff;display:inline-block;font-family:sans-serif;font-size:17px;font-weight:bold;line-height:38px;text-align:center;text-decoration:none;width:230px;-webkit-text-size-adjust:none;mso-hide:all;">Click to Register</a>
     
                       </div>
                         <table class="body-signature-block">

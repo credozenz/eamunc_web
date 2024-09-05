@@ -20,17 +20,25 @@
         <div class="col-md-12 text-center">
     
           <h5 class="text-primary mt-5 mb-3 fs-2">Vienna Formula</h5>
+<p class="fs-6">Once each bloc has completed formulating their working papers, we move on to an important phase, i.e, merging of the various bloc positions to form a single complete draft resolution. This process is known as the Vienna formula and is facilitated by the bureau. One representative from each bloc sits together, with the chair acting as the mediator, and engage in dialogue in order to effectively merge the individual working papers</p>
           <label class="form-label text-dark">
            </label>
                 <div class="col-md-12 col-12">
                     <div class="form-group">
-                    @if(!empty($vienna->content))
+                      
+                    @if(isset($main_vienna->content))
+                    <div class="col-md-12 col-12">
+                      <div class="form-group main_vienna">
+                        
+                          <textarea id="view_editor" type="text" class="form-control @error('vienna') border-danger @enderror" style="height: auto;">{{ isset($main_vienna->content) ? $main_vienna->content : '' }}</textarea>
+                      </div>
+                  </div>
                     <form method="post" action="{{ url('app/delegate_vienna_formula_store') }}" class="mt-5 col-md-12"  enctype="multipart/form-data">
                       @csrf
                           <div class="col-md-12 col-12">
                               <div class="form-group">
                                 
-                                  <textarea id="txt_editor" type="text" name="vienna" class="form-control @error('vienna') border-danger @enderror" style="height: 850px;">{{ $vienna->content ?? old('vienna') }}</textarea>
+                                  <textarea id="txt_editor" type="text" name="vienna" class="form-control @error('vienna') border-danger @enderror" style="height: auto;">{{ isset($vienna->content) ? $vienna->content : '' }}</textarea>
                                   @error('vienna')<div class="text-danger mt-2">{{ $message }}</div>@enderror
                               </div>
                           </div>
@@ -58,5 +66,42 @@
    
 
 @endsection 
-  
+@section('script')
+<script>
+    $(function() {
+        setInterval(function() {
+            load_delegate_vienna();
+        }, 30000);
+    });
+
+    function load_delegate_vienna() {
+        $.ajax({
+            url: "{{url('app/delegate_load_main_vienna')}}",
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                "_token": "{{ csrf_token() }}",
+            },
+            success: function(res) {
+                if (res['status'] == 1) {
+                  $(".main_vienna").html(res['main_vienna']);
+                    tinymce.remove("#view_editor");
+                    tinymce.init({
+                      selector: '#view_editor',
+                      menubar: false,
+                      toolbar: false,
+                      statusbar: false,
+                      readonly:true
+                    });
+
+                } else {
+                   
+                }
+            },
+            error: function(e) {
+            }
+        });
+    }
+</script>
+@stop
    

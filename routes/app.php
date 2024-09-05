@@ -100,6 +100,8 @@ Route::group(['middleware' => 'bureauchecker'], function() {
     Route::get('/bureau_vienna_formula_editor', [BureauViennaFormulaController::class,'show'])->name('app.bureau_vienna_formula_editor');
     Route::post('/bureau_vienna_formula_store', [BureauViennaFormulaController::class,'store'])->name('app.bureau_vienna_formula_store');
 
+    Route::post('/bureau_load_delegate_vienna', [BureauViennaFormulaController::class,'load_delegate_vienna'])->name('app.bureau_load_delegate_vienna');
+
     Route::get('/bureau_line_by_line', [BureauLineByLineController::class,'index'])->name('app.bureau_line_by_line');
     Route::get('/bureau_line_by_line_editor', [BureauLineByLineController::class,'show'])->name('app.bureau_line_by_line_editor');
     Route::post('/bureau_line_by_line_store', [BureauLineByLineController::class,'store'])->name('app.bureau_line_by_line_store');
@@ -123,6 +125,12 @@ Route::group(['middleware' => 'bureauchecker'], function() {
     Route::post('/speaker_delete/{id}', [BureauSpeakersController::class,'destroy'])->name('app.speaker_delete');
 
     Route::get('/bureau_program_schedule', [BureauScheduleProgramController::class,'index'])->name('app.bureau_program_schedule');
+
+    Route::get('/bureau_program_attendance', [BureauScheduleProgramController::class,'bureau_program_attendance'])->name('app.bureau_program_attendance');
+    Route::post('/program_attendance_store', [BureauScheduleProgramController::class,'program_attendance_store'])->name('app.program_attendance_store');
+
+    Route::get('/bureau_program_attendance_export', [BureauScheduleProgramController::class,'bureau_program_attendance_export'])->name('app.bureau_program_attendance_export');
+
     Route::get('/program_schedule_create', [BureauScheduleProgramController::class,'create'])->name('app.program_schedule.create');
     Route::post('/program_schedule_store', [BureauScheduleProgramController::class,'store'])->name('app.program_schedule.store');
     Route::post('/program_schedule_delete/{id}', [BureauScheduleProgramController::class,'destroy'])->name('app.program_schedule.destroy');
@@ -142,8 +150,15 @@ Route::group(['middleware' => 'delegatechecker'], function() {
     Route::get('/delegate_bloc_formation', [DelegateBlocFormationController::class,'index'])->name('app.delegate_bloc_formation');
     Route::get('/delegate_vienna_formula', [DelegateViennaFormulaController::class,'index'])->name('app.delegate_vienna_formula');
     Route::post('/delegate_vienna_formula_store', [DelegateViennaFormulaController::class,'store'])->name('app.delegate_vienna_formula_store');
+
+    Route::post('/delegate_load_main_vienna', [DelegateViennaFormulaController::class,'load_main_vienna'])->name('app.delegate_load_main_vienna');
+
     Route::get('/delegate_line_by_line', [DelegateLineByLineController::class,'index'])->name('app.delegate_line_by_line');
+    Route::post('/delegate_load_line_by_line', [DelegateLineByLineController::class,'load_line_by_line'])->name('app.delegate_load_line_by_line');
+
     Route::get('/delegate_resolution', [DelegateResolutionController::class,'index'])->name('app.delegate_resolution');
+    Route::post('/delegate_load_resolution', [DelegateResolutionController::class,'load_resolution'])->name('app.delegate_load_resolution');
+
     Route::post('/delegate_resolution_accept', [DelegateResolutionController::class,'accept'])->name('app.delegate_resolution_accept');
   
     Route::get('/delegate_general_assembly', [DelegateGeneralAssemblyController::class,'index'])->name('app.delegate_general_assembly');

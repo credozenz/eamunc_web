@@ -29,7 +29,7 @@
       
                 <li class="nav-item" >
                   <a class="nav-link @if($routeGroup =='vipuser_bloc_formation') active @endif" href="{{ route('app.vipuser_bloc_formation') }}">
-                    <span >Block Formation</span>
+                    <span >Bloc Formation</span>
                   </a>
                 </li>
       
@@ -102,7 +102,7 @@
 
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
             <a class="nav-link @if($routeGroup =='vipuser_bloc_formation') active @endif" href="{{ route('app.vipuser_bloc_formation') }}">
-              <span >Block Formation</span>
+              <span >Bloc Formation</span>
             </a>
           </li>
 

@@ -22,9 +22,7 @@
             <h4 class="mb-3 mt-3 text-primary fs-3">General Assembly</h4>
             <p class="fs-6 mb-4">Below are the adopted resolutions of each committees accessible for
 review.We encourage delegates to explore these resolutions as these
-resolutions represent the culmination of extensive research, thought-
-ful debate, and collaboration among delegates with various perspec-
-tives.</p>
+resolutions represent the culmination of extensive research, thoughtful debate, and collaboration among delegates with various perspectives.</p>
 
            <table class="table">         
             <tbody>

@@ -38,14 +38,15 @@ class FeedbackController extends Controller
             // 'delegate_name' => 'required|max:255',
             // 'email' => 'required|max:255',
             'committee' => 'required|max:255',
+            'answer.9' => 'required',
             // 'country' => 'required|max:255',
         ],[
             'delegate_name.required' => 'The Delegate name field is required',
             'email.required' => 'The Email field is required',
             'committee.required' => 'The Committee field is required',
             'country.required' => 'The Country field is required',
+            'answer.9.required' => 'This answer field is required.',
         ]);
-      
 
             $feerback = new Feedback;
             $feerback->delegate_name   = $request->delegate_name;

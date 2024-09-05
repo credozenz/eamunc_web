@@ -30,6 +30,14 @@ use App\Http\Controllers\Web\PolicyController;
 |
 */
 
+Route::get('/clear', function() {
+   Artisan::call('cache:clear');
+   Artisan::call('config:cache');
+   Artisan::call('config:clear');
+   Artisan::call('view:clear');
+   die('cleared');
+});
+
 Route::get('/', [HomeController::class,'index'])->name('home');
 Route::get('/about', [AboutUSController::class,'index'])->name('about-us');
 Route::get('/act-impact', [ActImpactController::class,'index'])->name('act-impact');

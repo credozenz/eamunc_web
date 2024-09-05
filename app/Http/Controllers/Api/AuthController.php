@@ -2,96 +2,85 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Models\Committee;
+use App\Models\Countries;
+use App\Models\Students;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Route;
-use App\Models\Committee;
-use App\Models\Students;
-use App\Models\User;
-use App\Models\Countries;
-use View;
 use Illuminate\Support\Facades\Validator;
-use App\Helpers\ApiHelper;
-use Str;
 use Image;
-use Storage;
-use Carbon\Carbon;
-use Mail;
 use League\Flysystem\File;
+use Mail;
+use Storage;
+use Str;
+
 class AuthController extends IndexController
 {
 
-  
     public function login(Request $request)
     {
-        
-        $validator = Validator::make($request->all(), ['username' => 'required','password' => 'required','committee' => 'required',]);
-    
+
+        $validator = Validator::make($request->all(), ['username' => 'required', 'password' => 'required', 'committee' => 'required']);
+
         if ($validator->fails()) {
             return $this->sendError($validator->errors());
         }
 
         $committee = Committee::where([['id', $request->committee], ['deleted_at', '=', '']])->first();
-           
-        $user = User::where('email', $request->username)->where('deleted_at', null)->whereIn('role', [2,3,4])->first();
 
-        if(empty($user->id)){
-            $response['status']  = false;
+        $user = User::where('email', $request->username)->where('deleted_at', null)->whereIn('role', [2, 3, 4])->first();
+
+        if (empty($user->id)) {
+            $response['status'] = false;
             $response['message'] = "Unable to login - Unknown User";
             return $this->sendResponse($response);
 
-        }else{
+        } else {
 
-            if($user->role == 2 || $user->role == 3){
+            if ($user->role == 2 || $user->role == 3) {
 
-                $student   = Students::where('user_id', $user->id)->first(); 
+                $student = Students::where('user_id', $user->id)->first();
                 $committee_id = $student->committee_choice;
 
-                if($request->committee == $committee_id){
+                if ($request->committee == $committee_id) {
 
                     $committee = $committee_id;
 
-                }else{
+                } else {
 
-                    $response['status']  = false;
+                    $response['status'] = false;
                     $response['message'] = "You are not a member of this committee. Kindly choose the right committee or contact a beaureau member for assistance.";
                     return $this->sendResponse($response);
-                   
+
                 }
 
-          
-            }elseif($user->role == 4){
+            } elseif ($user->role == 4) {
 
                 $committee = $request->committee_id;
 
-            }   
+            }
 
+            if (Hash::check($request->password, $user->password)) {
 
-            if(Hash::check($request->password,$user->password)){
+                // Generate and attach a new access token
+                $token = $user->createToken('token');
 
-               
-    
-       
-            // Generate and attach a new access token
-            $token = $user->createToken('token');
+                $user->token = $token->plainTextToken;
 
-            
-            $user->token = $token->plainTextToken;
-            
-            $success['user'] = $user;
-            $success['message'] = "Login Success";
-            $success['status'] = true;
-            return $this->sendResponse($success);
+                $success['user'] = $user;
+                $success['message'] = "Login Success";
+                $success['status'] = true;
+                return $this->sendResponse($success);
 
-            }else{
+            } else {
 
-            $response['status'] = false;
-            $response['message'] = "Unable to login - Password incorrect";
-            return $this->sendResponse($response);
-                
+                $response['status'] = false;
+                $response['message'] = "Unable to login - Password incorrect";
+                return $this->sendResponse($response);
+
             }
 
         }
@@ -100,55 +89,52 @@ class AuthController extends IndexController
 
     public function logout(Request $request)
     {
-       
-        $token =$request->bearerToken();
+
+        $token = $request->bearerToken();
         [$id, $user_token] = explode('|', $token, 2);
         $user_token = hash('sha256', $user_token);
-        
+
         $token_status = DB::table('personal_access_tokens')->where('token', $user_token)->delete();
 
-        if($token_status){
+        if ($token_status) {
             $response['status'] = true;
             $response['message'] = "Successfully logged out.";
             return $this->sendResponse($response);
-        }else{
+        } else {
             $response['status'] = false;
             $response['message'] = "Something went wrong!";
             return $this->sendResponse($response);
         }
 
-
-       
     }
 
     public function get_profile(Request $request)
     {
-        
+
         $loguser = auth()->user();
-      
-            $student   = Students::where('user_id', 102)->where('deleted_at', null)->first(); 
-            if(isset($student->country_choice)){
-                $country = Countries::where('id', $student->country_choice)->where('deleted_at', null)->first(); 
-            }
-            
-        
-            $loguser['phone_code']     = isset($student->phone_code)? $student->phone_code : '';
-            $loguser['whatsapp_no']    = isset($student->whatsapp_no)? $student->whatsapp_no : '';
-            $loguser['country_choice'] = isset($student->country_choice)? $student->country_choice : '';
-            $loguser['class'] = isset($student->class)? $student->class : '';
-            $loguser['country_name'] = isset($country->name)? $country->name : '';
-       
+
+        $student = Students::where('user_id', 102)->where('deleted_at', null)->first();
+        if (isset($student->country_choice)) {
+            $country = Countries::where('id', $student->country_choice)->where('deleted_at', null)->first();
+        }
+
+        $loguser['phone_code'] = isset($student->phone_code) ? $student->phone_code : '';
+        $loguser['whatsapp_no'] = isset($student->whatsapp_no) ? $student->whatsapp_no : '';
+        $loguser['country_choice'] = isset($student->country_choice) ? $student->country_choice : '';
+        $loguser['class'] = isset($student->class) ? $student->class : '';
+        $loguser['country_name'] = isset($country->name) ? $country->name : '';
+
         if (!$loguser) {
-            $response['status']  = true;
-            $response['data'] = (object)[];
+            $response['status'] = true;
+            $response['data'] = (object) [];
             return $this->sendResponse($response);
-     
-        }else{
+
+        } else {
 
             $response['status'] = true;
             $response['data'] = $loguser;
             return $this->sendResponse($response);
-                
+
         }
     }
 
@@ -156,24 +142,24 @@ class AuthController extends IndexController
     {
 
         $loguser = auth()->user();
-        if($loguser->role != 4){
-            $student   = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first(); 
+        if ($loguser->role != 4) {
+            $student = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first();
             $committee = Committee::where([['id', $student->committee_choice]])->first();
-        }else{
+        } else {
             $committee = Committee::where([['id', $request->committee_id]])->first();
         }
 
         if (!$committee) {
-            $response['status']  = true;
-           $response['data'] = (object)[];
+            $response['status'] = true;
+            $response['data'] = (object) [];
             return $this->sendResponse($response);
-     
-        }else{
+
+        } else {
 
             $response['status'] = true;
             $response['data'] = $committee;
             return $this->sendResponse($response);
-                
+
         }
     }
 
@@ -183,49 +169,55 @@ class AuthController extends IndexController
         $committees = Committee::where([['deleted_at', null]])->paginate(300);
 
         if (!$committees) {
-            $response['status']  = true;
+            $response['status'] = true;
             $response['data'] = [];
             return $this->sendResponse($response);
-     
-        }else{
+
+        } else {
 
             $response['status'] = true;
             $response['data'] = $committees;
             return $this->sendResponse($response);
-                
+
         }
     }
 
     public function get_committee_member(Request $request)
     {
 
-            $loguser = auth()->user();
-            if($loguser->role != 4){
-                $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first();
-                $committee = Committee::where('id',$user->committee_choice)->first();
-            }else{
-                $committee = Committee::where([['id', $request->committee_id]])->first();
-            }
+        $loguser = auth()->user();
+        if ($loguser->role != 4) {
+            $user = Students::where('user_id', $loguser->id)->where('deleted_at', null)->first();
+            $committee = Committee::where('id', $user->committee_choice)->first();
+        } else {
+            $committee = Committee::where([['id', $request->committee_id]])->first();
+        }
 
-            $committee_member = User::where('users.deleted_at', null)
-                                    ->join('students', 'users.id', '=', 'students.user_id')
-                                    ->leftjoin('schools', 'students.school_id', '=', 'schools.id')
-                                    ->select('users.*', 'schools.name as school_name', 'students.position', 'users.role', 'users.avatar')
-                                    ->where('students.status', '=', 3)
-                                    ->where('students.committee_choice', '=' , $committee->id)
-                                    ->get();
+        $committee_member = User::where('users.deleted_at', null)
+            ->join('students', 'users.id', '=', 'students.user_id')
+            ->leftjoin('schools', 'students.school_id', '=', 'schools.id')
+            ->join('countries', 'students.country_choice', '=', 'countries.id')
+            ->select('users.*', 'schools.name as school_name', 'students.position', 'users.role', 'users.avatar', 'countries.name as country_name')
+            ->where('students.status', '=', 3)
+            ->where('students.committee_choice', '=', $committee->id)
+            ->get();
+        foreach ($committee_member as $key => $val) {
+            if ($val->role === 2) {
+                $committee_member[$key]->name = $val->country_name;
+            }
+        }
 
         if (!$committee_member) {
-            $response['status']  = true;
-            $response['data']    = [];
+            $response['status'] = true;
+            $response['data'] = [];
             return $this->sendResponse($response);
-     
-        }else{
+
+        } else {
 
             $response['status'] = true;
-            $response['data']   = $committee_member;
+            $response['data'] = $committee_member;
             return $this->sendResponse($response);
-                
+
         }
     }
 
@@ -297,7 +289,7 @@ class AuthController extends IndexController
             // Handle avatar upload
             $image = $request->file('avatar');
             $extension = $image->getClientOriginalExtension();
-            
+
             if ($extension === 'svg') {
                 // For SVG images, no need for resizing
                 $img = $image->get();
@@ -306,17 +298,17 @@ class AuthController extends IndexController
                 $width = 600;
                 $height = 600;
                 $img = Image::make($image->getRealPath());
-                
+
                 if ($img->height() > $img->width()) {
                     $width = null;
                 } else {
                     $height = null;
                 }
-                
+
                 $img->resize($width, $height, function ($constraint) {
                     $constraint->aspectRatio();
                 });
-                
+
                 $img->encode('png'); // Convert to PNG format
             }
 
@@ -339,15 +331,13 @@ class AuthController extends IndexController
         return $this->sendResponse($response);
     }
 
-    public function RequestForgetPassword(Request $request) 
+    public function RequestForgetPassword(Request $request)
     {
 
-               
         $customMessages = [
             'email.exists' => 'The selected email does not exist in our records.',
         ];
 
-        
         $validator = Validator::make($request->all(), [
             'email' => [
                 'required',
@@ -364,49 +354,46 @@ class AuthController extends IndexController
                         $response['status'] = false;
                         $response['message'] = 'The selected email (' . $value . ') does not exist in our records or the account is not active.';
                         return $this->sendResponse($response);
-                       
+
                     }
                 },
             ],
         ], $customMessages);
 
-       
         if ($validator->fails()) {
             return redirect()->back()
                 ->withErrors($validator)
                 ->withInput();
         }
 
-            $token = Str::random(64);
-            DB::table('password_resets')->insert([
-                'email' => $request->email,
-                'token' => $token,
-                'created_at' => Carbon::now()
-            ]);
+        $token = Str::random(64);
+        DB::table('password_resets')->insert([
+            'email' => $request->email,
+            'token' => $token,
+            'created_at' => Carbon::now(),
+        ]);
 
-            $sent = Mail::send('admin.auth.forget-password-email', ['token' => $token], function($message) use($request){
-                                $message->to(trim($request->email));
-                                $message->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'));
-                                $message->subject('Reset Password');
-                               
-                            });
+        $sent = Mail::send('admin.auth.forget-password-email', ['token' => $token], function ($message) use ($request) {
+            $message->to(trim($request->email));
+            $message->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'));
+            $message->subject('Reset Password');
 
-                            $response['status'] = true;
-                            $response['message'] = 'We have emailed your password reset link!';
-                            return $this->sendResponse($response);
+        });
 
-            // if ($sent > 0) {
-            //     $response['status'] = true;
-            //     $response['message'] = 'We have emailed your password reset link!';
-            //     return $this->sendResponse($response);
-            // } else {
-            //     $response['status'] = false;
-            //     $response['message'] = 'Something went wrong !';
-            //     return $this->sendResponse($response);
-            // }
+        $response['status'] = true;
+        $response['message'] = 'We have emailed your password reset link!';
+        return $this->sendResponse($response);
 
+        // if ($sent > 0) {
+        //     $response['status'] = true;
+        //     $response['message'] = 'We have emailed your password reset link!';
+        //     return $this->sendResponse($response);
+        // } else {
+        //     $response['status'] = false;
+        //     $response['message'] = 'Something went wrong !';
+        //     return $this->sendResponse($response);
+        // }
 
     }
 
-  
 }

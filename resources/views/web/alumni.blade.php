@@ -2,7 +2,29 @@
 @section('content')
 
 @if (!empty($alumni) && $alumni->count())
-<section id="hero" class="section-padding">
+
+<section id="regulations" class="section-padding pb-0">
+   
+    <div class="wrapper">
+        <div class="container p-0">
+            <div class="box border-black">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <p class="color-darkblue h5 mb-3 mb-md-0 text-center text-md-start">Be a part of the E.A.MUNC Alumni Network</p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                    <a href="{{ route('alumni-registration') }}">
+                        <button class="download-btn">Register Now</button>
+                    </a>
+                    </div>
+                </div> 
+            </div>
+
+        </div>
+    </div>
+   
+</section>
+<section id="hero" class="section-padding pt-0">
         <div class="wrapper">
             <div class="container">
                 <div class="letter-container">
@@ -34,7 +56,7 @@
         </div>
     </section>
     @endif
-    @if (!empty($alumni_news) && $alumni_news->count())
+    {{-- @if (!empty($alumni_news) && $alumni_news->count())
     <section id="updates" class="section-padding pb-0">
         <div class="container">
             <h3 class="color-darkblue mb-md-4 mb-5">Alumni in the News</h3>
@@ -57,9 +79,9 @@
         </div>
 
     </section>
-    @endif
+    @endif --}}
 
-
+{{-- 
     @if (!empty($webinar) && $webinar->count())
     <section id="updates" class="section-padding pb-0">
 
@@ -105,28 +127,8 @@
         </div>
 
     </section>
-    @endif
+    @endif --}}
     
-    <section id="regulations" class="section-padding">
    
-        <div class="wrapper">
-            <div class="container p-0">
-                <div class="box border-black">
-                    <div class="row align-items-center">
-                        <div class="col-md-6">
-                            <p class="color-darkblue h5 mb-3 mb-md-0 text-center text-md-start">Be a part of the E.A.MUNC Alumni Network</p>
-                        </div>
-                        <div class="col-md-6 text-center text-md-end">
-                        <a href="{{ route('alumni-registration') }}">
-                            <button class="download-btn">Register Now</button>
-                        </a>
-                        </div>
-                    </div> 
-                </div>
-
-            </div>
-        </div>
-       
-    </section>
    
     @endsection

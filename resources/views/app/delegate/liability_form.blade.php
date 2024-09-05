@@ -34,7 +34,7 @@
             
       <div class="col-md-6 offset-md-3 pt-2">
         <h4 class="dash-main-head mb-3 text-center">Liability Waiver Form</h4>
-        <p style="color:#4D4D4D; font-size: 15px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>
+        <p style="color:#4D4D4D; font-size: 15px;">Please download the liability waiver form below and upload after completion </p>
       
       
         @if(empty($student->liability_form))

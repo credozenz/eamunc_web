@@ -5,7 +5,7 @@
             <div class="container">
                 <div class="letter-container">
 
-                    <h3 class="color-darkblue mb-4">Host Educational Institiutions</h3>
+                    <h3 class="color-darkblue mb-4">Host Educational Institutions</h3>
 
                     @if (!empty($schools) && $schools->count())
                         @foreach ($schools as $key => $value)

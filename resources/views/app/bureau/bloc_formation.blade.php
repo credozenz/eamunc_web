@@ -18,11 +18,8 @@
       </div>
 
       <div class="col-md-12">
-        <h4 class="fs-3 text-primary mb-3 mt-5">Block Formation</h4>
-        <p style="color:#4D4D4D; font-size: 15px;">Once the general speakers list has been exhausted, the committee 
-moves into informal- informal meeting. At this stage, the rules of 
-procedure are suspended and delegates are divided into blocs along 
-regional or political lines.  </p>    
+        <h4 class="fs-3 text-primary mb-3 mt-5">Bloc Formation</h4>
+        <p style="color:#4D4D4D; font-size: 15px;"> Once the general speakers list has been exhausted, the committee moves into informal- informal meeting. At this stage, the rules of procedure are suspended and delegates are divided into blocs along regional or political lines.</p>    
       </div>
 
       <div class="col-md-5"> </div>
@@ -76,10 +73,10 @@ regional or political lines.  </p>
                             <label for="message-text" class="col-form-label">Members:</label>
                             <div >
                               <select class="js-states form-control select2" name="user_id[]" multiple="multiple" style="width: 100%" required="">
-                                <option value="">Select Member</option>
+                                {{-- <option value="">Select Member</option> --}}
                                   @if($committee_member)
                                     @foreach($committee_member as $value)
-                                    <option value="{{ $value->id }}" >{{ $value->name }}</option>
+                                    <option value="{{ $value->id }}" >{{ $value->cntry_name }}</option>
                                     @endforeach
                                   @endif
                               </select>

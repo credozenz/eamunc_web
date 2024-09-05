@@ -19,9 +19,9 @@
 
         <div class="col-md-12 text-center">
     
-          <h5 class="text-primary mt-5 mb-3 fs-2">Resolution</h5>
+          <h5 class="text-primary mt-5 mb-3 fs-2">Resolution Corner</h5>
           <label class="form-label text-dark">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+          
           </label>
           <form method="post" action="{{ url('app/bureau_resolution_store') }}" class="mt-5 col-md-12"  enctype="multipart/form-data">
             @csrf
@@ -29,8 +29,10 @@
                     <div class="form-group">
                       @if(isset($resolution->content) && !empty($resolution->content))
                         <textarea id="txt_editor" type="text" name="resolution" class="form-control @error('resolution') border-danger @enderror" style="height: 850px;">{{ $resolution->content ?? '' }}</textarea>
-                      @elseif(isset($resolution->line) && !empty($resolution->line))
+                      @elseif(isset($line->content) && !empty($line->content))
                         <textarea id="txt_editor" type="text" name="resolution" class="form-control @error('resolution') border-danger @enderror" style="height: 850px;">{{ $line->content ?? '' }}</textarea>
+                      @else
+                        <textarea id="txt_editor" type="text" name="resolution" class="form-control @error('resolution') border-danger @enderror" style="height: 850px;"></textarea>  
                       @endif
                       
                         @error('resolution')<div class="text-danger mt-2">{{ $message }}</div>@enderror

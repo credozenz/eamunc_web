@@ -38,8 +38,8 @@
                         <div class="col-md-4 col-sm-3 image-box">
                             <img src="{{ asset('uploads/'.$president_messages->image) }}" alt="">
                         </div>
-                        <div class="col-md-8 col-sm-9 content-box element">
-                            <p class="message-text color-white">{{ $president_messages->description ?? '' }}</p>
+                        <div class="col-md-8 col-sm-9 content-box text-_style element">
+                            <p class="message-text color-white">{!!$president_messages->description ?? '' !!}</p>
                             <div class="designation">
                                 <p class="message-name color-white">{{ $president_messages->name ?? '' }}</p>
                                 <p class="message-designation color-white">{{ $president_messages->post ?? '' }}
@@ -82,6 +82,11 @@
                             </div>
                         </div>
                     @endforeach
+
+                    <div class="col-md-12 text-center">
+                        <hr/>
+                        <a href="https://www.eamunc.org/conferences" class="btn btn-light mt-3">View all</a>
+                    </div>
                     </div>
                 @endif
 
@@ -103,7 +108,7 @@
                     <p class="color-white text-center"><i class="fa fa-whatsapp"></i> +968 222 000 00</p>
                 </div>
                 <div class="col-md-4 col-sm-6 col-12 py-3 text-center">
-                    <p class="color-white text-center"><i class="fa fa-envelope-o"></i> info@eamunc.com</p>
+                    <p class="color-white text-center"><i class="fa fa-envelope-o"></i> eamunc2024isg@gmail.com</p>
                 </div>
             </div>
         </div>

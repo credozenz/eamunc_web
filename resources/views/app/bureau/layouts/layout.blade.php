@@ -19,6 +19,8 @@
             <!-- END: Content --> 
         </div>
         @include('app.bureau.layouts.footer')
+
+        @yield('script')
     </body>
 </html>
 

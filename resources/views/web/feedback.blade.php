@@ -63,7 +63,7 @@
                                         <label for="">{{ $value->question ?? '' }} </label>
                                         <input type="hidden" name="question[{{$key}}]" value="{{ $value->id ?? '' }}">
                                         <input type="text" name="answer[{{$key}}]" class="form-control" aria-describedby="textHelp"
-                                            placeholder="Your Answer">
+                                            placeholder="Your Answer" @if($key==9) required @endif>
                                     </div>
                                 </div>
                         

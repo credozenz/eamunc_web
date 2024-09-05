@@ -6,11 +6,17 @@
     <section id="hero" class="section-padding">
         <div class="wrapper">
         <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="fw-bold">E. A. MUNC 2024</h3>
+                    <hr/>
+                </div>
+            </div>
         @foreach ($letter as $key => $value)
             
-                <div class="letter-container">
+                <div class="letter-container mt-0 mb-4">
 
-                    <h3 class="color-darkblue mb-4">{{ $value->title ?? '' }}</h3>
+                    <h4 class="color-darkblue mb-4">{{ $value->title ?? '' }}</h4>
 
                     <div class="row">
                         <div class="col-md-3">
@@ -41,7 +47,7 @@
 @if (!empty($work_members) && $work_members->count())
     <section id="mentors" class="section-padding">
         <div class="container">
-            <h3 class="color-darkblue mb-md-4 mb-5">Core Committee Members</h3>
+            <h4 class="color-darkblue mb-md-4 mb-5">Core Committee Members</h4>
             <div class="row">
             @foreach ($work_members as $key => $value)
 
@@ -63,7 +69,7 @@
     <section id="dates" class="section-padding">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
-                <h3 class="color-darkblue mb-md-4 mb-5">Important Dates</h3>
+                <h4 class="color-darkblue mb-md-4 mb-5">Important Dates</h4>
                 <a href="{{ route('registration') }}" class="button register-btn">Register Now</a>
             </div>
 
@@ -84,7 +90,7 @@
     <section id="regulations" class="section-padding">
         <div class="wrapper">
             <div class="container p-0">
-                <h3 class="color-darkblue mb-md-4 mb-5">Rules And Regulations</h3>
+                <h4 class="color-darkblue mb-md-4 mb-5">Rules And Regulations</h4>
                 <div class="box border-black">
                     <div class="row align-items-center">
                         <div class="col-md-6">

@@ -355,7 +355,7 @@ class CommitteeController extends Controller
             $query->where('students.name','LIKE', $request->q);
         }
         $data = $query->orderBy('students.id', 'desc')
-        ->paginate(4);
+        ->paginate(10);
       
        
 
@@ -392,10 +392,11 @@ class CommitteeController extends Controller
         ->whereNotIn('countries.id', function($query) use ($committeeChoice) {
         $query->select('students.country_choice')
             ->from('students')
-            ->join('committees', 'students.committee_choice', '=', 'committees.id')
-            ->where('committees.id', '=', $committeeChoice)
+            ->where('students.deleted_at', null)
+            // ->join('committees', 'students.committee_choice', '=', 'committees.id')
+            ->where('students.committee_choice', '=', $committeeChoice)
             ->whereIn('students.status', [1, 2, 3]);
-    })   
+    })  
     ->get();
     
     return response()->json($countries);
@@ -466,9 +467,9 @@ class CommitteeController extends Controller
                 $img->stream('png', 100);
             }
             
-            Storage::disk('public')->put('press_corp/'.$fileName,$img,'public');
+            Storage::disk('public')->put('committee/'.$fileName,$img,'public');
 
-            $committee->image = 'press_corp/'.$fileName; 
+            $committee->image = 'committee/'.$fileName; 
            }
 
            
@@ -530,9 +531,10 @@ class CommitteeController extends Controller
                     $img->stream('png', 100);
                 }
                 
-                Storage::disk('public')->put('press_corp_member/'.$fileName,$img,'public');
+                Storage::disk('public')->put('committee/'.$fileName,$img,'public');
+                
     
-                $press_corp_member = 'press_corp_member/'.$fileName; 
+                $press_corp_member = 'committee/'.$fileName; 
                }else{
                 $press_corp_member = ''; 
                }

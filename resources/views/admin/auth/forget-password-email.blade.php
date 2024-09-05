@@ -19,7 +19,7 @@
 <h1>Set Password Email</h1>
 
 You can reset password from bellow link:
-<a href="{{ route('ResetPasswordGet', $token) }}">Set Password</a>
+<a href="{{ url('admin/reset-password/'.$token) }}">Set Password</a>
 </body>
 
 <script src="{{asset('js/admin/bootstrap.bundle.min.js')}}"></script>

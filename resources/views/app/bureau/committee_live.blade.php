@@ -21,8 +21,7 @@
         <h4 class="fs-3 text-primary mb-3 mt-5">Committee Live Stream</h4>
         <p style="color:#4D4D4D; font-size: 15px;">All committee sessions at our conference will be streamed live on 
 our website. This live streaming feature reflects our commitment to 
-transparency and inclusivity, ensuring that our conference is acces-
-sible to a global audience.</p>    
+transparency and inclusivity, ensuring that our conference is accessible to a global audience.</p>    
       </div>
 
       <div class="col-md-5"> </div>

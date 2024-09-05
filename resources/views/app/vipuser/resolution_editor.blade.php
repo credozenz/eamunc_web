@@ -21,7 +21,7 @@
     
           <h5 class="text-primary mt-5 mb-3 fs-2">Resolution</h5>
           <label class="form-label text-dark">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+          
           </label>
           <form method="post" action="{{ url('app/bureau_resolution_store') }}" class="mt-5 col-md-12"  enctype="multipart/form-data">
             @csrf

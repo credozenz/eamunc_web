@@ -21,7 +21,7 @@
                     <div class="col-md-4">
                         <ul>
                             <li><a href="{{ route('faq') }}" class="color-white">FAQ</a></li>
-                            <li><a href="{{ route('terms-service') }}" class="color-white">Terms of Service</a></li>
+                            <!--<li><a href="{{ route('terms-service') }}" class="color-white">Terms of Service</a></li>-->
                             <li><a href="{{ route('privacy-policy') }}" class="color-white">Privacy Policy</a></li>
                             <li><a href="{{ route('feedback') }}" class="color-white">Feedback Form</a></li>
                         </ul>
@@ -35,8 +35,6 @@
                         <ul class="d-flex">
                             <li><a href="#" class="color-white"><i class="fa fa-instagram"></i></a></li>
                             <li><a href="#" class="color-white"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#" class="color-white"><i class="fa fa-linkedin"></i></a></li>
-                            <li><a href="#" class="color-white"><i class="fa fa-twitter"></i></a></li>
                             <li><a href="https://www.youtube.com/@eamunc2215" class="color-white"><i class="fa fa-youtube"></i></a></li>
                         </ul>
                     </div>
@@ -64,5 +62,12 @@
     <script src="{{asset('js/web/w3scroll.js')}}"></script>
     <script src="{{asset('js/web/owl.carousel.min.js')}}"></script>
     <script src="{{asset('js/web/select2.min.js')}}"></script>
+    <script src="{{asset('js/web/jquery.fancybox.pack.js')}}"></script>
+    
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $(".fancybox").fancybox();
+      });
+    </script>
     
   

@@ -19,5 +19,6 @@
             <!-- END: Content --> 
         </div>
         @include('app.delegate.layouts.footer')
+        @yield('script')
     </body>
 </html>

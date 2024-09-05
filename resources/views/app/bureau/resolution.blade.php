@@ -24,8 +24,7 @@
         <p class="fs-6">Once all the changes have been made and amendments been added, 
 the committee moves into the action phase. At this point in time, the
 chair will ask the delegates if there are any objections to the draft 
-resolution. If there are none, the draft resolution is adopted by con-
-sensus and is renamed resolution 1.1. </p>
+resolution. If there are none, the draft resolution is adopted by consensus and is renamed resolution 1.1. </p>
         
         @if(empty($resolution))
         <a href="{{ url('app/bureau_resolution_editor') }}" type="button" class="btn btn-primary mt-3"> Start Session</a>
@@ -45,21 +44,21 @@ sensus and is renamed resolution 1.1. </p>
                 <div class="col-md-4">
                     <div class="d-flex flex-row  mb-3">
                           @if(!empty($value->avatar)) 
-                          <img src="{{ asset('uploads/'.$value->avatar) }}" class="rounded-circle" alt="{{ $value->name ?? '' }}">
+                          <img src="{{ asset('uploads/'.$value->avatar) }}" class="rounded-circle" alt="{{ $value->cntry_name ?? '' }}">
                           @else
-                          <img src="{{ asset('assets/img/avatar.svg') }}" alt="{{ $value->name ?? '' }}">
+                          <img src="{{ asset('assets/img/avatar.svg') }}" alt="{{ $value->cntry_name ?? '' }}">
                           @endif
-                      <p>{{ str_limit($value->name ?? '', $limit = 12, $end = '...') }}</p>
+                      <p>{{ str_limit($value->cntry_name ?? '', $limit = 12, $end = '...') }}</p>
                     </div>
                   </div>
                   
                 @endif
               @endforeach
           @else
-              <div class="blue-box mt-3">
+              {{-- <div class="blue-box mt-3">
                         <h4>Please wait !</h4>
                   <p class="mt-2 mb-3">This session has not started !</p>
-              </div>
+              </div> --}}
           @endif
           </div>
         </div>

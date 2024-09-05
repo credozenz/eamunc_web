@@ -37,7 +37,8 @@ class BureauBlocFormationController extends Controller
 
         $committee_member = DB::table('users as u')
                                 ->join('students as s', 'u.id', '=', 's.user_id')
-                                ->select('u.*')
+                                ->join('countries', 'countries.id', '=', 's.country_choice')
+                                ->select('u.*','countries.name as cntry_name')
                                 ->where('s.status', '=', 3)
                                 ->where('u.role', '=', 2)
                                 ->where('u.deleted_at', null)
@@ -121,7 +122,9 @@ class BureauBlocFormationController extends Controller
 
         $blocs_members = DB::table('users as u')
                             ->join('bloc_members as b', 'u.id', '=', 'b.user_id')
-                            ->select('u.*')
+                            ->join('students as s', 'u.id', '=', 's.user_id')
+                            ->join('countries', 'countries.id', '=', 's.country_choice')
+                            ->select('u.*','countries.name as cntry_name')
                             ->where('b.bloc_id', '=' , $blocs->id)
                             ->where('u.deleted_at', null)
                             ->where('b.deleted_at', null)
@@ -129,7 +132,8 @@ class BureauBlocFormationController extends Controller
                            
         $committee_member = DB::table('users as u')
                                 ->join('students as s', 'u.id', '=', 's.user_id')
-                                ->select('u.*')
+                                ->join('countries', 'countries.id', '=', 's.country_choice')
+                                ->select('u.*','countries.name as cntry_name')
                                 ->where('s.status', '=', 3)
                                 ->where('u.role', '=', 2)
                                 ->where('u.deleted_at', null)

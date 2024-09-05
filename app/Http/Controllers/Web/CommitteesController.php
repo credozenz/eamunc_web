@@ -51,8 +51,14 @@ class CommitteesController extends Controller
         ->where('users.role', '=' , 3)
         ->whereIn('students.status', [3])
         ->where('students.committee_choice', '=' , $id)
-        ->orderBy('students.id', 'desc')
-        ->paginate(12);
+        // ->orderBy('students.id', 'desc')
+        // ->orderByRaw("FIELD(students.position, 'President', 'Vice President', 'Rapporteur','Secretary General','Editor in Chief')")
+        ->orderByRaw("CASE
+        WHEN students.position IS NULL OR students.position = '' THEN 1
+        ELSE 0
+    END,
+    FIELD(LOWER(students.position), 'president','president1','president 1','president2','president 2', 'vice president','vice president1','vice president 1','vice president2','vice president 2', 'rapporteur','rapporteur1','rapporteur 1','rapporteur2','rapporteur 2', 'secretary general','secretary', 'editor in chief')")
+    ->paginate(12);
 
         $files = Committee_files::where('committe_id', $id)->where('deleted_at', null)->get(); 
        
@@ -88,6 +94,7 @@ class CommitteesController extends Controller
          ->whereNotIn('countries.id', function($query) use ($committeeChoice) {
          $query->select('students.country_choice')
              ->from('students')
+             ->where('students.deleted_at', null)
              ->join('committees', 'students.committee_choice', '=', 'committees.id')
              ->where('committees.id', '=', $committeeChoice)
              ->whereIn('students.status', [1, 2, 3]);

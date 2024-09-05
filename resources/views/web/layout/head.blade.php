@@ -12,7 +12,7 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.eamunc.com/">
+    <meta property="og:url" content="https://www.eamunc.org/">
     <meta property="og:title" content="E.A.MUNC | E. Ahamed Model United Nations Conference">
     <meta property="og:description"
         content="E. Ahamed Model United Nations Conference, E.A.MUNC, is a MUN conference affiliated with UN4MUN. It offers the delegates enhancement in leadership and diplomacy skills.">
@@ -20,7 +20,7 @@
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://www.eamunc.com/">
+    <meta property="twitter:url" content="https://www.eamunc.org/">
     <meta property="twitter:title" content="E.A.MUNC | E. Ahamed Model United Nations Conference">
     <meta property="twitter:description"
         content="E. Ahamed Model United Nations Conference, E.A.MUNC, is a MUN conference affiliated with UN4MUN. It offers the delegates enhancement in leadership and diplomacy skills.">
@@ -49,4 +49,6 @@
     <link rel="stylesheet" href="{{asset('css/web/owl.carousel.min.css')}}"/>
     <link rel="stylesheet" href="{{asset('css/web/select2.min.css')}}"/>
     <link rel="stylesheet" href="{{asset('css/web/animate.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('css/web/jquery.fancybox.css')}}"/>
+    
 </head>

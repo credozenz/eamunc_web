@@ -49,7 +49,9 @@ class StudentsController extends Controller
         $query = User::whereNull('users.deleted_at')
         ->join('students', 'users.id', '=', 'students.user_id')
         ->leftJoin('schools', 'students.school_id', '=', 'schools.id')
-        ->select('students.*', 'schools.name as school_name', 'users.role')
+        ->leftJoin('countries', 'students.country_choice', '=', 'countries.id')
+        ->leftJoin('committees', 'students.committee_choice', '=', 'committees.id')
+        ->select('students.*', 'schools.name as school_name', 'users.role', 'countries.name as cntry_name', 'committees.name as cmte_name')
         ->where('users.role', '!=', 1);
 
         // Filter by search term
@@ -103,6 +105,24 @@ class StudentsController extends Controller
        
     }
 
+    public function submitted_liability_waiver_form(Request $request)
+    {
+        View::share('routeGroup','students_liability_form');
+        $query = User::whereNull('users.deleted_at')->whereNull('students.deleted_at')->whereNotNull('students.liability_form')->join('students', 'users.id', '=', 'students.user_id')->leftJoin('countries', 'students.country_choice', '=', 'countries.id')
+        ->select('students.liability_form','countries.name as cntry_name')->where('users.role', '!=', 1);
+
+        if ($request->q) {
+            $query->where(function ($subQuery) use ($request) {
+                $searchTerm = '%' . $request->q . '%';
+                $subQuery->where('countries.name', 'LIKE', $searchTerm);
+            });
+        }
+        $filterParams = $request->except('page');
+        $data = $query->orderByDesc('students.id')->paginate(10)->appends($filterParams);
+       
+        return view('admin/students/submitted_liability_waiver_form', compact('data','request'));
+    }
+
     public function edit(Request $request,$id)
     {
         $committees = Committee::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(50); 
@@ -118,7 +138,9 @@ class StudentsController extends Controller
                 $query->select('students.country_choice')
                     ->from('students')
                     ->join('committees', 'students.committee_choice', '=', 'committees.id')
-                    ->where('committees.id', '=', $data->committee_choice);
+                    ->where('committees.id', '=', $data->committee_choice)
+                    ->where('students.deleted_at', null)
+                    ->where('countries.id', '!=', $data->country_choice);
             })
             ->get();
         
@@ -776,10 +798,13 @@ public function student_bulk_invite(Request $request) {
                     $sheet->getColumnDimension('G')->setWidth(35);
                     $sheet->getColumnDimension('H')->setWidth(35);
                     $sheet->getColumnDimension('I')->setWidth(35);
-                    $sheet->mergeCells('A1:I1');
-                    $sheet->mergeCells('A2:I2');
-                    $sheet->mergeCells('A3:I3');
-                    $sheet->mergeCells('A4:I4');
+                    $sheet->getColumnDimension('J')->setWidth(35);
+                    $sheet->getColumnDimension('K')->setWidth(35);
+                    $sheet->getColumnDimension('L')->setWidth(35);
+                    $sheet->mergeCells('A1:L1');
+                    $sheet->mergeCells('A2:L2');
+                    $sheet->mergeCells('A3:L3');
+                    $sheet->mergeCells('A4:L4');
                     $sheet->getStyle('A1')->applyFromArray($styleArray);
                     $sheet->getStyle('A2')->applyFromArray($headstyleArray);
                     $sheet->getStyle('A5')->applyFromArray($headstyleArray);
@@ -792,6 +817,11 @@ public function student_bulk_invite(Request $request) {
                     $sheet->getStyle('G6')->applyFromArray($subheadstyleArray);
                     $sheet->getStyle('H6')->applyFromArray($subheadstyleArray);
                     $sheet->getStyle('I6')->applyFromArray($subheadstyleArray);
+                    $sheet->getStyle('J6')->applyFromArray($subheadstyleArray);
+                    $sheet->getStyle('K6')->applyFromArray($subheadstyleArray);
+                    $sheet->getStyle('L6')->applyFromArray($subheadstyleArray);
+
+
                     $sheet->setCellValue('A1', 'E.Ahamed Model United Nations Conference');
                     $sheet->setCellValue('A2', 'Students List');
 
@@ -810,7 +840,10 @@ public function student_bulk_invite(Request $request) {
                     $sheet->setCellValue('G6', 'Position');
                     $sheet->setCellValue('H6', 'School');
                     $sheet->setCellValue('I6', 'Status');
-                
+                    $sheet->setCellValue('J6', 'Role');
+                    $sheet->setCellValue('K6', 'Country of Choice');
+                    $sheet->setCellValue('L6', 'Committee of Choice');
+                    
                     $rows=6;
 
                     foreach ($students as $key => $each) {
@@ -843,8 +876,18 @@ public function student_bulk_invite(Request $request) {
                     }elseif($each->status=='4'){
                         $sheet->setCellValue('I' . $rows, 'Reject');
                     }
-                                            
 
+                    $role = '';
+                    if($each->role=='2'){
+                        $role = 'Delegate';
+                    }  
+                    if($each->role=='3'){
+                        $role = 'Bureau Member';
+                    }                    
+                    $sheet->setCellValue('J' . $rows, $role);
+
+                    $sheet->setCellValue('K' . $rows, $each->cntry_name);
+                    $sheet->setCellValue('L' . $rows, $each->cmte_name);
                     }
 
                 

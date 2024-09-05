@@ -5,56 +5,69 @@
             <div class="container">
                 <div class="letter-container">
                     <div class="mb-4">
-                        <h3 class="color-darkblue">Conference</h3>
+                        <h3 class="color-darkblue" style="display: inline-block;">{{$gallery->name}}</h3>
+                        <a href="https://www.eamunc.org/gallery" class="button main-btn" style="display: inline-block; float: right; padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px; color: #166EE1; border: 1px solid #166EE1;     margin-top: 20px;">Back</a>
                     </div>
 
                 @if (!empty($images) && $images->count())
+
                     <div class="row mt-5">
                     @if (!empty($images) && $images->count())
                         @foreach ($images as $key => $value)
 
+                       
+                       
+                       
                         @if(!empty($value->image))
+                        
                         <div class="col-md-4 image-box mb-5">
-                        <img width="40%" height="100%" src="{{ asset('uploads/'.$value->image) ?? '' }}" class="open-img" alt="{{ $value->name ?? '' }}">
-                        </div> 
-                      
-                        @endif
-                        @endforeach
-                    @endif   
-                    </div>
-
-                    <div class="row mt-5">
-                    @if (!empty($images) && $images->count())
-                        @foreach ($images as $key => $value)
-                        @if(!empty($value->video))
-                        <div class="col-md-4 image-box mb-5">
-                            <div class="form-group video-wrapper">
-                                <div class="youtube-thumbnail" data-video="{{ $value->video }}">
-                                    <img src="https://img.youtube.com/vi/{{ $value->video }}/0.jpg" alt="YouTube Thumbnail">
-                                    <button onclick="document.getElementById('modal'+{{$key+1}}).style.display='block'" >Play Video <i class="fa fa-play"></i></button>
-                                </div>
+                            <a target="_blank" class="fancybox" rel="group" href="{{ asset('uploads/'.$value->image) ?? '' }}">
+                                <img  height="100%" src="{{ asset('uploads/'.$value->image) ?? '' }}" class="open-img" alt="{{ $value->name ?? '' }}">
+                            </a>
                             </div>
-                        </div>
+                  
+                        
+                        
+                        
+                        @endif
+                       
                        
 
-                        <div id="modal{{$key+1}}" class="w3-modal">
-                            <div class="w3-modal-content">
-                            <div class="w3-container">
-                                <span onclick="videoPopup({{$key+1}})" class="w3-button w3-display-topright">&times;</span>
-                                <iframe id="iframe{{$key+1}}" width="100%" height="400" src="https://www.youtube-nocookie.com/embed/{{ $value->video ?? '' }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
-                                </iframe>
-                            </div>
-                            </div>
-                        </div>
-                        @endif
-
                         @endforeach
+                  
                     @endif   
                     </div>
-                @else
-                    <div class="col-md-6 text-center text-md-end color-darkblue">
-                        Gallery Images isn't available right Now !
+
+
+                    <div class="row mt-5">
+                        @if (!empty($images) && $images->count())
+                            @foreach ($images as $key => $value)
+
+                        
+
+                            @if(!empty($value->video))
+                        
+                            <div class="col-md-6 col-12">
+                                <div class="form-group">
+                                    <iframe width="550" height="245" src="https://www.youtube.com/embed/{{ $value->video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                            
+                            @endif
+                        
+                            @endforeach
+                       
+                        @endif
                     </div>
+
+
+
+                @else
+                <div class="col-md-6 text-center text-md-end color-darkblue">
+                    Gallery Images isn't available right Now !
+                </div>
                 @endif
 
 
@@ -72,32 +85,3 @@
 
 
     @endsection
-
-<!-- The Modal -->
-<div id="myModal" class="modal">
-<!-- The Close Button -->
-<span class="close">&times;</span>
-<!-- Modal Content (The Image) -->
-<img class="modal-content" id="img01">
-<div class="w3-content" style="max-width:1200px">
- 
-  <div class="w3-row-padding w3-section">
-        @if (!empty($images) && $images->count())
-            <div class="row mt-2">
-            @if (!empty($images) && $images->count())
-                @foreach ($images as $key => $value)
-                    @if(!empty($value->image))
-                    <div class="col-md-1 mb-2">
-                    <img width="100%" height="100%" src="{{ asset('uploads/'.$value->image) ?? '' }}" class="open-img" alt="{{ $value->name ?? '' }}">
-                    </div> 
-                    @endif
-                @endforeach
-            @endif   
-            </div>
-        @endif
-  </div>
-
-</div>
-<!-- Modal Caption (Image Text) -->
-<div id="caption"></div>
-</div>

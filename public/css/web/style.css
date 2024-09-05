@@ -948,3 +948,7 @@ footer {
   .element::-webkit-scrollbar {
     display: none;
   }
+  .text-_style p{
+    font-size: 17px;
+    line-height: 29px;
+  }

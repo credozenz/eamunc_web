@@ -35,7 +35,7 @@ class DelegateScheduleProgramController extends Controller
 
         $committee = Committee::where('id',$member->committee_choice)->first();
 
-        $schedule = Program_schedule::where('deleted_at', null)->orderBy('id', 'ASC')->paginate(25);
+        $schedule = Program_schedule::where('deleted_at', null)->where('committe_id', $committee->id)->orderBy('id', 'ASC')->paginate(25);
   
         $program_schedule = $schedule->map(function($item, $key) {
 

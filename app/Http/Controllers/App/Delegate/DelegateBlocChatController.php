@@ -51,7 +51,10 @@ class DelegateBlocChatController extends Controller
 
           $blocs_chats = DB::table('bloc_chats as b')
                             ->join('users as u', 'b.user_id', '=', 'u.id')
-                            ->select('b.*','u.name as user_name','u.avatar as avatar')
+                            ->join('students as s', 'u.id', '=', 's.user_id')
+                            ->join('countries', 'countries.id', '=', 's.country_choice')
+                            ->select('b.*','u.name as user_name','u.avatar as avatar','countries.name as cntry_name')
+                            
                             ->where('u.deleted_at', null)
                             ->where('b.deleted_at', null)
                             ->where('b.bloc_id', '=', $id)

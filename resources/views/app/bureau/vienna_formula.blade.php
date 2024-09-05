@@ -21,7 +21,7 @@
       <div class="col-md-6 text-center offset-md-3">
   
         <h5 class="text-primary mt-5 mb-3 fs-2">Vienna Formula</h5>
-        <p class="fs-6"></p>
+        <p class="fs-6">Once each bloc has completed formulating their working papers, we move on to an important phase, i.e, merging of the various bloc positions to form a single complete draft resolution. This process is known as the Vienna formula and is facilitated by the bureau. One representative from each bloc sits together, with the chair acting as the mediator, and engage in dialogue in order to effectively merge the individual working papers</p>
         @if(empty($vienna))
         <a href="{{ url('app/bureau_vienna_formula_editor') }}" type="button" class="btn btn-primary mt-3"> Start Session</a>
         @else

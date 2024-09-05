@@ -32,7 +32,7 @@
                             <h4 class="color-darkblue mb-4">{{ $press_corp->name ?? '' }}</h4>
                             <div class="row committee-card">
                                 <div class="col-md-5 committee-thumb">
-                                    <img src="{{ asset('uploads/'.$value->image) ?? '' }}" class="commitee-image" alt="{{ $value->name ?? '' }}">
+                                    <img src="{{ asset('uploads/'.$press_corp->image) ?? '' }}" class="commitee-image" alt="{{ $press_corp->name ?? '' }}">
                                 </div>
                                 <div class="col-md-7">
                                     <div class="content p-4">
@@ -53,7 +53,7 @@
 
     @endif
 
-    <section id="regulations" class="section-padding pt-0">
+    <!--<section id="regulations" class="section-padding pt-0">
         <div class="wrapper">
             <div class="container p-0">
                 <div class="box border-black">
@@ -74,7 +74,7 @@
             <span class="spacer"></span>
 
         </div>
-    </section> 
+    </section>--> 
 
 
     @endsection

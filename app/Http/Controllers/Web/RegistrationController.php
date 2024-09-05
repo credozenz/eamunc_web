@@ -299,7 +299,7 @@ class RegistrationController extends Controller
     public function committees_and_country(Request $request)
     {
        
-        $committees = Committee::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(4); 
+        $committees = Committee::where('deleted_at', null)->orderBy('id', 'DESC')->paginate(50); 
         $countries = Countries::where('deleted_at', null)->get();
       
         if(!empty($committees)){

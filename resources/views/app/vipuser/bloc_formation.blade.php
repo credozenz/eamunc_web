@@ -18,7 +18,7 @@
       </div>
 
       <div class="col-md-12">
-        <h4 class="fs-3 text-primary mb-3 mt-5">Block Formation</h4>
+        <h4 class="fs-3 text-primary mb-3 mt-5">Bloc Formation</h4>
         <p style="color:#4D4D4D; font-size: 15px;">Once the general speakers list has been exhausted, the committee 
 moves into informal- informal meeting. At this stage, the rules of 
 procedure are suspended and delegates are divided into blocs along 

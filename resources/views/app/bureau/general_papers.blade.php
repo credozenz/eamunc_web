@@ -20,7 +20,7 @@
       <div class="col-md-12">
         
         <h5 class="text-primary mt-5 mb-3">Position Papers</h5>
-        <p style="color: #4D4D4D; font-size: 14px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>
+        <p style="color: #4D4D4D; font-size: 14px;"> </p>
         
         <div class="table-responsive dash-table">
           <table class="table table-bordered w-100">
@@ -38,12 +38,12 @@
               <tr>
                 <td>
                     @if(!empty($each->avatar)) 
-                        <img src="{{ asset('uploads/'.$each->avatar) ?? '' }}" alt="{{ $each->name ?? '' }}" class="float-start rounded-circle" style="width: 32px; height: 32px;">
+                        <img src="{{ asset('uploads/'.$each->avatar) ?? '' }}" alt="{{ $each->cntry_name ?? '' }}" class="float-start rounded-circle" style="width: 32px; height: 32px;">
                         @else
-                        <img src="{{ asset('assets/img/avatar.svg') }}" alt="{{ $each->name ?? '' }}" class="float-start rounded-circle" style="width: 32px; height: 32px;">
+                        <img src="{{ asset('assets/img/avatar.svg') }}" alt="{{ $each->cntry_name ?? '' }}" class="float-start rounded-circle" style="width: 32px; height: 32px;">
                       @endif
                   
-                  <p class="d-inline float-start p-2 fw-bold">{{ $each->name ?? '' }}</p>
+                  <p class="d-inline float-start p-2 fw-bold">{{ $each->cntry_name ?? '' }}</p>
                 </td>
                 <td>
                   <a href="{{ asset('uploads/'.$each->paper) ?? '' }}" target="_blank"><span class="text-primary text-decoration-underline p-1">View Paper</span></a>

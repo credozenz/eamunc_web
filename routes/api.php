@@ -71,12 +71,17 @@ Route::post('/request_forgetpassword', [AuthController::class,'RequestForgetPass
     Route::post('/delete_paper', [PaperController::class,'delete_paper']);
 
     Route::post('/get_vienna', [ViennaController::class,'get_vienna']);
+    Route::post('/get_vienna_new', [ViennaController::class,'get_vienna_new']);
     Route::post('/add_vienna',  [ViennaController::class,'add_vienna']);
+    Route::post('/add_delegate_vienna',  [ViennaController::class,'add_delegate_vienna']);
 
     Route::post('/get_line_by_line', [LineByLineController::class,'get_line_by_line']);
+    Route::post('/get_line_by_line_new', [LineByLineController::class,'get_line_by_line_new']);
     Route::post('/add_line_by_line',  [LineByLineController::class,'add_line_by_line']);
 
     Route::post('/get_resolution', [ResolutionController::class,'get_resolution']);
+    Route::post('/get_resolution_new', [ResolutionController::class,'get_resolution_new']);
+    
     Route::post('/add_resolution', [ResolutionController::class,'add_resolution']);
     Route::post('/accept_resolution', [ResolutionController::class,'accept_resolution']);
     Route::post('/accept_resolution_list', [ResolutionController::class,'accept_resolution_list']);

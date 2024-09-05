@@ -21,7 +21,7 @@
     <div class="col-md-6 text-center offset-md-3">
     
      <h5 class="text-primary mt-5 mb-3 fs-2">{{ ucfirst($blocs->name) ?? '' }}</h5>
-     <p class="fs-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>
+     <p class="fs-6"></p>
      
      <button type="button" id="mdlbtn" class="btn btn-primary mt-3"> Add/Edit Members</button>
      <a href="{{ url('app/bureau_bloc_chat',$blocs->id) }}" type="button" class="btn btn-primary mt-3"> Discussion </a>
@@ -62,12 +62,12 @@
                         <option value="">Select Member</option>
                           @if($blocs_members)
                             @foreach($blocs_members as $value)
-                            <option value="{{ $value->id }}" selected>{{ $value->name }}</option>
+                            <option value="{{ $value->id }}" selected>{{ $value->cntry_name }}</option>
                             @endforeach
                           @endif
                           @if($committee_member)
                             @foreach($committee_member as $value)
-                            <option value="{{ $value->id }}" >{{ $value->name }}</option>
+                            <option value="{{ $value->id }}" >{{ $value->cntry_name }}</option>
                             @endforeach
                           @endif
                     </select>

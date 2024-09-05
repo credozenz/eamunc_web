@@ -21,7 +21,7 @@
       <div class="col-md-6 text-center offset-md-3">
 
         <h5 class="text-primary mt-5 mb-3 fs-2">Line By Line </h5>
-        <p class="fs-6"></p>
+        <p class="fs-6">Once the draft resolution has been tabled/approved by the Bureau, it may be circulated around the committee or displayed for all delegates. Following this would be a line by line review of the draft resolution. Delegates can utilize this opportunity to make amendments. Changes by the committee as a whole are called amendments and each draft amendment must be formally proposed (i.e. tabled) to the conference. A proposed amendment can add a paragraph, delete a paragraph or modify an existing paragraph. The delegate making an amendment must support his/her claim with reasoning.</p>
         @if(empty($line))
         <a href="{{ url('app/bureau_line_by_line_editor') }}" type="button" class="btn btn-primary mt-3"> Start Session</a>
         @else

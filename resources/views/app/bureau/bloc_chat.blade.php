@@ -10,9 +10,9 @@
               @if(!empty($blocs_members))
                     @foreach($blocs_members as $key => $each)
                         @if(!empty($each->avatar)) 
-                        <img src="{{ asset('uploads/'.$each->avatar) ?? '' }}" alt="{{ $each->name ?? '' }}" title="{{ ucfirst($each->name) ?? '' }}" class="avatar rounded-circle d-inline-block" style="width: 40px; height: 40px;">
+                        <img src="{{ asset('uploads/'.$each->avatar) ?? '' }}" alt="{{ $each->name ?? '' }}" title="{{ ucfirst($each->name) ?? '' }}" class="avatar rounded-circle d-inline-block" style="width: 40px; height: 40px;" data-toggle="tooltip"  data-placement="right" title="" data-original-title="{{ $each->name ?? '' }}">
                         @else
-                        <img src="{{ asset('assets/img/avatar.svg') }}" alt="{{ $each->name ?? '' }}" title="{{ ucfirst($each->name) ?? '' }}" class="avatar rounded-circle d-inline-block" style="width: 40px; height: 40px;">
+                        <img src="{{ asset('assets/img/avatar.svg') }}" alt="{{ $each->name ?? '' }}" title="{{ ucfirst($each->name) ?? '' }}" class="avatar rounded-circle d-inline-block" style="width: 40px; height: 40px;" data-toggle="tooltip"  data-placement="right" title="" data-original-title="{{ $each->name ?? '' }}">
                         @endif
                 @endforeach
               @endif
@@ -46,16 +46,16 @@
                         <div class="chat-avatar">
                           <a class="avatar avatar-online" data-toggle="tooltip"  data-placement="right" title="" data-original-title="{{ $chat->user_name ?? '' }}">  
                               @if(!empty($chat->avatar)) 
-                              <img src="{{ asset('uploads/'.$chat->avatar) ?? '' }}" alt="{{ $chat->user_name ?? '' }}" title="{{ $chat->user_name ?? '' }}">
+                              <img src="{{ asset('uploads/'.$chat->avatar) ?? '' }}" alt="{{ $chat->user_name ?? '' }}" title="{{ ucfirst($chat->user_name) ?? '' }}">
                               @else
-                              <img src="{{ asset('assets/img/avatar.svg') }}" alt="{{ $chat->user_name ?? '' }}" title="{{ $chat->user_name ?? '' }}">
+                              <img src="{{ asset('assets/img/avatar.svg') }}" alt="{{ $chat->user_name ?? '' }}" title="{{ ucfirst($chat->user_name) ?? '' }}">
                               @endif
                               <i></i>
                           </a>
                         </div>
                         <div class="chat-body">
                           <div class="chat-content">
-                            
+                            <small style="font-size: 10px">{{ ucfirst($chat->cntry_name) ?? '' }}</small>
                           @if($chat->type == 'text')
                             <p>{{ $chat->message ?? '' }}</p>
                           @elseif($chat->type == 'image')
@@ -99,15 +99,16 @@
                         <div class="chat-avatar">
                           <a class="avatar avatar-online" data-toggle="tooltip"  data-placement="right" title="" data-original-title="{{ $chat->user_name ?? '' }}">  
                               @if(!empty($chat->avatar)) 
-                              <img src="{{ asset('uploads/'.$chat->avatar) ?? '' }}" alt="{{ $chat->user_name ?? '' }}">
+                              <img src="{{ asset('uploads/'.$chat->avatar) ?? '' }}" alt="{{ $chat->user_name ?? '' }}" title="{{ ucfirst($chat->user_name) ?? '' }}">
                               @else
-                              <img src="{{ asset('assets/img/avatar.svg') }}" alt="{{ $chat->user_name ?? '' }}">
+                              <img src="{{ asset('assets/img/avatar.svg') }}" alt="{{ $chat->user_name ?? '' }}" title="{{ ucfirst($chat->user_name) ?? '' }}">
                               @endif
                             <i></i>
                           </a>
                         </div>
                         <div class="chat-body">
                           <div class="chat-content">
+                            <small style="font-size: 10px">{{ ucfirst($chat->cntry_name) ?? '' }}</small>
                           @if($chat->type == 'text')
                             <p>{{ $chat->message ?? '' }}</p>
                           @elseif($chat->type == 'image')

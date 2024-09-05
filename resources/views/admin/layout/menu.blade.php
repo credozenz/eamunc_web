@@ -54,6 +54,12 @@
                 </a>
             </li>
 
+            <li class="sidebar-item @if($routeGroup=='sub_admins') active @endif ">
+                <a href="{{ route('admin.sub_admins') }}" class='sidebar-link'>
+                    <span><i class="fa fa-users" aria-hidden="true">&nbsp</i>Sub Admins</span>
+                </a>
+            </li>
+
             <li class="sidebar-item  @if($routeGroup =='guideline') active @endif ">
                 <a href="{{ route('admin.guideline') }}" class='sidebar-link'>
                     <span><i class="fa fa-map-signs" aria-hidden="true">&nbsp</i>Rules Of Procedure</span>
@@ -77,6 +83,13 @@
                     <span><i class="fa fa-file-o" aria-hidden="true">&nbsp</i>Liability Waiver Form</span>
                 </a>
             </li>
+
+            <li class="sidebar-item @if($routeGroup=='students_liability_form') active @endif">
+                <a href="{{ route('admin.submitted_liability_waiver_form') }}" class='sidebar-link'>
+                    <span><i class="fa fa-file-o" aria-hidden="true">&nbsp</i>Submitted Liability Waiver Forms</span>
+                </a>
+            </li>
+
 
             <li class="sidebar-item  @if($routeGroup =='feedback') active @endif ">
                 <a href="{{ route('admin.user_feedback') }}" class='sidebar-link'>

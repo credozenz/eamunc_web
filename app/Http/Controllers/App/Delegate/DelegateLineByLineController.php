@@ -37,4 +37,22 @@ class DelegateLineByLineController extends Controller
 
         return view('app/delegate/line_by_line', compact('committee','line'));
     }
+
+    public function load_line_by_line(){
+        $member = WebAppHelper::getLogMember();
+        $committee = Committee::where('id', $member->committee_choice)->first();
+        
+        $line = Line_by_line::where('committe_id',$committee->id)->first();
+
+        if ($line) {
+            $status = "1";
+            $message = '';
+            $dt = '<textarea id="view_editor" type="text" class="form-control">'.$line->content.'</textarea>';
+            $line = $dt;
+        } else {
+            $status = "0";
+            $message = "Something went wrong";
+        }
+        echo json_encode(['status' => $status, 'message' => $message,'content' => $line]);
+    }
 }

@@ -42,6 +42,7 @@ use App\Http\Controllers\Admin\LiabilityWaiverController;
 use App\Http\Controllers\Admin\AlumniRegController;
 use App\Http\Controllers\Admin\ExportExcelController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\SubAdminController;
 use App\Http\Controllers\Admin\CertificateController;
 /*
 |--------------------------------------------------------------------------
@@ -81,6 +82,8 @@ Route::group(['middleware' => 'adminchecker'], function() {
 
      Route::get('/liability_waiver_form', [LiabilityWaiverController::class,'index'])->name('admin.liability_waiver_form');
      Route::post('/liability_waiver_form_update', [LiabilityWaiverController::class,'update'])->name('admin.liability_waiver_form.update');
+
+
 
 
      Route::get('/rules', [RulesController::class,'index'])->name('admin.rules');
@@ -240,6 +243,13 @@ Route::group(['middleware' => 'adminchecker'], function() {
      Route::post('/users_file_delete/{id}', [UsersController::class,'file_destroy'])->name('admin.users.file_destroy');
 
 
+     Route::get('/sub_admins', [SubAdminController::class,'index'])->name('admin.sub_admins');
+     Route::get('/sub_admins_create', [SubAdminController::class,'create'])->name('admin.sub_admins.create');
+     Route::post('/sub_admins_store', [SubAdminController::class,'store'])->name('admin.sub_admins.store');
+     Route::get('/sub_admins_edit/{id}', [SubAdminController::class,'edit'])->name('admin.sub_admins.edit');
+     Route::get('/sub_admins_show/{id}', [SubAdminController::class,'show'])->name('admin.sub_admins.show');
+     Route::post('/sub_admins_update/{id}', [SubAdminController::class,'update'])->name('admin.sub_admins.update');
+     Route::post('/sub_admins_delete/{id}', [SubAdminController::class,'destroy'])->name('admin.sub_admins.destroy');
 
      Route::get('/blocformation/{id}', [BlocFormationController::class,'index'])->name('admin.blocformation');
      Route::get('/blocformation_create/{id}', [BlocFormationController::class,'create'])->name('admin.blocformation.create');
@@ -334,6 +344,7 @@ Route::group(['middleware' => 'adminchecker'], function() {
      Route::post('/student_delete/{id}', [StudentsController::class,'destroy'])->name('admin.student.destroy');
      Route::post('/student_statuschange/{id}', [StudentsController::class,'status_change'])->name('admin.student.statuschange');
      
+     Route::get('/submitted_liability_waiver_form', [StudentsController::class,'submitted_liability_waiver_form'])->name('admin.submitted_liability_waiver_form');
 
      Route::get('/student_password/{id}', [StudentsController::class,'change_password'])->name('admin.student_password');
      Route::post('/student_pwd_update/{id}', [StudentsController::class,'update_password'])->name('admin.student_pwd_update');

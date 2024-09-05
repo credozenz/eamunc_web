@@ -54,7 +54,7 @@ class ExportExcelController extends Controller
                 ->where('users.role', '=' , 2)
                 ->whereIn('students.status', [1, 2, 3])
                 ->where('students.committee_choice', '=' , $id);
-        $delegate = $query1->orderBy('students.id', 'desc');
+        $delegate = $query1->orderBy('students.id', 'desc')->get();
  
         $committee  = Committee::find($id); 
 

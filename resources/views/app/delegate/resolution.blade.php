@@ -25,22 +25,23 @@
           Once all the changes have been made and amendments been added, 
 the committee moves into the action phase. At this point in time, the
 chair will ask the delegates if there are any objections to the draft 
-resolution. If there are none, the draft resolution is adopted by con-
-sensus and is renamed resolution 1.1.
+resolution. If there are none, the draft resolution is adopted by consensus and is renamed resolution 1.1.
           </label>
                 <div class="col-md-12 col-12">
-                    <div class="form-group">
-                       
-                     @if(!empty($resolution->content))
+                    
+                    @if(isset($resolution->content))
+                     <div class="form-group place_here">
                         <textarea id="view_editor" > {!! $resolution->content ?? '' !!}</textarea>
+                     </div>
                      @else
+                     <div class="form-group">
                      <div class="blue-box mt-3">
                                 <h4>Please wait !</h4>
                          <p class="mt-2 mb-3">This session has not started !</p>
                      </div>
                      @endif
                     </div>
-                    @if($accepted==true)
+                    @if(!$accepted)
                     <form method="post" action="{{ url('app/delegate_resolution_accept') }}" class="mt-5 col-md-12"  enctype="multipart/form-data">
                     @csrf
                     <button type="submit" class="btn btn-primary mt-3"> Accept</button>
@@ -62,3 +63,42 @@ sensus and is renamed resolution 1.1.
   
    
 
+@section('script')
+<script>
+    $(function() {
+        setInterval(function() {
+            load_delegate_vienna();
+        }, 30000);
+    });
+
+    function load_delegate_vienna() {
+        $.ajax({
+            url: "{{url('app/delegate_load_resolution')}}",
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                "_token": "{{ csrf_token() }}",
+            },
+            success: function(res) {
+                if (res['status'] == 1) {
+                  $(".place_here").html(res['content']);
+                    tinymce.remove("#view_editor");
+                    tinymce.init({
+                      selector: '#view_editor',
+                      menubar: false,
+                      toolbar: false,
+                      statusbar: false,
+                      readonly:true
+                    });
+
+                } else {
+                   
+                }
+            },
+            error: function(e) {
+            }
+        });
+    }
+</script>
+@stop
+   
