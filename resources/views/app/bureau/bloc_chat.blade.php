@@ -20,8 +20,6 @@
              <small class="text-primary mb-3 d-inline-block ps-2 "> {{ ucfirst($committee_bloc->name) ?? '' }} </small>
           </div>
 
-         
-
           <div class="col-md-3 ">
             <h5 class="text-primary mb-3 d-inline-block ps-2 " style="line-height: 40px;">{{ ucfirst($committee->name) ?? '' }}</h5>
           </div>
@@ -33,8 +31,6 @@
             @endif
           </div>
           <div class="col-md-12">
-       
-      
             <!-- Panel Chat -->
             <div class="chat-box" id="chat">
           
@@ -91,13 +87,10 @@
                     
                             </form>
                           
-                          
                           </div>
                          
                         </div>
                       </div>
-
-                     
 
                     @else
             
@@ -171,7 +164,7 @@
                           </svg>
                         </span> 
                       </label>
-                      <input type="text" id="msg" name="message" class="form-control" placeholder="Say something" >
+                      <input type="text" id="msg" name="message" class="form-control" placeholder="Say something" value="" >
                       <label  id="crs" style="display:none; padding-left: 58px;color: red;position: absolute;">x</label>
                       <input id="file-upload" name='file' type="file" style="display:none;">
                       <span class="input-group-btn">
@@ -185,15 +178,11 @@
               <p class="btn btn-primary get-sendfield">  You have to wait 30 seconds before sending another message. </p>
               </div> -->
               
-             
             </div>
             <!-- End Panel Chat -->
         
-           
-      
           </div>
      
-      
         </div>
 
 </div>
@@ -202,6 +191,9 @@
 @section('script')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
+  $(document).on('submit', 'form', function(e) {
+    sessionStorage.removeItem(`chatMessage-${@json($committee_bloc->id)}`);
+  });
   $(document).on('click', '#btn-close-bloc', function(e) {
     console.log('click');
     e.preventDefault();
@@ -257,6 +249,13 @@
         }
     });
   });
+
+  const messageInput = document.getElementById('msg');
+  messageInput.value = sessionStorage.getItem(`chatMessage-${@json($committee_bloc->id)}`) || '';
+  messageInput.addEventListener('input', function() {
+    sessionStorage.setItem(`chatMessage-${@json($committee_bloc->id)}`, messageInput.value);
+  });
+
+ 
 </script>
 @endsection
-   

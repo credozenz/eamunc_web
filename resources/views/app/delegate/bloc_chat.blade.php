@@ -249,7 +249,16 @@
  <p id="counter">0</p> --}}
 
     <script>
-        $(document).ready(function() {
+          $(document).on('submit', 'form', function(e) {
+            sessionStorage.removeItem(`chatMessage-${@json($committee_bloc->id)}`);
+        });
+        const messageInput = document.getElementById('msg');
+        messageInput.value = sessionStorage.getItem(`chatMessage-${@json($committee_bloc->id)}`) || '';
+
+        messageInput.addEventListener('input', function() {
+            sessionStorage.setItem(`chatMessage-${@json($committee_bloc->id)}`, messageInput.value);
+        });
+            $(document).ready(function() {
             var check_time = localStorage.getItem("counter_" + $("#committee_bloc_id").val());
 
             if (check_time > 0) {
