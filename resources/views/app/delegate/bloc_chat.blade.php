@@ -224,7 +224,11 @@
 
                         <!-- <div class="text-center">
                                                     <p class="btn btn-primary get-sendfield">  You have to wait 30 seconds before sending another message. </p>
-                                                  </div> -->
+                     
+                    @elseif($committee_bloc->is_closed == 1)
+                    <div class="text-center">
+                        <p class="btn btn-primary get-sendfield"> This Bloc is now closed </p>
+                    </div>
                     @endif
 
                 </div>

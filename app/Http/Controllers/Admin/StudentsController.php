@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
+use App\Models\Bloc_chats;
+use App\Models\Bloc_members;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -159,7 +161,7 @@ class StudentsController extends Controller
         $data   = students::where('id', $id)->first();  
         $school = School::where('id', $data->school_id)->first();
         $user   = User::where('id', $data->user_id)->first(); 
-        $countries = Countries::where('deleted_at', null)->get();
+        $countries = Countries::where('deleted_at', null)->orderBy('name','asc')->get();
         return view('admin/students/show', compact('data','school','user','committees','id','countries'));
        
     }
@@ -211,7 +213,7 @@ class StudentsController extends Controller
         //     $position = $request->position;
 
         // }
-        
+        DB::beginTransaction();
             $user = User::where('id', $student->user_id)->first();
             $user->name  = $request->name;
             $user->email = $request->email;
@@ -296,17 +298,20 @@ class StudentsController extends Controller
 
             $student->status   = $request->status;
             }
-            
+            Bloc_chats::where('user_id',$user->id)->delete();
+            Bloc_members::where('user_id',$user->id)->delete();
             $student->save();
-            
+            DB::commit();
             if($student->id){
                 Session::flash('success', 'Student Updated successfully Completed!');
                 return redirect('admin/students');
             }else{
+                DB::rollBack();
                 Session::flash('error', 'Something went wrong!!');
                 return  redirect()->back();
             }
         }else{
+            DB::rollBack();
             Session::flash('error', 'Something went wrong!!');
             return  redirect()->back();
         }

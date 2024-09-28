@@ -175,6 +175,16 @@ class HomeController extends IndexController
                     return $this->sendResponse($response);
                         
                 }
+                
+                $isExist = Speakers::where('user_id', $user->user_id)
+                ->where('country_id', $countryId)
+                ->where('committe_id', $committeeId)
+                ->where('deleted_at', null)->first();
+                if(!empty($isExist->id)){
+                    $response['status']  = false;
+                    $response['message'] = "User already a speaker in this country.";
+                    return $this->sendResponse($response);
+                }
            
             $speaker = new Speakers;
             $speaker->country_id  = $countryId;

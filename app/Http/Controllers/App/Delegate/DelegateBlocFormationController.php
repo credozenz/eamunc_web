@@ -44,9 +44,6 @@ class DelegateBlocFormationController extends Controller
                             ->where('m.deleted_at', null)
                             ->first();
 
-      
-       
-
         return view('app/delegate/bloc_formation', compact('committee','committee_bloc','mybloc'));
     }
 

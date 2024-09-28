@@ -168,7 +168,28 @@ class ViennaController extends IndexController
         }
 
     }
-
+    public function close_vienna(Request $request)
+    {
+        $vf = Vienna_formula::where('id', $request->vienna_id)->first();
+        $vf->is_closed = 1;
+        $vf->save();
+        $success['message'] = "Vienna closed successfully";
+        $success['status'] = true;
+        return $this->sendResponse($success);
+    }
+    public function is_vienna_closed(Request $request)
+    {
+        $vf = Vienna_formula::where('id', $request->id)->first();
+        if($vf->is_closed == 1){
+            $success['message'] = "Vienna is closed";
+            $success['status'] = true;
+            return $this->sendResponse($success);
+        }else{
+            $response['status'] = false;
+            $response['message'] = "Vienna is not closed";
+            return $this->sendResponse($response);
+        }
+    }
     public function add_delegate_vienna(Request $request)
     {
 

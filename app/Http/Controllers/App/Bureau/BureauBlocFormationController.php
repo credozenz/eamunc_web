@@ -103,7 +103,6 @@ class BureauBlocFormationController extends Controller
        
         $name = $request->input('name');
       
-    
         $bloc = new blocs;
         $bloc->name = $name;
         $bloc->committe_id = $committee->id;

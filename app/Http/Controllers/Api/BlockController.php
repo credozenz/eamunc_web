@@ -222,15 +222,37 @@ class BlockController extends IndexController
 
         } else {
 
-            $bloc = Bloc_members::where('bloc_id', $request->block_id)->update(['deleted_at' => $timestamp]);
-
+            Bloc_members::where('bloc_id', $request->block_id)->update(['deleted_at' => $timestamp]);
+            Bloc_chats::where('bloc_id', $request->block_id)->update(['deleted_at' => $timestamp]);
             $response['status'] = true;
             $response['data'] = "Bloc successfully deleted";
             return $this->sendResponse($response);
 
         }
     }
+    public function close_block(Request $request)
+    {
+        $bloc = Blocs::where('id', $request->block_id)->first();
+        $bloc->is_closed = 1;
+        $bloc->save();
+        $success['message'] = "Bloc closed successfully";
+        $success['status'] = true;
+        return $this->sendResponse($success);
+    }
 
+    public function is_block_closed(Request $request)
+    {
+        $bloc = Blocs::where('id', $request->id)->first();
+        if($bloc->is_closed == 1){  
+            $success['message'] = "Bloc is closed";
+            $success['status'] = true;
+            return $this->sendResponse($success);
+        }else{
+            $response['status'] = false;
+            $response['message'] = "Bloc is not closed";
+            return $this->sendResponse($response);
+        }
+    }
     public function update_blocks(Request $request)
     {
 

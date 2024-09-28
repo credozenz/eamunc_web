@@ -58,6 +58,8 @@ Route::post('/request_forgetpassword', [AuthController::class,'RequestForgetPass
     Route::post('/get_block_chat', [BlockController::class,'get_block_chat']);
     Route::post('/add_block_chat', [BlockController::class,'add_block_chat']);
     Route::post('/delete_block_chat', [BlockController::class,'delete_block_chat']);
+    Route::post('/close_block', [BlockController::class,'close_block']);
+    Route::get('/is_block_closed', [BlockController::class,'is_block_closed']);
 
 
     Route::post('/get_live_stream', [HomeController::class,'get_live_stream']);
@@ -74,6 +76,8 @@ Route::post('/request_forgetpassword', [AuthController::class,'RequestForgetPass
     Route::post('/get_vienna_new', [ViennaController::class,'get_vienna_new']);
     Route::post('/add_vienna',  [ViennaController::class,'add_vienna']);
     Route::post('/add_delegate_vienna',  [ViennaController::class,'add_delegate_vienna']);
+    Route::post('/close_vienna', [ViennaController::class,'close_vienna']);
+    Route::get('/is_vienna_closed', [ViennaController::class,'is_vienna_closed']);
 
     Route::post('/get_line_by_line', [LineByLineController::class,'get_line_by_line']);
     Route::post('/get_line_by_line_new', [LineByLineController::class,'get_line_by_line_new']);
